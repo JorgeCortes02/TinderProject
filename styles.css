@@ -1,7 +1,53 @@
 /* MARK: GENERAL STYLES */
+:root{
+    --jetblack: #292929;
+    --darkblue: #534FF6;
+    --middleblue: #8B8EF9;
+    --lightblue: #DBDFFE;
+    --white: #FFFFFF;
+
+
+    /*Title font*/
+    --title-font: 'Monaco', monospace;
+    --title-size: 30px;
+    --title-weight: bold;
+
+    /*Header font*/
+    --header-font: 'Roboto', sans-serif;
+    --header-size: 18px;
+
+    /*Text 1 font*/
+    --text-font1: Verdana, sans-serif;
+    --text-size: 12px;
+
+}
+
+
 
 
 /* MARK: INDEX */ 
+
+/*Esto es una demo, se puede borrar luego*/
+body{
+    background-color: var(--white);
+}
+h1{
+    color: var(--darkblue);
+    font-family: var(--title-font);
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+}
+h3{
+    color: var(--jetblack);
+    font-family: var(--header-font);
+    font-size: var(--header-size);
+    
+}
+p{
+    color: var(--jetblack);
+    font-family: var(--text-font1);
+    font-size: var(--text-size);
+}
 
 
 /* MARK: LOGIN */ 
