@@ -1,0 +1,63 @@
+
+DROP DATABASE DatingApp;
+CREATE DATABASE DatingApp;
+USE DatingApp;
+
+
+-- Tabla User
+CREATE TABLE User (
+    IdUser INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(50),
+    Apellido1 VARCHAR(50),
+    Apellido2 VARCHAR(50),
+    Alias VARCHAR(50),
+    Pass VARCHAR(255), -- Contraseña encriptada
+    Naixement DATE,
+    Orientacio ENUM('Heterosexual', 'Homosexual', 'Bisexual') NOT NULL, -- Preferencia sexual
+    Sexe ENUM('Hombre', 'Mujer', 'No binario') NOT NULL, -- Género
+    Longitud varchar(50),
+    Latitud varchar(50),
+    Email VARCHAR(100) UNIQUE,
+    ModifyAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+-- Tabla Photo
+CREATE TABLE Photo (
+    idFoto INT AUTO_INCREMENT PRIMARY KEY,
+    idUser INT NOT NULL,
+    URL VARCHAR(255) NOT NULL,
+    FOREIGN KEY (idUser) REFERENCES User(IdUser) ON DELETE CASCADE
+);
+
+-- Tabla Like
+CREATE TABLE `Like` (
+    LikeId INT AUTO_INCREMENT PRIMARY KEY,
+    idUser INT NOT NULL,
+    idUserLiked INT NOT NULL,
+    CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (idUser) REFERENCES User(IdUser) ON DELETE CASCADE,
+    FOREIGN KEY (idUserLiked) REFERENCES User(IdUser) ON DELETE CASCADE
+);
+
+-- Tabla Match
+CREATE TABLE Matches (
+    idMatch INT AUTO_INCREMENT PRIMARY KEY,
+    isUser1 INT NOT NULL,
+    idUser2 INT NOT NULL,
+    MatchAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (isUser1) REFERENCES User(IdUser) ON DELETE CASCADE,
+    FOREIGN KEY (idUser2) REFERENCES User(IdUser) ON DELETE CASCADE
+);
+
+-- Tabla Message
+CREATE TABLE Message (
+    idMessage INT AUTO_INCREMENT PRIMARY KEY,
+    MatchId INT NOT NULL,
+    isUserReceived INT NOT NULL,
+    idUserSend INT NOT NULL,
+    text TEXT NOT NULL,
+    SentAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (MatchId) REFERENCES Matches(idMatch) ON DELETE CASCADE,
+    FOREIGN KEY (isUserReceived) REFERENCES User(IdUser) ON DELETE CASCADE,
+    FOREIGN KEY (idUserSend) REFERENCES User(IdUser) ON DELETE CASCADE
+);
