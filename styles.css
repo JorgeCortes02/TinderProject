@@ -5,6 +5,7 @@
     --middleblue: #8B8EF9;
     --lightblue: #DBDFFE;
     --white: #FFFFFF;
+    --darkred: #8B1A1A;
 
 
     /*Title font*/
@@ -21,7 +22,6 @@
     --text-size: 12px;
 
 }
-
 
 
 
@@ -57,9 +57,173 @@ p{
 
 
 /* MARK: DISCOVER */ 
+     
+/* Reset de márgenes y paddings */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fondo general */
+body {
+    background-color: var(--white);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    width: 100%;
+ 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(83, 79, 246, 0.2); /* Sombra azul suave */
+    position: relative;
+    
+    overflow: hidden;
+}
+
+/* Logo alineado a la izquierda */
+#titleDiv h1 {
+    color: var(--darkblue);
+    font-family: var(--title-font);
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+    text-align: left;
+    padding: 10px;
+}
+
+/* Contenedor de la tarjeta */
+.card-container {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 90%;
+    height: 100%;
+    background-color: var(--lightblue);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(83, 79, 246, 0.2);
+    overflow: hidden;
+}
+
+/* Imagen de la tarjeta */
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Botones NOP y YES flotando sobre el borde inferior */
+.controls {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 40px;
+    z-index: 1000;
+}
+
+.btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--white);
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s, background-color 0.3s;
+}
+
+/* Botón Dislike: Jet Black con tono oscuro */
+.dislike {
+    background-color: var( --darkred);
+}
+
+.dislike:hover {
+    background-color: #1a1a1a; /* Más oscuro al pasar el mouse */
+}
+
+/* Botón Like: Azul Medio */
+.like {
+    background-color: var(--middleblue);
+}
+
+.like:hover {
+    background-color: var(--darkblue); /* Más oscuro al pasar el mouse */
+}
+.btn:hover {
+    transform: scale(1.1);
+}
+
+/* Menú inferior */
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--darkblue);
+    padding: 20px 0;
+    margin-left: 0;
+    margin-top: 10px;
+    border-top: 1px solid var(--lightblue);
+}
+
+.bottom-nav a {
+    text-decoration: none;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 14px;
+}
 
 
 /* MARK: PROFILE */ 
 
 
 /* MARK: MESSAGES */
+
+
+
+
+/* Media Query para móviles */
+@media (max-width: 460px) {
+    .container {
+        width: 100%;
+        height: 100vh;
+    }
+
+    .card-container {
+        height: 60%;
+    }
+
+    .btn {
+        width: 60px;
+        height: 60px;
+        font-size: 16px;
+    }
+
+    .controls {
+        bottom: 50px;
+        gap: 80px;
+    }
+
+    .bottom-nav a {
+        font-size: 12px;
+    }
+}
+
+
