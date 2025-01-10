@@ -7,19 +7,22 @@ USE DatingApp;
 -- Tabla User
 CREATE TABLE User (
     IdUser INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(50),
-    Apellido1 VARCHAR(50),
-    Apellido2 VARCHAR(50),
-    Alias VARCHAR(50),
-    Pass VARCHAR(255), -- Contraseña encriptada
-    Naixement DATE,
+    Nombre VARCHAR(50) NOT NULL,
+    Apellido1 VARCHAR(50) NOT NULL,
+    Apellido2 VARCHAR(50) NOT NULL,
+    Alias VARCHAR(50) NOT NULL,
+    Pass VARCHAR(255) NOT NULL, -- Contraseña encriptada
+    Naixement DATE NOT NULL,
     Orientacio ENUM('Heterosexual', 'Homosexual', 'Bisexual') NOT NULL, -- Preferencia sexual
     Sexe ENUM('Hombre', 'Mujer', 'No binario') NOT NULL, -- Género
-    Longitud varchar(50),
-    Latitud varchar(50),
-    Email VARCHAR(100) UNIQUE,
-    ModifyAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    Longitud VARCHAR(50) NOT NULL,
+    Latitud VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    EdadUser INT NOT NULL,
+    EdadMax INT NOT NULL,
+    EdadMin INT NOT NULL,
+    ModifyAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+    CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 -- Tabla Photo
 CREATE TABLE Photo (
@@ -61,3 +64,13 @@ CREATE TABLE Message (
     FOREIGN KEY (isUserReceived) REFERENCES User(IdUser) ON DELETE CASCADE,
     FOREIGN KEY (idUserSend) REFERENCES User(IdUser) ON DELETE CASCADE
 );
+
+-- Crear Evento Para Actualizacion de la edad.
+SET GLOBAL event_scheduler = ON;
+
+CREATE EVENT actualizar_edades_diarias
+ON SCHEDULE EVERY 1 DAY
+STARTS CURRENT_TIMESTAMP  -- Esto establecerá el inicio del evento a la hora actual
+DO
+  UPDATE User
+  SET Edad = TIMESTAMPDIFF(YEAR, Naixement, CURDATE());
