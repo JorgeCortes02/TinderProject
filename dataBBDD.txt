@@ -1,9 +1,8 @@
 USE DatingApp;
--- Datos para la tabla User
--- Datos para la tabla User
-INSERT INTO User (Nombre, Apellido1, Apellido2, Alias, Pass, Naixement, Orientacio, Sexe, Longitud, Latitud, Email, EdadUser, EdadMax, EdadMin, ModifyAt, CreateAt)
+
+-- Insert data into the User table
+INSERT INTO User (FirstName, LastName1, LastName2, Username, Password, BirthDate, Orientation, Gender, Longitude, Latitude, Email, UserAge, MaxAge, MinAge, ModifyAt, CreateAt)
 VALUES
--- 16 Hombres
 ('Carlos', 'Gómez', 'López', 'carlito123', 'pass1234', '1990-05-20', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'carlos.gomez@ieti.site', 34, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Luis', 'Martínez', 'Pérez', 'lmartinez', 'pass1234', '1992-07-15', 'Homosexual', 'Hombre', '3.7038', '40.4168', 'luis.martinez@ieti.site', 32, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Javier', 'Hernández', 'Ruiz', 'javih', 'pass1234', '1988-10-10', 'Bisexual', 'Hombre', '3.7038', '40.4168', 'javier.ruiz@ieti.site', 36, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -22,6 +21,7 @@ VALUES
 ('Oscar', 'Fernández', 'Gómez', 'oscarfg', 'pass1234', '1996-03-03', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'oscar.fernandez@ieti.site', 28, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
 -- 16 Mujeres
+
 ('María', 'López', 'Martínez', 'marialm', 'pass1234', '1991-02-12', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'maria.lopez@ieti.site', 33, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Lucía', 'Martínez', 'Hernández', 'luciam', 'pass1234', '1989-06-23', 'Homosexual', 'Mujer', '3.7038', '40.4168', 'lucia.martinez@ieti.site', 35, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Laura', 'Pérez', 'Ruiz', 'laurap', 'pass1234', '1995-09-05', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'laura.perez@ieti.site', 29, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -39,6 +39,7 @@ VALUES
 ('Natalia', 'Sánchez', 'López', 'natalias', 'pass1234', '1997-07-13', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'natalia.sanchez@ieti.site', 27, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Eva', 'Ruiz', 'Martínez', 'evarm', 'pass1234', '1988-05-05', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'eva.ruiz@ieti.site', 36, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
+
 -- 8 No Binarios
 ('Alex', 'Fernández', 'Gómez', 'alexfg', 'pass1234', '1996-04-20', 'Heterosexual', 'No binario', '3.7038', '40.4168', 'alex.fernandez@ieti.site', 28, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Jordan', 'Sánchez', 'Pérez', 'jordans', 'pass1234', '1994-10-14', 'Homosexual', 'No binario', '3.7038', '40.4168', 'jordan.sanchez@ieti.site', 30, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
@@ -50,7 +51,10 @@ VALUES
 ('Skyler', 'García', 'Fernández', 'skylergf', 'pass1234', '1994-09-18', 'Homosexual', 'No binario', '3.7038', '40.4168', 'skyler.garcia@ieti.site', 30, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
-INSERT INTO `Like` (idUser, idUserLiked) VALUES
+
+
+-- Insert data into the Like table
+INSERT INTO UserLikes (UserId, LikedUserId) VALUES
 (1, 2),
 (1, 3),
 (2, 1),
@@ -72,8 +76,8 @@ INSERT INTO `Like` (idUser, idUserLiked) VALUES
 (10, 3),
 (10, 6);
 
-
-INSERT INTO Matches (isUser1, idUser2) VALUES
+-- Insert data into the Matches table
+INSERT INTO Matches (User1Id, User2Id) VALUES
 (1, 2),
 (1, 3),
 (2, 1),
@@ -95,8 +99,8 @@ INSERT INTO Matches (isUser1, idUser2) VALUES
 (7, 9),
 (9, 10);
 
-
-INSERT INTO Message (MatchId, isUserReceived, idUserSend, text) VALUES
+-- Insert data into the Message table
+INSERT INTO Message (MatchId, ReceiverUserId, SenderUserId, Text) VALUES
 (1, 2, 1, 'Hey, how are you?'),
 (1, 1, 2, 'I am doing great, thanks! How about you?'),
 (2, 3, 1, 'Nice to meet you!'),
@@ -107,13 +111,13 @@ INSERT INTO Message (MatchId, isUserReceived, idUserSend, text) VALUES
 (4, 3, 5, 'Yes, I love to explore new places!'),
 (5, 6, 4, 'What do you do for a living?'),
 (5, 4, 6, 'I am a graphic designer, what about you?'),
-(6, 7, 5, 'I have a question for you. What’s your favorite hobby?'),
+(6, 7, 5, 'What’s your favorite hobby?'),
 (6, 5, 7, 'I enjoy reading and painting. What about you?'),
 (7, 8, 6, 'Would you like to grab coffee sometime?'),
 (7, 6, 8, 'That sounds nice! Let me know when you’re free.'),
-(8, 9, 7, 'I saw your profile picture. Where was that taken?'),
+(8, 9, 7, 'Where was your profile picture taken?'),
 (8, 7, 9, 'It was from my trip to Barcelona last year.'),
 (9, 10, 8, 'I like your style! Do you have any fashion tips?'),
 (9, 8, 10, 'Thank you! I love casual outfits.'),
-(10, 1, 9, 'I noticed we have some similar interests!'),
-(10, 9, 1, 'Yeah, I saw that too. Would love to chat more!');
+(10, 1, 9, 'I noticed we have similar interests!'),
+(10, 9, 1, 'Yeah, would love to chat more!');
