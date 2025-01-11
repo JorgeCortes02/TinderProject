@@ -5,6 +5,10 @@
     --middleblue: #8B8EF9;
     --lightblue: #DBDFFE;
     --white: #FFFFFF;
+
+    --brightred: #D32F2F;
+    --vibrantgreen: #4CAF50;
+
     --darkred: #8B1A1A;
 
 
@@ -153,7 +157,7 @@ body {
 
 /* Botón Dislike: Jet Black con tono oscuro */
 .dislike {
-    background-color: var( --darkred);
+    background-color: var( --brightred);
 }
 
 .dislike:hover {
@@ -162,7 +166,7 @@ body {
 
 /* Botón Like: Azul Medio */
 .like {
-    background-color: var(--middleblue);
+    background-color: var(--vibrantgreen);
 }
 
 .like:hover {
