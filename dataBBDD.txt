@@ -1,51 +1,52 @@
--- Datos para la tabla User
-INSERT INTO User (Nombre, Apellido1, Apellido2, Alias, Pass, Naixement, Orientacio, Sexe, Longitud, Latitud, Email)
+INSERT INTO User (Nombre, Apellido1, Apellido2, Alias, Pass, Naixement, Orientacio, Sexe, Longitud, Latitud, Email, MinAge, MaxAge)
 VALUES
 -- 16 Hombres
-('Carlos', 'Gómez', 'López', 'carlito123', 'pass1234', '1990-05-20', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'carlos.gomez@ieti.site'),
-('Luis', 'Martínez', 'Pérez', 'lmartinez', 'pass1234', '1992-07-15', 'Homosexual', 'Hombre', '-0.118092', '51.509865', 'luis.martinez@ieti.site'),
-('Javier', 'Hernández', 'Ruiz', 'javih', 'pass1234', '1988-10-10', 'Bisexual', 'Hombre', '-74.006', '40.7128', 'javier.ruiz@ieti.site'),
-('Miguel', 'Sánchez', 'Díaz', 'migueld', 'pass1234', '1985-12-25', 'Heterosexual', 'Hombre', '2.3522', '48.8566', 'miguel.sanchez@ieti.site'),
-('Andrés', 'Fernández', 'García', 'andresfg', 'pass1234', '1994-03-08', 'Homosexual', 'Hombre', '-43.1729', '-22.9068', 'andres.fernandez@ieti.site'),
-('David', 'López', 'Martínez', 'davidlm', 'pass1234', '1991-11-02', 'Bisexual', 'Hombre', '139.6917', '35.6895', 'david.lopez@ieti.site'),
-('Pablo', 'García', 'Hernández', 'pabloh', 'pass1234', '1987-04-16', 'Heterosexual', 'Hombre', '151.2093', '-33.8688', 'pablo.garcia@ieti.site'),
-('Alejandro', 'Pérez', 'Fernández', 'alejp', 'pass1234', '1995-06-10', 'Homosexual', 'Hombre', '-79.3832', '43.6532', 'alejandro.perez@ieti.site'),
-('Juan', 'Rodríguez', 'Gómez', 'juanr', 'pass1234', '1989-09-22', 'Bisexual', 'Hombre', '13.405', '52.52', 'juan.rodriguez@ieti.site'),
-('Fernando', 'Gómez', 'Martínez', 'fergom', 'pass1234', '1986-01-05', 'Heterosexual', 'Hombre', '-58.3816', '-34.6037', 'fernando.gomez@ieti.site'),
-('Ricardo', 'Díaz', 'Hernández', 'ricdiaz', 'pass1234', '1993-02-18', 'Homosexual', 'Hombre', '-118.2437', '34.0522', 'ricardo.diaz@ieti.site'),
-('Jorge', 'Ruiz', 'López', 'jorgerl', 'pass1234', '1990-08-30', 'Bisexual', 'Hombre', '37.6173', '55.7558', 'jorge.ruiz@ieti.site'),
-('Adrián', 'Martínez', 'Pérez', 'adrianm', 'pass1234', '1984-12-14', 'Heterosexual', 'Hombre', '55.2708', '25.2048', 'adrian.martinez@ieti.site'),
-('Diego', 'Hernández', 'García', 'diegoh', 'pass1234', '1992-07-07', 'Homosexual', 'Hombre', '-3.7038', '40.4168', 'diego.hernandez@ieti.site'),
-('Sergio', 'Sánchez', 'Díaz', 'sergiosd', 'pass1234', '1997-05-28', 'Bisexual', 'Hombre', '-0.1276', '51.5074', 'sergio.sanchez@ieti.site'),
-('Oscar', 'Fernández', 'Gómez', 'oscarfg', 'pass1234', '1996-03-03', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'oscar.fernandez@ieti.site'),
+('Carlos', 'Gómez', 'López', 'carlito123', 'pass1234', '1990-05-20', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'carlos.gomez@ieti.site', 25, 35), -- Madrid
+('Luis', 'Martínez', 'Pérez', 'lmartinez', 'pass1234', '1992-07-15', 'Homosexual', 'Hombre', '2.1734', '41.3851', 'luis.martinez@ieti.site', 28, 38), -- Barcelona
+('Javier', 'Hernández', 'Ruiz', 'javih', 'pass1234', '1988-10-10', 'Bisexual', 'Hombre', '-0.3763', '39.4699', 'javier.ruiz@ieti.site', 30, 40), -- Valencia
+('Miguel', 'Sánchez', 'Díaz', 'migueld', 'pass1234', '1985-12-25', 'Heterosexual', 'Hombre', '-4.4214', '36.7213', 'miguel.sanchez@ieti.site', 30, 45), -- Málaga
+('Andrés', 'Fernández', 'García', 'andresfg', 'pass1234', '1994-03-08', 'Homosexual', 'Hombre', '-6.2684', '36.5271', 'andres.fernandez@ieti.site', 25, 30), -- Cádiz
+('David', 'López', 'Martínez', 'davidlm', 'pass1234', '1991-11-02', 'Bisexual', 'Hombre', '-5.6635', '40.9701', 'david.lopez@ieti.site', 27, 37), -- Ávila
+('Pablo', 'García', 'Hernández', 'pabloh', 'pass1234', '1987-04-16', 'Heterosexual', 'Hombre', '-1.6589', '42.8125', 'pablo.garcia@ieti.site', 32, 42), -- Pamplona
+('Alejandro', 'Pérez', 'Fernández', 'alejp', 'pass1234', '1995-06-10', 'Homosexual', 'Hombre', '-3.8770', '40.4775', 'alejandro.perez@ieti.site', 25, 30), -- Alcorcón
+('Juan', 'Rodríguez', 'Gómez', 'juanr', 'pass1234', '1989-09-22', 'Bisexual', 'Hombre', '-2.4697', '42.4627', 'juan.rodriguez@ieti.site', 28, 38), -- Logroño
+('Fernando', 'Gómez', 'Martínez', 'fergom', 'pass1234', '1986-01-05', 'Heterosexual', 'Hombre', '-3.8004', '43.4623', 'fernando.gomez@ieti.site', 30, 40), -- Santander
+('Ricardo', 'Díaz', 'Hernández', 'ricdiaz', 'pass1234', '1993-02-18', 'Homosexual', 'Hombre', '-5.8502', '43.3623', 'ricardo.diaz@ieti.site', 27, 35), -- Oviedo
+('Jorge', 'Ruiz', 'López', 'jorgerl', 'pass1234', '1990-08-30', 'Bisexual', 'Hombre', '-6.6051', '42.5990', 'jorge.ruiz@ieti.site', 28, 38), -- Ponferrada
+('Adrián', 'Martínez', 'Pérez', 'adrianm', 'pass1234', '1984-12-14', 'Heterosexual', 'Hombre', '-3.6832', '37.1760', 'adrian.martinez@ieti.site', 35, 45), -- Granada
+('Diego', 'Hernández', 'García', 'diegoh', 'pass1234', '1992-07-07', 'Homosexual', 'Hombre', '-8.0183', '43.3551', 'diego.hernandez@ieti.site', 27, 35), -- Ferrol
+('Sergio', 'Sánchez', 'Díaz', 'sergiosd', 'pass1234', '1997-05-28', 'Bisexual', 'Hombre', '-2.4637', '36.8340', 'sergio.sanchez@ieti.site', 20, 30), -- Almería
+('Oscar', 'Fernández', 'Gómez', 'oscarfg', 'pass1234', '1996-03-03', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'oscar.fernandez@ieti.site', 22, 30), -- Madrid
+
 
 -- 16 Mujeres
-('María', 'López', 'Martínez', 'marialm', 'pass1234', '1991-02-12', 'Heterosexual', 'Mujer', '-3.7038', '40.4168', 'maria.lopez@ieti.site'),
-('Lucía', 'Martínez', 'Hernández', 'luciam', 'pass1234', '1989-06-23', 'Homosexual', 'Mujer', '-0.118092', '51.509865', 'lucia.martinez@ieti.site'),
-('Laura', 'Pérez', 'Ruiz', 'laurap', 'pass1234', '1995-09-05', 'Bisexual', 'Mujer', '-74.006', '40.7128', 'laura.perez@ieti.site'),
-('Ana', 'Hernández', 'Gómez', 'anahg', 'pass1234', '1988-11-19', 'Heterosexual', 'Mujer', '2.3522', '48.8566', 'ana.hernandez@ieti.site'),
-('Sara', 'García', 'Díaz', 'saragd', 'pass1234', '1993-04-14', 'Homosexual', 'Mujer', '-43.1729', '-22.9068', 'sara.garcia@ieti.site'),
-('Elena', 'Sánchez', 'Fernández', 'elenas', 'pass1234', '1990-12-29', 'Bisexual', 'Mujer', '139.6917', '35.6895', 'elena.sanchez@ieti.site'),
-('Isabel', 'Ruiz', 'López', 'isabelr', 'pass1234', '1986-01-11', 'Heterosexual', 'Mujer', '151.2093', '-33.8688', 'isabel.ruiz@ieti.site'),
-('Paula', 'Fernández', 'Martínez', 'paulaf', 'pass1234', '1994-06-22', 'Homosexual', 'Mujer', '-79.3832', '43.6532', 'paula.fernandez@ieti.site'),
-('Claudia', 'Gómez', 'Pérez', 'claudiag', 'pass1234', '1987-09-07', 'Bisexual', 'Mujer', '13.405', '52.52', 'claudia.gomez@ieti.site'),
-('Alicia', 'Díaz', 'Rodríguez', 'aliciad', 'pass1234', '1992-02-18', 'Heterosexual', 'Mujer', '-58.3816', '-34.6037', 'alicia.diaz@ieti.site'),
-('Carmen', 'Hernández', 'Sánchez', 'carmenh', 'pass1234', '1985-08-30', 'Homosexual', 'Mujer', '-118.2437', '34.0522', 'carmen.hernandez@ieti.site'),
-('Silvia', 'García', 'Ruiz', 'silviag', 'pass1234', '1990-11-20', 'Bisexual', 'Mujer', '37.6173', '55.7558', 'silvia.garcia@ieti.site'),
-('Rosa', 'Martínez', 'Fernández', 'rosamf', 'pass1234', '1989-03-08', 'Heterosexual', 'Mujer', '55.2708', '25.2048', 'rosa.martinez@ieti.site'),
-('Cristina', 'Pérez', 'Gómez', 'cristinap', 'pass1234', '1996-12-02', 'Homosexual', 'Mujer', '-3.7038', '40.4168', 'cristina.perez@ieti.site'),
-('Natalia', 'Sánchez', 'López', 'natalias', 'pass1234', '1997-07-13', 'Bisexual', 'Mujer', '-0.1276', '51.5074', 'natalia.sanchez@ieti.site'),
-('Eva', 'Ruiz', 'Martínez', 'evarm', 'pass1234', '1988-05-05', 'Heterosexual', 'Mujer', '-3.7038', '40.4168', 'eva.ruiz@ieti.site'),
+('María', 'López', 'Martínez', 'marialm', 'pass1234', '1991-02-12', 'Heterosexual', 'Mujer', '-3.7038', '40.4168', 'maria.lopez@ieti.site', 25, 35), -- Madrid
+('Lucía', 'Martínez', 'Hernández', 'luciam', 'pass1234', '1989-06-23', 'Homosexual', 'Mujer', '2.1734', '41.3851', 'lucia.martinez@ieti.site', 28, 38), -- Barcelona
+('Laura', 'Pérez', 'Ruiz', 'laurap', 'pass1234', '1995-09-05', 'Bisexual', 'Mujer', '-0.3763', '39.4699', 'laura.perez@ieti.site', 22, 30), -- Valencia
+('Ana', 'Hernández', 'Gómez', 'anahg', 'pass1234', '1988-11-19', 'Heterosexual', 'Mujer', '-5.9941', '37.3886', 'ana.hernandez@ieti.site', 30, 40), -- Sevilla
+('Sara', 'García', 'Díaz', 'saragd', 'pass1234', '1993-04-14', 'Homosexual', 'Mujer', '-8.611', '42.2406', 'sara.garcia@ieti.site', 27, 35), -- Vigo
+('Elena', 'Sánchez', 'Fernández', 'elenas', 'pass1234', '1990-12-29', 'Bisexual', 'Mujer', '-4.4214', '36.7213', 'elena.sanchez@ieti.site', 28, 38), -- Málaga
+('Isabel', 'Ruiz', 'López', 'isabelr', 'pass1234', '1986-01-11', 'Heterosexual', 'Mujer', '-1.8585', '43.2630', 'isabel.ruiz@ieti.site', 32, 42), -- Bilbao
+('Paula', 'Fernández', 'Martínez', 'paulaf', 'pass1234', '1994-06-22', 'Homosexual', 'Mujer', '-0.8891', '41.6498', 'paula.fernandez@ieti.site', 25, 30), -- Zaragoza
+('Claudia', 'Gómez', 'Pérez', 'claudiag', 'pass1234', '1987-09-07', 'Bisexual', 'Mujer', '-2.4691', '36.8340', 'claudia.gomez@ieti.site', 30, 40), -- Almería
+('Alicia', 'Díaz', 'Rodríguez', 'aliciad', 'pass1234', '1992-02-18', 'Heterosexual', 'Mujer', '-3.162', '42.6019', 'alicia.diaz@ieti.site', 27, 35), -- Burgos
+('Carmen', 'Hernández', 'Sánchez', 'carmenh', 'pass1234', '1985-08-30', 'Homosexual', 'Mujer', '-6.0076', '37.8821', 'carmen.hernandez@ieti.site', 32, 42), -- Córdoba
+('Silvia', 'García', 'Ruiz', 'silviag', 'pass1234', '1990-11-20', 'Bisexual', 'Mujer', '-0.7302', '38.3452', 'silvia.garcia@ieti.site', 28, 38), -- Alicante
+('Rosa', 'Martínez', 'Fernández', 'rosamf', 'pass1234', '1989-03-08', 'Heterosexual', 'Mujer', '-3.7038', '40.4168', 'rosa.martinez@ieti.site', 30, 40), -- Madrid
+('Cristina', 'Pérez', 'Gómez', 'cristinap', 'pass1234', '1996-12-02', 'Homosexual', 'Mujer', '-1.9839', '43.3033', 'cristina.perez@ieti.site', 22, 30), -- San Sebastián
+('Natalia', 'Sánchez', 'López', 'natalias', 'pass1234', '1997-07-13', 'Bisexual', 'Mujer', '2.6482', '39.5696', 'natalia.sanchez@ieti.site', 20, 30), -- Palma de Mallorca
+('Eva', 'Ruiz', 'Martínez', 'evarm', 'pass1234', '1988-05-05', 'Heterosexual', 'Mujer', '-7.0059', '37.3746', 'eva.ruiz@ieti.site', 30, 40), -- Huelva
 
 -- 8 No Binarios
-('Alex', 'Fernández', 'Gómez', 'alexfg', 'pass1234', '1995-03-15', 'Bisexual', 'No binario', '-3.7038', '40.4168', 'alex.fernandez@ieti.site'),
-('Sam', 'García', 'Martínez', 'samgm', 'pass1234', '1994-08-25', 'Homosexual', 'No binario', '-0.118092', '51.509865', 'sam.garcia@ieti.site'),
-('Taylor', 'Martínez', 'Ruiz', 'taylorm', 'pass1234', '1993-01-09', 'Heterosexual', 'No binario', '-74.006', '40.7128', 'taylor.martinez@ieti.site'),
-('Jordan', 'Pérez', 'Hernández', 'jordanp', 'pass1234', '1991-10-11', 'Bisexual', 'No binario', '2.3522', '48.8566', 'jordan.perez@ieti.site'),
-('Casey', 'Sánchez', 'Díaz', 'caseys', 'pass1234', '1987-06-05', 'Heterosexual', 'No binario', '-43.1729', '-22.9068', 'casey.sanchez@ieti.site'),
-('Morgan', 'Hernández', 'Fernández', 'morganh', 'pass1234', '1992-09-30', 'Homosexual', 'No binario', '139.6917', '35.6895', 'morgan.hernandez@ieti.site'),
-('Riley', 'Ruiz', 'López', 'rileyr', 'pass1234', '1990-12-12', 'Heterosexual', 'No binario', '151.2093', '-33.8688', 'riley.ruiz@ieti.site'),
-('Jamie', 'Gómez', 'Martínez', 'jamieg', 'pass1234', '1989-04-17', 'Bisexual', 'No binario', '-79.3832', '43.6532', 'jamie.gomez@ieti.site');
+('Alex', 'Fernández', 'Gómez', 'alexfg', 'pass1234', '1995-03-15', 'Bisexual', 'No binario', '-3.7038', '40.4168', 'alex.fernandez@ieti.site', 25, 30), -- Madrid
+('Sam', 'García', 'Martínez', 'samgm', 'pass1234', '1994-08-25', 'Homosexual', 'No binario', '2.1734', '41.3851', 'sam.garcia@ieti.site', 27, 35), -- Barcelona
+('Taylor', 'Martínez', 'Ruiz', 'taylorm', 'pass1234', '1993-01-09', 'Heterosexual', 'No binario', '-0.3763', '39.4699', 'taylor.martinez@ieti.site', 27, 35), -- Valencia
+('Jordan', 'Pérez', 'Hernández', 'jordanp', 'pass1234', '1991-10-11', 'Bisexual', 'No binario', '-5.9941', '37.3886', 'jordan.perez@ieti.site', 28, 38), -- Sevilla
+('Casey', 'Sánchez', 'Díaz', 'caseys', 'pass1234', '1987-06-05', 'Heterosexual', 'No binario', '-4.4214', '36.7213', 'casey.sanchez@ieti.site', 30, 40), -- Málaga
+('Morgan', 'Hernández', 'Fernández', 'morganh', 'pass1234', '1992-09-30', 'Homosexual', 'No binario', '-1.8585', '43.2630', 'morgan.hernandez@ieti.site', 27, 35), -- Bilbao
+('Riley', 'Ruiz', 'López', 'rileyr', 'pass1234', '1990-12-12', 'Heterosexual', 'No binario', '-6.0076', '37.8821', 'riley.ruiz@ieti.site', 28, 38), -- Córdoba
+('Jamie', 'Gómez', 'Martínez', 'jamieg', 'pass1234', '1989-04-17', 'Bisexual', 'No binario', '-0.7302', '38.3452', 'jamie.gomez@ieti.site', 30, 40); -- Alicante
+
 
 -- Datos tabla Like
 INSERT INTO `Like` (idUser, idUserLiked) VALUES
