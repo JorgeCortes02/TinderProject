@@ -41,12 +41,12 @@ function calcularDistance($lat1, $lon1, $lat2, $lon2)
 
 //Esta función llama a la función que nos devuelve los datos de los perfiles de la BBDD, 
 //llama a la función que calcula la dustancia entre nosotros y el otro usuario y devuelve la lista de usuarios ordenados por distancia.
-function CalcAndOrderbyPosition($users)
+function CalcAndOrderbyPosition()
 {
 
     // Tu ubicación (latitud y longitud)
-    $myLat = (float) $_SESSION["UserData"]["Latitude"]; // Ejemplo de latitud (Nueva York)
-    $myLong = (float) $_SESSION["UserData"]["Longitude"]; // Ejemplo de longitud (Nueva York)
+    $myLat = (float) $_SESSION["user_data"]["Latitude"]; // Ejemplo de latitud (Nueva York)
+    $myLong = (float) $_SESSION["user_data"]["Longitude"]; // Ejemplo de longitud (Nueva York)
 
     $users = downloadUsersForDiscover();
     $users = downloadFotos($users);
@@ -131,7 +131,7 @@ function downloadUsersForDiscover(): array
 function downloadFotos($userDiccionari)
 {
 
-    foreach ($userDiccionari as $user) {
+    foreach ($userDiccionari as &$user) {
 
 
         try {
@@ -145,20 +145,22 @@ function downloadFotos($userDiccionari)
             exit;
         }
 
-        $query = $pdo->prepare("SELECT URL FROM photos where UserId = " . $user["IdUser"] . ";");
+        $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $user["IdUser"] . ";");
         $query->execute();
-        $photos = $result = $query->fetchAll(PDO::FETCH_COLUMN);
+        $photos = $query->fetchAll(PDO::FETCH_COLUMN);
 
         $i = 0;
         foreach ($photos as $img) {
 
-            $user["img" . $i] = $img["photo"];
+            $user["img" . $i] = $img;
             $i++;
+            echo "pollo";
         }
 
 
 
     }
+
     return $userDiccionari;
 
 }
@@ -167,7 +169,7 @@ function downloadFotos($userDiccionari)
 //Esta función se encarga de descargar los likes que hemos dados para que no nos muestre esos perfiles.
 function downloadOurLikes()
 {
-
+    echo "holaa";
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
@@ -186,6 +188,6 @@ function downloadOurLikes()
 
 }
 
-print_r(downloadUsersForDiscover());
+print_r(CalcAndOrderbyPosition());
 
 ?>
