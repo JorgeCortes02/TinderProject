@@ -12,7 +12,9 @@ CREATE TABLE User (
     Password VARCHAR(255) NOT NULL, -- Encrypted password
     BirthDate DATE NOT NULL,
     Orientation ENUM('Heterosexual', 'Homosexual', 'Bisexual') NOT NULL, -- Sexual orientation
-    Gender ENUM('Male', 'Female', 'Non-binary') NOT NULL, -- Gender identity
+
+    Gender ENUM('Hombre', 'Mujer', 'No Binario') NOT NULL, -- Gender identity
+
     Longitude VARCHAR(50) NOT NULL,
     Latitude VARCHAR(50) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
@@ -31,8 +33,9 @@ CREATE TABLE Photo (
     FOREIGN KEY (UserId) REFERENCES User(IdUser) ON DELETE CASCADE
 );
 
--- Like Table
-CREATE TABLE `Like` (
+
+CREATE TABLE UserLikes (
+
     LikeId INT AUTO_INCREMENT PRIMARY KEY,
     UserId INT NOT NULL,
     LikedUserId INT NOT NULL,
@@ -73,3 +76,4 @@ STARTS CURRENT_TIMESTAMP  -- This will set the event start time to the current t
 DO
   UPDATE User
   SET UserAge = TIMESTAMPDIFF(YEAR, BirthDate, CURDATE());
+
