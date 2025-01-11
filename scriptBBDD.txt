@@ -1,76 +1,75 @@
-
 DROP DATABASE DatingApp;
 CREATE DATABASE DatingApp;
 USE DatingApp;
 
-
--- Tabla User
+-- User Table
 CREATE TABLE User (
     IdUser INT AUTO_INCREMENT PRIMARY KEY,
-    Nombre VARCHAR(50) NOT NULL,
-    Apellido1 VARCHAR(50) NOT NULL,
-    Apellido2 VARCHAR(50) NOT NULL,
-    Alias VARCHAR(50) NOT NULL,
-    Pass VARCHAR(255) NOT NULL, -- Contraseña encriptada
-    Naixement DATE NOT NULL,
-    Orientacio ENUM('Heterosexual', 'Homosexual', 'Bisexual') NOT NULL, -- Preferencia sexual
-    Sexe ENUM('Hombre', 'Mujer', 'No binario') NOT NULL, -- Género
-    Longitud VARCHAR(50) NOT NULL,
-    Latitud VARCHAR(50) NOT NULL,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName1 VARCHAR(50) NOT NULL,
+    LastName2 VARCHAR(50) NOT NULL,
+    Username VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL, -- Encrypted password
+    BirthDate DATE NOT NULL,
+    Orientation ENUM('Heterosexual', 'Homosexual', 'Bisexual') NOT NULL, -- Sexual orientation
+    Gender ENUM('Hombre', 'Mujer', 'No Binario') NOT NULL, -- Gender identity
+    Longitude VARCHAR(50) NOT NULL,
+    Latitude VARCHAR(50) NOT NULL,
     Email VARCHAR(100) UNIQUE NOT NULL,
-    EdadUser INT NOT NULL,
-    EdadMax INT NOT NULL,
-    EdadMin INT NOT NULL,
+    UserAge INT NOT NULL,
+    MaxAge INT NOT NULL,
+    MinAge INT NOT NULL,
     ModifyAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
     CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
--- Tabla Photo
+
+-- Photo Table
 CREATE TABLE Photo (
-    idFoto INT AUTO_INCREMENT PRIMARY KEY,
-    idUser INT NOT NULL,
+    PhotoId INT AUTO_INCREMENT PRIMARY KEY,
+    UserId INT NOT NULL,
     URL VARCHAR(255) NOT NULL,
-    FOREIGN KEY (idUser) REFERENCES User(IdUser) ON DELETE CASCADE
+    FOREIGN KEY (UserId) REFERENCES User(IdUser) ON DELETE CASCADE
 );
 
--- Tabla Like
-CREATE TABLE `Like` (
+-- Like Table
+CREATE TABLE UserLikes (
     LikeId INT AUTO_INCREMENT PRIMARY KEY,
-    idUser INT NOT NULL,
-    idUserLiked INT NOT NULL,
+    UserId INT NOT NULL,
+    LikedUserId INT NOT NULL,
     CreateAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (idUser) REFERENCES User(IdUser) ON DELETE CASCADE,
-    FOREIGN KEY (idUserLiked) REFERENCES User(IdUser) ON DELETE CASCADE
+    FOREIGN KEY (UserId) REFERENCES User(IdUser) ON DELETE CASCADE,
+    FOREIGN KEY (LikedUserId) REFERENCES User(IdUser) ON DELETE CASCADE
 );
 
--- Tabla Match
+-- Match Table
 CREATE TABLE Matches (
-    idMatch INT AUTO_INCREMENT PRIMARY KEY,
-    isUser1 INT NOT NULL,
-    idUser2 INT NOT NULL,
+    MatchId INT AUTO_INCREMENT PRIMARY KEY,
+    User1Id INT NOT NULL,
+    User2Id INT NOT NULL,
     MatchAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (isUser1) REFERENCES User(IdUser) ON DELETE CASCADE,
-    FOREIGN KEY (idUser2) REFERENCES User(IdUser) ON DELETE CASCADE
+    FOREIGN KEY (User1Id) REFERENCES User(IdUser) ON DELETE CASCADE,
+    FOREIGN KEY (User2Id) REFERENCES User(IdUser) ON DELETE CASCADE
 );
 
--- Tabla Message
+-- Message Table
 CREATE TABLE Message (
-    idMessage INT AUTO_INCREMENT PRIMARY KEY,
+    MessageId INT AUTO_INCREMENT PRIMARY KEY,
     MatchId INT NOT NULL,
-    isUserReceived INT NOT NULL,
-    idUserSend INT NOT NULL,
-    text TEXT NOT NULL,
+    ReceiverUserId INT NOT NULL,
+    SenderUserId INT NOT NULL,
+    Text TEXT NOT NULL,
     SentAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (MatchId) REFERENCES Matches(idMatch) ON DELETE CASCADE,
-    FOREIGN KEY (isUserReceived) REFERENCES User(IdUser) ON DELETE CASCADE,
-    FOREIGN KEY (idUserSend) REFERENCES User(IdUser) ON DELETE CASCADE
+    FOREIGN KEY (MatchId) REFERENCES Matches(MatchId) ON DELETE CASCADE,
+    FOREIGN KEY (ReceiverUserId) REFERENCES User(IdUser) ON DELETE CASCADE,
+    FOREIGN KEY (SenderUserId) REFERENCES User(IdUser) ON DELETE CASCADE
 );
 
--- Crear Evento Para Actualizacion de la edad.
+-- Create Event for Daily Age Update
 SET GLOBAL event_scheduler = ON;
 
-CREATE EVENT actualizar_edades_diarias
+CREATE EVENT daily_age_update
 ON SCHEDULE EVERY 1 DAY
-STARTS CURRENT_TIMESTAMP  -- Esto establecerá el inicio del evento a la hora actual
+STARTS CURRENT_TIMESTAMP  -- This will set the event start time to the current time
 DO
   UPDATE User
-  SET Edad = TIMESTAMPDIFF(YEAR, Naixement, CURDATE());
+  SET UserAge = TIMESTAMPDIFF(YEAR, BirthDate, CURDATE());
