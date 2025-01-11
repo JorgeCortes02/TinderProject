@@ -123,6 +123,7 @@ INSERT INTO Message (MatchId, ReceiverUserId, SenderUserId, Text) VALUES
 (10, 9, 1, 'Yeah, I saw that too. Would love to chat more!');
 
 
+
 INSERT INTO Photo (UserId, URL)
 VALUES
     (1, '/images/hombre1.jpg'),
@@ -206,5 +207,7 @@ VALUES
     (39, '/images/nobin7.jpg'),
     (39, '/images/nobin7_2.jpg'),
     (40, '/images/nobin8.jpg'),
+
     (40, '/images/nobin8_2.jpg')
 ;
+
