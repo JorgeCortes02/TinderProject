@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+
+session_start();
+
+//Ejecutamos el andamio para poder tener datos del usuario que tiene iniciada la sesion. Más información en el bloque php donde se crea la función.
+recuperarUserDataDePrueba();
+?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" type="text/css">
     <title>Discover</title>
     <script src="match.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="styles.css">
 
 </head>
-
-
 
 <body>
     <div class="container">
@@ -48,3 +52,52 @@
 </body>
 
 </html>
+
+
+<?php
+
+//Esta función es un andamio que nos permite obtener los datos para nuestro usuario actual que tiene iniciada la sesión hasta que funcione el login.
+function recuperarUserDataDePrueba()
+{
+
+
+    try {
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $username = "root";
+        $pw = "1234";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        exit;
+    }
+
+    //preparem i executem la consulta
+    $query = $pdo->prepare("SELECT 
+                                    IdUser, 
+                                    Username, 
+                                    Orientation, 
+                                    Gender, 
+                                    Longitude, 
+                                    Latitude, 
+                                    MaxAge, 
+                                    MinAge, 
+                                    UserAge
+                                FROM User 
+                                WHERE IdUser = 1;");
+    $query->execute();
+
+    // Obtener el resultado como un arreglo asociativo
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+
+    // Almacenar el resultado en la sesión
+    $_SESSION['user_data'] = $result;
+    print_r($_SESSION['user_data']);
+    //eliminem els objectes per alliberar memòria 
+    unset($pdo);
+    unset($query);
+
+}
+
+
+?>
