@@ -1,55 +1,64 @@
-INSERT INTO User (Nombre, Apellido1, Apellido2, Alias, Pass, Naixement, Orientacio, Sexe, Longitud, Latitud, Email, MinAge, MaxAge)
-VALUES
--- 16 Hombres
-('Carlos', 'Gómez', 'López', 'carlito123', 'pass1234', '1990-05-20', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'carlos.gomez@ieti.site', 25, 35), -- Madrid
-('Luis', 'Martínez', 'Pérez', 'lmartinez', 'pass1234', '1992-07-15', 'Homosexual', 'Hombre', '2.1734', '41.3851', 'luis.martinez@ieti.site', 28, 38), -- Barcelona
-('Javier', 'Hernández', 'Ruiz', 'javih', 'pass1234', '1988-10-10', 'Bisexual', 'Hombre', '-0.3763', '39.4699', 'javier.ruiz@ieti.site', 30, 40), -- Valencia
-('Miguel', 'Sánchez', 'Díaz', 'migueld', 'pass1234', '1985-12-25', 'Heterosexual', 'Hombre', '-4.4214', '36.7213', 'miguel.sanchez@ieti.site', 30, 45), -- Málaga
-('Andrés', 'Fernández', 'García', 'andresfg', 'pass1234', '1994-03-08', 'Homosexual', 'Hombre', '-6.2684', '36.5271', 'andres.fernandez@ieti.site', 25, 30), -- Cádiz
-('David', 'López', 'Martínez', 'davidlm', 'pass1234', '1991-11-02', 'Bisexual', 'Hombre', '-5.6635', '40.9701', 'david.lopez@ieti.site', 27, 37), -- Ávila
-('Pablo', 'García', 'Hernández', 'pabloh', 'pass1234', '1987-04-16', 'Heterosexual', 'Hombre', '-1.6589', '42.8125', 'pablo.garcia@ieti.site', 32, 42), -- Pamplona
-('Alejandro', 'Pérez', 'Fernández', 'alejp', 'pass1234', '1995-06-10', 'Homosexual', 'Hombre', '-3.8770', '40.4775', 'alejandro.perez@ieti.site', 25, 30), -- Alcorcón
-('Juan', 'Rodríguez', 'Gómez', 'juanr', 'pass1234', '1989-09-22', 'Bisexual', 'Hombre', '-2.4697', '42.4627', 'juan.rodriguez@ieti.site', 28, 38), -- Logroño
-('Fernando', 'Gómez', 'Martínez', 'fergom', 'pass1234', '1986-01-05', 'Heterosexual', 'Hombre', '-3.8004', '43.4623', 'fernando.gomez@ieti.site', 30, 40), -- Santander
-('Ricardo', 'Díaz', 'Hernández', 'ricdiaz', 'pass1234', '1993-02-18', 'Homosexual', 'Hombre', '-5.8502', '43.3623', 'ricardo.diaz@ieti.site', 27, 35), -- Oviedo
-('Jorge', 'Ruiz', 'López', 'jorgerl', 'pass1234', '1990-08-30', 'Bisexual', 'Hombre', '-6.6051', '42.5990', 'jorge.ruiz@ieti.site', 28, 38), -- Ponferrada
-('Adrián', 'Martínez', 'Pérez', 'adrianm', 'pass1234', '1984-12-14', 'Heterosexual', 'Hombre', '-3.6832', '37.1760', 'adrian.martinez@ieti.site', 35, 45), -- Granada
-('Diego', 'Hernández', 'García', 'diegoh', 'pass1234', '1992-07-07', 'Homosexual', 'Hombre', '-8.0183', '43.3551', 'diego.hernandez@ieti.site', 27, 35), -- Ferrol
-('Sergio', 'Sánchez', 'Díaz', 'sergiosd', 'pass1234', '1997-05-28', 'Bisexual', 'Hombre', '-2.4637', '36.8340', 'sergio.sanchez@ieti.site', 20, 30), -- Almería
-('Oscar', 'Fernández', 'Gómez', 'oscarfg', 'pass1234', '1996-03-03', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'oscar.fernandez@ieti.site', 22, 30), -- Madrid
+USE DatingApp;
 
+-- 16 Hombres
+
+
+-- Insert data into the User table
+INSERT INTO User (FirstName, LastName1, LastName2, Username, Password, BirthDate, Orientation, Gender, Longitude, Latitude, Email, UserAge, MaxAge, MinAge, ModifyAt, CreateAt)
+VALUES
+
+('Carlos', 'Gómez', 'López', 'carlito123', 'pass1234', '1990-05-20', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'carlos.gomez@ieti.site', 34, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Luis', 'Martínez', 'Pérez', 'lmartinez', 'pass1234', '1992-07-15', 'Homosexual', 'Hombre', '3.7038', '40.4168', 'luis.martinez@ieti.site', 32, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Javier', 'Hernández', 'Ruiz', 'javih', 'pass1234', '1988-10-10', 'Bisexual', 'Hombre', '3.7038', '40.4168', 'javier.ruiz@ieti.site', 36, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Miguel', 'Sánchez', 'Díaz', 'migueld', 'pass1234', '1985-12-25', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'miguel.sanchez@ieti.site', 39, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Andrés', 'Fernández', 'García', 'andresfg', 'pass1234', '1994-03-08', 'Homosexual', 'Hombre', '3.7038', '40.4168', 'andres.fernandez@ieti.site', 30, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('David', 'López', 'Martínez', 'davidlm', 'pass1234', '1991-11-02', 'Bisexual', 'Hombre', '3.7038', '40.4168', 'david.lopez@ieti.site', 33, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Pablo', 'García', 'Hernández', 'pabloh', 'pass1234', '1987-04-16', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'pablo.garcia@ieti.site', 37, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Alejandro', 'Pérez', 'Fernández', 'alejp', 'pass1234', '1995-06-10', 'Homosexual', 'Hombre', '3.7038', '40.4168', 'alejandro.perez@ieti.site', 29, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Juan', 'Rodríguez', 'Gómez', 'juanr', 'pass1234', '1989-09-22', 'Bisexual', 'Hombre', '3.7038', '40.4168', 'juan.rodriguez@ieti.site', 35, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Fernando', 'Gómez', 'Martínez', 'fergom', 'pass1234', '1986-01-05', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'fernando.gomez@ieti.site', 39, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Ricardo', 'Díaz', 'Hernández', 'ricdiaz', 'pass1234', '1993-02-18', 'Homosexual', 'Hombre', '3.7038', '40.4168', 'ricardo.diaz@ieti.site', 31, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Jorge', 'Ruiz', 'López', 'jorgerl', 'pass1234', '1990-08-30', 'Bisexual', 'Hombre', '3.7038', '40.4168', 'jorge.ruiz@ieti.site', 34, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Adrián', 'Martínez', 'Pérez', 'adrianm', 'pass1234', '1984-12-14', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'adrian.martinez@ieti.site', 40, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Diego', 'Hernández', 'García', 'diegoh', 'pass1234', '1992-07-07', 'Homosexual', 'Hombre', '3.7038', '40.4168', 'diego.hernandez@ieti.site', 32, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Sergio', 'Sánchez', 'Díaz', 'sergiosd', 'pass1234', '1997-05-28', 'Bisexual', 'Hombre', '3.7038', '40.4168', 'sergio.sanchez@ieti.site', 27, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Oscar', 'Fernández', 'Gómez', 'oscarfg', 'pass1234', '1996-03-03', 'Heterosexual', 'Hombre', '3.7038', '40.4168', 'oscar.fernandez@ieti.site', 28, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
 -- 16 Mujeres
-('María', 'López', 'Martínez', 'marialm', 'pass1234', '1991-02-12', 'Heterosexual', 'Mujer', '-3.7038', '40.4168', 'maria.lopez@ieti.site', 25, 35), -- Madrid
-('Lucía', 'Martínez', 'Hernández', 'luciam', 'pass1234', '1989-06-23', 'Homosexual', 'Mujer', '2.1734', '41.3851', 'lucia.martinez@ieti.site', 28, 38), -- Barcelona
-('Laura', 'Pérez', 'Ruiz', 'laurap', 'pass1234', '1995-09-05', 'Bisexual', 'Mujer', '-0.3763', '39.4699', 'laura.perez@ieti.site', 22, 30), -- Valencia
-('Ana', 'Hernández', 'Gómez', 'anahg', 'pass1234', '1988-11-19', 'Heterosexual', 'Mujer', '-5.9941', '37.3886', 'ana.hernandez@ieti.site', 30, 40), -- Sevilla
-('Sara', 'García', 'Díaz', 'saragd', 'pass1234', '1993-04-14', 'Homosexual', 'Mujer', '-8.611', '42.2406', 'sara.garcia@ieti.site', 27, 35), -- Vigo
-('Elena', 'Sánchez', 'Fernández', 'elenas', 'pass1234', '1990-12-29', 'Bisexual', 'Mujer', '-4.4214', '36.7213', 'elena.sanchez@ieti.site', 28, 38), -- Málaga
-('Isabel', 'Ruiz', 'López', 'isabelr', 'pass1234', '1986-01-11', 'Heterosexual', 'Mujer', '-1.8585', '43.2630', 'isabel.ruiz@ieti.site', 32, 42), -- Bilbao
-('Paula', 'Fernández', 'Martínez', 'paulaf', 'pass1234', '1994-06-22', 'Homosexual', 'Mujer', '-0.8891', '41.6498', 'paula.fernandez@ieti.site', 25, 30), -- Zaragoza
-('Claudia', 'Gómez', 'Pérez', 'claudiag', 'pass1234', '1987-09-07', 'Bisexual', 'Mujer', '-2.4691', '36.8340', 'claudia.gomez@ieti.site', 30, 40), -- Almería
-('Alicia', 'Díaz', 'Rodríguez', 'aliciad', 'pass1234', '1992-02-18', 'Heterosexual', 'Mujer', '-3.162', '42.6019', 'alicia.diaz@ieti.site', 27, 35), -- Burgos
-('Carmen', 'Hernández', 'Sánchez', 'carmenh', 'pass1234', '1985-08-30', 'Homosexual', 'Mujer', '-6.0076', '37.8821', 'carmen.hernandez@ieti.site', 32, 42), -- Córdoba
-('Silvia', 'García', 'Ruiz', 'silviag', 'pass1234', '1990-11-20', 'Bisexual', 'Mujer', '-0.7302', '38.3452', 'silvia.garcia@ieti.site', 28, 38), -- Alicante
-('Rosa', 'Martínez', 'Fernández', 'rosamf', 'pass1234', '1989-03-08', 'Heterosexual', 'Mujer', '-3.7038', '40.4168', 'rosa.martinez@ieti.site', 30, 40), -- Madrid
-('Cristina', 'Pérez', 'Gómez', 'cristinap', 'pass1234', '1996-12-02', 'Homosexual', 'Mujer', '-1.9839', '43.3033', 'cristina.perez@ieti.site', 22, 30), -- San Sebastián
-('Natalia', 'Sánchez', 'López', 'natalias', 'pass1234', '1997-07-13', 'Bisexual', 'Mujer', '2.6482', '39.5696', 'natalia.sanchez@ieti.site', 20, 30), -- Palma de Mallorca
-('Eva', 'Ruiz', 'Martínez', 'evarm', 'pass1234', '1988-05-05', 'Heterosexual', 'Mujer', '-7.0059', '37.3746', 'eva.ruiz@ieti.site', 30, 40), -- Huelva
+
+('María', 'López', 'Martínez', 'marialm', 'pass1234', '1991-02-12', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'maria.lopez@ieti.site', 33, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Lucía', 'Martínez', 'Hernández', 'luciam', 'pass1234', '1989-06-23', 'Homosexual', 'Mujer', '3.7038', '40.4168', 'lucia.martinez@ieti.site', 35, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Laura', 'Pérez', 'Ruiz', 'laurap', 'pass1234', '1995-09-05', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'laura.perez@ieti.site', 29, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Ana', 'Hernández', 'Gómez', 'anahg', 'pass1234', '1988-11-19', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'ana.hernandez@ieti.site', 36, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Sara', 'García', 'Díaz', 'saragd', 'pass1234', '1993-04-14', 'Homosexual', 'Mujer', '3.7038', '40.4168', 'sara.garcia@ieti.site', 31, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Elena', 'Sánchez', 'Fernández', 'elenas', 'pass1234', '1990-12-29', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'elena.sanchez@ieti.site', 34, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Isabel', 'Ruiz', 'López', 'isabelr', 'pass1234', '1986-01-11', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'isabel.ruiz@ieti.site', 38, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Paula', 'Fernández', 'Martínez', 'paulaf', 'pass1234', '1994-06-22', 'Homosexual', 'Mujer', '3.7038', '40.4168', 'paula.fernandez@ieti.site', 30, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Claudia', 'Gómez', 'Pérez', 'claudiag', 'pass1234', '1987-09-07', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'claudia.gomez@ieti.site', 37, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Alicia', 'Díaz', 'Rodríguez', 'aliciad', 'pass1234', '1992-02-18', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'alicia.diaz@ieti.site', 32, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Carmen', 'Hernández', 'Sánchez', 'carmenh', 'pass1234', '1985-08-30', 'Homosexual', 'Mujer', '3.7038', '40.4168', 'carmen.hernandez@ieti.site', 39, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Silvia', 'García', 'Ruiz', 'silviag', 'pass1234', '1990-11-20', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'silvia.garcia@ieti.site', 34, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Rosa', 'Martínez', 'Fernández', 'rosamf', 'pass1234', '1989-03-08', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'rosa.martinez@ieti.site', 35, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Cristina', 'Pérez', 'Gómez', 'cristinap', 'pass1234', '1996-12-02', 'Homosexual', 'Mujer', '3.7038', '40.4168', 'cristina.perez@ieti.site', 28, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Natalia', 'Sánchez', 'López', 'natalias', 'pass1234', '1997-07-13', 'Bisexual', 'Mujer', '3.7038', '40.4168', 'natalia.sanchez@ieti.site', 27, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Eva', 'Ruiz', 'Martínez', 'evarm', 'pass1234', '1988-05-05', 'Heterosexual', 'Mujer', '3.7038', '40.4168', 'eva.ruiz@ieti.site', 36, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 
 -- 8 No Binarios
-('Alex', 'Fernández', 'Gómez', 'alexfg', 'pass1234', '1995-03-15', 'Bisexual', 'No binario', '-3.7038', '40.4168', 'alex.fernandez@ieti.site', 25, 30), -- Madrid
-('Sam', 'García', 'Martínez', 'samgm', 'pass1234', '1994-08-25', 'Homosexual', 'No binario', '2.1734', '41.3851', 'sam.garcia@ieti.site', 27, 35), -- Barcelona
-('Taylor', 'Martínez', 'Ruiz', 'taylorm', 'pass1234', '1993-01-09', 'Heterosexual', 'No binario', '-0.3763', '39.4699', 'taylor.martinez@ieti.site', 27, 35), -- Valencia
-('Jordan', 'Pérez', 'Hernández', 'jordanp', 'pass1234', '1991-10-11', 'Bisexual', 'No binario', '-5.9941', '37.3886', 'jordan.perez@ieti.site', 28, 38), -- Sevilla
-('Casey', 'Sánchez', 'Díaz', 'caseys', 'pass1234', '1987-06-05', 'Heterosexual', 'No binario', '-4.4214', '36.7213', 'casey.sanchez@ieti.site', 30, 40), -- Málaga
-('Morgan', 'Hernández', 'Fernández', 'morganh', 'pass1234', '1992-09-30', 'Homosexual', 'No binario', '-1.8585', '43.2630', 'morgan.hernandez@ieti.site', 27, 35), -- Bilbao
-('Riley', 'Ruiz', 'López', 'rileyr', 'pass1234', '1990-12-12', 'Heterosexual', 'No binario', '-6.0076', '37.8821', 'riley.ruiz@ieti.site', 28, 38), -- Córdoba
-('Jamie', 'Gómez', 'Martínez', 'jamieg', 'pass1234', '1989-04-17', 'Bisexual', 'No binario', '-0.7302', '38.3452', 'jamie.gomez@ieti.site', 30, 40); -- Alicante
+('Alex', 'Fernández', 'Gómez', 'alexfg', 'pass1234', '1996-04-20', 'Heterosexual', 'No binario', '3.7038', '40.4168', 'alex.fernandez@ieti.site', 28, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Jordan', 'Sánchez', 'Pérez', 'jordans', 'pass1234', '1994-10-14', 'Homosexual', 'No binario', '3.7038', '40.4168', 'jordan.sanchez@ieti.site', 30, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Luca', 'Hernández', 'Martínez', 'lucahm', 'pass1234', '1992-12-07', 'Bisexual', 'No binario', '3.7038', '40.4168', 'luca.hernandez@ieti.site', 32, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Mika', 'Ruiz', 'Gómez', 'mika', 'pass1234', '1993-08-21', 'Heterosexual', 'No binario', '3.7038', '40.4168', 'mika.ruiz@ieti.site', 31, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Sage', 'Díaz', 'Rodríguez', 'sagerd', 'pass1234', '1995-03-16', 'Homosexual', 'No binario', '3.7038', '40.4168', 'sage.diaz@ieti.site', 29, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Taylor', 'Sánchez', 'García', 'taylors', 'pass1234', '1997-05-23', 'Bisexual', 'No binario', '3.7038', '40.4168', 'taylor.sanchez@ieti.site', 27, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Sam', 'Pérez', 'López', 'sampl', 'pass1234', '1990-02-01', 'Heterosexual', 'No binario', '3.7038', '40.4168', 'sam.perez@ieti.site', 34, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+('Skyler', 'García', 'Fernández', 'skylergf', 'pass1234', '1994-09-18', 'Homosexual', 'No binario', '3.7038', '40.4168', 'skyler.garcia@ieti.site', 30, 99, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 
--- Datos tabla Like
-INSERT INTO `Like` (idUser, idUserLiked) VALUES
+
+
+-- Insert data into the Like table
+INSERT INTO UserLikes (UserId, LikedUserId) VALUES
+
 (1, 2),
 (1, 3),
 (2, 1),
@@ -71,9 +80,10 @@ INSERT INTO `Like` (idUser, idUserLiked) VALUES
 (10, 3),
 (10, 6);
 
---Datos Matches
 
-INSERT INTO Matches (isUser1, idUser2) VALUES
+-- Insert data into the Matches table
+INSERT INTO Matches (User1Id, User2Id) VALUES
+
 (1, 2),
 (1, 3),
 (2, 1),
@@ -95,8 +105,10 @@ INSERT INTO Matches (isUser1, idUser2) VALUES
 (7, 9),
 (9, 10);
 
---Datos Mensajes 
-INSERT INTO Message (MatchId, isUserReceived, idUserSend, text) VALUES
+
+-- Insert data into the Message table
+INSERT INTO Message (MatchId, ReceiverUserId, SenderUserId, Text) VALUES
+
 (1, 2, 1, 'Hey, how are you?'),
 (1, 1, 2, 'I am doing great, thanks! How about you?'),
 (2, 3, 1, 'Nice to meet you!'),
@@ -107,11 +119,11 @@ INSERT INTO Message (MatchId, isUserReceived, idUserSend, text) VALUES
 (4, 3, 5, 'Yes, I love to explore new places!'),
 (5, 6, 4, 'What do you do for a living?'),
 (5, 4, 6, 'I am a graphic designer, what about you?'),
-(6, 7, 5, 'I have a question for you. What’s your favorite hobby?'),
+(6, 7, 5, 'What’s your favorite hobby?'),
 (6, 5, 7, 'I enjoy reading and painting. What about you?'),
 (7, 8, 6, 'Would you like to grab coffee sometime?'),
 (7, 6, 8, 'That sounds nice! Let me know when you’re free.'),
-(8, 9, 7, 'I saw your profile picture. Where was that taken?'),
+(8, 9, 7, 'Where was your profile picture taken?'),
 (8, 7, 9, 'It was from my trip to Barcelona last year.'),
 (9, 10, 8, 'I like your style! Do you have any fashion tips?'),
 (9, 8, 10, 'Thank you! I love casual outfits.'),
@@ -119,7 +131,7 @@ INSERT INTO Message (MatchId, isUserReceived, idUserSend, text) VALUES
 (10, 9, 1, 'Yeah, I saw that too. Would love to chat more!');
 
 --Insertar imagenes hombre
-INSERT INTO Foto (idUser, URL)
+INSERT INTO Photo (idUser, URL)
 VALUES
     (1, '/images/hombre1.jpg'),
     (1, '/images/hombre1_1.jpg'),
