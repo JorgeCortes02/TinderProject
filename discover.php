@@ -12,8 +12,9 @@ recuperarUserDataDePrueba();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover</title>
-    <script src="match.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="discover.js"></script>
     <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -27,13 +28,7 @@ recuperarUserDataDePrueba();
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
-            <div class="card">
-                <img src="profile.jpg" alt="Profile" class="card-img">
-                <div class="card-info">
-                    <h3>Nombre</h3>
-                    <p>Descripción breve</p>
-                </div>
-            </div>
+
         </div>
 
         <!-- Controles de acción -->
@@ -92,7 +87,7 @@ function recuperarUserDataDePrueba()
 
     // Almacenar el resultado en la sesión
     $_SESSION['user_data'] = $result;
-    print_r($_SESSION['user_data']);
+
     //eliminem els objectes per alliberar memòria 
     unset($pdo);
     unset($query);
@@ -102,4 +97,3 @@ function recuperarUserDataDePrueba()
 
 
 ?>
-

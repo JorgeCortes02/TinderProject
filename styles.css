@@ -113,28 +113,51 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .card {
     width: 90%;
-    height: 100%;
+    height: 80%;
     background-color: var(--lightblue);
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 4px 10px rgba(83, 79, 246, 0.2);
     overflow: hidden;
+    align-items: center;
+    position: absolute;
 }
 
 /* Imagen de la tarjeta */
 .card-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 95%;
+   height: 80%;
+   object-fit: cover;
+   border: 1px solid var(--white);
+   margin: 0 auto;
+   margin-top: 20px;
 }
+.card-info{
 
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 10%;
+    margin: 0 auto;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    background-color: var(--white);
+ 
+    
+}
 /* Botones NOP y YES flotando sobre el borde inferior */
 .controls {
     position: absolute;
-    bottom: 100px;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
