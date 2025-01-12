@@ -72,10 +72,10 @@ async function downloadData(index) {
         });
 
         const responseText = await response.text();  // Obtenemos la respuesta como texto
-   
+        console.log("Respuesta del servidor:", responseText); 
 
         // Si la respuesta no está vacía, intentamos parsear el JSON
-        if (responseText && responseText.trim()) {
+        if (responseText && responseText.trim() != "") {
             const misDatos = JSON.parse(responseText);  // Intentamos parsear como JSON
             const contenedor = $(".card-container");  // Contenedor donde se muestran las tarjetas
             console.log(misDatos);
