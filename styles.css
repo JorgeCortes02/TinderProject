@@ -355,8 +355,9 @@ body {
 }
 
 .message-item img {
-    width: 55px;
-    height: 55px;
+    
+    min-width: 100px;
+    min-height: 100px;
     border-radius: 15px;
     object-fit: cover;
     margin-right: 15px;
