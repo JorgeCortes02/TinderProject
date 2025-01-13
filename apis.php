@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION["user_data"]["Gender"] = "Mujer";
-$_SESSION["user_data"]["Orientation"] = "Homosexual";
+$_SESSION["user_data"]["Gender"] = "Hombre";
+$_SESSION["user_data"]["Orientation"] = "Heterosexual";
 if (isset($_GET["api"])) {
 
     $apiSelected = $_GET["api"];

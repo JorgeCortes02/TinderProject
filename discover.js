@@ -90,6 +90,8 @@ async function downloadData(index) {
                     newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
                     newCard.append(inform);
                     contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
+                    contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
+
                 });
             } else{
                 // Si no hay más perfiles, mostramos un mensaje

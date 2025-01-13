@@ -64,7 +64,8 @@ CREATE TABLE Message (
     FOREIGN KEY (SenderUserId) REFERENCES User(IdUser) ON DELETE CASCADE
 );
 
--- Create Event for Daily Age Update
+
+
 SET GLOBAL event_scheduler = ON;
 
 CREATE EVENT daily_age_update
