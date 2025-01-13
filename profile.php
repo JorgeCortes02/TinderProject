@@ -1,265 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Profile</title>
-    <style>
-        /* VARIABLES */
-        :root {
-            --jetblack: #292929;
-            --darkblue: #534FF6;
-            --middleblue: #8B8EF9;
-            --lightblue: #DBDFFE;
-            --white: #FFFFFF;
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+// Función para cargar el archivo .env
+function loadEnv($path) {
+    if (!file_exists($path)) {
+        throw new Exception("El archivo .env no se encuentra en la ruta especificada.");
+    }
 
-            --brightred: #D32F2F;
-            --vibrantgreen: #4CAF50;
-
-            --darkred: #8B1A1A;
-
-            /* Fonts */
-            --title-font: 'Monaco', monospace;
-            --title-size: 30px;
-            --title-weight: bold;
-
-            --header-font: 'Roboto', sans-serif;
-            --header-size: 18px;
-
-            --text-font1: Verdana, sans-serif;
-            --text-size: 14px;
-
-            /* Borders */
-            --border-radius: 5px;
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue;
         }
+        list($name, $value) = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value);
 
-        /* General Styles */
-        #profileBody {
-            margin-inline: auto;
-            padding: 0;
-            font-family: var(--text-font1);
-            background-color: var(--lightblue);
-            color: var(--jetblack);
-            max-width: 460px;
+        if (!array_key_exists($name, $_ENV)) {
+            $_ENV[$name] = $value;
         }
-
-        #profileBody h1 {
-            color: var(--white);
+        if (!array_key_exists($name, $_SERVER)) {
+            $_SERVER[$name] = $value;
         }
+    }
+}
+// Llama a la función para cargar las variables de entorno
+loadEnv(__DIR__ . '/.env');
 
-        #profileBody .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            overflow-y: auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
 
-        /* Top header styles */
-        #profileBody .top-header {
-            width: 100%;
-            max-width: 465px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: var(--darkblue);
-            color: var(--white);
-            padding: 10px 20px;
-            box-sizing: border-box;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        #profileBody .top-header .profileTitle {
-            font-family: var(--title-font);
-            font-size: var(--title-size);
-            font-weight: var(--title-weight);
-            margin: 0;
-        }
-
-        #profileBody .top-header .back {
-            color: var(--white);
-            text-decoration: none;
-            font-family: var(--header-font);
-            font-size: var(--header-size);
-        }
-
-        /* Fields container styles */
-        #profileBody .fieldsContainer {
-            width: 100%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: var(--white);
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        #profileBody .field {
-            margin-bottom: 20px;
-        }
-        #profileBody .radioField {
-            margin-bottom: 20px;
-        }
-
-        #profileBody .field h3 {
-            font-family: var(--header-font);
-            font-size: var(--header-size);
-            color: var(--darkblue);
-            margin-bottom: 10px;
-        }
-
-        #profileBody input, textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: var(--text-size);
-            border: 1px solid var(--middleblue);
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        #profileBody textarea {
-            resize: none;
-        }
-
-        #profileBody label {
-            font-family: var(--header-font);
-            font-size: var(--header-size);
-            margin-bottom: 5px;
-            ;
-        }
-
-        /* Range slider styles */
-        #profileBody .range-slider {
-            width: 100%;
-            position: relative;
-            height: 5px;
-            background: var(--middleblue);
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-
-        #profileBody .range-slider input {
-            position: absolute;
-            width: 100%;
-            pointer-events: none;
-            -webkit-appearance: none;
-            appearance: none;
-            height: 5px;
-            background: transparent;
-        }
-
-        #profileBody .range-slider input::-webkit-slider-thumb {
-            pointer-events: all;
-            position: relative;
-            z-index: 1;
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-            background: var(--darkblue);
-            cursor: pointer;
-            -webkit-appearance: none;
-        }
-
-        #profileBody .range-slider input::-moz-range-thumb {
-            pointer-events: all;
-            position: relative;
-            z-index: 1;
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-            background: var(--darkblue);
-            cursor: pointer;
-        }
-
-        #profileBody .range-slider .progress {
-            position: absolute;
-            height: 100%;
-            background: var(--darkblue);
-            z-index: 0;
-            border-radius: 5px;
-        }
-
-        /* Bottom section */
-        #profileBody .bottom {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: space-between;
-            margin: 20px auto;
-        }
-
-        #profileBody .saveButton, .toPhotoButton {
-            padding: 10px 20px;
-            font-size: var(--header-size);
-            font-family: var(--header-font);
-            background-color: var(--darkblue);
-            color: var(--white);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        #profileBody .saveButton:hover, .toPhotoButton:hover {
-            background-color: var(--middleblue);
-        }
-
-        /* MAP */
-        #profileBody #map {
-            width: 100%;
-            height: 300px;
-            border: 1px solid var(--middleblue);
-            border-radius: var(--border-radius);
-        }
-
-        /* BUTTONS */
-        #profileBody button, .toPhotoButton {
-            font-family: var(--header-font);
-            font-size: var(--header-size);
-            padding: 10px 20px;
-            color: var(--white);
-            background-color: var(--darkblue);
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        #profileBody button:hover, .toPhotoButton:hover {
-            background-color: var(--middleblue);
-        }
-
-        #profileBody .toPhotoButton {
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        /* BOTTOM CONTAINER */
-        #profileBody .bottom {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        </style>
-
-</head>
-
-<?php 
-session_start();
+//andamio para pruebas
 recuperarUserDataDePrueba();
+
 //var_dump($_SESSION['user_data']);
 // Verificar si se ha realizado la solicitud AJAX de hacer update a la sesion para actualizar valores
 if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
@@ -278,13 +50,18 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 
     // Llamar a la función para actualizar en la base de datos
     updateUserData($_SESSION['user_data']);
-
 }
-
-//cargar variables de sesion al iniciar la pagina
-//recuperarUserDataDePrueba(); //andamio para bd
-
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Profile</title>
+
+</head>
 <body id="profileBody">
     <div class="container">
         <div class="top-header">
@@ -478,7 +255,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         }
         updateRange(); //Genera la progress bar
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDotOWJULwqpIQ9VZr-W9oOH1c9nSb78OE&callback=initMap&libraries=&v=weekly" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_MAPS_API_KEY']; ?>&callback=initMap&libraries=&v=weekly" async defer></script>
 </body>
 </html>
 <?php
