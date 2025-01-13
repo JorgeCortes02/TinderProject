@@ -2,10 +2,10 @@
 <html lang="en">
 <?php
 
+//Llegan los datos del usuario desde el LOGIN
 session_start();
+echo $_SESSION['user_data']['IdUser'];
 
-//Ejecutamos el andamio para poder tener datos del usuario que tiene iniciada la sesion. Más información en el bloque php donde se crea la función.
-recuperarUserDataDePrueba();
 ?>
 
 <head>
@@ -59,8 +59,8 @@ function recuperarUserDataDePrueba()
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
+        $username = "admin";
+        $pw = "macarrones con queso";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
