@@ -22,7 +22,7 @@ recuperarUserDataDePrueba();
 <body>
     <div class="container">
         <!-- Logo alineado a la izquierda -->
-        <div id="titleDiv">
+        <div class="header">
             <h1>IETINDER</h1>
         </div>
 
@@ -40,8 +40,8 @@ recuperarUserDataDePrueba();
         <!-- Menú de navegación -->
         <nav class="bottom-nav">
             <h3><a href="#">Descobrir</a></h3>
-            <h3><a href="#">Missatges</a></h3>
-            <h3><a href="#">Perfil</a></h3>
+            <h3><a href="messages.php#">Missatges</a></h3>
+            <h3><a href="">Perfil</a></h3>
         </nav>
     </div>
 </body>
