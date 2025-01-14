@@ -40,7 +40,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     $_SESSION['user_data']['LastName2'] = $_POST['lastName2'];
     $_SESSION['user_data']['Username'] = $_POST['userName'];
     $_SESSION['user_data']['BirthDate'] = $_POST['birthDate'];
-    $_SESSION['user_data']['bio'] = $_POST['bio'];
+    $_SESSION['user_data']['Bio'] = $_POST['bio'];
     $_SESSION['user_data']['Gender'] = $_POST['gender'];
     $_SESSION['user_data']['Orientation'] = $_POST['orientation'];
     $_SESSION['user_data']['MinAge'] = $_POST['minAge'];
@@ -65,36 +65,36 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 <body id="profileBody">
     <div class="container">
         <div class="top-header">
-            <a class="back" href="/index.php"> < Atrás</a>
+            <!-- <a class="back" href="/index.php"> < Atrás</a> -->
             <h1 class="profileTitle"> Perfil</h1>
         </div>    
         <div class="fieldsContainer">
             <form> 
 <!-- User Info-->
             <div class ="field">
-                <h3>First Name: </h3>
+                <h3>Nombre: </h3>
                 <input type="text" id="firstName" value="<?php echo htmlspecialchars($_SESSION['user_data']['FirstName'])?>" required>
                 </div>
                 <!-- <small id="nombreError" style="color: red; display: none;">Name is required</small> -->
             <div class ="field">
-                <h3>Last Names: </h3>
+                <h3>Apellidos: </h3>
                 <input type="text" id="lastName1" value="<?php echo htmlspecialchars($_SESSION['user_data']['LastName1'])?>" required>
                 <input type="text" id="lastName2" value="<?php echo htmlspecialchars($_SESSION['user_data']['LastName2'])?>" required>
             </div>
             <div class ="field">
-                <h3>UserName: </h3>
+                <h3>Alias: </h3>
                 <input type="text" id="userName" value="<?php echo htmlspecialchars($_SESSION['user_data']['Username'])?>" required>
                 </div>
             <div class ="field">
-                <h3>Birthday: </h3>
+                <h3>Fecha de Nacimiento: </h3>
                 <input type="text" id="birthdate" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
                 </div>
             <div class ="field">
-                <h3>Bio: </h3>
+                <h3>Biografia: </h3>
                 <textarea id="bio" rows="10" cols ="50" required><?php echo htmlspecialchars($_SESSION['user_data']['bio'])?></textarea>
                 </div>
             <div class ="field">
-                <h3>User Location: </h3>
+                <h3>Localización: </h3>
                 <!-- API DE GOOGLE MAPS PARA ELEGIR COORDS (PRIMERO LATITUD Y DESPUES LONGITUD)-->
                 <input type="text" id="latitude" value="<?php echo htmlspecialchars($_SESSION['user_data']['Latitude'])?>" required>
                 <input type="text" id="longitude" value="<?php echo htmlspecialchars($_SESSION['user_data']['Longitude'])?>" required>
@@ -103,8 +103,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
             </div>
         
             <!-- User Preferences-->
-            <div class ="field">
-                <h3>Gender: </h3>
+            <div class ="field radioField">
+                <h3>Género: </h3>
                 <label>
                     <input type="radio" name="gender" value="Hombre" <?php echo htmlspecialchars($_SESSION['user_data']['Gender'] == 'Hombre') ? 'checked' : ''; ?> required>
                     Hombre
@@ -120,8 +120,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                     No Binario
                 </label>
             </div>
-            <div class ="field">
-                <h3>Orientation: </h3>
+            <div class ="field radioField">
+                <h3>Orientación: </h3>
                 <label>
                     <input type="radio" name="orientacion" value="Heterosexual" <?php echo htmlspecialchars($_SESSION['user_data']['Orientation'] == 'Heterosexual') ? 'checked' : ''; ?> required>
                     Heterosexual
@@ -138,9 +138,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </label>
             </div>
             <div class ="field">
-                <h3>Age preferences: </h3>
-                <label for="minAge">Edad Mínima: <span id="minAgeValue"><?php echo htmlspecialchars($_SESSION['user_data']['MinAge'])?></span></label>
-                <label for="maxAge">Edad Máxima: <span id="maxAgeValue"><?php echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?></span></label>
+                <h3>Preferencia de Edad: </h3>
+                <label class="ageText" for="minAge">Edad Mínima: <span id="minAgeValue"><?php echo htmlspecialchars($_SESSION['user_data']['MinAge'])?></span></label>
+                </br>
+                <label class="ageText" for="maxAge">Edad Máxima: <span id="maxAgeValue"><?php echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?></span></label>
 
                 <div class="range-slider">
                     <input type="range" id="minAge" min="18" max="99" value="<?php echo htmlspecialchars($_SESSION['user_data']['MinAge'])?>" oninput="updateRange()">
@@ -153,15 +154,14 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         </div>
 
         <div class="bottom">
-        <button class="saveButton" onclick="saveProfileChanges()">Save changes</button>
-        <a class="toPhotoButton" href="/">Edit pictures</a>
+        <button class="saveButton" onclick="saveProfileChanges()">Guardar</button>
+        <a class="toPhotoButton" href="/">Editar Fotos</a>
         </div>
     </div>
 
     <script>
         let map;
         let marker;
-
         function initMap() {
             const initialLocation = { 
                 lat: parseFloat(<?php echo $_SESSION['user_data']['Latitude']; ?>), 
@@ -234,24 +234,28 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         }
 
         function updateRange() {
-            //elementos del form 
+            // Elementos del formulario
             const minAge = document.getElementById('minAge');
             const maxAge = document.getElementById('maxAge');
             const minAgeValue = document.getElementById('minAgeValue');
             const maxAgeValue = document.getElementById('maxAgeValue');
             const progress = document.querySelector('.range-slider .progress');
 
-            //la edad min no peude ser superior a la edad max (se cambia el valor)
+            // La edad mínima no puede ser superior a la edad máxima (se cambia el valor)
             if (parseInt(minAge.value) > parseInt(maxAge.value)) {
-            minAge.value = maxAge.value;
+                minAge.value = maxAge.value;
             }
-            //se actualiza el valor de min y max en el form
+
+            // Se actualizan los valores de edad mínima y máxima en el formulario
             minAgeValue.textContent = minAge.value;
             maxAgeValue.textContent = maxAge.value;
 
-            //barra de progreso
-            progress.style.left = ((minAge.value - 18) * 100 / (100 - 18)) + '%';
-            progress.style.width = ((maxAge.value - minAge.value) * 100 / (100 - 18)) + '%';
+            // Ajuste de la barra de progreso
+            const minValue = parseInt(minAge.value);
+            const maxValue = parseInt(maxAge.value);
+            const range = 81; // Rango total (99 - 18)
+            progress.style.left = ((minValue - 18) / range) * 100 + '%';
+            progress.style.width = ((maxValue - minValue) / range) * 100 + '%';
         }
         updateRange(); //Genera la progress bar
     </script>
@@ -313,7 +317,6 @@ function updateUserData($userData){
         exit;
     }
 
-    // Preparamos la consulta para actualizar los datos
     $query = $pdo->prepare("UPDATE User SET 
                                 FirstName = :firstName,
                                 LastName1 = :lastName1,
@@ -327,7 +330,7 @@ function updateUserData($userData){
                                 MaxAge = :maxAge, 
                                 MinAge = :minAge
                             WHERE IdUser = :userId");
-    // Asignamos los valores usando bindParam
+    // bindParam
     $query->bindParam(':firstName', $userData['FirstName'], PDO::PARAM_STR);
     $query->bindParam(':lastName1', $userData['LastName1'], PDO::PARAM_STR);
     $query->bindParam(':lastName2', $userData['LastName2'], PDO::PARAM_STR);
@@ -341,12 +344,11 @@ function updateUserData($userData){
     $query->bindParam(':minAge', $userData['MinAge'], PDO::PARAM_INT);
     $query->bindParam(':userId', $userData['IdUser'], PDO::PARAM_INT);
 
-    // Ejecutamos la consulta
     if ($query->execute()) {
         echo "Datos actualizados correctamente para el usuario con ID: " . $userData['IdUser'];
     } else {
         echo "Error al actualizar los datos.";
-        print_r($query->errorInfo()); // Mostrar error en caso de fallo
+        print_r($query->errorInfo());
     }
 
     print_r($_SESSION['user_data']);

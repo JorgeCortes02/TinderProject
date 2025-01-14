@@ -264,17 +264,6 @@ body {
     margin-bottom: 20px;
 }
 
-#profileBody .radioField label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-#profileBody .radioField input[type="radio"] {
-    margin-right: 10px;
-}
-
 #profileBody .field h3 {
     font-family: var(--header-font);
     font-size: var(--header-size);
@@ -282,76 +271,111 @@ body {
     margin-bottom: 10px;
 }
 
+#profileBody .radioField label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#profileBody .radioField input[type="radio"] {
+    margin-right: 10px;
+    width: 50px;
+    height: 20px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+#profileBody .radioField input[type="radio"]:checked {
+    accent-color: var(--darkblue); 
+}
+
 #profileBody input, textarea {
-    width: 100%;
+    width: 80%;
     padding: 10px;
+    margin-bottom: 10px;
     font-size: var(--text-size);
-    border: 1px solid var(--middleblue);
+    border: 2px solid var(--middleblue);
     border-radius: 5px;
     box-sizing: border-box;
 }
 
+
 #profileBody textarea {
     resize: none;
+    width: 100%;
 }
 
 #profileBody label {
     font-family: var(--header-font);
     font-size: var(--header-size);
     margin-bottom: 5px;
-    ;
+}
+#profileBody .field label.ageText{
+    color: var(--jetblack);
+}
+
+#profileBody .field label.ageText span{
+    color: var(--darkblue);
+    font-weight: 400;
 }
 
 /* Range slider styles */
 #profileBody .range-slider {
     width: 100%;
     position: relative;
-    height: 5px;
-    background: var(--middleblue);
+    height: 10px;
+    background: #ddd;
     border-radius: 5px;
-    margin-top: 10px;
-}
-
-#profileBody .range-slider input {
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  #profileBody .range-slider input {
     position: absolute;
     width: 100%;
     pointer-events: none;
     -webkit-appearance: none;
     appearance: none;
-    height: 5px;
+    height: 10px;
     background: transparent;
-}
-
-#profileBody .range-slider input::-webkit-slider-thumb {
+    padding: 0;
+    margin-bottom: 0;
+  }
+  #profileBody .range-slider input::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
-    z-index: 1;
-    height: 15px;
-    width: 15px;
+    z-index: 2;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
-    background: var(--darkblue);
+    background: var(--jetblack);
     cursor: pointer;
     -webkit-appearance: none;
-}
-
-#profileBody .range-slider input::-moz-range-thumb {
+    border: 2px solid var(--lightblue);
+  }
+  #profileBody .range-slider input::-moz-range-thumb {
     pointer-events: all;
     position: relative;
-    z-index: 1;
-    height: 15px;
-    width: 15px;
+    z-index: 2;
+    height: 20px;
+    width: 200px;
     border-radius: 50%;
-    background: var(--darkblue);
+    background: var(--jetblack);
     cursor: pointer;
+  }
+  #profileBody .range-slider .progress {
+    position: absolute;
+    height: 10px;
+    background: var(--darkblue);
+    z-index: 1;
+    border-radius: 5px;
+    top: 0;
+  }
+  /* Aseguramos que la barra de progreso tenga un rango adecuado */
+#profileBody .range-slider input#minAge:focus + .progress,
+#profileBody .range-slider input#maxAge:focus + .progress {
+    outline: none;
 }
 
-#profileBody .range-slider .progress {
-    position: absolute;
-    height: 100%;
-    background: var(--darkblue);
-    z-index: 0;
-    border-radius: 5px;
-}
 
 #profileBody .bottom {
     width: 100%;
