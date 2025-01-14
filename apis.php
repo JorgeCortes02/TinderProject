@@ -1,7 +1,5 @@
 <?php
 session_start();
-$_SESSION["user_data"]["Gender"] = "Hombre";
-$_SESSION["user_data"]["Orientation"] = "Heterosexual";
 if (isset($_GET["api"])) {
 
     $apiSelected = $_GET["api"];
@@ -108,8 +106,8 @@ function downloadUsersForDiscover($indexToLoad): array
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
+        $username = "admin";
+        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -286,8 +284,8 @@ function downloadFotos($userDiccionari)
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
