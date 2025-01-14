@@ -138,8 +138,9 @@ function downloadUsersForDiscover($indexToLoad): array
                         SELECT LikedUserId 
                         FROM UserLikes 
                         WHERE UserId = :userId
-                    )AND Orientation  = 'Heterosexual'
-                    AND Gender = 'Mujer'
+                    )AND ((Orientation  = 'Heterosexual'
+                    AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
+                    AND Gender = 'Mujer') )
                     AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
@@ -161,8 +162,10 @@ function downloadUsersForDiscover($indexToLoad): array
                         SELECT LikedUserId 
                         FROM UserLikes 
                         WHERE UserId = :userId
-                    )AND Orientation  = 'Homosexual'
-                    AND Gender = 'Hombre' 
+                    )AND ((Orientation  = 'Homosexual'
+                    AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
+                    AND Gender = 'Hombre') )
+                   
                     AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
@@ -184,8 +187,9 @@ function downloadUsersForDiscover($indexToLoad): array
                         SELECT LikedUserId 
                         FROM UserLikes 
                         WHERE UserId = :userId
-                    )AND Orientation  = 'Heterosexual'
-                    AND Gender = 'Hombre'
+                    )AND ((Orientation  = 'Heterosexual'
+                    AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
+                    AND Gender = 'Hombre') )
                     AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
@@ -207,12 +211,61 @@ function downloadUsersForDiscover($indexToLoad): array
                         SELECT LikedUserId 
                         FROM UserLikes 
                         WHERE UserId = :userId
-                    )AND Orientation  = 'Homosexual'
-                    AND Gender = 'Mujer'
+                    )AND ((Orientation  = 'Homosexual'
+                    AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
+                    AND Gender = 'Mujer') )
                     AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
 
+    }else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
+
+        $query = $pdo->prepare(
+            "SELECT 
+                       IdUser, 
+                        Username, 
+                        Orientation, 
+                        Gender, 
+                        Longitude, 
+                        Latitude, 
+                        Points, 
+                        UserAge
+                    FROM User 
+                    WHERE IdUser NOT IN (
+                        SELECT LikedUserId 
+                        FROM UserLikes 
+                        WHERE UserId = :userId
+                    )AND ((Orientation  = 'Homosexual'
+                    AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
+                    AND Gender = 'Hombre')or (Orientation  = 'Heterosexual'
+                    AND Gender = 'Hombre') )
+                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        );
+    }else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
+
+        $query = $pdo->prepare(
+            "SELECT 
+                       IdUser, 
+                        Username, 
+                        Orientation, 
+                        Gender, 
+                        Longitude, 
+                        Latitude, 
+                        Points, 
+                        UserAge
+                    FROM User 
+                    WHERE IdUser NOT IN (
+                        SELECT LikedUserId 
+                        FROM UserLikes 
+                        WHERE UserId = :userId
+                    )AND ((Orientation  = 'Homosexual'
+                    AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
+                    AND Gender = 'Mujer') or (Orientation  = 'Heterosexual'
+                    AND Gender = 'Mujer') )
+                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        );
     }
 
     // Ejecutar la consulta con los parámetros correspondientes
