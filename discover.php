@@ -24,11 +24,12 @@ echo $_SESSION['user_data']['IdUser'];
         <!-- Logo alineado a la izquierda -->
         <div class="header">
             <h1>IETINDER</h1>
+           
         </div>
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
-
+    
         </div>
 
         <!-- Controles de acción -->
@@ -75,8 +76,7 @@ function recuperarUserDataDePrueba()
                                     Gender, 
                                     Longitude, 
                                     Latitude, 
-                                    MaxAge, 
-                                    MinAge, 
+                                    Points, 
                                     UserAge
                                 FROM User 
                                 WHERE IdUser = 1;");
