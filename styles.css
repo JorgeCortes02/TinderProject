@@ -1,5 +1,5 @@
 /* MARK: GENERAL STYLES */
-:root{
+:root {
     --jetblack: #292929;
     --darkblue: #534FF6;
     --middleblue: #8B8EF9;
@@ -29,39 +29,114 @@
 
 
 
-/* MARK: INDEX */ 
+/* MARK: INDEX */
 
 /*Esto es una demo, se puede borrar luego*/
-body{
+body {
     background-color: var(--white);
 }
-h1{
+
+h1 {
     color: var(--darkblue);
     font-family: var(--title-font);
     font-size: var(--title-size);
     font-weight: var(--title-weight);
 }
-h3{
+
+h3 {
     color: var(--jetblack);
     font-family: var(--header-font);
     font-size: var(--header-size);
-    
+
 }
-p{
+
+p {
     color: var(--jetblack);
     font-family: var(--text-font1);
     font-size: var(--text-size);
 }
 
 
-/* MARK: LOGIN */ 
 
 
-/* MARK: LOGOUT */ 
+/* MARK: LOGIN */
+#loginBody {
+    background-color: var(--white);
+    flex-direction: column;
+}
+
+#loginBody h1 {
+    color: var(--darkblue);
+    font-family: var(--title-font);
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+}
+
+#loginBody h3 {
+    color: var(--jetblack);
+    font-family: var(--header-font);
+    font-size: var(--header-size);
+    padding-bottom: 50px;
+
+}
+
+#loginBody p {
+    color: var(--jetblack);
+    font-family: var(--text-font1);
+    font-size: var(--text-size);
+}
 
 
-/* MARK: DISCOVER */ 
-     
+#loginBody label {
+    color: var(--jetblack);
+    font-family: var(--header-font);
+    font-size: var(--header-size);
+
+}
+
+
+#loginBody input {
+    color: var(--jetblack);
+    font-family: var(--text-font1);
+    font-size: var(--text-size);
+    border-radius: 5px;
+    border-color: var(--darkblue);
+    box-shadow: none;
+    border-top-color: var(--darkblue);
+    padding: 10px 20px;
+}
+
+
+#loginBody button {
+    background-color: var(--darkblue);
+    color: var(--white);
+    font-family: var(--header-font);
+    font-size: var(--header-size);
+    border: none;
+    margin: 5px 0px;
+    padding: 10px 47px;
+    margin-bottom:40px;
+    border-radius: 5px;
+}
+
+
+#loginBody a {
+    color: var(--darkblue);
+    font-family: var(--text-font1);
+    font-size: var(--text-size);
+}
+
+#loginBody p#errorEmail, p#errorPassword {
+    display: none;
+    color: red;
+}
+
+
+/* MARK: LOGOUT */
+
+
+/* MARK: DISCOVER */
+
 /* Reset de márgenes y paddings */
 
 * {
@@ -83,16 +158,17 @@ body {
 /* Contenedor principal */
 .container {
     width: 100%;
- 
+
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--white);
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(83, 79, 246, 0.2); /* Sombra azul suave */
+    box-shadow: 0 0 20px rgba(83, 79, 246, 0.2);
+    /* Sombra azul suave */
     position: relative;
-    
+
     overflow: hidden;
 }
 
@@ -113,28 +189,53 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .card {
     width: 90%;
-    height: 100%;
+    height: 80%;
     background-color: var(--lightblue);
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0 4px 10px rgba(83, 79, 246, 0.2);
     overflow: hidden;
+    align-items: center;
+    position: absolute;
 }
 
 /* Imagen de la tarjeta */
 .card-img {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 80%;
     object-fit: cover;
+    border: 1px solid var(--white);
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.card-info {
+
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    height: 10%;
+    margin: 0 auto;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    background-color: var(--white);
+
+
 }
 
 /* Botones NOP y YES flotando sobre el borde inferior */
 .controls {
     position: absolute;
-    bottom: 100px;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -157,11 +258,12 @@ body {
 
 /* Botón Dislike: Jet Black con tono oscuro */
 .dislike {
-    background-color: var( --brightred);
+    background-color: var(--brightred);
 }
 
 .dislike:hover {
-    background-color: #1a1a1a; /* Más oscuro al pasar el mouse */
+    background-color: #1a1a1a;
+    /* Más oscuro al pasar el mouse */
 }
 
 /* Botón Like: Azul Medio */
@@ -170,8 +272,10 @@ body {
 }
 
 .like:hover {
-    background-color: var(--darkblue); /* Más oscuro al pasar el mouse */
+    background-color: var(--darkblue);
+    /* Más oscuro al pasar el mouse */
 }
+
 .btn:hover {
     transform: scale(1.1);
 }
@@ -183,8 +287,11 @@ body {
     background-color: var(--darkblue);
     padding: 20px 0;
     margin-left: 0;
+    width: 100%;
     margin-top: 10px;
     border-top: 1px solid var(--lightblue);
+    position: absolute;
+    bottom: 0;
 }
 
 .bottom-nav a {
@@ -195,7 +302,7 @@ body {
 }
 
 
-/* MARK: PROFILE */ 
+/* MARK: PROFILE */
 
 #profileBody {
     margin-inline: auto;
@@ -228,6 +335,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background-color: var(--darkblue);
+    border-radius: 5px;
     color: var(--white);
     padding: 10px 20px;
     box-sizing: border-box;
@@ -261,7 +369,7 @@ body {
 }
 
 #profileBody .field {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 #profileBody .field h3 {
@@ -274,7 +382,6 @@ body {
 #profileBody .radioField label {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
     cursor: pointer;
 }
 
@@ -318,6 +425,16 @@ body {
     color: var(--darkblue);
     font-weight: 400;
 }
+/* error messages */
+#profileBody .error-message {
+    color: var(--brightred);
+    margin-bottom: 20px;
+    display: none;
+}
+#profileBody .error-border {
+    border-color: var(--brightred);
+}
+
 
 /* Range slider styles */
 #profileBody .range-slider {
@@ -444,15 +561,203 @@ body {
 
 
 /* MARK: MESSAGES */
+.containerMessage {
+    width: 100%;
+
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(83, 79, 246, 0.2);
+    /* Sombra azul suave */
+    position: relative;
+
+    overflow: hidden;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 15px;
+    background-color: var(--middleblue);
+    color: black;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header h1 {
+    font-family: var(--title-font);
+    font-size: var(--title-size);
+    font-weight: var(--title-weight);
+    color: black;
+}
 
 
 
+/* MATCHES */
+.matches-section {
+    padding: 10px 15px;
+    margin-top: 10px;
+    height: 160px;
+
+}
+
+.matches-section h3 {
+    font-family: var(--header-font);
+    font-size: 20px;
+    color: var(--darkblue);
+    margin-bottom: 10px;
+}
+
+.matches-list {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    /* Scroll horizontal */
+    padding-bottom: 5px;
+    -ms-overflow-style: none;
+    /* IE y Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.matches-list::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari y Opera */
+}
+
+.match-item {
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid black;
+    border-radius: 15px;
+
+}
+
+.match-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+    border: 2px solid var(--middleblue);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.match-item p {
+    margin-top: 5px;
+    font-weight: bold;
+    color: var(--jetblack);
+    font-size: var(--text-size);
+}
+
+.match-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(83, 79, 246, 0.5);
+}
+
+/* MESSAGES */
+.messages-section {
+    padding: 10px 15px;
+    /* Ajusta el padding aquí también */
+    margin-top: 0;
+    /* Asegúrate de que no haya margen extra arriba */
+}
+
+.messages-section h3 {
+    font-family: var(--header-font);
+    font-size: 20px;
+    color: var(--darkblue);
+    margin-bottom: 10px;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 560px;
+    /* Ajusta la altura máxima según necesites */
+    overflow-y: scroll;
+    /* Habilita el scroll vertical */
+}
+
+.messages-container::-webkit-scrollbar {
+    display: none;
+}
+
+.message-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 15px;
+    background-color: var(--lightblue);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-item:hover {
+    background-color: var(--middleblue);
+    transform: translateX(5px);
+}
+
+.message-item img {
+    
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 15px;
+    object-fit: cover;
+    margin-right: 15px;
+    border: 2px solid var(--darkblue);
+}
+
+.message-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: bold;
+    color: var(--jetblack);
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.last-message {
+    color: var(--jetblack);
+    font-size: var(--text-size);
+    opacity: 0.8;
+}
 
 /* Media Query para móviles */
 @media (max-width: 460px) {
+
+    .match-item {
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid black;
+        border-radius: 15px;
+        min-width: 100px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .match-item img {
+        width: 100px;
+        height: 100px;
+        min-width: 100px;
+        min-height: 100px;
+        border-radius: 15px;
+        object-fit: cover;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
     .container {
         width: 100%;
         height: 100vh;
+        gap: 0;
+        background-color: rgb(156, 147, 147);
     }
 
     .card-container {
@@ -473,6 +778,15 @@ body {
     .bottom-nav a {
         font-size: 12px;
     }
+
+    .matches-list {
+        gap: 10px;
+    }
+
+    .match-item img,
+    .message-item img {
+        width: 50px;
+        height: 70px;
+    }
+
 }
-
-

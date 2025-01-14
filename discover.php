@@ -2,18 +2,19 @@
 <html lang="en">
 <?php
 
+//Llegan los datos del usuario desde el LOGIN
 session_start();
+echo $_SESSION['user_data']['IdUser'];
 
-//Ejecutamos el andamio para poder tener datos del usuario que tiene iniciada la sesion. Más información en el bloque php donde se crea la función.
-recuperarUserDataDePrueba();
 ?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover</title>
-    <script src="match.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="discover.js"></script>
     <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -21,19 +22,14 @@ recuperarUserDataDePrueba();
 <body>
     <div class="container">
         <!-- Logo alineado a la izquierda -->
-        <div id="titleDiv">
+        <div class="header">
             <h1>IETINDER</h1>
+           
         </div>
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
-            <div class="card">
-                <img src="profile.jpg" alt="Profile" class="card-img">
-                <div class="card-info">
-                    <h3>Nombre</h3>
-                    <p>Descripción breve</p>
-                </div>
-            </div>
+    
         </div>
 
         <!-- Controles de acción -->
@@ -45,8 +41,8 @@ recuperarUserDataDePrueba();
         <!-- Menú de navegación -->
         <nav class="bottom-nav">
             <h3><a href="#">Descobrir</a></h3>
-            <h3><a href="#">Missatges</a></h3>
-            <h3><a href="#">Perfil</a></h3>
+            <h3><a href="messages.php#">Missatges</a></h3>
+            <h3><a href="">Perfil</a></h3>
         </nav>
     </div>
 </body>
@@ -64,8 +60,8 @@ function recuperarUserDataDePrueba()
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
+        $username = "admin";
+        $pw = "macarrones con queso";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -80,8 +76,7 @@ function recuperarUserDataDePrueba()
                                     Gender, 
                                     Longitude, 
                                     Latitude, 
-                                    MaxAge, 
-                                    MinAge, 
+                                    Points, 
                                     UserAge
                                 FROM User 
                                 WHERE IdUser = 1;");
@@ -92,7 +87,7 @@ function recuperarUserDataDePrueba()
 
     // Almacenar el resultado en la sesión
     $_SESSION['user_data'] = $result;
-    print_r($_SESSION['user_data']);
+
     //eliminem els objectes per alliberar memòria 
     unset($pdo);
     unset($query);
@@ -102,4 +97,3 @@ function recuperarUserDataDePrueba()
 
 
 ?>
-

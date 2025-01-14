@@ -1,5 +1,29 @@
 <?php
 session_start();
+if (isset($_GET["api"])) {
+
+    $apiSelected = $_GET["api"];
+
+    switch ($apiSelected) {
+
+        case "downdloadProfiles":
+
+            CalcAndOrderbyPosition();
+            break;
+
+        case "insertNewLike":
+            saveNewLike();
+            break;
+        case "isAMatch":
+            isAMatch();
+            break;
+        case "sumPoints":
+            sumAndUpdateUserPoints();
+            break;
+
+    }
+
+}
 
 /*
 --Download, calc and order by distance for discover.
@@ -11,7 +35,8 @@ Y por último tenemos la función que se encarga de descargar los datos de la BB
 
 */
 
-// Función para calcular la distancia entre dos ubicaciones (en km)
+// Función para calcular la distancia entre dos ubicaciones (en km); 
+
 function calcularDistance($lat1, $lon1, $lat2, $lon2)
 {
     $radioTierra = 6371; // Radio de la Tierra en kilómetros
@@ -38,43 +63,44 @@ function calcularDistance($lat1, $lon1, $lat2, $lon2)
     return $distancia; // Retorna la distancia en km
 }
 
-
 //Esta función llama a la función que nos devuelve los datos de los perfiles de la BBDD, 
 //llama a la función que calcula la dustancia entre nosotros y el otro usuario y devuelve la lista de usuarios ordenados por distancia.
-function CalcAndOrderbyPosition($users)
+function CalcAndOrderbyPosition()
 {
+    if (isset($_POST["indextToLoad"])) {
+        // Tu ubicación (latitud y longitud)
+        $myLat = (float) $_SESSION["user_data"]["Latitude"]; // Ejemplo de latitud (Nueva York)
+        $myLong = (float) $_SESSION["user_data"]["Longitude"]; // Ejemplo de longitud (Nueva York)
 
-    // Tu ubicación (latitud y longitud)
-    $myLat = (float) $_SESSION["UserData"]["Latitude"]; // Ejemplo de latitud (Nueva York)
-    $myLong = (float) $_SESSION["UserData"]["Longitude"]; // Ejemplo de longitud (Nueva York)
+        $indexToLoad = $_POST["indextToLoad"];
 
-    $users = downloadUsersForDiscover();
-    $users = downloadFotos($users);
+        $users = downloadUsersForDiscover($indexToLoad);
+        $users = downloadFotos($users);
 
-    // Calcular distancia de cada usuario respecto a tu ubicación
-    foreach ($users as &$user) {
+        // Calcular distancia de cada usuario respecto a tu ubicación
+        foreach ($users as &$user) {
 
-        $user["distance"] = calcularDistance((float) $user["Latitude"], (float) $user["Longitude"], $myLat, $myLong);
+            $user["distance"] = calcularDistance((float) $user["Latitude"], (float) $user["Longitude"], $myLat, $myLong);
+
+        }
+
+        usort($users, function ($a, $b) {
+
+            return $a["distance"] - $b["distance"];
+
+        });
+
+        // Devolver los resultados como JSON
+        header('Content-Type: application/json');
+        echo json_encode($users); // Devuelve el array de usuarios como JSON
+        exit;
 
     }
-
-    usort($users, function ($a, $b) {
-
-        return $a["distance"] - $b["distance"];
-
-    });
-
-
-    // Devolver los resultados como JSON
-    header('Content-Type: application/json');
-    echo json_encode($users); // Devuelve el array de usuarios como JSON
-    exit;
-
 
 }
 
 //Descargamos los perfiles a mostrar en discover siguiendo nuestros criterios.
-function downloadUsersForDiscover(): array
+function downloadUsersForDiscover($indexToLoad): array
 {
 
     try {
@@ -87,40 +113,111 @@ function downloadUsersForDiscover(): array
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
         exit;
     }
-    $likesForDiscard = downloadOurLikes();
-    $likesForDiscard = implode(",", $likesForDiscard);
 
     // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
     $userId = $_SESSION['user_data']["IdUser"];
-    $maxAge = $_SESSION['user_data']["MaxAge"];
-    $minAge = $_SESSION['user_data']["MinAge"];
+  
     // Preparar la consulta de manera segura usando un marcador de posición para :userId
-    $query = $pdo->prepare(
-        "SELECT 
-                    IdUser, 
-                    Username, 
-                    Orientation, 
-                    Gender, 
-                    Longitude, 
-                    Latitude, 
-                    MaxAge, 
-                    MinAge, 
-                    UserAge
-                FROM User 
-                WHERE IdUser NOT IN (
-                    SELECT LikedUserId 
-                    FROM UserLikes 
-                    WHERE UserId = :userId
-                ) 
-                AND MaxAge <= :MaxAge 
-                AND MinAge >= :MinAge;"
-    );
+
+    //Query para buscar perfiles en caso de que el usuario loggeado sea hombre hetero
+    if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Heterosexual") {
+
+        $query = $pdo->prepare(
+            "SELECT 
+                        IdUser, 
+                        Username, 
+                        Orientation, 
+                        Gender, 
+                        Longitude, 
+                        Latitude, 
+                        MaxAge, 
+                        MinAge, 
+                        UserAge
+                    FROM User 
+                    WHERE IdUser NOT IN (
+                        SELECT LikedUserId 
+                        FROM UserLikes 
+                        WHERE UserId = :userId
+                    )AND Orientation  = 'Heterosexual'
+                    AND Gender = 'Mujer'
+                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        );
+        //Query para buscar perfiles en caso de que el usuario loggeado sea hombre homo
+    } else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
+
+        $query = $pdo->prepare(
+            "SELECT 
+                        IdUser, 
+                        Username, 
+                        Orientation, 
+                        Gender, 
+                        Longitude, 
+                        Latitude, 
+                        Points, 
+                        UserAge
+                    FROM User 
+                    WHERE IdUser NOT IN (
+                        SELECT LikedUserId 
+                        FROM UserLikes 
+                        WHERE UserId = :userId
+                    )AND Orientation  = 'Homosexual'
+                    AND Gender = 'Hombre' 
+                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        );
+        //Query para buscar perfiles en caso de que el usuario loggeado sea mujer hetero
+    } else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Heterosexual") {
+
+        $query = $pdo->prepare(
+            "SELECT 
+                        IdUser, 
+                        Username, 
+                        Orientation, 
+                        Gender, 
+                        Longitude, 
+                        Latitude, 
+                        Points, 
+                        UserAge
+                    FROM User 
+                    WHERE IdUser NOT IN (
+                        SELECT LikedUserId 
+                        FROM UserLikes 
+                        WHERE UserId = :userId
+                    )AND Orientation  = 'Heterosexual'
+                    AND Gender = 'Hombre'
+                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        );
+        //Query para buscar perfiles en caso de que el usuario loggeado sea mujer homo
+    } else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
+
+        $query = $pdo->prepare(
+            "SELECT 
+                       IdUser, 
+                        Username, 
+                        Orientation, 
+                        Gender, 
+                        Longitude, 
+                        Latitude, 
+                        Points, 
+                        UserAge
+                    FROM User 
+                    WHERE IdUser NOT IN (
+                        SELECT LikedUserId 
+                        FROM UserLikes 
+                        WHERE UserId = :userId
+                    )AND Orientation  = 'Homosexual'
+                    AND Gender = 'Mujer'
+                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        );
+
+    }
 
     // Ejecutar la consulta con los parámetros correspondientes
     $query->execute([
-        ':userId' => $userId,
-        ':MaxAge' => $maxAge,
-        ':MinAge' => $minAge
+        ':userId' => $userId
     ]);
     $users = $query->fetchAll(PDO::FETCH_ASSOC);
     return $users;
@@ -129,8 +226,7 @@ function downloadUsersForDiscover(): array
 function downloadFotos($userDiccionari)
 {
 
-    foreach ($userDiccionari as $user) {
-
+    foreach ($userDiccionari as &$user) {
 
         try {
             $hostname = "localhost";
@@ -143,46 +239,166 @@ function downloadFotos($userDiccionari)
             exit;
         }
 
-        $query = $pdo->prepare("SELECT URL FROM photos where UserId = " . $user["IdUser"] . ";");
+        $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $user["IdUser"] . ";");
         $query->execute();
-        $photos = $result = $query->fetchAll(PDO::FETCH_COLUMN);
+        $photos = $query->fetchAll(PDO::FETCH_COLUMN);
 
         $i = 0;
         foreach ($photos as $img) {
 
-            $user["img" . $i] = $img["photo"];
+            $user["img" . $i] = $img;
             $i++;
+
         }
 
-
-
     }
+
     return $userDiccionari;
 
 }
 
-//Esta función se encarga de descargar los likes que hemos dados para que no nos muestre esos perfiles.
-function downloadOurLikes()
+/*Function Save Likes 
+
+Aquí se encuentra la funcion mediante la cual guardaremos en la BBDD los likes que demos.
+
+*/
+
+function saveNewLIke()
+{
+
+    if (isset($_POST["likedUserId"])) {
+
+        $likedUserID = $_POST["likedUserId"];
+
+        try {
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $username = "root";
+            $pw = "1234";
+            $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            exit;
+        }
+
+        try {
+            echo "Comença la inserció<br>";
+            //cadascun d'aquests interrogants serà substituit per un paràmetre.
+            $stmt = $dbh->prepare("INSERT INTO UserLikes (UserId, LikedUserId) VALUES(?,?)");
+            //a l'execució de la sentència li passem els paràmetres amb un array 
+            $stmt->execute(array($_SESSION['user_data']['IdUser'], $likedUserID));
+            echo "Insertat!";
+        } catch (PDOExecption $e) {
+            print "Error!: " . $e->getMessage() . " Desfem</br>";
+        }
+
+    }
+
+}
+
+function isAMatch()
+{
+
+    if (isset($_POST["likedUserId"])) {
+
+        $likedUserID = $_POST["likedUserId"];
+
+        try {
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $username = "root";
+            $pw = "1234";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            exit;
+        }
+
+        $query = $pdo->prepare("SELECT 1 FROM UserLikes where LikedUserId = " . $_SESSION['user_data']["IdUser"] . " AND UserId = " . $likedUserID . ";");
+        $query->execute();
+        $isaMatch = $query->fetchColumn();
+
+        if ($isaMatch !== false) {
+            saveANewMatch($likedUserID);
+            $isaMatch = (int) $isaMatch;  // Convertir a entero
+        } else {
+            $isaMatch = 0;  // Si no hay resultado, devolver 0
+        }
+
+        echo json_encode($isaMatch);
+        exit;
+
+    }
+
+}
+
+function saveANewMatch($userLiked)
 {
 
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
-        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        $username = "root";
+        $pw = "1234";
+        $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
         exit;
     }
 
-    $query = $pdo->prepare("SELECT LikedUserId FROM UserLikes where UserId = " . $_SESSION['user_data']["IdUser"] . ";");
-    $query->execute();
-    $likes = $result = $query->fetchAll(PDO::FETCH_COLUMN);
-    return $likes;
+    try {
+
+        //cadascun d'aquests interrogants serà substituit per un paràmetre.
+        $stmt = $dbh->prepare("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
+        //a l'execució de la sentència li passem els paràmetres amb un array 
+        $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
+
+    } catch (PDOExecption $e) {
+        print "Error!: " . $e->getMessage() . " Desfem</br>";
+    }
 
 }
 
-print_r(downloadUsersForDiscover());
+function sumAndUpdateUserPoints(){
 
-?>
+    if(isset($_POST["points"])) {
+        $_SESSION["user_data"]["Points"] += (int)$_POST["points"]; // Corrige la concatenación a la suma
+        
+        try {
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $username = "root";
+            $pw = "1234";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            exit;
+        }
+    
+        // Datos que quieres actualizar
+        $id = $_SESSION["user_data"]["IdUser"]; // ID del usuario a actualizar
+        $newPoints = $_SESSION["user_data"]["Points"]; // Nuevos puntos a actualizar
+    
+        // Preparar la consulta UPDATE
+        $sql = "UPDATE User SET Points = :newPoints WHERE IdUser = :id";
+    
+        // Preparar la declaración
+        $stmt = $pdo->prepare($sql);
+    
+        // Vincular los parámetros a las variables
+        $stmt->bindParam(':newPoints', $newPoints, PDO::PARAM_INT); // Cambié a PDO::PARAM_INT
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    
+        // Ejecutar la consulta
+        if ($stmt->execute()) {
+            echo "Usuario actualizado con éxito.";
+        } else {
+            echo "Error al actualizar el usuario.";
+        }
+    }
+}
+
+
+
+
+?> 

@@ -31,8 +31,7 @@ loadEnv(__DIR__ . '/.env');
 
 //andamio para pruebas
 recuperarUserDataDePrueba();
-
-//var_dump($_SESSION['user_data']);
+//var_dump($_SESSION['user_data']['FirstName']);
 // Verificar si se ha realizado la solicitud AJAX de hacer update a la sesion para actualizar valores
 if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     $_SESSION['user_data']['FirstName'] = $_POST['firstName'];
@@ -51,6 +50,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     // Llamar a la función para actualizar en la base de datos
     updateUserData($_SESSION['user_data']);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,12 +64,15 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 </head>
 <body id="profileBody">
     <div class="container">
+        <div id="scroll"></div>
         <div class="top-header">
             <!-- <a class="back" href="/index.php"> < Atrás</a> -->
             <h1 class="profileTitle"> Perfil</h1>
         </div>    
         <div class="fieldsContainer">
-            <form> 
+            <form id="profileForm">
+
+            <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
 <!-- User Info-->
             <div class ="field">
                 <h3>Nombre: </h3>
@@ -91,7 +94,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </div>
             <div class ="field">
                 <h3>Biografia: </h3>
-                <textarea id="bio" rows="10" cols ="50" required><?php echo htmlspecialchars($_SESSION['user_data']['bio'])?></textarea>
+                <textarea id="bio" rows="10" cols ="50" required><?php echo htmlspecialchars($_SESSION['user_data']['Bio'])?></textarea>
                 </div>
             <div class ="field">
                 <h3>Localización: </h3>
@@ -116,7 +119,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </label>
                 </br>
                 <label>
-                    <input type="radio" name="gender" value="No Binario" <?php echo htmlspecialchars($_SESSION['user_data']['Gender'] == 'No binario') ? 'checked' : ''; ?> required>
+                    <input type="radio" name="gender" value="No Binario" <?php echo htmlspecialchars($_SESSION['user_data']['Gender'] == 'No Binario') ? 'checked' : ''; ?> required>
                     No Binario
                 </label>
             </div>
@@ -154,7 +157,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         </div>
 
         <div class="bottom">
-        <button class="saveButton" onclick="saveProfileChanges()">Guardar</button>
+        <button class="saveButton" onclick="validateForm()">Guardar</button>
         <a class="toPhotoButton" href="/">Editar Fotos</a>
         </div>
     </div>
@@ -233,6 +236,39 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
             });
         }
 
+        /** valida que todos los campos requeridos tengan contenido, en caso de que falte uno levanta css message*/
+        function validateForm() {
+            let isValid = true;
+            $('.error-border').removeClass('error-border');
+            $('#errorMessage').hide();
+            
+            // si alguno de los inputs requeridos no tiene texto, levanta error
+            $('#profileForm input[required], #profileForm textarea[required]').each(function() {
+                if ($(this).val().trim() === '') {
+                    $(this).addClass('error-border');
+                    isValid = false;
+                }
+            });
+
+            /** si gender o orientacion no checked, levanta error */
+            if (!$('input[name="gender"]:checked').length) {
+                $('input[name="gender"]').closest('label').addClass('error-border');
+                isValid = false;
+            }
+            
+            if (!$('input[name="orientacion"]:checked').length) {
+                $('input[name="orientacion"]').closest('label').addClass('error-border');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                $('#errorMessage').show();
+                document.getElementById('scroll').scrollIntoView({ behavior: 'smooth'});
+                
+            } else {
+                saveProfileChanges();
+            }
+        }
         function updateRange() {
             // Elementos del formulario
             const minAge = document.getElementById('minAge');
@@ -289,7 +325,8 @@ function recuperarUserDataDePrueba(){
                                     Latitude, 
                                     MaxAge, 
                                     MinAge, 
-                                    UserAge
+                                    UserAge,
+                                    Bio
                                 FROM User 
                                 WHERE IdUser = 1;");
     $query->execute();
@@ -328,7 +365,8 @@ function updateUserData($userData){
                                 Longitude = :longitude, 
                                 Latitude = :latitude, 
                                 MaxAge = :maxAge, 
-                                MinAge = :minAge
+                                MinAge = :minAge,
+                                Bio = :bio
                             WHERE IdUser = :userId");
     // bindParam
     $query->bindParam(':firstName', $userData['FirstName'], PDO::PARAM_STR);
@@ -343,6 +381,7 @@ function updateUserData($userData){
     $query->bindParam(':maxAge', $userData['MaxAge'], PDO::PARAM_INT);
     $query->bindParam(':minAge', $userData['MinAge'], PDO::PARAM_INT);
     $query->bindParam(':userId', $userData['IdUser'], PDO::PARAM_INT);
+    $query->bindParam(':bio', $userData['Bio'], PDO::PARAM_STR);
 
     if ($query->execute()) {
         echo "Datos actualizados correctamente para el usuario con ID: " . $userData['IdUser'];
