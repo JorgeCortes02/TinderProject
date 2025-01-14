@@ -4,48 +4,26 @@ $(document).ready(function() {
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
    
-    let currentIndex = 0; // Índice inicial del carrusel
-    const $slides = $('.carousel-inner'); // Contenedor de las imágenes
-    const $images = $slides.find('img'); // Selecciona todas las imágenes dentro del carrusel
-    const totalImages = $images.length; // Total de imágenes en el carrusel
-
-    // Botón "Siguiente"
-    $('#dislike').click(function() {
-        currentIndex = (currentIndex + 1) % totalImages; // Avanza al siguiente índice
-        updateSlider();
-    });
-
-    // Botón "Anterior"
-    $('#prevBtn').click(function() {
-        currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Retrocede al índice anterior
-        updateSlider();
-    });
-
-    // Función para actualizar la posición del carrusel
-    function updateSlider() {
-        const translateXValue = -currentIndex * 100; // Calcula el desplazamiento en %
-        $slides.css('transform', `translateX(${translateXValue}%)`); // Aplica el desplazamiento
-    }
-
+    
 
     // // Acción cuando el usuario hace clic en el botón de dislike
-    // dislikeButton.click(()=>{
+    dislikeButton.click(()=>{
 
-    //     let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
+        let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
 
-    //     // Si solo queda una tarjeta
-    //     if(cards.length == 1){
-    //         // Llamamos a la función para recuperar más perfiles de forma asíncrona
-    //         (async () => {
-    //             await downloadData(indexToDownload);
-    //             indexToDownload = calcMaxId();  // Actualizamos el índice con el id máximo
-    //         })();
-    //     }   
-    //     // Eliminamos la última tarjeta mostrada
-    //     const actualCard = $(".card-container").children(".card").last();
-    //     sumPoints(200);
-    //     actualCard.remove();
-    // });
+        // Si solo queda una tarjeta
+        if(cards.length == 1){
+            // Llamamos a la función para recuperar más perfiles de forma asíncrona
+            (async () => {
+                await downloadData(indexToDownload);
+                indexToDownload = calcMaxId();  // Actualizamos el índice con el id máximo
+            })();
+        }   
+        // Eliminamos la última tarjeta mostrada
+        const actualCard = $(".card-container").children(".card").last();
+        sumPoints(200);
+        actualCard.remove();
+    });
 
     // Acción cuando el usuario hace clic en el botón de like
     likeButton.click(()=>{

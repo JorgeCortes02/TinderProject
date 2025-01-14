@@ -11,6 +11,8 @@
 <body id="loginBody">
 
     <?php    
+
+   
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
@@ -29,8 +31,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "macarrones con queso";
+            $username = "root";
+            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -38,14 +40,13 @@
         }
 
         $query = $pdo->prepare("SELECT 
-                                    IdUser, 
+                                       IdUser, 
                                     Username, 
                                     Orientation, 
                                     Gender, 
                                     Longitude, 
                                     Latitude, 
-                                    MaxAge, 
-                                    MinAge, 
+                                    Points, 
                                     UserAge
                                 FROM User 
                                 WHERE IdUser = :id;");
@@ -72,8 +73,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "macarrones con queso";
+            $username = "root";
+            $pw = "1234";
 
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
@@ -124,7 +125,7 @@
                 getUserData($storedUserId);
 
                 //redireccionamos a DISCOVER
-                header("Location: discover.php/");
+                header("Location: discover.php");
 
             }
         }
