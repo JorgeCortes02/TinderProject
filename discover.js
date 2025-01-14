@@ -3,24 +3,49 @@ $(document).ready(function() {
     let indexToDownload = 0;  // Índice inicial para cargar más perfiles
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
+   
+    let currentIndex = 0; // Índice inicial del carrusel
+    const $slides = $('.carousel-inner'); // Contenedor de las imágenes
+    const $images = $slides.find('img'); // Selecciona todas las imágenes dentro del carrusel
+    const totalImages = $images.length; // Total de imágenes en el carrusel
 
-    // Acción cuando el usuario hace clic en el botón de dislike
-    dislikeButton.click(()=>{
-
-        let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
-
-        // Si solo queda una tarjeta
-        if(cards.length == 1){
-            // Llamamos a la función para recuperar más perfiles de forma asíncrona
-            (async () => {
-                await downloadData(indexToDownload);
-                indexToDownload = calcMaxId();  // Actualizamos el índice con el id máximo
-            })();
-        }   
-        // Eliminamos la última tarjeta mostrada
-        const actualCard = $(".card-container").children(".card").last();
-        actualCard.remove();
+    // Botón "Siguiente"
+    $('#dislike').click(function() {
+        currentIndex = (currentIndex + 1) % totalImages; // Avanza al siguiente índice
+        updateSlider();
     });
+
+    // Botón "Anterior"
+    $('#prevBtn').click(function() {
+        currentIndex = (currentIndex - 1 + totalImages) % totalImages; // Retrocede al índice anterior
+        updateSlider();
+    });
+
+    // Función para actualizar la posición del carrusel
+    function updateSlider() {
+        const translateXValue = -currentIndex * 100; // Calcula el desplazamiento en %
+        $slides.css('transform', `translateX(${translateXValue}%)`); // Aplica el desplazamiento
+    }
+
+
+    // // Acción cuando el usuario hace clic en el botón de dislike
+    // dislikeButton.click(()=>{
+
+    //     let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
+
+    //     // Si solo queda una tarjeta
+    //     if(cards.length == 1){
+    //         // Llamamos a la función para recuperar más perfiles de forma asíncrona
+    //         (async () => {
+    //             await downloadData(indexToDownload);
+    //             indexToDownload = calcMaxId();  // Actualizamos el índice con el id máximo
+    //         })();
+    //     }   
+    //     // Eliminamos la última tarjeta mostrada
+    //     const actualCard = $(".card-container").children(".card").last();
+    //     sumPoints(200);
+    //     actualCard.remove();
+    // });
 
     // Acción cuando el usuario hace clic en el botón de like
     likeButton.click(()=>{
@@ -47,7 +72,7 @@ $(document).ready(function() {
         // Guardamos el like y verificamos si es un match
         saveNewLike(actualCard.data("userId"));
         isMatch(actualCard.data("userId"));
-        
+        sumPoints(100);
         // Eliminamos la tarjeta que fue procesada
         actualCard.remove();
     });
@@ -156,5 +181,26 @@ function isMatch(idUser){
     })
     .catch(error => {
         console.error("Error en la petición:", error);  // Si ocurre un error, lo mostramos
+    });
+}
+
+
+function sumPoints(points){
+    const formData = new FormData();
+    formData.append("points", points);  // Añadir el id del usuario al que se le dio like
+    console.log(points)
+    // Hacemos la petición para verificar el match
+    fetch("apis.php?api=sumPoints", {
+        method: "POST",  // Usamos el método POST
+        body: formData,  // Enviamos el FormData
+    })
+    .then(response => {
+        if (!response.ok) {  // Verificar si la respuesta fue exitosa
+            throw new Error("Error al guardar los datos en el servidor");
+        }
+        console.log("Datos guardados exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
+    })
+    .catch(error => {
+        console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
     });
 }
