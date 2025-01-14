@@ -4,9 +4,7 @@ $(document).ready(function() {
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
    
-    
 
-    // // Acción cuando el usuario hace clic en el botón de dislike
     dislikeButton.click(()=>{
 
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
