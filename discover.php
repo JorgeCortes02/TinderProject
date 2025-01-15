@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
 
+<?php
 //Llegan los datos del usuario desde el LOGIN
 session_start();
 recuperarUserDataDePrueba();
-print_r($_SESSION["user_data"]);
-
+//print_r($_SESSION["user_data"]);
 ?>
+
+<!-- MUESTRA DE CSS MESSAGE sólo al iniciar sesión -->
+<script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const loginNotification = <?php echo json_encode($_SESSION['showLoginNotification']); ?>;//metemos en una variable de js
+        if (loginNotification == true){
+            showNotification("Inicio de sesión exitoso", "success");//mostramos noti
+            <?php
+            $_SESSION['showLoginNotification'] = false;//lo ponemos a false en la sesion
+            ?>
+        }
+    })
+</script>
 
 <head>
     <meta charset="UTF-8">
@@ -18,6 +30,11 @@ print_r($_SESSION["user_data"]);
     <script src="discover.js"></script>
     <link rel="stylesheet" href="styles.css">
 
+    <!--notificaciones css message-->
+    <script src="notifications.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -25,12 +42,12 @@ print_r($_SESSION["user_data"]);
         <!-- Logo alineado a la izquierda -->
         <div class="header">
             <h1>IETINDER</h1>
-           
+
         </div>
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
-    
+
         </div>
 
         <!-- Controles de acción -->
@@ -61,8 +78,8 @@ function recuperarUserDataDePrueba()
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
+        $username = "admin";
+        $pw = "macarrones con queso";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
