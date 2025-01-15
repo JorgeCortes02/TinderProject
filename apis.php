@@ -474,7 +474,23 @@ function sumAndUpdateUserPoints(){
     }
 }
 
+function  registrarLog($mensaje, $tipo = 'INFO'){
+    $fecha = date('Y-m-d');
+    $hora = date('H:i:s');
+    $directorio = __DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR;
 
+    //crear directorio si no existe:
+    if(!file_exists($directorio)){
+        mkdir($directorio, 0755, true);
+    }
 
+    $archivoLog="$directorio/$fecha.txt";
+
+    $mensajeFormateado = "[$hora] [$tipo] $mensaje".PHP_EOL;
+
+    file_put_contents($archivoLog, $mensajeFormateado, FILE_APPEND);
+
+}
 
 ?> 
+

@@ -10,13 +10,15 @@
 
 <body id="loginBody">
 
-    <?php
+    <?php    
+    include_once 'apis.php'; 
     include 'config.php';
 
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
         $password = $_POST['contrassenya'] ?? '';
+        registrarLog("Solicitud de inicio de sesión $email : $password");
 
         // Limpieza básica de los datos recibidos
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -36,6 +38,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
             exit;
         }
 
@@ -73,7 +76,6 @@
 
     }
 
-
     //FUNCION LOGIN
     function login($email, $password)
     {
@@ -81,15 +83,12 @@
             global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-
-            $username = "root";
-            $pw = "1234";
-
-
+            
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
         } catch (PDOException $e) {
             echo "<p>Failed to connect to the database: " . $e->getMessage() . "</p>";
+            registrarLog("Login - Failed to connect to the database in login: " . $e->getMessage());
             exit;
         }
 
@@ -101,6 +100,7 @@
 
         // si el email NO existe
         if (!$row) {
+            registrarLog("Email no registrado $email");
             ?>
             <script>
                 document.addEventListener("DOMContentLoaded", (event) => {
@@ -112,11 +112,13 @@
 
             //si el email SÍ existe
         } else {
+            registrarLog("Email registrado $email");
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
 
             //si la contraseña es incorrecta
             if ($storedPassword !== hash('sha256', $password)) {
+                registrarLog("Contraseña incorrecta".hash('sha256', $password));
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
@@ -126,19 +128,25 @@
                 </script>
                 <?php
 
-                //si todo es correcto
+
+            //si todo es correcto
             } else {
+                registrarLog("Contraseña  correcta".hash('sha256', $password));
+                registrarLog("Inicio de sesión correcto $email : ".hash('sha256', $password));
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 
                 //Cargamos los datos del usuario en la sesion
                 session_start();
+                registrarLog("Session iniciada");
                 getUserData($storedUserId);
 
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;
+                registrarLog("Login Notification");
 
                 //redireccionamos a DISCOVER
+                registrarLog("Redireccion a discover.php");
                 header("Location: discover.php");
 
             }

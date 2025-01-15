@@ -1,7 +1,7 @@
 
-$(document).ready(function(e) {
-    $('.saveButton').on('click', function() {
-        e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    var saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', function() {
         validateForm();
     });
 });

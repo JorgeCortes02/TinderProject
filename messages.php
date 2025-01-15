@@ -22,6 +22,8 @@ session_start();
             <h3>Els meus matches</h3>
             <div class="matches-list">
                 <?php 
+                include_once 'apis.php'; 
+                include 'config.php';
                 $matchDiccionari = downloadFotosForMatches(downloadMatches());
 
                 if (!empty($matchDiccionari)) { // Verifica si $matchDiccionari tiene datos
