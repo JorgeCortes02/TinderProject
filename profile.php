@@ -2,6 +2,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include_once 'apis.php'; 
+include 'config.php';
+
 // Función para cargar el archivo .env
 function loadEnv($path) {
     if (!file_exists($path)) {
@@ -158,7 +161,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </div>
             </div> -->
             <div class="bottom">
-            <button class="saveButton">Guardar</button>
+            <button class="saveButton" id="saveButton">Guardar</button>
             <a class="toPhotoButton" href="/">Editar Fotos</a>
             </div>
             </form>
@@ -278,7 +281,6 @@ function updateUserData($userData){
         print_r($query->errorInfo());
     }
 
-    print_r($_SESSION['user_data']);
     unset($pdo);
     unset($query);
 }

@@ -54,8 +54,6 @@
                                     Longitude, 
                                     Latitude, 
                                     Points,
-                                    MaxAge, 
-                                    MinAge,
                                     UserAge,
                                     Bio
                                 FROM User 

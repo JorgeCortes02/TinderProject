@@ -1,7 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     var saveButton = document.getElementById('saveButton');
-    saveButton.addEventListener('click', function() {
+    saveButton.addEventListener('click', function(e) {
+        e.preventDefault();
         validateForm();
     });
 });
@@ -21,8 +22,8 @@ function saveProfileChanges() {
     const bio = $('#bio').val();
     const gender = $("input[name='gender']:checked").val(); // Solo guarda la opción seleccionada
     const orientation = $("input[name='orientacion']:checked").val(); // Solo guarda la opción seleccionada
-    const minAge = $('#minAge').val();
-    const maxAge = $('#maxAge').val();
+    // const minAge = $('#minAge').val();
+    // const maxAge = $('#maxAge').val();
     const latitude = $('#latitude').val();
     const longitude = $('#longitude').val();
 
@@ -40,8 +41,6 @@ function saveProfileChanges() {
             bio: bio,
             gender: gender,
             orientation: orientation,
-            minAge: minAge,
-            maxAge: maxAge,
             latitude: latitude,
             longitude: longitude
         },
@@ -84,6 +83,7 @@ function validateForm() {
         $('#errorMessage').show();
         document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
     } else {
+        console.log('Entrando a guardar datos');
         saveProfileChanges();
     }
 }

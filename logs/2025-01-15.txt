@@ -8,3 +8,17 @@
 [22:25:45] [INFO] Session iniciada
 [22:25:45] [INFO] Login Notification
 [22:25:45] [INFO] Redireccion a discover.php
+[22:42:09] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[22:42:09] [INFO] Email registrado carlos.gomez@ieti.site
+[22:42:09] [INFO] Contraseña  correctabd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[22:42:09] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[22:42:09] [INFO] Session iniciada
+[22:42:09] [INFO] Login Notification
+[22:42:09] [INFO] Redireccion a discover.php
+[22:59:44] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[22:59:44] [INFO] Email registrado carlos.gomez@ieti.site
+[22:59:44] [INFO] Contraseña  correctabd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[22:59:44] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[22:59:44] [INFO] Session iniciada
+[22:59:44] [INFO] Login Notification
+[22:59:44] [INFO] Redireccion a discover.php
