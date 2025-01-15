@@ -107,7 +107,7 @@
             $storedPassword = $row['Password'];
 
             //si la contraseña es incorrecta
-            if ($storedPassword !== $password) {
+            if ($storedPassword !== hash('sha256', $password)) {
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
