@@ -76,7 +76,7 @@ p {
     color: var(--jetblack);
     font-family: var(--header-font);
     font-size: var(--header-size);
-    padding-bottom: 50px;
+    padding-bottom: 40px;
 
 }
 
@@ -104,6 +104,7 @@ p {
     box-shadow: none;
     border-top-color: var(--darkblue);
     padding: 10px 20px;
+    margin-bottom: 15px;
 }
 
 
@@ -126,9 +127,11 @@ p {
     font-size: var(--text-size);
 }
 
-#loginBody p#errorEmail, p#errorPassword {
+#loginBody h4#errorEmail, h4#errorPassword {
+    font-weight: normal;
     display: none;
     color: red;
+    padding-bottom: 30px;
 }
 
 
@@ -801,5 +804,129 @@ body {
         width: 50px;
         height: 70px;
     }
+
+}
+
+
+/* MARK: POPUPS */
+#popup-container{
+    position: fixed;
+    top: 100;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+#popup{
+    background-color: var(--middleblue);
+    width: 300px;
+    height: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    color: var(--white);
+    font-family: var(--header-font);
+    font-weight: bold;
+    font-size: var(--header-size);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    position: relative;
+    transform: translateY(-100%); /* Empieza fuera de la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+#popup-icon {
+    font-size: 50px;
+    padding-bottom: 20px;
+    flex-shrink: 0; /* Evitar que el icono se reduzca en tamaño */
+}
+
+#popup-message{
+    padding-bottom: 20px;
+    color: var(--white);
+    font-family: var(--header-font);
+    font-weight: bold;
+    font-size: var(--header-size);
+}
+
+#button-continueDiscovering, #button-goToChat{
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+    color: #534FF6;
+    border: none;
+    border-radius : 5px;
+    font-family : "Roboto", sans-serif;
+    font-weight : bold;
+}
+
+
+
+/* MARK: NOTIFICATIONS */
+
+#notification-container{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+
+.notification {
+    background-color: #8B8EF9;
+    width: 460px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    position: relative;
+    transform: translateY(-100%); /* Empieza fuera de la pantalla */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notificationContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.iconContainer {
+    margin-right: 15px;
+    font-size: 30px;
+    flex-shrink: 0; /* Evitar que el icono se reduzca en tamaño */
+}
+
+.messageContainer{
+    color: var(--white);
+    font-family: var(--header-font);
+    font-weight: bold;
+    font-size: var(--header-size);
 
 }

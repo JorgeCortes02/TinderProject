@@ -31,8 +31,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "macarrones con queso";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -73,8 +73,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "macarrones con queso";
 
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
@@ -113,7 +113,8 @@
                         Array.from(document.getElementsByTagName("input"))[1].style.borderColor = "red"; //borde rojo en input
                         document.getElementById("errorPassword").style.display = "block"; //mensaje en display
                     })
-                </script> <?php
+                </script> 
+                <?php
 
             //si todo es correcto
             } else {
@@ -123,6 +124,9 @@
                 //Cargamos los datos del usuario en la sesion
                 session_start();
                 getUserData($storedUserId);
+
+                //Preparamos para que salga una notificacion de inicio de sesión
+                $_SESSION['showLoginNotification'] = true;
 
                 //redireccionamos a DISCOVER
                 header("Location: discover.php");
@@ -137,27 +141,26 @@
 
     <h1>IETINDER</h1>
     <h3>App de ligoteo</h3>
+    <h4 id="errorEmail">El correo no está registrado</h4>
+    <h4 id="errorPassword">Contraseña incorrecta</h4>
+    
     <form method="POST">
         <!-- Campo Email -->
-        <label for="mail">Email</label></br>
+        <label for="mail">Email:</label></br>
         <input type="email" name="mail" required>
-        <p id="errorEmail">El correu no està registrat</p>
-        </p>
         </br>
 
         <!-- Campo Contraseña -->
-        <label for="contrassenya">Contrassenya:</label></br>
+        <label for="contrassenya">Contraseña:</label></br>
         <input type="password" name="contrassenya" required>
-        <p id="errorPassword">Contrassenya incorrecta</p>
-        </p>
         </br>
 
-        <button type="submit">Iniciar sessió</button>
+        <button type="submit">Iniciar sesión</button>
     </form>
 
-    <a href="">¿Has oblidat la contrassenya?</a>
+    <a href="">¿Has olvidado la contraseña?</a>
     </br>
-    <a href="">Crear una compte nova</a>
+    <a href="">Crear una cuenta nueva</a>
 </body>
 
 </html>

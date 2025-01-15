@@ -304,7 +304,7 @@ function recuperarUserDataDePrueba(){
         $hostname = "localhost";
         $dbname = "DatingApp";
         $username = "admin";
-        $pw = "admin123";
+        $pw = "macarrones con queso";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -347,7 +347,7 @@ function updateUserData($userData){
         $hostname = "localhost";
         $dbname = "DatingApp";
         $username = "admin";
-        $pw = "admin123";
+        $pw = "macarrones con queso";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
