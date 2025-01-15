@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_GET["api"])) {
 
     $apiSelected = $_GET["api"];
@@ -82,11 +83,15 @@ function CalcAndOrderbyPosition()
 
             $user["distance"] = calcularDistance((float) $user["Latitude"], (float) $user["Longitude"], $myLat, $myLong);
 
+            $user["TotalPoints"] = CalcFinalPoints($user);
+
+
+
         }
 
         usort($users, function ($a, $b) {
 
-            return $a["distance"] - $b["distance"];
+            return $b["TotalPoints"] - $a["TotalPoints"];
 
         });
 
@@ -130,8 +135,7 @@ function downloadUsersForDiscover($indexToLoad): array
                         Gender, 
                         Longitude, 
                         Latitude, 
-                        MaxAge, 
-                        MinAge, 
+                        Points, 
                         UserAge
                     FROM User 
                     WHERE IdUser NOT IN (
@@ -410,6 +414,29 @@ function saveANewMatch($userLiked)
         print "Error!: " . $e->getMessage() . " Desfem</br>";
     }
 
+}
+
+function CalcFinalPoints($usuario)
+{
+    $finalDistancePoints = 0;
+    $finalTotalPoints = 0;
+    if($usuario["distance"] < 10){
+        $finalDistancePoints += 10000;
+    } else if($usuario["distance"] < 20 && $usuario["distance"] > 10){
+        $finalDistancePoints += 7500;
+    }else if($usuario["distance"] < 50 && $usuario["distance"] > 20){
+        $finalDistancePoints += 5000;
+    }else if($usuario["distance"] < 100 && $usuario["distance"] > 50){
+        $finalDistancePoints += 2500;
+    }else if( $usuario["distance"] > 100){
+        $finalDistancePoints += 1000;
+    }
+
+    $finalTotalPoints = ((60 * $finalDistancePoints) /100) + (($usuario["Points"] * 40)/100);
+
+    return  $finalTotalPoints;
+
+   
 }
 
 function sumAndUpdateUserPoints(){
