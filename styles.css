@@ -324,49 +324,12 @@ body {
     color: var(--white);
 }
 
-#profileBody .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
+
+
+
+ .fieldsContainer {
+    width: 100%;
     overflow-y: auto;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-#profileBody .top-header {
-    width: 100%;
-    max-width: 465px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--darkblue);
-    border-radius: 5px;
-    color: var(--white);
-    padding: 10px 20px;
-    box-sizing: border-box;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-#profileBody .top-header .profileTitle {
-    font-family: var(--title-font);
-    font-size: var(--title-size);
-    font-weight: var(--title-weight);
-    margin: 0;
-}
-
-#profileBody .top-header .back {
-    color: var(--white);
-    text-decoration: none;
-    font-family: var(--header-font);
-    font-size: var(--header-size);
-}
-
-#profileBody .fieldsContainer {
-    width: 100%;
     max-width: 800px;
     margin: 20px auto;
     background-color: var(--white);
@@ -375,35 +338,35 @@ body {
     border-radius: 10px;
 }
 
-#profileBody .field {
+.field {
     margin-bottom: 30px;
 }
 
-#profileBody .field h3 {
+ .field h3 {
     font-family: var(--header-font);
     font-size: var(--header-size);
     color: var(--darkblue);
     margin-bottom: 10px;
 }
 
-#profileBody .radioField label {
+.radioField label {
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-#profileBody .radioField input[type="radio"] {
+.radioField input[type="radio"] {
     margin-right: 10px;
     width: 50px;
     height: 20px;
     margin-bottom: 0;
     cursor: pointer;
 }
-#profileBody .radioField input[type="radio"]:checked {
+.radioField input[type="radio"]:checked {
     accent-color: var(--darkblue); 
 }
 
-#profileBody input, textarea {
+.containerMessage input, textarea {
     width: 80%;
     padding: 10px;
     margin-bottom: 10px;
@@ -414,37 +377,37 @@ body {
 }
 
 
-#profileBody textarea {
+.containerMessage textarea {
     resize: none;
     width: 100%;
 }
 
-#profileBody label {
+.containerMessage label {
     font-family: var(--header-font);
     font-size: var(--header-size);
     margin-bottom: 5px;
 }
-#profileBody .field label.ageText{
+.containerMessage .field label.ageText{
     color: var(--jetblack);
 }
 
-#profileBody .field label.ageText span{
+.containerMessage .field label.ageText span{
     color: var(--darkblue);
     font-weight: 400;
 }
 /* error messages */
-#profileBody .error-message {
+.containerMessage .error-message {
     color: var(--brightred);
     margin-bottom: 20px;
     display: none;
 }
-#profileBody .error-border {
+.containerMessage .error-border {
     border-color: var(--brightred);
 }
 
 
 /* Range slider styles */
-#profileBody .range-slider {
+ .range-slider {
     width: 100%;
     position: relative;
     height: 10px;
@@ -453,7 +416,7 @@ body {
     overflow: hidden;
     margin-top: 20px;
   }
-  #profileBody .range-slider input {
+ .range-slider input {
     position: absolute;
     width: 100%;
     pointer-events: none;
@@ -464,7 +427,7 @@ body {
     padding: 0;
     margin-bottom: 0;
   }
-  #profileBody .range-slider input::-webkit-slider-thumb {
+  .range-slider input::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
     z-index: 2;
@@ -476,7 +439,7 @@ body {
     -webkit-appearance: none;
     border: 2px solid var(--lightblue);
   }
-  #profileBody .range-slider input::-moz-range-thumb {
+   .range-slider input::-moz-range-thumb {
     pointer-events: all;
     position: relative;
     z-index: 2;
@@ -486,7 +449,7 @@ body {
     background: var(--jetblack);
     cursor: pointer;
   }
-  #profileBody .range-slider .progress {
+  .range-slider .progress {
     position: absolute;
     height: 10px;
     background: var(--darkblue);
@@ -495,13 +458,13 @@ body {
     top: 0;
   }
   /* Aseguramos que la barra de progreso tenga un rango adecuado */
-#profileBody .range-slider input#minAge:focus + .progress,
-#profileBody .range-slider input#maxAge:focus + .progress {
+ .range-slider input#minAge:focus + .progress,
+ .range-slider input#maxAge:focus + .progress {
     outline: none;
 }
 
 
-#profileBody .bottom {
+ .bottom {
     width: 100%;
     max-width: 800px;
     display: flex;
@@ -509,7 +472,7 @@ body {
     margin: 20px auto;
 }
 
-#profileBody .saveButton, .toPhotoButton {
+.saveButton, .toPhotoButton {
     padding: 10px 20px;
     font-size: var(--header-size);
     font-family: var(--header-font);
@@ -523,19 +486,19 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#profileBody .saveButton:hover, .toPhotoButton:hover {
+ .saveButton:hover, .toPhotoButton:hover {
     background-color: var(--middleblue);
 }
 
 /* MAP */
-#profileBody #map {
+ #map {
     width: 100%;
     height: 300px;
     border: 1px solid var(--middleblue);
     border-radius: 10px;
 }
 
-#profileBody button, .toPhotoButton {
+.containerMessage button, .toPhotoButton {
     font-family: var(--header-font);
     font-size: var(--header-size);
     padding: 10px 20px;
@@ -548,16 +511,15 @@ body {
     text-align: center;
 }
 
-#profileBody button:hover, .toPhotoButton:hover {
+.containerMessage button:hover, .toPhotoButton:hover {
     background-color: var(--middleblue);
 }
-
-#profileBody .toPhotoButton {
+.containerMessage .toPhotoButton {
     display: inline-block;
     margin-top: 10px;
 }
 
-#profileBody .bottom {
+.containerMessage .bottom {
     display: flex;
     flex-direction: row;
     align-items: center;
