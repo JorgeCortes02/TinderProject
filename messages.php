@@ -33,13 +33,15 @@ session_start();
                                 <img src='" . htmlspecialchars($match["img"]) . "' alt='Match Image'>
                             </div>
                         ";
-                    }
+                        
+                    }registrarLog("Se han descargado Matches");
                 } else {
                     echo "
                         <div class='no-matches'>
                             <h4>No hay matches disponibles en este momento.</h4>
                         </div>
                     ";
+                    registrarLog("No se han encontrado Matches");
                 }
                 ?>
             </div>
@@ -65,12 +67,13 @@ session_start();
                        </a>
                        ";
                    }
+                   registrarLog("Se han descargado mensajes");
                } else {
                    echo "
                     <div class='no-matches'>
                             <h4>No hay mensajes disponibles en este momento.</h4>
                         </div>
-                   ";
+                   ";registrarLog("No Se han descargado Mensajes");
                }
                ?>
             
@@ -101,6 +104,7 @@ function downloadMatches(): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -143,6 +147,7 @@ function downloadFotosForMatches($matchDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -181,6 +186,7 @@ function downloadChats(){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -225,6 +231,7 @@ function downloadFotosForChats($messageDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
         $userId = $_SESSION['user_data']["IdUser"];
@@ -252,6 +259,7 @@ foreach ($photoData as $data) {
     // Guardar Username y URL de la foto para cada usuario en $conver
     $conver["username"] = $data['Username'];
     $conver["img"] = $data['URL'];
+    
 }
     }
    

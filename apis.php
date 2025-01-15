@@ -117,6 +117,7 @@ function downloadUsersForDiscover($indexToLoad): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -293,6 +294,7 @@ function downloadFotos($userDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -334,6 +336,7 @@ function saveNewLIke()
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -346,6 +349,7 @@ function saveNewLIke()
             echo "Insertat!";
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
         }
 
     }
@@ -366,6 +370,7 @@ function isAMatch()
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -397,6 +402,7 @@ function saveANewMatch($userLiked)
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -409,6 +415,7 @@ function saveANewMatch($userLiked)
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
+        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
     }
 
 }
@@ -448,6 +455,7 @@ function sumAndUpdateUserPoints(){
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
     
@@ -468,8 +476,10 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
+
         } else {
             echo "Error al actualizar el usuario.";
+            registrarLog("Error al actualizar el usuario.", "ERROR");
         }
     }
 }

@@ -89,6 +89,7 @@ function recuperarUserDataDePrueba()
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
