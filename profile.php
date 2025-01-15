@@ -59,10 +59,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css" type="text/css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="profile.js"></script>
+
     <title>Profile</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
@@ -74,10 +74,11 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         </div>
 
         <div class="fieldsContainer">
+        <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
             <div id = "scroll"></div>
             <form id="profileForm">
 
-            <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
+            <h2>Edita tu perfil</h2>
 <!-- User Info-->
             <div class ="field">
                 <h3>Nombre: </h3>
