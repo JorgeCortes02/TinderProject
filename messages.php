@@ -89,7 +89,7 @@ function downloadMatches(): array
         $hostname = "localhost";
         $dbname = "DatingApp";
         $username = "admin";
-        $pw = "macarrones con queso";
+        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -132,7 +132,7 @@ function downloadFotosForMatches($matchDiccionari)
             $hostname = "localhost";
             $dbname = "DatingApp";
             $username = "admin";
-            $pw = "macarrones con queso";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -171,7 +171,7 @@ function downloadChats(){
         $hostname = "localhost";
         $dbname = "DatingApp";
         $username = "admin";
-        $pw = "macarrones con queso";
+        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -216,7 +216,7 @@ function downloadFotosForChats($messageDiccionari)
             $hostname = "localhost";
             $dbname = "DatingApp";
             $username = "admin";
-            $pw = "macarrones con queso";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";

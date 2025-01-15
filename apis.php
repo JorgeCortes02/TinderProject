@@ -112,7 +112,7 @@ function downloadUsersForDiscover($indexToLoad): array
         $hostname = "localhost";
         $dbname = "DatingApp";
         $username = "admin";
-        $pw = "macarrones con queso";
+        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -289,7 +289,7 @@ function downloadFotos($userDiccionari)
             $hostname = "localhost";
             $dbname = "DatingApp";
             $username = "admin";
-            $pw = "macarrones con queso";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -331,7 +331,7 @@ function saveNewLIke()
             $hostname = "localhost";
             $dbname = "DatingApp";
             $username = "admin";
-            $pw = "macarrones con queso";
+            $pw = "admin123";
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -345,7 +345,7 @@ function saveNewLIke()
             //a l'execució de la sentència li passem els paràmetres amb un array 
             $stmt->execute(array($_SESSION['user_data']['IdUser'], $likedUserID));
             echo "Insertat!";
-        } catch (PDOExecption $e) {
+        } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
         }
 
@@ -364,7 +364,7 @@ function isAMatch()
             $hostname = "localhost";
             $dbname = "DatingApp";
             $username = "admin";
-            $pw = "macarrones con queso";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -396,7 +396,7 @@ function saveANewMatch($userLiked)
         $hostname = "localhost";
         $dbname = "DatingApp";
         $username = "admin";
-        $pw = "macarrones con queso";
+        $pw = "admin123";
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -410,7 +410,7 @@ function saveANewMatch($userLiked)
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
 
-    } catch (PDOExecption $e) {
+    } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
     }
 
@@ -448,7 +448,7 @@ function sumAndUpdateUserPoints(){
             $hostname = "localhost";
             $dbname = "DatingApp";
             $username = "admin";
-            $pw = "macarrones con queso";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
