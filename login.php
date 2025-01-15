@@ -141,19 +141,18 @@
 
     <h1>IETINDER</h1>
     <h3>App de ligoteo</h3>
+    <h4 id="errorEmail">El correo no está registrado</h4>
+    <h4 id="errorPassword">Contraseña incorrecta</h4>
+    
     <form method="POST">
         <!-- Campo Email -->
         <label for="mail">Email:</label></br>
         <input type="email" name="mail" required>
-        <p id="errorEmail">El correo no está registrado</p>
-        </p>
         </br>
 
         <!-- Campo Contraseña -->
         <label for="contrassenya">Contraseña:</label></br>
         <input type="password" name="contrassenya" required>
-        <p id="errorPassword">Contraseña incorrecta</p>
-        </p>
         </br>
 
         <button type="submit">Iniciar sesión</button>
