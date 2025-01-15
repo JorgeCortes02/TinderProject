@@ -28,7 +28,8 @@
     }
 
     //FUNCION PARA CARGAR DATOS COMPLETOS DEL USUARIO PARA LLEVAR A DISCOVER
-    function getUserData($storedUserId){
+    function getUserData($storedUserId)
+    {
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
@@ -110,7 +111,7 @@
             </script> <?php
 
 
-        //si el email SÍ existe
+            //si el email SÍ existe
         } else {
             registrarLog("Email registrado $email");
             // Paso 2: Verificar si la contraseña es correcta
@@ -125,7 +126,7 @@
                         Array.from(document.getElementsByTagName("input"))[1].style.borderColor = "red"; //borde rojo en input
                         document.getElementById("errorPassword").style.display = "block"; //mensaje en display
                     })
-                </script> 
+                </script>
                 <?php
 
 
@@ -135,7 +136,7 @@
                 registrarLog("Inicio de sesión correcto $email : $password");
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
-                
+
                 //Cargamos los datos del usuario en la sesion
                 session_start();
                 registrarLog("Session iniciada");
@@ -157,28 +158,37 @@
     }
     ?>
 
-    <h1>IETINDER</h1>
-    <h3>App de ligoteo</h3>
-    <h4 id="errorEmail">El correo no está registrado</h4>
-    <h4 id="errorPassword">Contraseña incorrecta</h4>
-    
-    <form method="POST">
-        <!-- Campo Email -->
-        <label for="mail">Email:</label></br>
-        <input type="email" name="mail" required>
+
+    <div id="loginContainer">
+        <h1>IETINDER</h1>
+        <h3>App de ligoteo</h3>
+        <h4 id="errorEmail">Error: El correo no está registrado</h4>
+        <h4 id="errorPassword">Error: Contraseña incorrecta</h4>
+
+
+        <form method="POST">
+            <!-- Campo Email -->
+            <label for="mail">Email:</label></br>
+            <input type="email" name="mail" value="<?php if (isset($email)) htmlspecialchars($email); ?>" required>
+            </br>
+
+
+            <!-- Campo Contraseña -->
+            <label for="contrassenya">Contraseña:</label></br>
+            <input type="password" name="contrassenya" required>
+            </br>
+
+
+            <button type="submit">Iniciar sesión</button>
+        </form>
+
+
+        <a href="">¿Has olvidado la contraseña?</a>
         </br>
+        <a href="">Crear una cuenta nueva</a>
+    </div>
 
-        <!-- Campo Contraseña -->
-        <label for="contrassenya">Contraseña:</label></br>
-        <input type="password" name="contrassenya" required>
-        </br>
 
-        <button type="submit">Iniciar sesión</button>
-    </form>
-
-    <a href="">¿Has olvidado la contraseña?</a>
-    </br>
-    <a href="">Crear una cuenta nueva</a>
 </body>
 
 </html>

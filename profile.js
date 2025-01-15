@@ -1,4 +1,11 @@
 
+document.addEventListener('DOMContentLoaded', function() {
+    var saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', function() {
+        validateForm();
+    });
+});
+
 /** Guarda los cambios del perfil al servidor usando AJAX */
 function saveProfileChanges() {
     console.log("datos guardados!");
@@ -19,7 +26,7 @@ function saveProfileChanges() {
 
     // Envío de datos con AJAX
     $.ajax({
-        url: '',
+        url: 'profile.php',
         type: 'POST',
         data: {
             action: 'update_session',
@@ -78,8 +85,3 @@ function validateForm() {
     }
 }
 
-$(document).ready(function() {
-    $('.saveButton').on('click', function() {
-        validateForm();
-    });
-});

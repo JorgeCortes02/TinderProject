@@ -21,3 +21,15 @@
 [20:49:04] [INFO] Session iniciada
 [20:49:04] [INFO] Login Notification
 [20:49:04] [INFO] Redireccion a discover.php
+[20:55:44] [INFO] Solicitud de inicio de sesión eeeeee@eeee : eeeeee
+[20:55:44] [INFO] Email no registrado eeeeee@eeee
+[20:56:00] [INFO] Solicitud de inicio de sesión adrian.martinez@ieti.site : pass123
+[20:56:00] [INFO] Email registrado adrian.martinez@ieti.site
+[20:56:00] [INFO] Contraseña incorrecta pass123
+[20:56:07] [INFO] Solicitud de inicio de sesión adrian.martinez@ieti.site : pass1234
+[20:56:07] [INFO] Email registrado adrian.martinez@ieti.site
+[20:56:07] [INFO] Contraseña  correcta pass1234
+[20:56:07] [INFO] Inicio de sesión correcto adrian.martinez@ieti.site : pass1234
+[20:56:07] [INFO] Session iniciada
+[20:56:07] [INFO] Login Notification
+[20:56:07] [INFO] Redireccion a discover.php
