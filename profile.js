@@ -1,4 +1,13 @@
 
+$(document).ready(function(e) {
+    $('.saveButton').on('click', function() {
+        e.preventDefault();
+        validateForm();
+    });
+});
+
+
+
 /** Guarda los cambios del perfil al servidor usando AJAX */
 function saveProfileChanges() {
     console.log("datos guardados!");
@@ -19,7 +28,7 @@ function saveProfileChanges() {
 
     // Envío de datos con AJAX
     $.ajax({
-        url: '',
+        url: 'profile.php',
         type: 'POST',
         data: {
             action: 'update_session',
@@ -47,6 +56,7 @@ function saveProfileChanges() {
 
 /** Valida que todos los campos requeridos tengan contenido */
 function validateForm() {
+   
     let isValid = true;
     $('.error-border').removeClass('error-border');
     $('#errorMessage').hide();
@@ -78,8 +88,3 @@ function validateForm() {
     }
 }
 
-$(document).ready(function() {
-    $('.saveButton').on('click', function() {
-        validateForm();
-    });
-});

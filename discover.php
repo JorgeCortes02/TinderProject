@@ -46,7 +46,14 @@ session_start();
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
+            <?php 
+            if($_SESSION["user_data"]["Gender"] == "No Binario"){
 
+                noProfilesForNobBinari();
+            }
+          
+    
+            ?>
         </div>
 
         <!-- Controles de acción -->
@@ -111,6 +118,9 @@ function recuperarUserDataDePrueba()
 
 }
 
+function noProfilesForNobBinari(){
 
+    echo "<h4>No hay perfiles disponibles</h4>";
+}
 
 ?>

@@ -159,7 +159,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </div>
             </div>
             <div class="bottom">
-        <button class="saveButton" onclick="validateForm()">Guardar</button>
+        <button class="saveButton">Guardar</button>
         <a class="toPhotoButton" href="/">Editar Fotos</a>
         </div>
             </form>
