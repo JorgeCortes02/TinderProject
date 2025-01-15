@@ -52,8 +52,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 }
 
 ?>
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,14 +65,16 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     <title>Profile</title>
 
 </head>
-<body id="profileBody">
-    <div class="container">
-        <div id="scroll"></div>
-        <div class="top-header">
-            <!-- <a class="back" href="/index.php"> < Atrás</a> -->
-            <h1 class="profileTitle"> Perfil</h1>
-        </div>    
+<body>
+    <div class="containerMessage">
+        <!-- Encabezado -->
+        <div class="header">
+            <h1>IETINDER</h1>
+            
+        </div>
+
         <div class="fieldsContainer">
+            <div id = "scroll"></div>
             <form id="profileForm">
 
             <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
@@ -153,16 +157,22 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                     <div class="progress"></div>
                 </div>
             </div>
-
-            </form>
-        </div>
-
-        <div class="bottom">
+            <div class="bottom">
         <button class="saveButton" onclick="validateForm()">Guardar</button>
         <a class="toPhotoButton" href="/">Editar Fotos</a>
         </div>
-    </div>
+            </form>
+        </div>
 
+       
+
+        <!-- Menú de navegación inferior -->
+        <nav class="bottom-nav">
+            <a href="discover.php">Descobrir</a>
+            <a href="messages.php" class="active">Missatges</a>
+            <a href="profile.php">Perfil</a>
+        </nav>
+    </div>
     <script>
         let map;
         let marker;
@@ -221,13 +231,14 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_MAPS_API_KEY']; ?>&callback=initMap&libraries=&v=weekly" async defer></script>
 </body>
 </html>
+
 <?php
 function recuperarUserDataDePrueba(){
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
+        $username = "root";
+        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -269,8 +280,8 @@ function updateUserData($userData){
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
+        $username = "root";
+        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
