@@ -3,6 +3,7 @@
 
 <?php
 //Llegan los datos del usuario desde el LOGIN
+include 'config.php';
 session_start();
 
 ?>
@@ -75,10 +76,9 @@ function recuperarUserDataDePrueba()
 
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
