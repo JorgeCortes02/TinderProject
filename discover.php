@@ -51,8 +51,8 @@ session_start();
 
         <!-- Controles de acción -->
         <div class="controls">
-            <button class="btn dislike" id="dislike-btn">NOP</button>
-            <button class="btn like" id="like-btn">YES</button>
+            <button class="btn dislike" id="dislike-btn">NOPE</button>
+            <button class="btn like" id="like-btn">LIKE</button>
         </div>
 
         <!-- Menú de navegación -->
