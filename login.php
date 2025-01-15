@@ -151,7 +151,7 @@
         <form method="POST">
             <!-- Campo Email -->
             <label for="mail">Email:</label></br>
-            <input type="email" name="mail" value="<?php echo htmlspecialchars($email); ?>" required>
+            <input type="email" name="mail" value="<?php if (isset($email)) htmlspecialchars($email); ?>" required>
             </br>
 
 
