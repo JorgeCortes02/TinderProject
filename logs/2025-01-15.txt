@@ -1,0 +1,23 @@
+[20:47:07] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : eeeeee
+[20:47:07] [INFO] Email registrado carlos.gomez@ieti.site
+[20:47:07] [INFO] Contraseña incorrecta eeeeee
+[20:47:12] [INFO] Solicitud de inicio de sesión luis.martinez@ieti.site : yyyyyy
+[20:47:12] [INFO] Email registrado luis.martinez@ieti.site
+[20:47:12] [INFO] Contraseña incorrecta yyyyyy
+[20:47:33] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass234
+[20:47:33] [INFO] Email registrado carlos.gomez@ieti.site
+[20:47:33] [INFO] Contraseña incorrecta pass234
+[20:47:41] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[20:47:41] [INFO] Email registrado carlos.gomez@ieti.site
+[20:47:41] [INFO] Contraseña  correcta pass1234
+[20:47:41] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : pass1234
+[20:47:41] [INFO] Session iniciada
+[20:47:41] [INFO] Login Notification
+[20:47:41] [INFO] Redireccion a discover.php
+[20:49:04] [INFO] Solicitud de inicio de sesión luis.martinez@ieti.site : pass1234
+[20:49:04] [INFO] Email registrado luis.martinez@ieti.site
+[20:49:04] [INFO] Contraseña  correcta pass1234
+[20:49:04] [INFO] Inicio de sesión correcto luis.martinez@ieti.site : pass1234
+[20:49:04] [INFO] Session iniciada
+[20:49:04] [INFO] Login Notification
+[20:49:04] [INFO] Redireccion a discover.php

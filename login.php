@@ -32,8 +32,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -42,14 +42,21 @@
         }
 
         $query = $pdo->prepare("SELECT 
-                                       IdUser, 
-                                    Username, 
+                                    IdUser,
+                                    FirstName,
+                                    LastName1,
+                                    LastName2,
+                                    Username,
+                                    BirthDate, 
                                     Orientation, 
                                     Gender, 
                                     Longitude, 
                                     Latitude, 
-                                    Points, 
-                                    UserAge
+                                    Points,
+                                    MaxAge, 
+                                    MinAge,
+                                    UserAge,
+                                    Bio
                                 FROM User 
                                 WHERE IdUser = :id;");
         $query->bindParam(":id", $storedUserId);
@@ -74,8 +81,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "admin123";
 
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
