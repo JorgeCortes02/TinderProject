@@ -345,7 +345,7 @@ function saveNewLIke()
             //a l'execució de la sentència li passem els paràmetres amb un array 
             $stmt->execute(array($_SESSION['user_data']['IdUser'], $likedUserID));
             echo "Insertat!";
-        } catch (PDOExecption $e) {
+        } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
         }
 
@@ -410,7 +410,7 @@ function saveANewMatch($userLiked)
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
 
-    } catch (PDOExecption $e) {
+    } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
     }
 
