@@ -1,4 +1,6 @@
 <?php
+include 'config.php';
+
 session_start();
 
 if (isset($_GET["api"])) {
@@ -109,10 +111,9 @@ function downloadUsersForDiscover($indexToLoad): array
 {
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -286,10 +287,9 @@ function downloadFotos($userDiccionari)
     foreach ($userDiccionari as &$user) {
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -328,10 +328,9 @@ function saveNewLIke()
         $likedUserID = $_POST["likedUserId"];
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -361,10 +360,9 @@ function isAMatch()
         $likedUserID = $_POST["likedUserId"];
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -393,10 +391,9 @@ function saveANewMatch($userLiked)
 {
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -445,10 +442,9 @@ function sumAndUpdateUserPoints(){
         $_SESSION["user_data"]["Points"] += (int)$_POST["points"]; // Corrige la concatenación a la suma
         
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";

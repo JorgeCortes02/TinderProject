@@ -3,6 +3,7 @@
 
 <?php
 //Llegan los datos del usuario desde el LOGIN
+include 'config.php';
 session_start();
 
 ?>
@@ -46,7 +47,14 @@ session_start();
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
+            <?php 
+            if($_SESSION["user_data"]["Gender"] == "No Binario"){
 
+                noProfilesForNobBinari();
+            }
+          
+    
+            ?>
         </div>
 
         <!-- Controles de acción -->
@@ -75,10 +83,9 @@ function recuperarUserDataDePrueba()
 
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -111,6 +118,9 @@ function recuperarUserDataDePrueba()
 
 }
 
+function noProfilesForNobBinari(){
 
+    echo "<h4>No hay perfiles disponibles</h4>";
+}
 
 ?>

@@ -1095,7 +1095,18 @@ body {
 
     overflow: hidden;
 }
+.no-matches{
 
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.no-matches h4{
+
+    margin: 0 auto;
+    margin-top: 50px;
+}
 .header {
     display: flex;
     justify-content: space-between;

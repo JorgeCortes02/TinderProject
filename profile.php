@@ -42,8 +42,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     $_SESSION['user_data']['Bio'] = $_POST['bio'];
     $_SESSION['user_data']['Gender'] = $_POST['gender'];
     $_SESSION['user_data']['Orientation'] = $_POST['orientation'];
-    $_SESSION['user_data']['MinAge'] = $_POST['minAge'];
-    $_SESSION['user_data']['MaxAge'] = $_POST['maxAge'];
     $_SESSION['user_data']['Longitude'] = $_POST['longitude'];
     $_SESSION['user_data']['Latitude'] = $_POST['latitude'];
 
@@ -146,23 +144,24 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                     Bisexual
                 </label>
             </div>
-            <div class ="field">
+        
+            <!-- <div class ="field">
                 <h3>Preferencia de Edad: </h3>
-                <label class="ageText" for="minAge">Edad Mínima: <span id="minAgeValue"><?php echo htmlspecialchars($_SESSION['user_data']['MinAge'])?></span></label>
+                <label class="ageText" for="minAge">Edad Mínima: <span id="minAgeValue">$_SESSION['user_data']['MinAge'])?></span></label>
                 </br>
-                <label class="ageText" for="maxAge">Edad Máxima: <span id="maxAgeValue"><?php echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?></span></label>
+                <label class="ageText" for="maxAge">Edad Máxima: <span id="maxAgeValue">$_SESSION['user_data']['MaxAge'])?></span></label>
 
                 <div class="range-slider">
-                    <input type="range" id="minAge" min="18" max="99" value="<?php echo htmlspecialchars($_SESSION['user_data']['MinAge'])?>" oninput="updateRange()">
-                    <input type="range" id="maxAge" min="18" max="99" value="<?php echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?>" oninput="updateRange()">
+                    <input type="range" id="minAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MinAge'])?>" oninput="updateRange()">
+                    <input type="range" id="maxAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?>" oninput="updateRange()">
                     <div class="progress"></div>
                 </div>
+            </div> -->
+            <div class="bottom">
+            <button class="saveButton">Guardar</button>
+            <a class="toPhotoButton" href="/">Editar Fotos</a>
             </div>
             </form>
-            <div class="bottom">
-            <button class="saveButton" onclick="validateForm()">Guardar</button>
-                <a class="toPhotoButton" href="/">Editar Fotos</a>
-            </div>
         </div>
 
 
@@ -228,62 +227,19 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
             progress.style.left = ((minValue - 18) / range) * 100 + '%';
             progress.style.width = ((maxValue - minValue) / range) * 100 + '%';
         }
-        updateRange(); //Genera la progress bar
+        //updateRange(); //Genera la progress bar
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo $_ENV['GOOGLE_MAPS_API_KEY']; ?>&callback=initMap&libraries=&v=weekly" async defer></script>
 </body>
 </html>
 
 <?php
-function recuperarUserDataDePrueba(){
-    try {
-        $hostname = "localhost";
-        $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
-        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
-    } catch (PDOException $e) {
-        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        exit;
-    }
-
-    //preparem i executem la consulta
-    $query = $pdo->prepare("SELECT 
-                                    IdUser,
-                                    FirstName,
-                                    LastName1,
-                                    LastName2,
-                                    Username,
-                                    BirthDate,
-                                    Orientation, 
-                                    Gender, 
-                                    Longitude, 
-                                    Latitude, 
-                                    MaxAge, 
-                                    MinAge, 
-                                    UserAge,
-                                    Bio
-                                FROM User 
-                                WHERE IdUser = 1;");
-    $query->execute();
-
-    // Obtener el resultado como un arreglo asociativo
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-
-    // Almacenar el resultado en la sesión
-    $_SESSION['user_data'] = $result;
-    //print_r($_SESSION['user_data']);
-    //eliminem els objectes per alliberar memòria 
-    unset($pdo);
-    unset($query);
-}
 
 function updateUserData($userData){
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -300,8 +256,6 @@ function updateUserData($userData){
                                 Gender = :gender, 
                                 Longitude = :longitude, 
                                 Latitude = :latitude, 
-                                MaxAge = :maxAge, 
-                                MinAge = :minAge,
                                 Bio = :bio
                             WHERE IdUser = :userId");
     // bindParam
@@ -314,8 +268,6 @@ function updateUserData($userData){
     $query->bindParam(':gender', $userData['Gender'], PDO::PARAM_STR);
     $query->bindParam(':longitude', $userData['Longitude'], PDO::PARAM_STR);
     $query->bindParam(':latitude', $userData['Latitude'], PDO::PARAM_STR);
-    $query->bindParam(':maxAge', $userData['MaxAge'], PDO::PARAM_INT);
-    $query->bindParam(':minAge', $userData['MinAge'], PDO::PARAM_INT);
     $query->bindParam(':userId', $userData['IdUser'], PDO::PARAM_INT);
     $query->bindParam(':bio', $userData['Bio'], PDO::PARAM_STR);
 

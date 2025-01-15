@@ -12,7 +12,8 @@
 
     <?php    
     include_once 'apis.php'; 
-   
+    include 'config.php';
+
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
@@ -31,10 +32,9 @@
     function getUserData($storedUserId)
     {
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -80,11 +80,10 @@
     function login($email, $password)
     {
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
-
+            
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
         } catch (PDOException $e) {
@@ -118,8 +117,8 @@
             $storedPassword = $row['Password'];
 
             //si la contraseña es incorrecta
-            if ($storedPassword !== $password) {
-                registrarLog("Contraseña incorrecta $password");
+            if ($storedPassword !== hash('sha256', $password)) {
+                registrarLog("Contraseña incorrecta".hash('sha256', $password));
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
@@ -132,8 +131,8 @@
 
             //si todo es correcto
             } else {
-                registrarLog("Contraseña  correcta $password");
-                registrarLog("Inicio de sesión correcto $email : $password");
+                registrarLog("Contraseña  correcta".hash('sha256', $password));
+                registrarLog("Inicio de sesión correcto $email : ".hash('sha256', $password));
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 

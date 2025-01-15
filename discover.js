@@ -96,7 +96,7 @@ async function downloadData(index) {
                 });
             } else{
                 // Si no hay más perfiles, mostramos un mensaje
-                contenedor.prepend($("<h2>").text("No quedan Perfiles por mostrar"));
+                contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
                 contenedor.css("background", "gray").css("opacity", 0.5);  // Cambiamos el estilo del contenedor
             }
         }

@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
 /** Guarda los cambios del perfil al servidor usando AJAX */
 function saveProfileChanges() {
     console.log("datos guardados!");
@@ -54,6 +56,7 @@ function saveProfileChanges() {
 
 /** Valida que todos los campos requeridos tengan contenido */
 function validateForm() {
+   
     let isValid = true;
     $('.error-border').removeClass('error-border');
     $('#errorMessage').hide();

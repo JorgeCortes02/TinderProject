@@ -22,22 +22,25 @@ session_start();
             <h3>Els meus matches</h3>
             <div class="matches-list">
                 <?php 
-                
+                include_once 'apis.php'; 
+                include 'config.php';
                 $matchDiccionari = downloadFotosForMatches(downloadMatches());
-              
-                foreach($matchDiccionari as $match){
 
+                if (!empty($matchDiccionari)) { // Verifica si $matchDiccionari tiene datos
+                    foreach ($matchDiccionari as $match) {
+                        echo "
+                            <div class='match-item' data-id='" . htmlspecialchars($match["MatchId"]) . "'>
+                                <img src='" . htmlspecialchars($match["img"]) . "' alt='Match Image'>
+                            </div>
+                        ";
+                    }
+                } else {
                     echo "
-                     <div class='match-item' data-id = '" . $match["MatchId"] . "'>
-                    <img src=' " . $match["img"] ."' alt='Match 1'>
-                
-                     </div>
-                    
+                        <div class='no-matches'>
+                            <h4>No hay matches disponibles en este momento.</h4>
+                        </div>
                     ";
-
-
                 }
-              
                 ?>
             </div>
 </div>
@@ -48,21 +51,27 @@ session_start();
             <div class="message-list">
                <?php 
                
-               $messageDiccionari =  downloadFotosForChats(downloadChats());
-               
-               foreach($messageDiccionari as $conver){
+               $messageDiccionari = downloadFotosForChats(downloadChats());
 
-                echo "
-                <a href='conversa.html' class='message-item'>
-                    <img src='" . $conver["img"] . "' alt='Foto de Perfil'>
-                    <div class='message-info'>
-                        <p class='user-name'>" . $conver["username"] ."</p>
-                        <p class='last-message'>" . $conver["Text"] ."</p>
-                    </div>
-                </a>
-                ";
+               if (!empty($messageDiccionari)) { // Verifica si $messageDiccionari tiene datos
+                   foreach ($messageDiccionari as $conver) {
+                       echo "
+                       <a href='conversa.html' class='message-item'>
+                           <img src='" . htmlspecialchars($conver["img"]) . "' alt='Foto de Perfil'>
+                           <div class='message-info'>
+                               <p class='user-name'>" . htmlspecialchars($conver["username"]) . "</p>
+                               <p class='last-message'>" . htmlspecialchars($conver["Text"]) . "</p>
+                           </div>
+                       </a>
+                       ";
+                   }
+               } else {
+                   echo "
+                    <div class='no-matches'>
+                            <h4>No hay mensajes disponibles en este momento.</h4>
+                        </div>
+                   ";
                }
-               
                ?>
             
                
@@ -86,10 +95,9 @@ function downloadMatches(): array
 {
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -129,10 +137,9 @@ function downloadFotosForMatches($matchDiccionari)
     foreach ($matchDiccionari as &$match) {
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -168,10 +175,9 @@ function downloadChats(){
 
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "admin123";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -213,10 +219,9 @@ function downloadFotosForChats($messageDiccionari)
     foreach ($messageDiccionari as &$conver) {
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "admin123";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
