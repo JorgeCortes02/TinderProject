@@ -73,7 +73,7 @@ session_start();
         <nav class="bottom-nav">
             <a href="discover.php">Descobrir</a>
             <a href="messages.php" class="active">Missatges</a>
-            <a href="perfil.html">Perfil</a>
+            <a href="profile.php">Perfil</a>
         </nav>
     </div>
 </body>
@@ -88,8 +88,8 @@ function downloadMatches(): array
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "macarrones con queso";
+        $username = "root";
+        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -131,8 +131,8 @@ function downloadFotosForMatches($matchDiccionari)
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "macarrones con queso";
+            $username = "root";
+            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -170,8 +170,8 @@ function downloadChats(){
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "macarrones con queso";
+        $username = "root";
+        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -215,8 +215,8 @@ function downloadFotosForChats($messageDiccionari)
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "admin";
-            $pw = "macarrones con queso";
+            $username = "root";
+            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";

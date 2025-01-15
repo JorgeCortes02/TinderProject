@@ -153,7 +153,11 @@ function isMatch(idUser){
     })
     .then(response => response.json())  // Suponemos que la respuesta es JSON
     .then(data => {
-        console.log(data);  // Mostramos el resultado del match en consola
+        if(data == "1"){
+
+            showPopup("¡Es un match!", "match")
+
+        }// Mostramos el resultado del match en consola
     })
     .catch(error => {
         console.error("Error en la petición:", error);  // Si ocurre un error, lo mostramos

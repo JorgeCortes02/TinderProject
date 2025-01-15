@@ -4,8 +4,7 @@
 <?php
 //Llegan los datos del usuario desde el LOGIN
 session_start();
-recuperarUserDataDePrueba();
-//print_r($_SESSION["user_data"]);
+
 ?>
 
 <!-- MUESTRA DE CSS MESSAGE sólo al iniciar sesión -->
@@ -33,7 +32,7 @@ recuperarUserDataDePrueba();
     <!--notificaciones css message-->
     <script src="notifications.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
+    <script src="popups.js"></script>
 
 </head>
 
@@ -60,7 +59,7 @@ recuperarUserDataDePrueba();
         <nav class="bottom-nav">
             <h3><a href="#">Descobrir</a></h3>
             <h3><a href="messages.php#">Missatges</a></h3>
-            <h3><a href="">Perfil</a></h3>
+            <h3><a href="profile.php">Perfil</a></h3>
         </nav>
     </div>
 </body>
@@ -78,8 +77,8 @@ function recuperarUserDataDePrueba()
     try {
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "admin";
-        $pw = "macarrones con queso";
+        $username = "root";
+        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
