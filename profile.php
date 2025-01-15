@@ -30,7 +30,7 @@ loadEnv(__DIR__ . '/.env');
 
 
 //andamio para pruebas
-recuperarUserDataDePrueba();
+//recuperarUserDataDePrueba();
 //var_dump($_SESSION['user_data']['FirstName']);
 // Verificar si se ha realizado la solicitud AJAX de hacer update a la sesion para actualizar valores
 if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
@@ -59,6 +59,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="profile.js"></script>
     <title>Profile</title>
 
 </head>
@@ -190,84 +191,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 document.getElementById('latitude').value = position.lat();
                 document.getElementById('longitude').value = position.lng();
             });
-        }
-        function saveProfileChanges(){
-            console.log("datos guardados!");
-            
-            //campos del form:
-            const firstName = $('#firstName').val();
-            const lastName1 = $('#lastName1').val();
-            const lastName2 = $('#lastName2').val();
-            const userName = $('#userName').val();
-            const birthdate = $('#birthdate').val();
-            const bio = $('#bio').val();
-            const gender = $("input[name='gender']:checked").val(); //para que solo guarde la opcion seleccionada
-            const orientation = $("input[name='orientacion']:checked").val(); //para que solo guarde la opcion seleccionada
-            const minAge = $('#minAge').val();
-            const maxAge = $('#maxAge').val();
-            const latitude = $('#latitude').val();
-            const longitude = $('#longitude').val();
-            
-            //envio de datos con AJAX
-            $.ajax({
-                url:'',
-                type: 'POST',
-                data: {
-                    action: 'update_session',
-                    firstName: firstName,
-                    lastName1: lastName1,
-                    lastName2: lastName2,
-                    userName: userName,
-                    birthDate: birthdate,
-                    bio: bio,
-                    gender: gender,
-                    orientation: orientation,
-                    minAge: minAge,
-                    maxAge: maxAge,
-                    latitude: latitude,
-                    longitude: longitude
-                },
-                success: function(response){
-                    console.log('datos actualizados correctamente');
-
-                }, error: function(error){
-                    console.error("Error al actualizar los datos:",error);
-                }
-            });
-        }
-
-        /** valida que todos los campos requeridos tengan contenido, en caso de que falte uno levanta css message*/
-        function validateForm() {
-            let isValid = true;
-            $('.error-border').removeClass('error-border');
-            $('#errorMessage').hide();
-            
-            // si alguno de los inputs requeridos no tiene texto, levanta error
-            $('#profileForm input[required], #profileForm textarea[required]').each(function() {
-                if ($(this).val().trim() === '') {
-                    $(this).addClass('error-border');
-                    isValid = false;
-                }
-            });
-
-            /** si gender o orientacion no checked, levanta error */
-            if (!$('input[name="gender"]:checked').length) {
-                $('input[name="gender"]').closest('label').addClass('error-border');
-                isValid = false;
-            }
-            
-            if (!$('input[name="orientacion"]:checked').length) {
-                $('input[name="orientacion"]').closest('label').addClass('error-border');
-                isValid = false;
-            }
-
-            if (!isValid) {
-                $('#errorMessage').show();
-                document.getElementById('scroll').scrollIntoView({ behavior: 'smooth'});
-                
-            } else {
-                saveProfileChanges();
-            }
         }
         function updateRange() {
             // Elementos del formulario
