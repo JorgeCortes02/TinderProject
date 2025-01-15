@@ -11,7 +11,7 @@
 <body id="loginBody">
 
     <?php
-
+    include 'config.php';
 
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -30,10 +30,9 @@
     function getUserData($storedUserId)
     {
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -79,10 +78,13 @@
     function login($email, $password)
     {
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
+
             $username = "root";
             $pw = "1234";
+
 
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
@@ -114,7 +116,7 @@
             $storedPassword = $row['Password'];
 
             //si la contraseña es incorrecta
-            if ($storedPassword !== $password) {
+            if ($storedPassword !== hash('sha256', $password)) {
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
