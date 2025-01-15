@@ -143,25 +143,25 @@
     <h3>App de ligoteo</h3>
     <form method="POST">
         <!-- Campo Email -->
-        <label for="mail">Email</label></br>
+        <label for="mail">Email:</label></br>
         <input type="email" name="mail" required>
-        <p id="errorEmail">El correu no està registrat</p>
+        <p id="errorEmail">El correo no está registrado</p>
         </p>
         </br>
 
         <!-- Campo Contraseña -->
-        <label for="contrassenya">Contrassenya:</label></br>
+        <label for="contrassenya">Contraseña:</label></br>
         <input type="password" name="contrassenya" required>
-        <p id="errorPassword">Contrassenya incorrecta</p>
+        <p id="errorPassword">Contraseña incorrecta</p>
         </p>
         </br>
 
-        <button type="submit">Iniciar sessió</button>
+        <button type="submit">Iniciar sesión</button>
     </form>
 
-    <a href="">¿Has oblidat la contrassenya?</a>
+    <a href="">¿Has olvidado la contraseña?</a>
     </br>
-    <a href="">Crear una compte nova</a>
+    <a href="">Crear una cuenta nueva</a>
 </body>
 
 </html>
