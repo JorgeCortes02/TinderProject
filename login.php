@@ -31,8 +31,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "macarrones con queso";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
@@ -73,8 +73,8 @@
         try {
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
+            $username = "admin";
+            $pw = "macarrones con queso";
 
             // Conexión a la base de datos
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
@@ -113,7 +113,8 @@
                         Array.from(document.getElementsByTagName("input"))[1].style.borderColor = "red"; //borde rojo en input
                         document.getElementById("errorPassword").style.display = "block"; //mensaje en display
                     })
-                </script> <?php
+                </script> 
+                <?php
 
             //si todo es correcto
             } else {
@@ -123,6 +124,9 @@
                 //Cargamos los datos del usuario en la sesion
                 session_start();
                 getUserData($storedUserId);
+
+                //Preparamos para que salga una notificacion de inicio de sesión
+                $_SESSION['showLoginNotification'] = true;
 
                 //redireccionamos a DISCOVER
                 header("Location: discover.php");
