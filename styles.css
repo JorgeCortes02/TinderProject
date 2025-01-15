@@ -401,10 +401,14 @@ body {
     margin-bottom: 20px;
     display: none;
 }
-.containerMessage .error-border {
+.fieldsContainer .error-border {
     border-color: var(--brightred);
 }
+.fieldsContainer h2{
 
+    margin-bottom: 10px;
+
+}
 
 /* Range slider styles */
  .range-slider {
