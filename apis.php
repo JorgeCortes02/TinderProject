@@ -492,5 +492,14 @@ function  registrarLog($mensaje, $tipo = 'INFO'){
 
 }
 
+//Endpoint que permite a la funcion de logs acceder a los js
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje'])) {
+    $mensaje = $_POST['mensaje'];
+    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'INFO';
+
+    registrarLog($mensaje, $tipo);
+
+}
+
 ?> 
 

@@ -12,13 +12,13 @@
 
     <?php    
     include_once 'apis.php'; 
-    include 'config.php';
+    include_once 'config.php';
 
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
         $password = $_POST['contrassenya'] ?? '';
-        registrarLog("Solicitud de inicio de sesión $email : $password");
+        registrarLog("Solicitud de inicio de sesión $email : $password",'INFO');
 
         // Limpieza básica de los datos recibidos
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -86,7 +86,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
         } catch (PDOException $e) {
             echo "<p>Failed to connect to the database: " . $e->getMessage() . "</p>";
-            registrarLog("Login - Failed to connect to the database in login: " . $e->getMessage());
+            registrarLog("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
             exit;
         }
 
@@ -129,7 +129,7 @@
 
             //si todo es correcto
             } else {
-                registrarLog("Contraseña  correcta".hash('sha256', $password));
+                registrarLog("Contraseña  correcta ".hash('sha256', $password));
                 registrarLog("Inicio de sesión correcto $email : ".hash('sha256', $password));
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
@@ -141,8 +141,6 @@
 
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;
-                registrarLog("Login Notification");
-
                 //redireccionamos a DISCOVER
                 registrarLog("Redireccion a discover.php");
                 header("Location: discover.php");

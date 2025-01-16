@@ -46,16 +46,18 @@ function saveProfileChanges() {
         },
         success: function(response) {
             console.log('datos actualizados correctamente');
+            //registrarLogEnServidor("Solicitud AJAX correcta"+response);
         },
         error: function(error) {
             console.error("Error al actualizar los datos:", error);
+            //registrarLogEnServidor("Error al actualizar los datos: " + error, "ERROR");
         }
     });
 }
 
 /** Valida que todos los campos requeridos tengan contenido */
 function validateForm() {
-   
+    //registrarLogEnServidor("Validando form");
     let isValid = true;
     $('.error-border').removeClass('error-border');
     $('#errorMessage').hide();
@@ -65,6 +67,7 @@ function validateForm() {
         if ($(this).val().trim() === '') {
             $(this).addClass('error-border');
             isValid = false;
+            //registrarLogEnServidor('Campo del form vacio','ERROR');
         }
     });
 
@@ -72,11 +75,13 @@ function validateForm() {
     if (!$('input[name="gender"]:checked').length) {
         $('input[name="gender"]').closest('label').addClass('error-border');
         isValid = false;
+        //registrarLogEnServidor("Genero invalido",'ERROR');
     }
 
     if (!$('input[name="orientacion"]:checked').length) {
         $('input[name="orientacion"]').closest('label').addClass('error-border');
         isValid = false;
+        //registrarLogEnServidor("Orientación invalido",'ERROR');
     }
 
     if (!isValid) {
@@ -84,6 +89,7 @@ function validateForm() {
         document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
     } else {
         console.log('Entrando a guardar datos');
+        //registrarLogEnServidor('Campos del form correctos');
         saveProfileChanges();
     }
 }
