@@ -1,5 +1,6 @@
 function showPopup(message, type) {
     let popupContainer = document.getElementById('popup-container');
+    //registrarLogEnServidor('Popup - Mensaje: '+message+ " tipo: "+type);
 
     //si no existe el contenedor, lo creamos
     if (!popupContainer) {

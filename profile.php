@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include_once 'apis.php'; 
 include 'config.php';
+registrarLog("Redireccion a profile.php");
 
 // Función para cargar el archivo .env
 function loadEnv($path) {
@@ -246,6 +247,7 @@ function updateUserData($userData){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Profile - Failed to connect to the database" . $e->getMessage(),'ERROR');
         exit;
     }
 
@@ -275,10 +277,12 @@ function updateUserData($userData){
     $query->bindParam(':bio', $userData['Bio'], PDO::PARAM_STR);
 
     if ($query->execute()) {
-        echo "Datos actualizados correctamente para el usuario con ID: " . $userData['IdUser'];
+        registrarLog("Datos actualizados correctamente para el usuario con ID: " . $userData['IdUser']);
+        
     } else {
         echo "Error al actualizar los datos.";
-        print_r($query->errorInfo());
+        registrarLog("Error al actualizar los datos en UpdateUserData.",'ERROR');
+
     }
 
     unset($pdo);
