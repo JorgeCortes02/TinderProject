@@ -1,5 +1,7 @@
 <?php 
 session_start();
+include_once 'apis.php'; 
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -104,7 +106,7 @@ function downloadMatches(): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -147,7 +149,7 @@ function downloadFotosForMatches($matchDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -186,7 +188,7 @@ function downloadChats(){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -231,7 +233,7 @@ function downloadFotosForChats($messageDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
         $userId = $_SESSION['user_data']["IdUser"];

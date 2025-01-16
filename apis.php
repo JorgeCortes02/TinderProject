@@ -14,6 +14,7 @@ if (isset($_GET["api"])) {
             CalcAndOrderbyPosition();
             break;
 
+
         case "insertNewLike":
             saveNewLike();
             break;
@@ -96,7 +97,7 @@ function CalcAndOrderbyPosition()
             return $b["TotalPoints"] - $a["TotalPoints"];
 
         });
-
+        registrarLog("Se ha recuperado y ordenado a los usuarios que se mostrara.");
         // Devolver los resultados como JSON
         header('Content-Type: application/json');
         echo json_encode($users); // Devuelve el array de usuarios como JSON
@@ -117,7 +118,7 @@ function downloadUsersForDiscover($indexToLoad): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -294,7 +295,7 @@ function downloadFotos($userDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al descargar fotografias para mostrar en el dicover. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -336,7 +337,7 @@ function saveNewLIke()
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -349,7 +350,7 @@ function saveNewLIke()
             echo "Insertat!";
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al insertar un like en LikeUsers. Failed to get DB handle: $e->getMessage()", "ERROR");
         }
 
     }
@@ -370,7 +371,7 @@ function isAMatch()
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -402,7 +403,7 @@ function saveANewMatch($userLiked)
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -415,7 +416,7 @@ function saveANewMatch($userLiked)
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
-        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+        registrarLog("Error al insertar datos en la tabla Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
     }
 
 }
@@ -455,7 +456,7 @@ function sumAndUpdateUserPoints(){
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
     

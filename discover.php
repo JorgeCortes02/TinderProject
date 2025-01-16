@@ -3,6 +3,7 @@
 
 <?php
 //Llegan los datos del usuario desde el LOGIN
+include_once 'apis.php'; 
 include 'config.php';
 session_start();
 
@@ -78,46 +79,7 @@ session_start();
 <?php
 
 //Esta función es un andamio que nos permite obtener los datos para nuestro usuario actual que tiene iniciada la sesión hasta que funcione el login.
-function recuperarUserDataDePrueba()
-{
 
-
-    try {
-        global $username, $pw;
-        $hostname = "localhost";
-        $dbname = "DatingApp";
-        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
-    } catch (PDOException $e) {
-        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Failed to get DB handle: $e->getMessage()", "ERROR");
-        exit;
-    }
-
-    //preparem i executem la consulta
-    $query = $pdo->prepare("SELECT 
-                                    IdUser, 
-                                    Username, 
-                                    Orientation, 
-                                    Gender, 
-                                    Longitude, 
-                                    Latitude, 
-                                    Points, 
-                                    UserAge
-                                FROM User 
-                                WHERE IdUser = 1;");
-    $query->execute();
-
-    // Obtener el resultado como un arreglo asociativo
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-
-    // Almacenar el resultado en la sesión
-    $_SESSION['user_data'] = $result;
-
-    //eliminem els objectes per alliberar memòria 
-    unset($pdo);
-    unset($query);
-
-}
 
 function noProfilesForNobBinari(){
 
