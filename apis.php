@@ -23,9 +23,14 @@ if (isset($_GET["api"])) {
         case "sumPoints":
             sumAndUpdateUserPoints();
             break;
+        case "logEvent":
+            if(isset($_POST["mensajeLog"]) && isset($_POST["tipoLog"]) && isset($_POST["pagLog"])){
+                logEvent($_POST["mensajeLog"], $_POST["tipoLog"], $_POST["pagLog"]);
+            logEvent();
+            break;
 
+        }
     }
-
 }
 
 /*
@@ -474,9 +479,10 @@ function sumAndUpdateUserPoints(){
     }
 }
 
-function  registrarLog($mensaje, $tipo = 'INFO'){
+function logEvent($mensaje, $tipo = 'INFO',$pag){
     $fecha = date('Y-m-d');
     $hora = date('H:i:s');
+    $userId = $_SESSION['IdUser'];
     $directorio = __DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR;
 
     //crear directorio si no existe:
@@ -486,20 +492,18 @@ function  registrarLog($mensaje, $tipo = 'INFO'){
 
     $archivoLog="$directorio/$fecha.txt";
 
-    $mensajeFormateado = "[$hora] [$tipo] $mensaje".PHP_EOL;
+    //Formatear mensaje de PAGINA
+    $mensajeFormateado = "[$hora] [$tipo] [$pag] [UserId=$userId]: $mensaje".PHP_EOL;
 
     file_put_contents($archivoLog, $mensajeFormateado, FILE_APPEND);
 
 }
 
-//Endpoint que permite a la funcion de logs acceder a los js
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje'])) {
-    $mensaje = $_POST['mensaje'];
-    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'INFO';
-
-    registrarLog($mensaje, $tipo);
-
+function logServer($mensaje, $tipo = 'INFO'){
+    $pag = $_SERVER['QUERY_STRING'];
+    logEvent($mensaje, $tipo, $pag);
 }
+
 
 ?> 
 
