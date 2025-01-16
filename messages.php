@@ -1,5 +1,7 @@
 <?php 
 session_start();
+include_once 'apis.php'; 
+include 'config.php';
 ?>
 <!DOCTYPE html>
 <html lang="ca">
@@ -22,22 +24,27 @@ session_start();
             <h3>Els meus matches</h3>
             <div class="matches-list">
                 <?php 
-                
+                include_once 'apis.php'; 
+                include 'config.php';
                 $matchDiccionari = downloadFotosForMatches(downloadMatches());
-              
-                foreach($matchDiccionari as $match){
 
+                if (!empty($matchDiccionari)) { // Verifica si $matchDiccionari tiene datos
+                    foreach ($matchDiccionari as $match) {
+                        echo "
+                            <div class='match-item' data-id='" . htmlspecialchars($match["MatchId"]) . "'>
+                                <img src='" . htmlspecialchars($match["img"]) . "' alt='Match Image'>
+                            </div>
+                        ";
+                        
+                    }registrarLog("Se han descargado Matches");
+                } else {
                     echo "
-                     <div class='match-item' data-id = '" . $match["MatchId"] . "'>
-                    <img src=' " . $match["img"] ."' alt='Match 1'>
-                
-                     </div>
-                    
+                        <div class='no-matches'>
+                            <h4>No hay matches disponibles en este momento.</h4>
+                        </div>
                     ";
-
-
+                    registrarLog("No se han encontrado Matches");
                 }
-              
                 ?>
             </div>
 </div>
@@ -48,21 +55,28 @@ session_start();
             <div class="message-list">
                <?php 
                
-               $messageDiccionari =  downloadFotosForChats(downloadChats());
-               
-               foreach($messageDiccionari as $conver){
+               $messageDiccionari = downloadFotosForChats(downloadChats());
 
-                echo "
-                <a href='conversa.html' class='message-item'>
-                    <img src='" . $conver["img"] . "' alt='Foto de Perfil'>
-                    <div class='message-info'>
-                        <p class='user-name'>" . $conver["username"] ."</p>
-                        <p class='last-message'>" . $conver["Text"] ."</p>
-                    </div>
-                </a>
-                ";
+               if (!empty($messageDiccionari)) { // Verifica si $messageDiccionari tiene datos
+                   foreach ($messageDiccionari as $conver) {
+                       echo "
+                       <a href='conversa.html' class='message-item'>
+                           <img src='" . htmlspecialchars($conver["img"]) . "' alt='Foto de Perfil'>
+                           <div class='message-info'>
+                               <p class='user-name'>" . htmlspecialchars($conver["username"]) . "</p>
+                               <p class='last-message'>" . htmlspecialchars($conver["Text"]) . "</p>
+                           </div>
+                       </a>
+                       ";
+                   }
+                   registrarLog("Se han descargado mensajes");
+               } else {
+                   echo "
+                    <div class='no-matches'>
+                            <h4>No hay mensajes disponibles en este momento.</h4>
+                        </div>
+                   ";registrarLog("No Se han descargado Mensajes");
                }
-               
                ?>
             
                
@@ -86,13 +100,13 @@ function downloadMatches(): array
 {
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Error al conectar a la BBDD para descargar Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -129,13 +143,13 @@ function downloadFotosForMatches($matchDiccionari)
     foreach ($matchDiccionari as &$match) {
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al conectar a la BBDD al descargar mensajes. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -168,13 +182,13 @@ function downloadChats(){
 
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -213,13 +227,13 @@ function downloadFotosForChats($messageDiccionari)
     foreach ($messageDiccionari as &$conver) {
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
         $userId = $_SESSION['user_data']["IdUser"];
@@ -247,6 +261,7 @@ foreach ($photoData as $data) {
     // Guardar Username y URL de la foto para cada usuario en $conver
     $conver["username"] = $data['Username'];
     $conver["img"] = $data['URL'];
+    
 }
     }
    

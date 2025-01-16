@@ -1,4 +1,14 @@
 
+document.addEventListener('DOMContentLoaded', function() {
+    var saveButton = document.getElementById('saveButton');
+    saveButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        validateForm();
+    });
+});
+
+
+
 /** Guarda los cambios del perfil al servidor usando AJAX */
 function saveProfileChanges() {
     console.log("datos guardados!");
@@ -12,14 +22,14 @@ function saveProfileChanges() {
     const bio = $('#bio').val();
     const gender = $("input[name='gender']:checked").val(); // Solo guarda la opción seleccionada
     const orientation = $("input[name='orientacion']:checked").val(); // Solo guarda la opción seleccionada
-    const minAge = $('#minAge').val();
-    const maxAge = $('#maxAge').val();
+    // const minAge = $('#minAge').val();
+    // const maxAge = $('#maxAge').val();
     const latitude = $('#latitude').val();
     const longitude = $('#longitude').val();
 
     // Envío de datos con AJAX
     $.ajax({
-        url: '',
+        url: 'profile.php',
         type: 'POST',
         data: {
             action: 'update_session',
@@ -31,22 +41,23 @@ function saveProfileChanges() {
             bio: bio,
             gender: gender,
             orientation: orientation,
-            minAge: minAge,
-            maxAge: maxAge,
             latitude: latitude,
             longitude: longitude
         },
         success: function(response) {
             console.log('datos actualizados correctamente');
+            //registrarLogEnServidor("Solicitud AJAX correcta"+response);
         },
         error: function(error) {
             console.error("Error al actualizar los datos:", error);
+            //registrarLogEnServidor("Error al actualizar los datos: " + error, "ERROR");
         }
     });
 }
 
 /** Valida que todos los campos requeridos tengan contenido */
 function validateForm() {
+    //registrarLogEnServidor("Validando form");
     let isValid = true;
     $('.error-border').removeClass('error-border');
     $('#errorMessage').hide();
@@ -56,6 +67,7 @@ function validateForm() {
         if ($(this).val().trim() === '') {
             $(this).addClass('error-border');
             isValid = false;
+            //registrarLogEnServidor('Campo del form vacio','ERROR');
         }
     });
 
@@ -63,23 +75,22 @@ function validateForm() {
     if (!$('input[name="gender"]:checked').length) {
         $('input[name="gender"]').closest('label').addClass('error-border');
         isValid = false;
+        //registrarLogEnServidor("Genero invalido",'ERROR');
     }
 
     if (!$('input[name="orientacion"]:checked').length) {
         $('input[name="orientacion"]').closest('label').addClass('error-border');
         isValid = false;
+        //registrarLogEnServidor("Orientación invalido",'ERROR');
     }
 
     if (!isValid) {
         $('#errorMessage').show();
         document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
     } else {
+        console.log('Entrando a guardar datos');
+        //registrarLogEnServidor('Campos del form correctos');
         saveProfileChanges();
     }
 }
 
-$(document).ready(function() {
-    $('.saveButton').on('click', function() {
-        validateForm();
-    });
-});

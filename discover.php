@@ -3,8 +3,10 @@
 
 <?php
 //Llegan los datos del usuario desde el LOGIN
-session_start();
 
+session_start();
+include_once 'apis.php'; 
+include 'config.php';
 ?>
 
 <!-- MUESTRA DE CSS MESSAGE sólo al iniciar sesión -->
@@ -46,7 +48,14 @@ session_start();
 
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
-
+            <?php 
+            if($_SESSION["user_data"]["Gender"] == "No Binario"){
+                registrarLog("Al ser no binario no hay matches");
+                noProfilesForNobBinari();
+            }
+          
+    
+            ?>
         </div>
 
         <!-- Controles de acción -->
@@ -70,47 +79,11 @@ session_start();
 <?php
 
 //Esta función es un andamio que nos permite obtener los datos para nuestro usuario actual que tiene iniciada la sesión hasta que funcione el login.
-function recuperarUserDataDePrueba()
-{
 
 
-    try {
-        $hostname = "localhost";
-        $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
-        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
-    } catch (PDOException $e) {
-        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        exit;
-    }
+function noProfilesForNobBinari(){
 
-    //preparem i executem la consulta
-    $query = $pdo->prepare("SELECT 
-                                    IdUser, 
-                                    Username, 
-                                    Orientation, 
-                                    Gender, 
-                                    Longitude, 
-                                    Latitude, 
-                                    Points, 
-                                    UserAge
-                                FROM User 
-                                WHERE IdUser = 1;");
-    $query->execute();
-
-    // Obtener el resultado como un arreglo asociativo
-    $result = $query->fetch(PDO::FETCH_ASSOC);
-
-    // Almacenar el resultado en la sesión
-    $_SESSION['user_data'] = $result;
-
-    //eliminem els objectes per alliberar memòria 
-    unset($pdo);
-    unset($query);
-
+    echo "<h4>No hay perfiles disponibles</h4>";
 }
-
-
 
 ?>

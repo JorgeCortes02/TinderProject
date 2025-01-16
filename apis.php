@@ -1,4 +1,6 @@
 <?php
+include 'config.php';
+
 session_start();
 
 if (isset($_GET["api"])) {
@@ -11,6 +13,7 @@ if (isset($_GET["api"])) {
 
             CalcAndOrderbyPosition();
             break;
+
 
         case "insertNewLike":
             saveNewLike();
@@ -94,7 +97,7 @@ function CalcAndOrderbyPosition()
             return $b["TotalPoints"] - $a["TotalPoints"];
 
         });
-
+        registrarLog("Se ha recuperado y ordenado a los usuarios que se mostrara.");
         // Devolver los resultados como JSON
         header('Content-Type: application/json');
         echo json_encode($users); // Devuelve el array de usuarios como JSON
@@ -109,13 +112,13 @@ function downloadUsersForDiscover($indexToLoad): array
 {
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -286,13 +289,13 @@ function downloadFotos($userDiccionari)
     foreach ($userDiccionari as &$user) {
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al descargar fotografias para mostrar en el dicover. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -328,13 +331,13 @@ function saveNewLIke()
         $likedUserID = $_POST["likedUserId"];
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 
@@ -347,6 +350,7 @@ function saveNewLIke()
             echo "Insertat!";
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
+            registrarLog("Error al insertar un like en LikeUsers. Failed to get DB handle: $e->getMessage()", "ERROR");
         }
 
     }
@@ -361,13 +365,14 @@ function isAMatch()
         $likedUserID = $_POST["likedUserId"];
 
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+
             exit;
         }
 
@@ -378,8 +383,10 @@ function isAMatch()
         if ($isaMatch !== false) {
             saveANewMatch($likedUserID);
             $isaMatch = (int) $isaMatch;  // Convertir a entero
+            registrarLog("Se ha producido match");
         } else {
             $isaMatch = 0;  // Si no hay resultado, devolver 0
+            registrarLog("No se ha producido match");
         }
 
         echo json_encode($isaMatch);
@@ -393,13 +400,13 @@ function saveANewMatch($userLiked)
 {
 
     try {
+        global $username, $pw;
         $hostname = "localhost";
         $dbname = "DatingApp";
-        $username = "root";
-        $pw = "1234";
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -409,9 +416,11 @@ function saveANewMatch($userLiked)
         $stmt = $dbh->prepare("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
+        registrarLog("Se han insertado datos en Matches");
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
+        registrarLog("Error al insertar datos en la tabla Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
     }
 
 }
@@ -445,13 +454,13 @@ function sumAndUpdateUserPoints(){
         $_SESSION["user_data"]["Points"] += (int)$_POST["points"]; // Corrige la concatenación a la suma
         
         try {
+            global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $username = "root";
-            $pw = "1234";
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
     
@@ -472,13 +481,40 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
+            registrarLog("Usuario actualizado con exito, se han añadido pintos");
         } else {
-            echo "Error al actualizar el usuario.";
+            echo "Error al actualizar los puntos del usuario.";
+            registrarLog("Error al actualizar los puntos del usuario.", "ERROR");
         }
     }
 }
 
+function  registrarLog($mensaje, $tipo = 'INFO'){
+    $fecha = date('Y-m-d');
+    $hora = date('H:i:s');
+    $directorio = __DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR;
 
+    //crear directorio si no existe:
+    if(!file_exists($directorio)){
+        mkdir($directorio, 0755, true);
+    }
 
+    $archivoLog="$directorio/$fecha.txt";
+
+    $mensajeFormateado = "[$hora] [$tipo] $mensaje".PHP_EOL;
+
+    file_put_contents($archivoLog, $mensajeFormateado, FILE_APPEND);
+
+}
+
+//Endpoint que permite a la funcion de logs acceder a los js
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje'])) {
+    $mensaje = $_POST['mensaje'];
+    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'INFO';
+
+    registrarLog($mensaje, $tipo);
+
+}
 
 ?> 
+
