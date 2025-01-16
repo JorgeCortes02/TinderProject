@@ -106,7 +106,7 @@ function downloadMatches(): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        registrarLog("Error al conectar a la BBDD para descargar Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
         exit;
     }
 
@@ -149,7 +149,7 @@ function downloadFotosForMatches($matchDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            registrarLog("Error al conectar a la BBDD al descargar mensajes. Failed to get DB handle: $e->getMessage()", "ERROR");
             exit;
         }
 

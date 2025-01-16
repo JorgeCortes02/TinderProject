@@ -372,6 +372,7 @@ function isAMatch()
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
             registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+
             exit;
         }
 
@@ -382,8 +383,10 @@ function isAMatch()
         if ($isaMatch !== false) {
             saveANewMatch($likedUserID);
             $isaMatch = (int) $isaMatch;  // Convertir a entero
+            registrarLog("Se ha producido match");
         } else {
             $isaMatch = 0;  // Si no hay resultado, devolver 0
+            registrarLog("No se ha producido match");
         }
 
         echo json_encode($isaMatch);
@@ -413,6 +416,7 @@ function saveANewMatch($userLiked)
         $stmt = $dbh->prepare("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
+        registrarLog("Se han insertado datos en Matches");
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
@@ -477,10 +481,10 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
-
+            registrarLog("Usuario actualizado con exito, se han añadido pintos");
         } else {
-            echo "Error al actualizar el usuario.";
-            registrarLog("Error al actualizar el usuario.", "ERROR");
+            echo "Error al actualizar los puntos del usuario.";
+            registrarLog("Error al actualizar los puntos del usuario.", "ERROR");
         }
     }
 }

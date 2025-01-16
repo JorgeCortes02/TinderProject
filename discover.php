@@ -3,10 +3,10 @@
 
 <?php
 //Llegan los datos del usuario desde el LOGIN
+
+session_start();
 include_once 'apis.php'; 
 include 'config.php';
-session_start();
-
 ?>
 
 <!-- MUESTRA DE CSS MESSAGE sólo al iniciar sesión -->
@@ -50,7 +50,7 @@ session_start();
         <div class="card-container">
             <?php 
             if($_SESSION["user_data"]["Gender"] == "No Binario"){
-
+                registrarLog("Al ser no binario no hay matches");
                 noProfilesForNobBinari();
             }
           
