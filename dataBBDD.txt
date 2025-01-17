@@ -1,6 +1,7 @@
 USE DatingApp;
 INSERT INTO User (FirstName, LastName1, LastName2, Username, Password, BirthDate, Orientation, Gender, Longitude, Latitude, Email, UserAge, MaxAge, MinAge, Points, Bio,Role, ModifyAt, CreateAt)
 VALUES
+('Javier', 'Moran', 'De Anta', 'awita', 'bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f', '1990-05-20', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'javier.moran@ieti.site', 34, 42, 18, 0, 'Amante de la fotografía.', 'Admin', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Carlos', 'Gómez', 'López', 'carlito123', 'bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f', '1990-05-20', 'Heterosexual', 'Hombre', '-3.7038', '40.4168', 'carlos.gomez@ieti.site', 34, 42, 18, 0, 'Amante de la fotografía.', 'User', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Luis', 'Martínez', 'Pérez', 'lmartinez', 'bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f', '1992-07-15', 'Homosexual', 'Hombre', '-2.1687', '41.3879', 'luis.martinez@ieti.site', 32, 40, 22, 0, 'Disfruto de la música y la tecnología.', 'User', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
 ('Javier', 'Hernández', 'Ruiz', 'javih', 'bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f', '1988-10-10', 'Bisexual', 'Hombre', '-1.9784', '37.3771', 'javier.ruiz@ieti.site', 36, 45, 28, 0, 'Amo los deportes extremos.', 'User', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
