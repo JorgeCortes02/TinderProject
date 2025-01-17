@@ -24,12 +24,13 @@ if (isset($_GET["api"])) {
             sumAndUpdateUserPoints();
             break;
         case "logEvent":
-            if(isset($_POST["mensajeLog"]) && isset($_POST["tipoLog"]) && isset($_POST["pagLog"])){
-                logEvent($_POST["mensajeLog"], $_POST["tipoLog"], $_POST["pagLog"]);
-            logEvent();
+            $input = json_decode(file_get_contents('php://input'), true); // Decodificar JSON
+            if (isset($input["mensajeLog"]) && isset($input["tipoLog"]) && isset($input["pagLog"])) {
+                logEvent($input["mensajeLog"], $input["tipoLog"], $input["pagLog"]);
+            } else {
+                logEvent("Error al crear Log", 'ERROR', $_SERVER['QUERY_STRING']);
+            }
             break;
-
-        }
     }
 }
 
@@ -481,8 +482,8 @@ function sumAndUpdateUserPoints(){
 
 function logEvent($mensaje, $tipo = 'INFO',$pag){
     $fecha = date('Y-m-d');
-    $hora = date('H:i:s');
-    $userId = $_SESSION['IdUser'];
+    $hora = date('H:i:s', time() + 3600);
+    $userId = $_SESSION['IdUser'] ? (string) $_SESSION['IdUser']: 'Null';
     $directorio = __DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR;
 
     //crear directorio si no existe:
@@ -491,7 +492,6 @@ function logEvent($mensaje, $tipo = 'INFO',$pag){
     }
 
     $archivoLog="$directorio/$fecha.txt";
-
     //Formatear mensaje de PAGINA
     $mensajeFormateado = "[$hora] [$tipo] [$pag] [UserId=$userId]: $mensaje".PHP_EOL;
 
@@ -503,7 +503,5 @@ function logServer($mensaje, $tipo = 'INFO'){
     $pag = $_SERVER['QUERY_STRING'];
     logEvent($mensaje, $tipo, $pag);
 }
-
-
 ?> 
 

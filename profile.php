@@ -2,14 +2,15 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include_once 'apis.php'; 
+include 'apis.php'; 
 include 'config.php';
-registrarLog("Redireccion a profile.php");
 
 // Función para cargar el archivo .env
 function loadEnv($path) {
     if (!file_exists($path)) {
+        logServer('El archivo .env no se encuentra en la ruta especificada.','ERROR');
         throw new Exception("El archivo .env no se encuentra en la ruta especificada.");
+        
     }
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -168,9 +169,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
             </form>
         </div>
 
-
-       
-
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
             <a href="discover.php">Descobrir</a>
@@ -182,6 +180,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         let map;
         let marker;
         function initMap() {
+            logServer('Iniciando servicio de Google Maps...');
             const initialLocation = { 
                 lat: parseFloat(<?php echo $_SESSION['user_data']['Latitude']; ?>), 
                 lng: parseFloat(<?php echo $_SESSION['user_data']['Longitude']; ?>) 
@@ -205,6 +204,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 const position = marker.getPosition();
                 document.getElementById('latitude').value = position.lat();
                 document.getElementById('longitude').value = position.lng();
+                logServer('Actualizando coordenadas del usuario: '.position);
             });
         }
         function updateRange() {
@@ -247,7 +247,7 @@ function updateUserData($userData){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Profile - Failed to connect to the database" . $e->getMessage(),'ERROR');
+        logServer("Failed to connect to the database" . $e->getMessage(),'ERROR');
         exit;
     }
 
@@ -264,6 +264,8 @@ function updateUserData($userData){
                                 Bio = :bio
                             WHERE IdUser = :userId");
     // bindParam
+    logServer('Actualizando campos del usuario: '.$query);
+
     $query->bindParam(':firstName', $userData['FirstName'], PDO::PARAM_STR);
     $query->bindParam(':lastName1', $userData['LastName1'], PDO::PARAM_STR);
     $query->bindParam(':lastName2', $userData['LastName2'], PDO::PARAM_STR);
@@ -277,11 +279,11 @@ function updateUserData($userData){
     $query->bindParam(':bio', $userData['Bio'], PDO::PARAM_STR);
 
     if ($query->execute()) {
-        registrarLog("Datos actualizados correctamente para el usuario con ID: " . $userData['IdUser']);
+        logServer("Datos actualizados correctamente para el usuario.");
         
     } else {
         echo "Error al actualizar los datos.";
-        registrarLog("Error al actualizar los datos en UpdateUserData.",'ERROR');
+        logServer("Error al actualizar los datos en UpdateUserData.",'ERROR');
 
     }
 

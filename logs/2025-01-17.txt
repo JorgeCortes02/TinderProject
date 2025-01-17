@@ -1,0 +1,7 @@
+
+[17:04:48] [INFO] [] [UserId=Null]: Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[17:04:48] [INFO] [] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[17:04:48] [INFO] [] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[17:04:48] [INFO] [] [UserId=Null]: Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[17:04:48] [INFO] [] [UserId=Null]: Session iniciada
+[17:04:48] [INFO] [] [UserId=Null]: Redireccion a discover.php

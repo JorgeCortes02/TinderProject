@@ -258,6 +258,4 @@ foreach ($photoData as $data) {
     return $messageDiccionari;
 
 }
-
-
 ?>
