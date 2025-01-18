@@ -115,8 +115,9 @@ function downloadMatches(): array
     
     // Preparar la consulta de manera segura usando un marcador de posición para :userId
 
-
-
+        logServer("Cargando matches...");
+        logServer("SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; ");
         $query = $pdo->prepare(
             "SELECT MatchId,
                     User1Id,
@@ -140,6 +141,8 @@ function downloadMatches(): array
 function downloadFotosForMatches($matchDiccionari)
 {
 
+    logServer("Cargando fotos de matches...");
+        
     foreach ($matchDiccionari as &$match) {
 
         try {
@@ -154,11 +157,11 @@ function downloadFotosForMatches($matchDiccionari)
         }
 
         if($match["User1Id"] ==  $_SESSION['user_data']["IdUser"]){
-
+            logServer("SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;");
             $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $match["User2Id"] . " LIMIT 1;");
 
         }else{
-
+            logServer("SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;");
             $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $match["User1Id"] . " LIMIT 1;");
         }
     
@@ -179,8 +182,7 @@ function downloadFotosForMatches($matchDiccionari)
 }
 
 function downloadChats(){
-
-
+    logServer("Cargando chats...");
     try {
         global $username, $pw;
         $hostname = "localhost";
@@ -209,7 +211,10 @@ JOIN (
 ) AS sub ON m.MessageId = sub.LastMessageId
 ORDER BY m.SentAt DESC;"
     );
-                    
+
+    logServer("SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;");
 
     // Ejecutar la consulta con los parámetros correspondientes
     $query->execute([
@@ -223,7 +228,7 @@ ORDER BY m.SentAt DESC;"
 
 function downloadFotosForChats($messageDiccionari)
 {
-
+    logServer("Cargando fotos de los chats...");
     foreach ($messageDiccionari as &$conver) {
 
         try {
@@ -242,12 +247,20 @@ function downloadFotosForChats($messageDiccionari)
             $query = $pdo->prepare("SELECT u.Username, p.URL FROM User u 
                         LEFT JOIN Photo p ON u.IdUser = p.UserId 
                         WHERE u.IdUser = " . $conver["SenderUserId"] . " LIMIT 1;");
+            
+            logServer("SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = " . $conver["SenderUserId"] . " LIMIT 1;");
 
             
 
         }else{
 
             $query = $pdo->prepare("SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = " . $conver["ReceiverUserId"] . " LIMIT 1;");
+
+            logServer("SELECT u.Username, p.URL FROM User u 
             LEFT JOIN Photo p ON u.IdUser = p.UserId 
             WHERE u.IdUser = " . $conver["ReceiverUserId"] . " LIMIT 1;");
         }
@@ -259,6 +272,7 @@ $photoData = $query->fetchAll(PDO::FETCH_ASSOC);
 // Recorrer los resultados y asignar los valores al array $conver
 foreach ($photoData as $data) {
     // Guardar Username y URL de la foto para cada usuario en $conver
+    logServer("Foto cargada");
     $conver["username"] = $data['Username'];
     $conver["img"] = $data['URL'];
     
@@ -268,6 +282,4 @@ foreach ($photoData as $data) {
     return $messageDiccionari;
 
 }
-
-
 ?>
