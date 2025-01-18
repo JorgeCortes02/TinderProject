@@ -27,11 +27,18 @@ if (isset($_GET["api"])) {
         case "sumPoints":
             sumAndUpdateUserPoints();
             break;
-        case "uploadNewDisMaxAndMinorAge";
+        
+        case "logEvent":
+            $input = json_decode(file_get_contents('php://input'), true); // Decodificar JSON
+            if (isset($input["mensajeLog"]) && isset($input["tipoLog"]) && isset($input["pagLog"])) {
+                logEvent($input["mensajeLog"], $input["tipoLog"], $input["pagLog"]);
+            } 
+               break;
+      case "uploadNewDisMaxAndMinorAge":
             sumAndUpdateUserMinMaxAgeAndDistance();
+
             break;
     }
-
 }
 
 /*
@@ -68,7 +75,8 @@ function calcularDistance($lat1, $lon1, $lat2, $lon2)
 
     // Distancia en kilómetros
     $distancia = $radioTierra * $c;
-
+    logServer("Calculando distancia con la formula de Haversine (d = R · c)...");
+    logServer("Distancia entre los dos usuarios, Resultado = ".$distancia);
     return $distancia; // Retorna la distancia en km
 }
 
@@ -85,28 +93,33 @@ function CalcAndOrderbyPosition()
 
         $users = downloadUsersForDiscover($indexToLoad);
         $users = downloadFotos($users);
+        logServer("Calculando distancia de los usuarios respecto a la tuya...");
 
         // Calcular distancia de cada usuario respecto a tu ubicación
         foreach ($users as &$user) {
 
             $user["distance"] = calcularDistance((float) $user["Latitude"], (float) $user["Longitude"], $myLat, $myLong);
 
+
             if($user["distance"] > $_SESSION["user_data"]["MaxDis"] ||  (int)$user["distance"] > $user["MaxDis"]){
               
                 $user["TotalPoints"] = 0;
+                logServer("- User:".$user["IdUser"]." Distancia:".$user["distance"]. " Puntos:".$user["TotalPoints"]);
 
             }else{
 
+               
                 $user["TotalPoints"] = CalcFinalPoints($user);
+            logServer("- User:".$user["IdUser"]." Distancia:".$user["distance"]. " Puntos:".$user["TotalPoints"]);
             }
         }
-
+        logServer("Ordenando usuarios por Puntuación...");
         usort($users, function ($a, $b) {
-
+            
             return $b["TotalPoints"] - $a["TotalPoints"];
 
         });
-        registrarLog("Se ha recuperado y ordenado a los usuarios que se mostrara.");
+        logServer("Se ha recuperado y ordenado a los usuarios que se mostrara.");
         // Devolver los resultados como JSON
         header('Content-Type: application/json');
         echo json_encode($users); // Devuelve el array de usuarios como JSON
@@ -127,7 +140,7 @@ function downloadUsersForDiscover($indexToLoad): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
         exit;
     }
 
@@ -137,9 +150,12 @@ function downloadUsersForDiscover($indexToLoad): array
     $minAge = $_SESSION['user_data']["MinAge"];
   
     // Preparar la consulta de manera segura usando un marcador de posición para :userId
-
+    
     //Query para buscar perfiles en caso de que el usuario loggeado sea hombre hetero
     if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Heterosexual") {
+        logServer("SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+            WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Heterosexual' AND Gender = 'Mujer') 
+            OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
 
         $query = $pdo->prepare(
            "SELECT 
@@ -169,6 +185,10 @@ function downloadUsersForDiscover($indexToLoad): array
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea hombre homo
     } else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
+        
+        logServer("SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+        WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Homosexual' AND Gender = 'Hombre') 
+        OR (Orientation  = 'Bisexual' AND Gender = 'Hombre')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
 
         $query = $pdo->prepare(
             "SELECT 
@@ -201,6 +221,10 @@ function downloadUsersForDiscover($indexToLoad): array
 
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer hetero
     } else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Heterosexual") {
+        
+        logServer("SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+        WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Heterosexual' AND Gender = 'Hombre') 
+        OR (Orientation  = 'Bisexual' AND Gender = 'Hombre')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
 
         $query = $pdo->prepare(
             "SELECT 
@@ -233,7 +257,10 @@ function downloadUsersForDiscover($indexToLoad): array
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer homo
     } else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
-
+        
+        logServer("SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+        WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Homosexual' AND Gender = 'Mujer') 
+        OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
         $query = $pdo->prepare(
             "SELECT 
                       IdUser, 
@@ -263,6 +290,10 @@ function downloadUsersForDiscover($indexToLoad): array
                     );
 
     }else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
+        logServer("SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+        WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Homosexual' AND Gender = 'Mujer') 
+                    OR (Orientation  = 'Bisexual' AND Gender = 'Hombre') 
+                    OR (Orientation  = 'Heterosexual' AND Gender = 'Hombre')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
 
         $query = $pdo->prepare(
             "SELECT 
@@ -292,6 +323,11 @@ function downloadUsersForDiscover($indexToLoad): array
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
     }else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
+
+        logServer("SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+        WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Homosexual' AND Gender = 'Hombre') 
+                    OR (Orientation  = 'Bisexual' AND Gender = 'Mujer') 
+                    OR (Orientation  = 'Heterosexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
 
         $query = $pdo->prepare(
             "SELECT 
@@ -344,11 +380,12 @@ function downloadFotos($userDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al descargar fotografias para mostrar en el dicover. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
             exit;
         }
 
         $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $user["IdUser"] . ";");
+        logServer("SELECT URL FROM Photo where UserId = " . $user["IdUser"] . ";");
         $query->execute();
         $photos = $query->fetchAll(PDO::FETCH_COLUMN);
 
@@ -386,7 +423,8 @@ function saveNewLIke()
             $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
             exit;
         }
 
@@ -397,13 +435,13 @@ function saveNewLIke()
             //a l'execució de la sentència li passem els paràmetres amb un array 
             $stmt->execute(array($_SESSION['user_data']['IdUser'], $likedUserID));
             echo "Insertat!";
+            logServer("Like insertado correctamente.");
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
-            registrarLog("Error al insertar un like en LikeUsers. Failed to get DB handle: $e->getMessage()", "ERROR");
+
+            logServer("Error al insertar like: " . $e->getMessage(),'ERROR');
         }
-
     }
-
 }
 
 function isAMatch()
@@ -420,22 +458,21 @@ function isAMatch()
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
-
+            logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
             exit;
         }
 
         $query = $pdo->prepare("SELECT 1 FROM UserLikes where LikedUserId = " . $_SESSION['user_data']["IdUser"] . " AND UserId = " . $likedUserID . ";");
+        logServer("SELECT 1 FROM UserLikes where LikedUserId = " . $_SESSION['user_data']["IdUser"] . " AND UserId = " . $likedUserID . ";");
         $query->execute();
         $isaMatch = $query->fetchColumn();
 
         if ($isaMatch !== false) {
             saveANewMatch($likedUserID);
             $isaMatch = (int) $isaMatch;  // Convertir a entero
-            registrarLog("Se ha producido match");
         } else {
             $isaMatch = 0;  // Si no hay resultado, devolver 0
-            registrarLog("No se ha producido match");
+            logServer("No se ha producido match");
         }
 
         echo json_encode($isaMatch);
@@ -455,7 +492,8 @@ function saveANewMatch($userLiked)
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+
+        logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
         exit;
     }
 
@@ -463,13 +501,14 @@ function saveANewMatch($userLiked)
 
         //cadascun d'aquests interrogants serà substituit per un paràmetre.
         $stmt = $dbh->prepare("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
+        logServer("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
-        registrarLog("Se han insertado datos en Matches");
+        logServer("Se han insertado datos en Matches");
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
-        registrarLog("Error al insertar datos en la tabla Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer("Error: " . $e->getMessage(),'ERROR');
     }
 
 }
@@ -491,7 +530,7 @@ function CalcFinalPoints($usuario)
     }
 
     $finalTotalPoints = ((60 * $finalDistancePoints) /100) + (($usuario["Points"] * 40)/100);
-
+    logServer("Puntos finales del usuario = ".$finalTotalPoints);
     return  $finalTotalPoints;
 
    
@@ -509,7 +548,8 @@ function sumAndUpdateUserPoints(){
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
             exit;
         }
     
@@ -519,6 +559,7 @@ function sumAndUpdateUserPoints(){
     
         // Preparar la consulta UPDATE
         $sql = "UPDATE User SET Points = :newPoints WHERE IdUser = :id";
+        logServer("UPDATE User SET Points = :newPoints WHERE IdUser = :id");
     
         // Preparar la declaración
         $stmt = $pdo->prepare($sql);
@@ -530,17 +571,19 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
-            registrarLog("Usuario actualizado con exito, se han añadido pintos");
+            logServer("Usuario actualizado con éxito.",'ERROR');
         } else {
-            echo "Error al actualizar los puntos del usuario.";
-            registrarLog("Error al actualizar los puntos del usuario.", "ERROR");
+            echo "Error al actualizar el usuario.";
+            logServer("Error al actualizar el usuario",'ERROR');
         }
     }
 }
 
-function  registrarLog($mensaje, $tipo = 'INFO'){
+function logEvent($mensaje, $tipo = 'INFO',$pag){
+
     $fecha = date('Y-m-d');
-    $hora = date('H:i:s');
+    $hora = date('H:i:s', time() + 3600);
+    $userId = isset($_SESSION['user_data']['IdUser']) ? (string) $_SESSION['user_data']['IdUser']: 'Null';
     $directorio = __DIR__ . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR;
 
     //crear directorio si no existe:
@@ -549,21 +592,26 @@ function  registrarLog($mensaje, $tipo = 'INFO'){
     }
 
     $archivoLog="$directorio/$fecha.txt";
+    //Formatear mensaje de PAGINA
+    $mensajeFormateado = "[$hora] [$tipo] [$pag] [UserId=$userId]: $mensaje".PHP_EOL;
 
-    $mensajeFormateado = "[$hora] [$tipo] $mensaje".PHP_EOL;
-
-    file_put_contents($archivoLog, $mensajeFormateado, FILE_APPEND);
-
-}
-
-//Endpoint que permite a la funcion de logs acceder a los js
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje'])) {
-    $mensaje = $_POST['mensaje'];
-    $tipo = isset($_POST['tipo']) ? $_POST['tipo'] : 'INFO';
-
-    registrarLog($mensaje, $tipo);
+    file_put_contents($archivoLog, $mensajeFormateado, FILE_APPEND | LOCK_EX);
 
 }
+
+function logServer($mensaje, $tipo = 'INFO'){
+    $pag = getFullUrl();
+    logEvent($mensaje, $tipo, $pag);
+}
+
+function getFullUrl() {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $host = $_SERVER['HTTP_HOST'];
+    $uri = $_SERVER['REQUEST_URI'];
+
+    return $protocol . $host . $uri;
+}
+
 function sumAndUpdateUserMinMaxAgeAndDistance(){
 
     if(isset($_POST["maxAge"]) && isset($_POST["minAge"]) && isset($_POST["maxDistance"])) {
@@ -613,5 +661,6 @@ function sumAndUpdateUserMinMaxAgeAndDistance(){
         }
     }
 }
+
 ?> 
 
