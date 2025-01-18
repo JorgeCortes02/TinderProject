@@ -14,6 +14,7 @@ if (isset($_GET["api"])) {
             CalcAndOrderbyPosition();
             break;
 
+
         case "insertNewLike":
             saveNewLike();
             break;
@@ -104,7 +105,7 @@ function CalcAndOrderbyPosition()
             return $b["TotalPoints"] - $a["TotalPoints"];
 
         });
-
+        registrarLog("Se ha recuperado y ordenado a los usuarios que se mostrara.");
         // Devolver los resultados como JSON
         header('Content-Type: application/json');
         echo json_encode($users); // Devuelve el array de usuarios como JSON
@@ -369,6 +370,7 @@ function saveNewLIke()
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
             logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
             exit;
         }
 
@@ -382,11 +384,10 @@ function saveNewLIke()
             logServer("Like insertado correctamente.");
         } catch (PDOException $e) {
             print "Error!: " . $e->getMessage() . " Desfem</br>";
+
             logServer("Error al insertar like: " . $e->getMessage(),'ERROR');
         }
-
     }
-
 }
 
 function isAMatch()
@@ -415,8 +416,10 @@ function isAMatch()
         if ($isaMatch !== false) {
             saveANewMatch($likedUserID);
             $isaMatch = (int) $isaMatch;  // Convertir a entero
+            registrarLog("Se ha producido match");
         } else {
             $isaMatch = 0;  // Si no hay resultado, devolver 0
+            registrarLog("No se ha producido match");
         }
 
         echo json_encode($isaMatch);
@@ -436,6 +439,7 @@ function saveANewMatch($userLiked)
         $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+
         logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
         exit;
     }
@@ -447,6 +451,7 @@ function saveANewMatch($userLiked)
         logServer("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
+        registrarLog("Se han insertado datos en Matches");
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
@@ -491,6 +496,7 @@ function sumAndUpdateUserPoints(){
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
             logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
             exit;
         }
     
