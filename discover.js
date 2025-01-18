@@ -3,8 +3,13 @@ $(document).ready(function() {
     let indexToDownload = 0;  // Índice inicial para cargar más perfiles
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
-   
-
+    const preferencesButton = $("#distance");
+    const closeButton = $("#close");
+    const preferencesMenu = $(".divPreferences");
+    $('#minAge, #maxAge').on('input', updateRangeAge);
+    $('#maxDis').on('input', updateRangeDistance);
+    updateRangeAge();
+    updateRangeDistance();
     dislikeButton.click(()=>{
 
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
@@ -52,7 +57,33 @@ $(document).ready(function() {
         // Eliminamos la tarjeta que fue procesada
         actualCard.remove();
     });
-    
+    preferencesButton.on("click", function(){
+
+        preferencesMenu.css("visibility", "visible");
+    });
+
+    closeButton.on("click", function(){
+        
+      
+        const $maxDisValue = parseInt($('#maxDis').val());
+        const $minAgeValue = parseInt($('#minAge').val());
+        const $maxAgeValue = parseInt($('#maxAge').val());
+        updateDisAndAgeMaxMin($maxAgeValue, $minAgeValue,$maxDisValue);
+        console.log($maxAgeValue, $minAgeValue,$maxDisValue)
+        $(".card-container").empty();
+        (async () => {
+            indexToDownload = 0;
+            await downloadData(indexToDownload);
+            indexToDownload = calcMaxId();  // Actualizamos el índice
+            preferencesMenu.css("visibility", "hidden");
+        })();
+      
+     
+       
+       
+
+       
+    });
     // Cargamos los perfiles iniciales
     (async () => {
         await downloadData(indexToDownload);
@@ -84,20 +115,24 @@ async function downloadData(index) {
             // Si hay perfiles, los mostramos
             if (misDatos.length > 0) {
                 misDatos.forEach(usuario => {
-                    const newCard = $("<div>").attr("class", "card");
-                    newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
-                    const inform = $("<div>").attr("class", "card-info");
-                    inform.append($("<h2>").text(usuario["Username"] + ", " + usuario["UserAge"]));
-                    newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
-                    newCard.append(inform);
-                    contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
-                    contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
+                   
+
+                        const newCard = $("<div>").attr("class", "card");
+                        newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
+                        const inform = $("<div>").attr("class", "card-info");
+                        inform.append($("<h2>").text(usuario["Username"] + ", " + usuario["UserAge"]));
+                        newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
+                        newCard.append(inform);
+                        contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
+                        contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
+                    
+                   
 
                 });
             } else{
                 // Si no hay más perfiles, mostramos un mensaje
                 contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
-                contenedor.css("background", "gray").css("opacity", 0.5);  // Cambiamos el estilo del contenedor
+              
             }
         }
     } catch (e) {
@@ -183,4 +218,110 @@ function sumPoints(points){
     .catch(error => {
         console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
     });
+
+   
+}
+
+function updateRangeAge() {
+    // Elementos del formulario
+    const $minAge = $('#minAge');
+    const $maxAge = $('#maxAge');
+    const $minAgeValue = $('#minAgeValue');
+    const $maxAgeValue = $('#maxAgeValue');
+    const $progress = $('.range-slider .progress');
+
+    // La edad mínima no puede ser superior a la edad máxima (se cambia el valor)
+    if (parseInt($minAge.val()) > parseInt($maxAge.val())) {
+        $minAge.val($maxAge.val());
+    }
+
+    // Se actualizan los valores de edad mínima y máxima en el formulario
+    $minAgeValue.text($minAge.val());
+    $maxAgeValue.text($maxAge.val());
+
+    // Ajuste de la barra de progreso
+    const minValue = parseInt($minAge.val());
+    const maxValue = parseInt($maxAge.val());
+    const range = 81; // Rango total (99 - 18)
+
+    $progress.css({
+        'left': ((minValue - 18) / range) * 100 + '%',
+        'width': ((maxValue - minValue) / range) * 100 + '%'
+    });
+
+    
+}
+function updateRangeDistance() {
+    // Elementos del formulario
+    
+    const $maxDis = $('#maxDis');
+    
+    //label
+    const $maxDisValueLabel = $('#distanceLabel');
+    const $progress = $('.range-slider .progress2');
+
+
+    // Se actualizan los valores de edad mínima y máxima en el formulario
+  
+    $maxDisValueLabel.text($maxDis.val());
+
+
+    const maxDisValue = parseInt($maxDis.val());
+    const range = 200; // Rango total (99 - 18)
+
+    $progress.css({
+        'left': 0 * 100 + '%',
+        'width': (maxDisValue  / range) * 100 + '%'
+    });
+
+   
+}
+
+function updateDisAndAgeMaxMin(){
+
+    const formData = new FormData();
+    formData.append("maxDistance", idUser);  // Añadir el id del usuario al que se le dio like
+
+
+    // Hacemos la petición para guardar el like
+    fetch("apis.php?api=insertNewLike", {
+        method: "POST",  // Usamos el método POST
+        body: formData  // Enviamos el FormData
+    })
+        .then(response => {
+            if (!response.ok) {  // Verificar si la respuesta fue exitosa
+                throw new Error("Error al guardar los datos en el servidor");
+            }
+            console.log("Datos guardados exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
+        });
+
+
+}
+
+function updateDisAndAgeMaxMin(maxAge, minAge, maxDistance){
+
+    const formData = new FormData();
+    formData.append("maxAge", maxAge);  
+    formData.append("minAge", minAge);  
+     formData.append("maxDistance", maxDistance);  
+
+    // Hacemos la petición para guardar el like
+    fetch("apis.php?api=uploadNewDisMaxAndMinorAge", {
+        method: "POST",  // Usamos el método POST
+        body: formData  // Enviamos el FormData
+    })
+        .then(response => {
+            if (!response.ok) {  // Verificar si la respuesta fue exitosa
+                throw new Error("Error al guardar los datos en el servidor");
+            }
+            console.log("Datos guardados exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
+        });
+
+
 }

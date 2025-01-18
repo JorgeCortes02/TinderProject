@@ -12,7 +12,9 @@
     <?php 
         
         // Iniciar la sesión
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         include_once 'apis.php'; 
 include 'config.php';
         // Verificar si hay una sesión activa

@@ -1,7 +1,10 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 include 'config.php';
 
-session_start();
 
 if (isset($_GET["api"])) {
 
@@ -24,7 +27,9 @@ if (isset($_GET["api"])) {
         case "sumPoints":
             sumAndUpdateUserPoints();
             break;
-
+        case "uploadNewDisMaxAndMinorAge";
+            sumAndUpdateUserMinMaxAgeAndDistance();
+            break;
     }
 
 }
@@ -86,10 +91,14 @@ function CalcAndOrderbyPosition()
 
             $user["distance"] = calcularDistance((float) $user["Latitude"], (float) $user["Longitude"], $myLat, $myLong);
 
-            $user["TotalPoints"] = CalcFinalPoints($user);
+            if($user["distance"] > $_SESSION["user_data"]["MaxDis"] ||  (int)$user["distance"] > $user["MaxDis"]){
+              
+                $user["TotalPoints"] = 0;
 
+            }else{
 
-
+                $user["TotalPoints"] = CalcFinalPoints($user);
+            }
         }
 
         usort($users, function ($a, $b) {
@@ -124,6 +133,8 @@ function downloadUsersForDiscover($indexToLoad): array
 
     // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
     $userId = $_SESSION['user_data']["IdUser"];
+    $maxAge = $_SESSION['user_data']["MaxAge"];
+    $minAge = $_SESSION['user_data']["MinAge"];
   
     // Preparar la consulta de manera segura usando un marcador de posición para :userId
 
@@ -131,38 +142,45 @@ function downloadUsersForDiscover($indexToLoad): array
     if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Heterosexual") {
 
         $query = $pdo->prepare(
-            "SELECT 
-                        IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
-                    FROM User 
-                    WHERE IdUser NOT IN (
-                        SELECT LikedUserId 
-                        FROM UserLikes 
-                        WHERE UserId = :userId
-                    )AND ((Orientation  = 'Heterosexual'
-                    AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
-                    AND Gender = 'Mujer') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
-            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+           "SELECT 
+            IdUser, 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
+        FROM User 
+        WHERE IdUser NOT IN (
+            SELECT LikedUserId 
+            FROM UserLikes 
+            WHERE UserId = :userId
+        ) 
+        AND UserAge <= :MaxAge 
+        AND UserAge >= :MinAge
+        AND Orientation  = 'Heterosexual'
+        AND Gender = 'Mujer'
+        AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+" AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea hombre homo
     } else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
 
         $query = $pdo->prepare(
             "SELECT 
-                        IdUser, 
+                         IdUser, 
                         Username, 
                         Orientation, 
                         Gender, 
                         Longitude, 
                         Latitude, 
-                        Points, 
+                        MaxAge, 
+                        MinAge, 
+                        Points,
                         UserAge
                     FROM User 
                     WHERE IdUser NOT IN (
@@ -172,10 +190,12 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Homosexual'
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre') )
-                   
+                    AND UserAge <= :MaxAge 
+        AND UserAge >= :MinAge
                     AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
+
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer hetero
     } else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Heterosexual") {
 
@@ -187,7 +207,10 @@ function downloadUsersForDiscover($indexToLoad): array
                         Gender, 
                         Longitude, 
                         Latitude, 
-                        Points, 
+                        MaxAge, 
+                        MinAge,
+                        MaxDis, 
+                        Points,
                         UserAge
                     FROM User 
                     WHERE IdUser NOT IN (
@@ -197,7 +220,12 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Heterosexual'
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+                     AND UserAge <= :MaxAge 
+      AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer homo
@@ -205,13 +233,15 @@ function downloadUsersForDiscover($indexToLoad): array
 
         $query = $pdo->prepare(
             "SELECT 
-                       IdUser, 
+                      IdUser, 
                         Username, 
                         Orientation, 
                         Gender, 
                         Longitude, 
                         Latitude, 
-                        Points, 
+                        MaxAge, 
+                        MinAge, 
+                        Points,
                         UserAge
                     FROM User 
                     WHERE IdUser NOT IN (
@@ -221,9 +251,13 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Homosexual'
                     AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
                     AND Gender = 'Mujer') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+                    AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
-        );
+                    );
 
     }else if ($_SESSION['user_data']["Gender"] == "Mujer" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
 
@@ -236,7 +270,8 @@ function downloadUsersForDiscover($indexToLoad): array
                         Longitude, 
                         Latitude, 
                         Points, 
-                        UserAge
+                        UserAge,
+                        MaxDis
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -246,7 +281,11 @@ function downloadUsersForDiscover($indexToLoad): array
                     AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre')or (Orientation  = 'Heterosexual'
                     AND Gender = 'Hombre') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+                     AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
     }else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
@@ -270,14 +309,20 @@ function downloadUsersForDiscover($indexToLoad): array
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Mujer') or (Orientation  = 'Heterosexual'
                     AND Gender = 'Mujer') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+                     AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
     }
 
     // Ejecutar la consulta con los parámetros correspondientes
     $query->execute([
-        ':userId' => $userId
+        ':userId' => $userId,
+        ':MaxAge' => $maxAge,
+        ':MinAge' => $minAge
     ]);
     $users = $query->fetchAll(PDO::FETCH_ASSOC);
     return $users;
@@ -515,6 +560,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['mensaje'])) {
     registrarLog($mensaje, $tipo);
 
 }
+function sumAndUpdateUserMinMaxAgeAndDistance(){
 
+    if(isset($_POST["maxAge"]) && isset($_POST["minAge"]) && isset($_POST["maxDistance"])) {
+       
+        
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            exit;
+        }
+    
+        // Datos que quieres actualizar
+        $id = $_SESSION["user_data"]["IdUser"]; // ID del usuario a actualizar
+        $_SESSION["user_data"]["MaxAge"] = $_POST["maxAge"];
+        $_SESSION["user_data"]["MinAge"] = $_POST["minAge"];
+        $_SESSION["user_data"]["MaxDis"] = $_POST["maxDistance"];
+        print_r( $_SESSION["user_data"]);
+        // Preparar la consulta UPDATE
+        $sql = "UPDATE User 
+        SET MaxAge = :maxAge, 
+            MinAge = :minAge,
+            MaxDis = :maxDis
+        WHERE IdUser = :id";
+    
+        // Preparar la declaración
+        $stmt = $pdo->prepare($sql);
+    
+  
+        // Ejecutar la consulta
+        if ($stmt->execute(
+            [
+            ':maxAge' => $_POST["maxAge"],
+            ':minAge' => $_POST["minAge"],
+            ':maxDis' => $_POST["maxDistance"],
+            ':id' => $id
+        ])) {
+            echo "Usuario actualizado con éxito.";
+            registrarLog("Usuario qactualizado con exito, se han añadido pintos");
+        } else {
+            echo "Error al actualizar los puntos del usuario.";
+            registrarLog("Error al actualizar los puntos del usuario.", "ERROR");
+        }
+    }
+}
 ?> 
 

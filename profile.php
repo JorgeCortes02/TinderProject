@@ -149,7 +149,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </label>
             </div>
         
-            <!-- <div class ="field">
+        <div class ="field">
                 <h3>Preferencia de Edad: </h3>
                 <label class="ageText" for="minAge">Edad Mínima: <span id="minAgeValue">$_SESSION['user_data']['MinAge'])?></span></label>
                 </br>
@@ -160,7 +160,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                     <input type="range" id="maxAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?>" oninput="updateRange()">
                     <div class="progress"></div>
                 </div>
-            </div> -->
+            </div>
             <div class="bottom">
             <button class="saveButton" id="saveButton">Guardar</button>
             <a class="toPhotoButton" href="/">Editar Fotos</a>

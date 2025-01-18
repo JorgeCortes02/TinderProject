@@ -1,0 +1,539 @@
+[11:29:53] [INFO] Existe sesion, se redirige a dicover
+[11:31:17] [INFO] Existe sesion, se redirige a dicover
+[11:31:30] [INFO] Existe sesion, se redirige a dicover
+[11:31:35] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[11:31:35] [INFO] Email registrado carlos.gomez@ieti.site
+[11:31:35] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[11:31:35] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[11:31:35] [INFO] Session iniciada
+[11:31:35] [INFO] Redireccion a discover.php
+[11:31:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:31:35] [INFO] Existe sesion, se redirige a dicover
+[11:32:39] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:32:39] [INFO] Existe sesion, se redirige a dicover
+[11:32:40] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:32:40] [INFO] Existe sesion, se redirige a dicover
+[11:33:15] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:33:15] [INFO] Existe sesion, se redirige a dicover
+[11:33:15] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:33:15] [INFO] Existe sesion, se redirige a dicover
+[11:33:16] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:33:16] [INFO] Existe sesion, se redirige a dicover
+[11:33:16] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:33:16] [INFO] Existe sesion, se redirige a dicover
+[11:33:16] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:33:16] [INFO] Existe sesion, se redirige a dicover
+[11:33:51] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:33:51] [INFO] Existe sesion, se redirige a dicover
+[11:43:45] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:43:45] [INFO] Existe sesion, se redirige a dicover
+[11:44:59] [INFO] Existe sesion, se redirige a dicover
+[11:45:16] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:45:16] [INFO] Existe sesion, se redirige a dicover
+[11:46:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:46:10] [INFO] Existe sesion, se redirige a dicover
+[11:47:47] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:47:47] [INFO] Existe sesion, se redirige a dicover
+[11:49:21] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:49:21] [INFO] Existe sesion, se redirige a dicover
+[11:49:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:49:46] [INFO] Existe sesion, se redirige a dicover
+[11:50:40] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:50:40] [INFO] Existe sesion, se redirige a dicover
+[11:51:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:51:57] [INFO] Existe sesion, se redirige a dicover
+[11:52:55] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:52:55] [INFO] Existe sesion, se redirige a dicover
+[11:54:00] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:54:00] [INFO] Existe sesion, se redirige a dicover
+[11:54:31] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[11:54:31] [INFO] Existe sesion, se redirige a dicover
+[12:17:08] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:17:08] [INFO] Existe sesion, se redirige a dicover
+[12:30:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:30:57] [INFO] Existe sesion, se redirige a dicover
+[12:31:44] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:31:44] [INFO] Existe sesion, se redirige a dicover
+[12:31:45] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:31:45] [INFO] Existe sesion, se redirige a dicover
+[12:31:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:31:46] [INFO] Existe sesion, se redirige a dicover
+[12:31:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:31:46] [INFO] Existe sesion, se redirige a dicover
+[12:31:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:31:46] [INFO] Existe sesion, se redirige a dicover
+[12:31:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:31:46] [INFO] Existe sesion, se redirige a dicover
+[12:33:00] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:33:00] [INFO] Existe sesion, se redirige a dicover
+[12:33:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:33:54] [INFO] Existe sesion, se redirige a dicover
+[12:35:24] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:35:24] [INFO] Existe sesion, se redirige a dicover
+[12:35:30] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:37:45] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:37:45] [INFO] Existe sesion, se redirige a dicover
+[12:37:50] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:37:50] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:10] [INFO] Existe sesion, se redirige a dicover
+[12:39:18] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:39:18] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:26] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:39:26] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:29] [INFO] No se ha producido match
+[12:39:29] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:39:30] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:39:30] [INFO] No se ha producido match
+[12:39:30] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:39:40] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:40] [INFO] No se ha producido match
+[12:39:40] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:39:40] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:39:42] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:42] [INFO] Existe sesion, se redirige a dicover
+[12:39:44] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:39:44] [INFO] No se ha producido match
+[12:39:44] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:39:54] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:39:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:40:02] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:40:02] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:40:07] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:40:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:40:10] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:40:38] [INFO] Existe sesion, se redirige a dicover
+[12:40:46] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:42:32] [INFO] Existe sesion, se redirige a dicover
+[12:42:32] [INFO] Existe sesion, se redirige a dicover
+[12:42:33] [INFO] Existe sesion, se redirige a dicover
+[12:42:33] [INFO] Existe sesion, se redirige a dicover
+[12:42:33] [INFO] Existe sesion, se redirige a dicover
+[12:42:34] [INFO] Existe sesion, se redirige a dicover
+[12:42:34] [INFO] Existe sesion, se redirige a dicover
+[12:42:43] [INFO] Existe sesion, se redirige a dicover
+[12:42:49] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[12:42:49] [INFO] Email registrado carlos.gomez@ieti.site
+[12:42:49] [INFO] Contraseña incorrectabd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:42:49] [INFO] Existe sesion, se redirige a dicover
+[12:45:44] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[12:45:44] [INFO] Email registrado carlos.gomez@ieti.site
+[12:45:44] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:45:44] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:45:44] [INFO] Session iniciada
+[12:45:44] [INFO] Redireccion a discover.php
+[12:45:45] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:45:45] [INFO] Existe sesion, se redirige a dicover
+[12:45:55] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:45:55] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:45:57] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:00] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:46:00] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:46:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:05] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:05] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:06] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:06] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:46:06] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:12] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:46:12] [INFO] Existe sesion, se redirige a dicover
+[12:46:23] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:46:23] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:46:26] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:27] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:28] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:46:35] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:46:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:50:06] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:50:06] [INFO] Existe sesion, se redirige a dicover
+[12:50:08] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:50:08] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:50:09] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:50:14] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:50:14] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:50:24] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:50:24] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:50:49] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:50:49] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:50:51] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:50:52] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:50:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:50:52] [INFO] Usuario actualizado con exito, se han añadido pintos
+[12:52:34] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:52:34] [INFO] Existe sesion, se redirige a dicover
+[12:52:41] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:52:41] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:53:25] [INFO] Existe sesion, se redirige a dicover
+[12:53:26] [INFO] Existe sesion, se redirige a dicover
+[12:53:27] [INFO] Existe sesion, se redirige a dicover
+[12:53:27] [INFO] Existe sesion, se redirige a dicover
+[12:53:27] [INFO] Existe sesion, se redirige a dicover
+[12:53:28] [INFO] Existe sesion, se redirige a dicover
+[12:53:28] [INFO] Existe sesion, se redirige a dicover
+[12:53:28] [INFO] Existe sesion, se redirige a dicover
+[12:53:29] [INFO] Existe sesion, se redirige a dicover
+[12:53:40] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:53:40] [INFO] Existe sesion, se redirige a dicover
+[12:54:21] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:54:21] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:56:05] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:56:05] [INFO] Existe sesion, se redirige a dicover
+[12:56:15] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:56:15] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:56:59] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:56:59] [INFO] Existe sesion, se redirige a dicover
+[12:57:10] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:57:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:57:18] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[12:57:18] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:58:58] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[12:58:58] [INFO] Existe sesion, se redirige a dicover
+[13:00:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:00:52] [INFO] Existe sesion, se redirige a dicover
+[13:00:54] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:00:54] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:00:54] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:00:55] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:00:55] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:00:55] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:00:55] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:01:01] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:01:01] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:01:07] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:01:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:01:09] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:01:09] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:01:17] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:01:17] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:02:37] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:02:37] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:03:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:03:01] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:03:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:03:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:03:04] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:03:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:03:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:03:07] [INFO] Existe sesion, se redirige a dicover
+[13:03:12] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:03:17] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:03:17] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:04:26] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:04:26] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:04:28] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:04:28] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:04:30] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:04:30] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:08:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:08:57] [INFO] Existe sesion, se redirige a dicover
+[13:09:05] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:09:05] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:09:18] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:09:18] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:10:32] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:10:32] [INFO] Existe sesion, se redirige a dicover
+[13:10:41] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:10:41] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:11:08] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:11:08] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:14:59] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:14:59] [INFO] Existe sesion, se redirige a dicover
+[13:15:00] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:00] [INFO] Existe sesion, se redirige a dicover
+[13:15:02] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:02] [INFO] Existe sesion, se redirige a dicover
+[13:15:02] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:02] [INFO] Existe sesion, se redirige a dicover
+[13:15:03] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:03] [INFO] Existe sesion, se redirige a dicover
+[13:15:03] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:03] [INFO] Existe sesion, se redirige a dicover
+[13:15:03] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:03] [INFO] Existe sesion, se redirige a dicover
+[13:15:03] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:03] [INFO] Existe sesion, se redirige a dicover
+[13:15:04] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:04] [INFO] Existe sesion, se redirige a dicover
+[13:15:04] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:04] [INFO] Existe sesion, se redirige a dicover
+[13:15:11] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:15:11] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:17] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:15:17] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:24] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:15:24] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:29] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:15:29] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:15:59] [INFO] Existe sesion, se redirige a dicover
+[13:16:38] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:16:38] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:40] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:16:41] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:16:41] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:41] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:16:41] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:16:43] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:43] [INFO] Existe sesion, se redirige a dicover
+[13:16:48] [INFO] No se ha producido match
+[13:16:48] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:16:49] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:49] [INFO] Existe sesion, se redirige a dicover
+[13:16:49] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:49] [INFO] Existe sesion, se redirige a dicover
+[13:16:49] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:49] [INFO] Existe sesion, se redirige a dicover
+[13:16:50] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:50] [INFO] Existe sesion, se redirige a dicover
+[13:16:50] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:50] [INFO] Existe sesion, se redirige a dicover
+[13:16:54] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:16:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:16:58] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:16:58] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:17:17] [INFO] Existe sesion, se redirige a dicover
+[13:17:22] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[13:17:22] [INFO] Email registrado carlos.gomez@ieti.site
+[13:17:22] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:17:22] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:17:22] [INFO] Session iniciada
+[13:17:22] [INFO] Redireccion a discover.php
+[13:17:22] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:17:22] [INFO] Existe sesion, se redirige a dicover
+[13:18:39] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:39] [INFO] Existe sesion, se redirige a dicover
+[13:18:40] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:40] [INFO] Existe sesion, se redirige a dicover
+[13:18:40] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:40] [INFO] Existe sesion, se redirige a dicover
+[13:18:41] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:41] [INFO] Existe sesion, se redirige a dicover
+[13:18:41] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:41] [INFO] Existe sesion, se redirige a dicover
+[13:18:42] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:42] [INFO] Existe sesion, se redirige a dicover
+[13:18:42] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:42] [INFO] Existe sesion, se redirige a dicover
+[13:18:47] [INFO] Existe sesion, se redirige a dicover
+[13:18:55] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[13:18:55] [INFO] Email registrado carlos.gomez@ieti.site
+[13:18:55] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:18:55] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:18:55] [INFO] Session iniciada
+[13:18:55] [INFO] Redireccion a discover.php
+[13:18:55] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:18:55] [INFO] Existe sesion, se redirige a dicover
+[13:19:02] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:19:02] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:07] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:19:09] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:19:09] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:19:10] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:19:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:10] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:19:11] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:19:11] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:51] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:51] [INFO] Existe sesion, se redirige a dicover
+[13:19:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:52] [INFO] Existe sesion, se redirige a dicover
+[13:19:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:52] [INFO] Existe sesion, se redirige a dicover
+[13:19:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:52] [INFO] Existe sesion, se redirige a dicover
+[13:19:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:53] [INFO] Existe sesion, se redirige a dicover
+[13:19:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:53] [INFO] Existe sesion, se redirige a dicover
+[13:19:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:53] [INFO] Existe sesion, se redirige a dicover
+[13:19:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:53] [INFO] Existe sesion, se redirige a dicover
+[13:19:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:19:53] [INFO] Existe sesion, se redirige a dicover
+[13:19:58] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:19:58] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:20:06] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:20:06] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:20:07] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:20:08] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:20:08] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:20:09] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:20:09] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:20:13] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:20:13] [INFO] Existe sesion, se redirige a dicover
+[13:20:17] [INFO] Existe sesion, se redirige a dicover
+[13:20:25] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[13:20:25] [INFO] Email registrado carlos.gomez@ieti.site
+[13:20:25] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:20:25] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:20:25] [INFO] Session iniciada
+[13:20:25] [INFO] Redireccion a discover.php
+[13:20:25] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:20:25] [INFO] Existe sesion, se redirige a dicover
+[13:22:46] [INFO] Existe sesion, se redirige a dicover
+[13:22:53] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[13:22:53] [INFO] Email registrado carlos.gomez@ieti.site
+[13:22:53] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:22:53] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:22:53] [INFO] Session iniciada
+[13:22:53] [INFO] Redireccion a discover.php
+[13:22:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:22:53] [INFO] Existe sesion, se redirige a dicover
+[13:23:08] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:23:08] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:23:09] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:23:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:23:10] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:43:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:43:57] [INFO] Existe sesion, se redirige a dicover
+[13:44:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:44:05] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:44:05] [INFO] No se ha producido match
+[13:44:05] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:44:06] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:44:08] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:44:08] [INFO] Existe sesion, se redirige a dicover
+[13:44:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:44:10] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:46:15] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:46:15] [INFO] Existe sesion, se redirige a dicover
+[13:46:17] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:46:17] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:46:22] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:46:22] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:46:23] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:46:24] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:46:24] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:46:25] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:46:25] [INFO] Usuario actualizado con exito, se han añadido pintos
+[13:46:33] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[13:46:33] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:54:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:54:53] [INFO] Existe sesion, se redirige a dicover
+[13:54:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:54:54] [INFO] Existe sesion, se redirige a dicover
+[13:54:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:54:54] [INFO] Existe sesion, se redirige a dicover
+[13:54:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:54:54] [INFO] Existe sesion, se redirige a dicover
+[13:54:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:54:54] [INFO] Existe sesion, se redirige a dicover
+[13:55:16] [INFO] Existe sesion, se redirige a dicover
+[13:55:21] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[13:55:21] [INFO] Email registrado carlos.gomez@ieti.site
+[13:55:21] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:55:21] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:55:21] [INFO] Session iniciada
+[13:55:21] [INFO] Redireccion a discover.php
+[13:55:21] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:55:21] [INFO] Existe sesion, se redirige a dicover
+[13:57:06] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:57:06] [INFO] Existe sesion, se redirige a dicover
+[13:57:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:57:07] [INFO] Existe sesion, se redirige a dicover
+[13:57:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:57:07] [INFO] Existe sesion, se redirige a dicover
+[13:58:09] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:09] [INFO] Existe sesion, se redirige a dicover
+[13:58:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:10] [INFO] Existe sesion, se redirige a dicover
+[13:58:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:10] [INFO] Existe sesion, se redirige a dicover
+[13:58:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:10] [INFO] Existe sesion, se redirige a dicover
+[13:58:26] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:26] [INFO] Existe sesion, se redirige a dicover
+[13:58:26] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:26] [INFO] Existe sesion, se redirige a dicover
+[13:58:27] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:27] [INFO] Existe sesion, se redirige a dicover
+[13:58:27] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:27] [INFO] Existe sesion, se redirige a dicover
+[13:58:27] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:27] [INFO] Existe sesion, se redirige a dicover
+[13:58:28] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:28] [INFO] Existe sesion, se redirige a dicover
+[13:58:28] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:28] [INFO] Existe sesion, se redirige a dicover
+[13:58:28] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:28] [INFO] Existe sesion, se redirige a dicover
+[13:58:28] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:58:28] [INFO] Existe sesion, se redirige a dicover
+[13:59:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:59:07] [INFO] Existe sesion, se redirige a dicover
+[13:59:10] [INFO] Existe sesion, se redirige a dicover
+[13:59:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:59:10] [INFO] Existe sesion, se redirige a dicover
+[13:59:15] [INFO] Existe sesion, se redirige a dicover
+[13:59:22] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[13:59:22] [INFO] Email registrado carlos.gomez@ieti.site
+[13:59:22] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:59:22] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[13:59:22] [INFO] Session iniciada
+[13:59:22] [INFO] Redireccion a discover.php
+[13:59:22] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[13:59:22] [INFO] Existe sesion, se redirige a dicover
+[14:02:55] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:02:55] [INFO] Existe sesion, se redirige a dicover
+[14:02:55] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:02:55] [INFO] Existe sesion, se redirige a dicover
+[14:02:56] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:02:56] [INFO] Existe sesion, se redirige a dicover
+[14:02:56] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:02:56] [INFO] Existe sesion, se redirige a dicover
+[14:06:33] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:33] [INFO] Existe sesion, se redirige a dicover
+[14:06:34] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:34] [INFO] Existe sesion, se redirige a dicover
+[14:06:34] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:34] [INFO] Existe sesion, se redirige a dicover
+[14:06:34] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:34] [INFO] Existe sesion, se redirige a dicover
+[14:06:34] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:34] [INFO] Existe sesion, se redirige a dicover
+[14:06:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:35] [INFO] Existe sesion, se redirige a dicover
+[14:06:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:35] [INFO] Existe sesion, se redirige a dicover
+[14:06:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:35] [INFO] Existe sesion, se redirige a dicover
+[14:06:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:35] [INFO] Existe sesion, se redirige a dicover
+[14:06:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:35] [INFO] Existe sesion, se redirige a dicover
+[14:06:36] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:36] [INFO] Existe sesion, se redirige a dicover
+[14:06:36] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:36] [INFO] Existe sesion, se redirige a dicover
+[14:06:36] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:36] [INFO] Existe sesion, se redirige a dicover
+[14:06:41] [INFO] Existe sesion, se redirige a dicover
+[14:06:46] [INFO] Solicitud de inicio de sesión carlos.gomez@ieti.site : pass1234
+[14:06:46] [INFO] Email registrado carlos.gomez@ieti.site
+[14:06:46] [INFO] Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[14:06:46] [INFO] Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[14:06:46] [INFO] Session iniciada
+[14:06:46] [INFO] Redireccion a discover.php
+[14:06:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:06:46] [INFO] Existe sesion, se redirige a dicover
+[14:08:19] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:08:19] [INFO] Existe sesion, se redirige a dicover
+[14:08:19] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:08:19] [INFO] Existe sesion, se redirige a dicover
+[14:09:53] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:09:53] [INFO] Existe sesion, se redirige a dicover
+[14:09:55] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:09:56] [INFO] No se ha producido match
+[14:09:56] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:09:57] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:09:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:09:57] [INFO] No se ha producido match
+[14:09:57] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:10:10] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:10:10] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:10:14] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:10:14] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:10:15] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:10:16] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:10:16] [INFO] Usuario actualizado con exito, se han añadido pintos
