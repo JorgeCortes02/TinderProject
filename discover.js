@@ -82,6 +82,7 @@ $(document).ready(function() {
             indexToDownload = 0;
             await downloadData(indexToDownload);
             indexToDownload = calcMaxId();  // Actualizamos el índice
+            console.log(indexToDownload);
             preferencesMenu.css("visibility", "hidden");
         })();
       
@@ -135,7 +136,7 @@ async function downloadData(index) {
                             newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
                             newCard.append(inform);
                             contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
-                            contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
+                          
                         
 
                         }
@@ -144,9 +145,10 @@ async function downloadData(index) {
 
                 });
             } else{
+                contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
                 // Si no hay más perfiles, mostramos un mensaje
                 logToServer("No quedan más perfiles que mostrar: 0");
-                contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
+                
               
             }
         }
@@ -293,29 +295,7 @@ function updateRangeDistance() {
    
 }
 
-function updateDisAndAgeMaxMin(){
 
-    const formData = new FormData();
-    formData.append("maxDistance", idUser);  // Añadir el id del usuario al que se le dio like
-
-
-    // Hacemos la petición para guardar el like
-    fetch("apis.php?api=insertNewLike", {
-        method: "POST",  // Usamos el método POST
-        body: formData  // Enviamos el FormData
-    })
-        .then(response => {
-            if (!response.ok) {  // Verificar si la respuesta fue exitosa
-                throw new Error("Error al guardar los datos en el servidor");
-            }
-            console.log("Datos guardados exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
-        })
-        .catch(error => {
-            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
-        });
-
-
-}
 
 function updateDisAndAgeMaxMin(maxAge, minAge, maxDistance){
 
