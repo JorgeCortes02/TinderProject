@@ -33,10 +33,6 @@ function loadEnv($path) {
 // Llama a la función para cargar las variables de entorno
 loadEnv(__DIR__ . '/.env');
 
-
-//andamio para pruebas
-//recuperarUserDataDePrueba();
-//var_dump($_SESSION['user_data']['FirstName']);
 // Verificar si se ha realizado la solicitud AJAX de hacer update a la sesion para actualizar valores
 if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     $_SESSION['user_data']['FirstName'] = $_POST['firstName'];
@@ -62,7 +58,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="profile.js"></script>
+    <script type="module" src="profile.js"></script>
     <title>Profile</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -180,7 +176,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         let map;
         let marker;
         function initMap() {
-            logServer('Iniciando servicio de Google Maps...');
             const initialLocation = { 
                 lat: parseFloat(<?php echo $_SESSION['user_data']['Latitude']; ?>), 
                 lng: parseFloat(<?php echo $_SESSION['user_data']['Longitude']; ?>) 
@@ -204,7 +199,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 const position = marker.getPosition();
                 document.getElementById('latitude').value = position.lat();
                 document.getElementById('longitude').value = position.lng();
-                logServer('Actualizando coordenadas del usuario: '.position);
             });
         }
         function updateRange() {
@@ -264,7 +258,6 @@ function updateUserData($userData){
                                 Bio = :bio
                             WHERE IdUser = :userId");
     // bindParam
-    logServer('Actualizando campos del usuario: '.$query);
 
     $query->bindParam(':firstName', $userData['FirstName'], PDO::PARAM_STR);
     $query->bindParam(':lastName1', $userData['LastName1'], PDO::PARAM_STR);
@@ -278,6 +271,11 @@ function updateUserData($userData){
     $query->bindParam(':userId', $userData['IdUser'], PDO::PARAM_INT);
     $query->bindParam(':bio', $userData['Bio'], PDO::PARAM_STR);
 
+    logServer("UPDATE User SET FirstName = ". $userData['FirstName'].", LastName1 = ".$userData['LastName1'].", LastName2 =".$userData['LastName2'].
+    ", Username =". $userData['Username'].", BirthDate =". $userData['BirthDate'].", Orientation =". $userData['Orientation'].", Gender =". 
+    $userData['Gender'].", Longitude =". $userData['Longitude'].", Latitude =". $userData['Latitude'].", Bio =". $userData['Bio']."
+     WHERE IdUser =". $userData['IdUser']);
+
     if ($query->execute()) {
         logServer("Datos actualizados correctamente para el usuario.");
         
@@ -286,6 +284,7 @@ function updateUserData($userData){
         logServer("Error al actualizar los datos en UpdateUserData.",'ERROR');
 
     }
+
 
     unset($pdo);
     unset($query);

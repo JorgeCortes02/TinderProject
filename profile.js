@@ -1,5 +1,5 @@
 
-import logToServer from lib.js;
+import { logToServer } from './lib.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     var saveButton = document.getElementById('saveButton');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /** Guarda los cambios del perfil al servidor usando AJAX */
 function saveProfileChanges() {
-    logToServer('Guardando datos...');
+    logToServer('saveProfileChanges - Guardando datos...');
 
     // Campos del formulario
     const firstName = $('#firstName').val();
@@ -48,11 +48,11 @@ function saveProfileChanges() {
         },
         success: function(response) {
             console.log('datos actualizados correctamente');
-            logToServer('Solicitud AJAX correcta, data: '+data);
+            logToServer('saveProfileChanges - Solicitud AJAX correcta');
         },
         error: function(error) {
             console.error("Error al actualizar los datos: ", error);
-            logToServer("Error en la solicitud AJAX: " + error, "ERROR");
+            logToServer("saveProfileChanges - Error en la solicitud AJAX", "ERROR");
         }
     });
 }
