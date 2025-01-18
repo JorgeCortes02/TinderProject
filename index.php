@@ -11,9 +11,7 @@
 <body>
     <?php 
         // Iniciar la sesión
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
+        session_start();
         include_once 'apis.php'; 
         include 'config.php';
 
