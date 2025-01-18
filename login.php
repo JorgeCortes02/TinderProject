@@ -54,6 +54,9 @@
                                     Latitude, 
                                     Points,
                                     UserAge,
+                                    MaxAge,
+                                    MinAge,
+                                    MaxDis,
                                     Bio
                                 FROM User 
                                 WHERE IdUser = :id;");
