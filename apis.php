@@ -160,12 +160,12 @@ function downloadUsersForDiscover($indexToLoad): array
             FROM UserLikes 
             WHERE UserId = :userId
         ) 
-        AND UserAge <= :MaxAge 
-        AND UserAge >= :MinAge
-        AND Orientation  = 'Heterosexual'
-        AND Gender = 'Mujer'
-        AND IdUser != " . $_SESSION['user_data']['IdUser'] .
-" AND IdUser >" . $indexToLoad . " LIMIT 50;"
+           AND UserAge <= :MaxAge 
+   
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .$indexToLoad . " LIMIT 50;"
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea hombre homo
     } else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
@@ -173,15 +173,16 @@ function downloadUsersForDiscover($indexToLoad): array
         $query = $pdo->prepare(
             "SELECT 
                          IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        MaxAge, 
-                        MinAge, 
-                        Points,
-                        UserAge
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -190,10 +191,12 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Homosexual'
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre') )
-                    AND UserAge <= :MaxAge 
-        AND UserAge >= :MinAge
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
-            " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+                          AND UserAge <= :MaxAge 
+   
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .$indexToLoad . " LIMIT 50;"
         );
 
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer hetero
@@ -201,17 +204,17 @@ function downloadUsersForDiscover($indexToLoad): array
 
         $query = $pdo->prepare(
             "SELECT 
-                        IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        MaxAge, 
-                        MinAge,
-                        MaxDis, 
-                        Points,
-                        UserAge
+                       IdUser, 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -221,7 +224,7 @@ function downloadUsersForDiscover($indexToLoad): array
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre') )
                      AND UserAge <= :MaxAge 
-      AND UserAge <= :MaxAge 
+      
                      AND UserAge >= :MinAge
                       AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
                      " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
@@ -292,14 +295,15 @@ function downloadUsersForDiscover($indexToLoad): array
 
         $query = $pdo->prepare(
             "SELECT 
-                       IdUser, 
+                        IdUser, 
                         Username, 
                         Orientation, 
                         Gender, 
                         Longitude, 
                         Latitude, 
                         Points, 
-                        UserAge
+                        UserAge,
+                        MaxDis
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
