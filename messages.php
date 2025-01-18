@@ -36,14 +36,14 @@ include 'config.php';
                             </div>
                         ";
                         
-                    }registrarLog("Se han descargado Matches");
+                    }logServer("Se han descargado Matches");
                 } else {
                     echo "
                         <div class='no-matches'>
                             <h4>No hay matches disponibles en este momento.</h4>
                         </div>
                     ";
-                    registrarLog("No se han encontrado Matches");
+                    logServer("No se han encontrado Matches");
                 }
                 ?>
             </div>
@@ -69,13 +69,13 @@ include 'config.php';
                        </a>
                        ";
                    }
-                   registrarLog("Se han descargado mensajes");
+                   logServer("Se han descargado mensajes");
                } else {
                    echo "
                     <div class='no-matches'>
                             <h4>No hay mensajes disponibles en este momento.</h4>
                         </div>
-                   ";registrarLog("No Se han descargado Mensajes");
+                   ";logServer("No Se han descargado Mensajes");
                }
                ?>
             
@@ -106,7 +106,7 @@ function downloadMatches(): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD para descargar Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -152,7 +152,7 @@ function downloadFotosForMatches($matchDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD al descargar mensajes. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
             exit;
         }
 
@@ -190,7 +190,7 @@ function downloadChats(){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -238,7 +238,7 @@ function downloadFotosForChats($messageDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
             exit;
         }
         $userId = $_SESSION['user_data']["IdUser"];

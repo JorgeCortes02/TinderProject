@@ -1,82 +1,101 @@
-[14:44:31] [INFO] [http://localhost:8080/loginphp] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[14:44:32] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Descargando data...
-[14:44:32] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Llamando a downloadProfiles...
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: Email registrado carlos.gomez@ieti.site
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: SELECT IdUser,FirstName,LastName1, LastName2,Username, BirthDate, Orientation,Gender, Longitude, Latitude, Points,UserAge,Bio
+                    FROM User WHERE IdUser = 1
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: Session iniciada
+[15:05:51] [INFO] [http://localhost:8080/login.php] [UserId=1]: Redireccion a discover.php
+[15:05:52] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Descargando data...
+[15:05:52] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Llamando a downloadProfiles...
+[15:05:52] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
             WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Heterosexual' AND Gender = 'Mujer') 
             OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya: 
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 189.52200874498
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.52200874498 Puntos:600
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 137.48543635559
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:26 Distancia:137.48543635559 Puntos:600
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 90.823289278124
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.823289278124 Puntos:1500
-[14:44:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
-[14:44:33] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Generando cards de usuarios...
-[14:44:33] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Cards de usuarios generadas
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+[15:05:52] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[15:05:52] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 191.56485312695
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:191.56485312695 Puntos:600
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 139.17989211807
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:26 Distancia:139.17989211807 Puntos:600
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 91.706161781574
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:91.706161781574 Puntos:1500
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:05:53] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrara.
+[15:05:53] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Generando cards de usuarios...
+[15:05:53] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Cards de usuarios generadas
+[15:05:56] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Botón de dislike pulsado.
+[15:05:56] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:05:56] [ERROR] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[15:05:56] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Card de usuario eliminada.
+[15:05:56] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Botón de like pulsado
+[15:05:56] [INFO] [http://localhost:8080/apis.php?api=insertNewLike] [UserId=1]: Like insertado correctamente.
+[15:05:56] [INFO] [http://localhost:8080/apis.php?api=isAMatch] [UserId=1]: SELECT 1 FROM UserLikes where LikedUserId = 1 AND UserId = 23;
+[15:05:56] [INFO] [http://localhost:8080/apis.php?api=isAMatch] [UserId=1]: No se ha producido match
+[15:05:56] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:05:56] [ERROR] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[15:05:56] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Card de usuario eliminada.
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Botón de dislike pulsado.
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Recuperando más perfiles...
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Descargando data...
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Llamando a downloadProfiles...
+[15:05:57] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
+            WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Heterosexual' AND Gender = 'Mujer') 
+            OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;
+[15:05:57] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:05:57] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:05:57] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrara.
+[15:05:57] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:05:57] [ERROR] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Card de usuario eliminada.
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Generando cards de usuarios...
+[15:05:57] [INFO] [http://localhost:8080/discover.php] [UserId=1]: No quedan más perfiles que mostrar: 0
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
                     WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
 JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
 AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
                         LEFT JOIN Photo p ON u.IdUser = p.UserId 
                         WHERE u.IdUser = 2 LIMIT 1;
-[14:44:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
-[14:44:39] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
                         LEFT JOIN Photo p ON u.IdUser = p.UserId 
                         WHERE u.IdUser = 3 LIMIT 1;
-[14:44:39] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
-[14:44:39] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
             LEFT JOIN Photo p ON u.IdUser = p.UserId 
             WHERE u.IdUser = 9 LIMIT 1;
-[14:44:39] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
-[14:45:02] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Validando form...
-[14:45:02] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Campos del form correctos.
-[14:45:02] [INFO] [http://localhost:8080/profile.php] [UserId=1]: saveProfileChanges - Guardando datos...
-[14:45:02] [INFO] [http://localhost:8080/profile.php] [UserId=1]: UPDATE User SET FirstName = Carlosss, LastName1 = Gómezzz, LastName2 =Lópezzz, Username =carlito123zzz, BirthDate =1990-05-21, Orientation =Heterosexual, Gender =Hombre, Longitude =-3.7225935784924813, Latitude =40.408166840148866, Bio =Amante de la fotografía. Y el buen vino
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[15:05:59] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[15:06:20] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Validando form...
+[15:06:20] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Campos del form correctos.
+[15:06:20] [INFO] [http://localhost:8080/profile.php] [UserId=1]: saveProfileChanges - Guardando datos...
+[15:06:20] [INFO] [http://localhost:8080/profile.php] [UserId=1]: UPDATE User SET FirstName = Carloss, LastName1 = Gómezz, LastName2 =Lópezz, Username =carlito123zz, BirthDate =1990-05-21, Orientation =Heterosexual, Gender =Hombre, Longitude =-3.7198469964612313, Latitude =40.42986134424796, Bio =Amante de la fotografía. Y el puro
      WHERE IdUser =1
-[14:45:02] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Datos actualizados correctamente para el usuario.
-[14:45:02] [INFO] [http://localhost:8080/profile.php] [UserId=1]: saveProfileChanges - Solicitud AJAX correcta
-[14:45:08] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Descargando data...
-[14:45:08] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Llamando a downloadProfiles...
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT IdUser,Username,  Orientation,  Gender, Longitude, Latitude, Points,UserAge FROM User 
-            WHERE IdUser NOT IN ( SELECT LikedUserId FROM UserLikes WHERE UserId = userId ) AND ((Orientation  = 'Heterosexual' AND Gender = 'Mujer') 
-            OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya: 
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 191.56485312695
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:191.56485312695 Puntos:600
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 139.17989211807
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:26 Distancia:139.17989211807 Puntos:600
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia con la formula de Haversine (d = R · c)...
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Distancia entre los dos usuarios, Resultado = 91.706161781574
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:91.706161781574 Puntos:1500
-[14:45:08] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
-[14:45:09] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Generando cards de usuarios...
-[14:45:09] [INFO] [http://localhost:8080/discover.php] [UserId=1]: Cards de usuarios generadas
+[15:06:20] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Datos actualizados correctamente para el usuario.
+[15:06:20] [INFO] [http://localhost:8080/profile.php] [UserId=1]: saveProfileChanges - Solicitud AJAX correcta
+[15:06:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Validando form...
+[15:06:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Campos del form correctos.
+[15:06:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: saveProfileChanges - Guardando datos...
+[15:06:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: UPDATE User SET FirstName = Carloss, LastName1 = Gómezz, LastName2 =Lópezz, Username =carlito123zz, BirthDate =1990-05-21, Orientation =Homosexual, Gender =Hombre, Longitude =-3.7198469964612313, Latitude =40.42986134424796, Bio =Amante de la fotografía. Y el puro
+     WHERE IdUser =1
+[15:06:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Datos actualizados correctamente para el usuario.
+[15:06:38] [INFO] [http://localhost:8080/profile.php] [UserId=1]: saveProfileChanges - Solicitud AJAX correcta

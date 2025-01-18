@@ -49,7 +49,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     // Llamar a la función para actualizar en la base de datos
     updateUserData($_SESSION['user_data']);
 }
-
+logServer("Cargando perfil del usuario...");
 ?>
 
 

@@ -105,7 +105,7 @@ function CalcAndOrderbyPosition()
             return $b["TotalPoints"] - $a["TotalPoints"];
 
         });
-        registrarLog("Se ha recuperado y ordenado a los usuarios que se mostrara.");
+        logServer("Se ha recuperado y ordenado a los usuarios que se mostrara.");
         // Devolver los resultados como JSON
         header('Content-Type: application/json');
         echo json_encode($users); // Devuelve el array de usuarios como JSON
@@ -416,10 +416,9 @@ function isAMatch()
         if ($isaMatch !== false) {
             saveANewMatch($likedUserID);
             $isaMatch = (int) $isaMatch;  // Convertir a entero
-            registrarLog("Se ha producido match");
         } else {
             $isaMatch = 0;  // Si no hay resultado, devolver 0
-            registrarLog("No se ha producido match");
+            logServer("No se ha producido match");
         }
 
         echo json_encode($isaMatch);
@@ -451,7 +450,7 @@ function saveANewMatch($userLiked)
         logServer("INSERT INTO Matches (User1Id, User2Id) VALUES(?,?)");
         //a l'execució de la sentència li passem els paràmetres amb un array 
         $stmt->execute(array($_SESSION['user_data']['IdUser'], $userLiked));
-        registrarLog("Se han insertado datos en Matches");
+        logServer("Se han insertado datos en Matches");
 
     } catch (PDOException $e) {
         print "Error!: " . $e->getMessage() . " Desfem</br>";
