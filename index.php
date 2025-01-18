@@ -10,23 +10,24 @@
 
 <body>
     <?php 
-        
         // Iniciar la sesión
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         include_once 'apis.php'; 
-include 'config.php';
+        include 'config.php';
+
         // Verificar si hay una sesión activa
         if (isset($_SESSION['user_data'])) {
             // Si la sesión está activa, redirigir a la página correspondiente
+            logServer('Sesión activa, redirigiendo a discover.php');
             header("Location: discover.php");
-            registrarLog("Existe sesion, se redirige a dicover");
+
             exit();
         } else {
             // Si no hay sesión activa, redirigir a otra página
+            logServer('No se ha encontrado una sesón, redirigiendo a login.php');
             header("Location: login.php");
-            registrarLog("No existe sesion, se redirige a login");
             exit();
         }
     

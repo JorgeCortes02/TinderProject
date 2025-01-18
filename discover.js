@@ -1,8 +1,10 @@
+import { logToServer } from './lib.js';
 // Aquí puedes usar jQuery sin problemas
 $(document).ready(function() {
     let indexToDownload = 0;  // Índice inicial para cargar más perfiles
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
+
     const preferencesButton = $("#distance");
     const closeButton = $("#close");
     const preferencesMenu = $(".divPreferences");
@@ -10,13 +12,15 @@ $(document).ready(function() {
     $('#maxDis').on('input', updateRangeDistance);
     updateRangeAge();
     updateRangeDistance();
-    dislikeButton.click(()=>{
 
+    dislikeButton.click(()=>{
+        logToServer('Botón de dislike pulsado.');
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
 
         // Si solo queda una tarjeta
         if(cards.length == 1){
             // Llamamos a la función para recuperar más perfiles de forma asíncrona
+            logToServer('Recuperando más perfiles...');
             (async () => {
                 await downloadData(indexToDownload);
                 indexToDownload = calcMaxId();  // Actualizamos el índice con el id máximo
@@ -26,15 +30,17 @@ $(document).ready(function() {
         const actualCard = $(".card-container").children(".card").last();
         sumPoints(200);
         actualCard.remove();
+        logToServer('Card de usuario eliminada.');
     });
 
     // Acción cuando el usuario hace clic en el botón de like
     likeButton.click(()=>{
-
+        logToServer('Botón de like pulsado');
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
 
         // Si solo queda una tarjeta
         if(cards.length == 1){
+
             // Llamamos a la función para recuperar más perfiles de forma asíncrona
             (async () => {
                 await downloadData(indexToDownload);
@@ -55,6 +61,7 @@ $(document).ready(function() {
         isMatch(actualCard.data("userId"));
         sumPoints(100);
         // Eliminamos la tarjeta que fue procesada
+        logToServer('Card de usuario eliminada.');
         actualCard.remove();
     });
     preferencesButton.on("click", function(){
@@ -95,25 +102,29 @@ $(document).ready(function() {
 async function downloadData(index) {
     const formData = new FormData();
     formData.append("indextToLoad", index);  // Añadir el índice a FormData
+    logToServer('Descargando data...');
 
     try {
         // Hacemos la petición para obtener perfiles
+        logToServer('Llamando a downloadProfiles...');
         const response = await fetch("apis.php?api=downdloadProfiles", {
             method: "POST",  // Usamos el método POST
             body: formData  // Enviamos el FormData
         });
 
         const responseText = await response.text();  // Obtenemos la respuesta como texto
-        console.log("Respuesta del servidor:", responseText); 
+        console.log("Respuesta del servidor:", responseText);
+        logToServer("Respuesta del servidor: ".responseText);
 
         // Si la respuesta no está vacía, intentamos parsear el JSON
         if (responseText && responseText.trim() != "") {
             const misDatos = JSON.parse(responseText);  // Intentamos parsear como JSON
             const contenedor = $(".card-container");  // Contenedor donde se muestran las tarjetas
             console.log(misDatos);
-            
+            logToServer("Generando cards de usuarios...")
             // Si hay perfiles, los mostramos
             if (misDatos.length > 0) {
+                logToServer("Cards de usuarios generadas");
                 misDatos.forEach(usuario => {
                    
 
@@ -131,6 +142,7 @@ async function downloadData(index) {
                 });
             } else{
                 // Si no hay más perfiles, mostramos un mensaje
+                logToServer("No quedan más perfiles que mostrar: 0");
                 contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
               
             }
@@ -150,6 +162,7 @@ function calcMaxId(){
         if(userId > maxId){
             maxId = userId;  // Actualizamos el máximo id
         }
+        logToServer("Max ID de las cards generadas :".maxId);
     });
     console.log(maxId);  // Mostramos el máximo id en consola
     return maxId;  // Retornamos el máximo id
