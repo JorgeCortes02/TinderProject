@@ -142,25 +142,35 @@ function downloadUsersForDiscover($indexToLoad): array
             OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
 
         $query = $pdo->prepare(
-            "SELECT 
-                        IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
-                    FROM User 
-                    WHERE IdUser NOT IN (
-                        SELECT LikedUserId 
-                        FROM UserLikes 
-                        WHERE UserId = :userId
-                    )AND ((Orientation  = 'Heterosexual'
-                    AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
-                    AND Gender = 'Mujer') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+           "SELECT 
+            IdUser, 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
+        FROM User 
+        WHERE IdUser NOT IN (
+            SELECT LikedUserId 
+            FROM UserLikes 
+            WHERE UserId = :userId
+        ) 
+        AND Orientation  = 'Heterosexual'
+        AND Gender = 'Mujer'
+        AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND UserAge <= :MaxAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
+        
+
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea hombre homo
     } else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Homosexual") {
@@ -171,14 +181,19 @@ function downloadUsersForDiscover($indexToLoad): array
 
         $query = $pdo->prepare(
             "SELECT 
-                        IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
+
+                      IdUser, 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
+
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -187,8 +202,12 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Homosexual'
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre') )
-                   
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+                   AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer hetero
@@ -201,14 +220,17 @@ function downloadUsersForDiscover($indexToLoad): array
         $query = $pdo->prepare(
             "SELECT 
                         IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
-                    FROM User 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
+                  FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
                         FROM UserLikes 
@@ -216,7 +238,12 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Heterosexual'
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+
+                     AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
         //Query para buscar perfiles en caso de que el usuario loggeado sea mujer homo
@@ -227,14 +254,18 @@ function downloadUsersForDiscover($indexToLoad): array
         OR (Orientation  = 'Bisexual' AND Gender = 'Mujer')) AND IdUser != userId AND IdUser > indexToLoad LIMIT 50;");
         $query = $pdo->prepare(
             "SELECT 
-                       IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
+                     IdUser, 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
+
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -243,7 +274,11 @@ function downloadUsersForDiscover($indexToLoad): array
                     )AND ((Orientation  = 'Homosexual'
                     AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
                     AND Gender = 'Mujer') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+                    AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
 
@@ -255,14 +290,19 @@ function downloadUsersForDiscover($indexToLoad): array
 
         $query = $pdo->prepare(
             "SELECT 
-                       IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
+
+                     IdUser, 
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
+
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -272,7 +312,13 @@ function downloadUsersForDiscover($indexToLoad): array
                     AND Gender = 'Mujer') or (Orientation  = 'Bisexual'
                     AND Gender = 'Hombre')or (Orientation  = 'Heterosexual'
                     AND Gender = 'Hombre') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+
+                    AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
     }else if ($_SESSION['user_data']["Gender"] == "Hombre" && $_SESSION['user_data']["Orientation"] == "Bisexual") {
@@ -285,13 +331,16 @@ function downloadUsersForDiscover($indexToLoad): array
         $query = $pdo->prepare(
             "SELECT 
                        IdUser, 
-                        Username, 
-                        Orientation, 
-                        Gender, 
-                        Longitude, 
-                        Latitude, 
-                        Points, 
-                        UserAge
+            Username, 
+            Orientation, 
+            Gender, 
+            Longitude, 
+            Latitude, 
+            MaxAge, 
+            MinAge,
+            Points, 
+            UserAge,
+            MaxDis
                     FROM User 
                     WHERE IdUser NOT IN (
                         SELECT LikedUserId 
@@ -301,7 +350,12 @@ function downloadUsersForDiscover($indexToLoad): array
                     AND Gender = 'Hombre') or (Orientation  = 'Bisexual'
                     AND Gender = 'Mujer') or (Orientation  = 'Heterosexual'
                     AND Gender = 'Mujer') )
-                    AND IdUser != " . $_SESSION['user_data']['IdUser'] .
+
+                    AND UserAge <= :MaxAge 
+                     AND UserAge >= :MinAge
+                      AND MaxAge >= " . $_SESSION['user_data']['UserAge']  . 
+                     " AND MinAge <= " . $_SESSION['user_data']['UserAge']  .
+                    " AND IdUser != " . $_SESSION['user_data']['IdUser'] .
             " AND IdUser >" . $indexToLoad . " LIMIT 50;"
         );
     }

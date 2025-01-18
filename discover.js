@@ -92,14 +92,22 @@ async function downloadData(index) {
             if (misDatos.length > 0) {
                 logToServer("Cards de usuarios generadas");
                 misDatos.forEach(usuario => {
-                    const newCard = $("<div>").attr("class", "card");
-                    newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
-                    const inform = $("<div>").attr("class", "card-info");
-                    inform.append($("<h2>").text(usuario["Username"] + ", " + usuario["UserAge"]));
-                    newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
-                    newCard.append(inform);
-                    contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
-                    contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
+   
+                        if(usuario["TotalPoints"] != 0){
+                            const newCard = $("<div>").attr("class", "card");
+                            newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
+                            const inform = $("<div>").attr("class", "card-info");
+                            inform.append($("<h2>").text(usuario["Username"] + ", " + usuario["UserAge"]));
+                            newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
+                            newCard.append(inform);
+                            contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
+                            contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
+                        
+
+                        }
+          
+                   
+
 
                 });
             } else{
