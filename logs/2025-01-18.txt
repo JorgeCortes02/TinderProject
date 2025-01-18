@@ -537,3 +537,151 @@
 [14:10:15] [INFO] Usuario actualizado con exito, se han añadido pintos
 [14:10:16] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
 [14:10:16] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:39:35] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:39:35] [INFO] Existe sesion, se redirige a dicover
+[14:39:37] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:39:37] [INFO] Existe sesion, se redirige a dicover
+[14:39:40] [INFO] Redireccion a profile.php
+[14:39:41] [INFO] Existe sesion, se redirige a dicover
+[14:39:56] [INFO] Se han descargado Matches
+[14:39:56] [INFO] Se han descargado mensajes
+[14:39:56] [INFO] Existe sesion, se redirige a dicover
+[14:39:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:39:57] [INFO] Existe sesion, se redirige a dicover
+[14:39:58] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:39:59] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:39:59] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:39:59] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:01] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:01] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:01] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:01] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:02] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:03] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:03] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:03] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:03] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:04] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:05] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:40:05] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:44:45] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:44:45] [INFO] Existe sesion, se redirige a dicover
+[14:44:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:44:46] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:44:52] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:44:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:44:59] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:44:59] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:45:07] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:45:07] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:47:22] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:47:22] [INFO] Existe sesion, se redirige a dicover
+[14:47:24] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:47:24] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:47:31] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:47:31] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:47:32] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:47:32] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:48:57] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:48:57] [INFO] Existe sesion, se redirige a dicover
+[14:48:59] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:48:59] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:34] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:34] [INFO] Existe sesion, se redirige a dicover
+[14:50:36] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:36] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:37] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:37] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:37] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:38] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:38] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:38] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:46] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:50:46] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:47] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:47] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:47] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:47] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:48] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:48] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:48] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:48] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:52] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:50:52] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:53] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:53] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:53] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:53] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:54] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:54] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:54] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:50:58] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:50:58] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:50:59] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:00] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:01] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:51:01] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:06] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:51:06] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:51:07] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:07] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:08] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:08] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:11] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:12] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:51:12] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:19] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[14:51:19] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:51:20] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:20] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:20] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:21] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:21] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:21] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[14:51:21] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:21] [INFO] Usuario actualizado con exito, se han añadido pintos
+[14:51:21] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:01] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:01] [INFO] Existe sesion, se redirige a dicover
+[21:28:15] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[21:28:15] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:16] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:17] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:17] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:29] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[21:28:29] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:30] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:31] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:31] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:32] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:32] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:32] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:32] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:38] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[21:28:38] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:39] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:40] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:40] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:41] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:28:41] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:28:41] [INFO] Usuario actualizado con exito, se han añadido pintos
+[21:30:08] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[21:30:08] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:30:13] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[21:30:13] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
+[21:30:15] [INFO] Usuario qactualizado con exito, se han añadido pintos
+[21:30:15] [INFO] Se ha recuperado y ordenado a los usuarios que se mostrara.
