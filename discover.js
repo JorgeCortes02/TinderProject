@@ -5,14 +5,6 @@ $(document).ready(function() {
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
 
-    const preferencesButton = $("#distance");
-    const closeButton = $("#close");
-    const preferencesMenu = $(".divPreferences");
-    $('#minAge, #maxAge').on('input', updateRangeAge);
-    $('#maxDis').on('input', updateRangeDistance);
-    updateRangeAge();
-    updateRangeDistance();
-
     dislikeButton.click(()=>{
         logToServer('Botón de dislike pulsado.');
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
@@ -64,6 +56,7 @@ $(document).ready(function() {
         logToServer('Card de usuario eliminada.');
         actualCard.remove();
     });
+
     preferencesButton.on("click", function(){
 
         preferencesMenu.css("visibility", "visible");
@@ -86,12 +79,10 @@ $(document).ready(function() {
             preferencesMenu.css("visibility", "hidden");
         })();
       
-     
-       
-       
 
        
     });
+
     // Cargamos los perfiles iniciales
     (async () => {
         await downloadData(indexToDownload);
@@ -127,7 +118,7 @@ async function downloadData(index) {
             if (misDatos.length > 0) {
                 logToServer("Cards de usuarios generadas");
                 misDatos.forEach(usuario => {
-                   
+   
                         if(usuario["TotalPoints"] != 0){
                             const newCard = $("<div>").attr("class", "card");
                             newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
@@ -136,20 +127,19 @@ async function downloadData(index) {
                             newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
                             newCard.append(inform);
                             contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
-                          
                         
-
                         }
           
-                   
 
                 });
             } else{
                 contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
                 // Si no hay más perfiles, mostramos un mensaje
                 logToServer("No quedan más perfiles que mostrar: 0");
+
+                contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
                 
-              
+
             }
         }
     } catch (e) {
