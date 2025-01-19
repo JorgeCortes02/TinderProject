@@ -181,7 +181,7 @@
 
         <a href="">¿Has olvidado la contraseña?</a>
         </br>
-        <a href="">Crear una cuenta nueva</a>
+        <a href="register.php">Crear una cuenta nueva</a>
     </div>
 
 

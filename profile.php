@@ -73,8 +73,9 @@ logServer("Cargando perfil del usuario...");
         </div>
 
         <div class="fieldsContainer">
-        <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
-            <div id = "scroll"></div>
+        <div id = "scroll"></div>
+        <div class="error-message" id="errorMessage">
+            <h3 class="error">Error: No se puede dejar un campo vacío</h3></div>
         <form id="profileForm">
 
             <h2>Edita tu perfil</h2>
@@ -95,7 +96,7 @@ logServer("Cargando perfil del usuario...");
                 </div>
             <div class ="field">
                 <h3>Fecha de Nacimiento: </h3>
-                <input type="text" id="birthdate" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
+                <input type="date" id="birthdate" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
                 </div>
             <div class ="field">
                 <h3>Biografia: </h3>
@@ -167,8 +168,8 @@ logServer("Cargando perfil del usuario...");
 
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
-            <a href="discover.php">Descobrir</a>
-            <a href="messages.php" class="active">Missatges</a>
+            <a href="discover.php">Descubrir</a>
+            <a href="messages.php" class="active">Mensajes</a>
             <a href="profile.php">Perfil</a>
         </nav>
     </div>

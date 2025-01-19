@@ -571,7 +571,7 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
-            logServer("Usuario actualizado con éxito.",'ERROR');
+            logServer("Usuario actualizado con éxito.");
         } else {
             echo "Error al actualizar el usuario.";
             logServer("Error al actualizar el usuario",'ERROR');
