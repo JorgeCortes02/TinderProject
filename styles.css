@@ -363,6 +363,36 @@ body {
     align-items: center;
     position: relative;
 }
+#distance{
+
+    width: 30px;
+    height: 30px;
+    background-image: url("images/settings-2.png");
+    background-size: cover; /* Escala la imagen para cubrir todo el botón */
+    background-color: var(--darkblue);
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 2px;
+    box-sizing: border-box;
+    border: none; /* Opcional: elimina el borde del botón */
+}
+#close{
+
+    width: 20px;
+    height: 20px;
+    background-image: url("images/close.png");
+    background-size: cover; /* Escala la imagen para cubrir todo el botón */
+    background-color: white;
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 2px;
+    box-sizing: border-box;
+    border: none; /* Opcional: elimina el borde del botón */
+    position: absolute;
+    z-index: 1001;
+    right: 0px;
+    top: 10px;
+}
 
 .card {
     width: 90%;
@@ -483,7 +513,7 @@ body {
 }
 
 
-<<<<<<< HEAD
+
   /* Range slider styles */
   .range-slider {
     width: 100%;
@@ -550,8 +580,7 @@ body {
 }
 
 
-=======
->>>>>>> d3ef7c0740eb588c5ae6d4f4ad91239b67ba5afa
+
 /* MARK: DISCOVER mobile*/
 
 @media (max-width: 460px) {
@@ -1050,8 +1079,7 @@ body {
     }
     
     
-<<<<<<< HEAD
-=======
+
     /* Range slider styles */
      .range-slider {
         width: 100%;
@@ -1109,7 +1137,7 @@ body {
         outline: none;
     }
     
->>>>>>> d3ef7c0740eb588c5ae6d4f4ad91239b67ba5afa
+
     
      .bottom {
         width: 100%;

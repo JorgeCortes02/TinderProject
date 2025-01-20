@@ -18,6 +18,7 @@
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
         $password = $_POST['contrassenya'] ?? '';
+       
 
         // Limpieza básica de los datos recibidos
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -37,7 +38,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer("Failed to get DB handle: " . $e->getMessage(), 'ERROR');
+            registrarLog("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
             exit;
         }
 
@@ -54,21 +55,21 @@
                                     Latitude, 
                                     Points,
                                     UserAge,
+                                    MaxAge,
+                                    MinAge,
+                                    MaxDis,
                                     Bio
                                 FROM User 
                                 WHERE IdUser = :id;");
         $query->bindParam(":id", $storedUserId);
         $query->execute();
         $query->execute();
-        logServer("SELECT IdUser,FirstName,LastName1, LastName2,Username, BirthDate, Orientation,Gender, Longitude, Latitude, Points,UserAge,Bio
-                    FROM User WHERE IdUser = ".$storedUserId);
 
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
         // Almacenar el resultado en la sesión
         $_SESSION['user_data'] = $result;
-        logServer("Session iniciada");
 
         //eliminem els objectes per alliberar memòria 
         unset($pdo);
@@ -88,7 +89,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
         } catch (PDOException $e) {
             echo "<p>Failed to connect to the database: " . $e->getMessage() . "</p>";
-            logServer("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
+            registrarLog("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
             exit;
         }
 
@@ -97,10 +98,10 @@
         $query->bindParam(":mail", $email);
         $query->execute();
         $row = $query->fetch();
-        logServer('SELECT Password, IdUser FROM User WHERE Email ='. $email);
+
         // si el email NO existe
         if (!$row) {
-            logServer("Email no registrado $email");
+            registrarLog("Email no registrado $email");
             ?>
             <script>
                 document.addEventListener("DOMContentLoaded", (event) => {
@@ -112,13 +113,13 @@
 
             //si el email SÍ existe
         } else {
-            logServer("Email registrado $email");
+           
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
 
             //si la contraseña es incorrecta
             if ($storedPassword !== hash('sha256', $password)) {
-                logServer("Contraseña incorrecta ".hash('sha256', $password));
+               
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
@@ -131,19 +132,19 @@
 
             //si todo es correcto
             } else {
-                logServer("Contraseña  correcta ".hash('sha256', $password));
-                logServer("Inicio de sesión correcto $email : ".hash('sha256', $password));
+               
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 
                 //Cargamos los datos del usuario en la sesion
                 session_start();
+                
                 getUserData($storedUserId);
 
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;
                 //redireccionamos a DISCOVER
-                logServer("Redireccion a discover.php");
+              
                 header("Location: discover.php");
 
             }

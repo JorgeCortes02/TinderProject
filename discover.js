@@ -1,18 +1,22 @@
-import { logToServer } from './lib.js';
 // Aquí puedes usar jQuery sin problemas
 $(document).ready(function() {
     let indexToDownload = 0;  // Índice inicial para cargar más perfiles
     const dislikeButton = $(".dislike");  // Botón de dislike
     const likeButton = $(".like");  // Botón de like
-
+    const preferencesButton = $("#distance");
+    const closeButton = $("#close");
+    const preferencesMenu = $(".divPreferences");
+    $('#minAge, #maxAge').on('input', updateRangeAge);
+    $('#maxDis').on('input', updateRangeDistance);
+    updateRangeAge();
+    updateRangeDistance();
     dislikeButton.click(()=>{
-        logToServer('Botón de dislike pulsado.');
+
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
 
         // Si solo queda una tarjeta
         if(cards.length == 1){
             // Llamamos a la función para recuperar más perfiles de forma asíncrona
-            logToServer('Recuperando más perfiles...');
             (async () => {
                 await downloadData(indexToDownload);
                 indexToDownload = calcMaxId();  // Actualizamos el índice con el id máximo
@@ -22,17 +26,15 @@ $(document).ready(function() {
         const actualCard = $(".card-container").children(".card").last();
         sumPoints(200);
         actualCard.remove();
-        logToServer('Card de usuario eliminada.');
     });
 
     // Acción cuando el usuario hace clic en el botón de like
     likeButton.click(()=>{
-        logToServer('Botón de like pulsado');
+
         let cards = Array.from($(".card"));  // Convertimos las tarjetas a un array
 
         // Si solo queda una tarjeta
         if(cards.length == 1){
-
             // Llamamos a la función para recuperar más perfiles de forma asíncrona
             (async () => {
                 await downloadData(indexToDownload);
@@ -53,10 +55,8 @@ $(document).ready(function() {
         isMatch(actualCard.data("userId"));
         sumPoints(100);
         // Eliminamos la tarjeta que fue procesada
-        logToServer('Card de usuario eliminada.');
         actualCard.remove();
     });
-
     preferencesButton.on("click", function(){
 
         preferencesMenu.css("visibility", "visible");
@@ -75,17 +75,15 @@ $(document).ready(function() {
             indexToDownload = 0;
             await downloadData(indexToDownload);
             indexToDownload = calcMaxId();  // Actualizamos el índice
-            console.log(indexToDownload);
             preferencesMenu.css("visibility", "hidden");
         })();
       
-<<<<<<< HEAD
-=======
+     
+       
+       
 
->>>>>>> d3ef7c0740eb588c5ae6d4f4ad91239b67ba5afa
        
     });
-
     // Cargamos los perfiles iniciales
     (async () => {
         await downloadData(indexToDownload);
@@ -97,31 +95,27 @@ $(document).ready(function() {
 async function downloadData(index) {
     const formData = new FormData();
     formData.append("indextToLoad", index);  // Añadir el índice a FormData
-    logToServer('Descargando data...');
 
     try {
         // Hacemos la petición para obtener perfiles
-        logToServer('Llamando a downloadProfiles...');
         const response = await fetch("apis.php?api=downdloadProfiles", {
             method: "POST",  // Usamos el método POST
             body: formData  // Enviamos el FormData
         });
 
         const responseText = await response.text();  // Obtenemos la respuesta como texto
-        console.log("Respuesta del servidor:", responseText);
-        logToServer("Respuesta del servidor: ".responseText);
+        console.log("Respuesta del servidor:", responseText); 
 
         // Si la respuesta no está vacía, intentamos parsear el JSON
         if (responseText && responseText.trim() != "") {
             const misDatos = JSON.parse(responseText);  // Intentamos parsear como JSON
             const contenedor = $(".card-container");  // Contenedor donde se muestran las tarjetas
             console.log(misDatos);
-            logToServer("Generando cards de usuarios...")
+            
             // Si hay perfiles, los mostramos
             if (misDatos.length > 0) {
-                logToServer("Cards de usuarios generadas");
                 misDatos.forEach(usuario => {
-   
+                   
                         if(usuario["TotalPoints"] != 0){
                             const newCard = $("<div>").attr("class", "card");
                             newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
@@ -130,24 +124,18 @@ async function downloadData(index) {
                             newCard.append($("<img>").attr("src", usuario["img0"]).attr("class", "card-img"));  // Imagen del perfil
                             newCard.append(inform);
                             contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
-<<<<<<< HEAD
-                          
-
-=======
+                            contenedor.css("background", "white");  // Cambiamos el estilo del contenedor
                         
->>>>>>> d3ef7c0740eb588c5ae6d4f4ad91239b67ba5afa
+
                         }
           
+                   
 
                 });
             } else{
-                contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
                 // Si no hay más perfiles, mostramos un mensaje
-                logToServer("No quedan más perfiles que mostrar: 0");
-
                 contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
-                
-
+              
             }
         }
     } catch (e) {
@@ -165,7 +153,6 @@ function calcMaxId(){
         if(userId > maxId){
             maxId = userId;  // Actualizamos el máximo id
         }
-        logToServer("Max ID de las cards generadas :".maxId);
     });
     console.log(maxId);  // Mostramos el máximo id en consola
     return maxId;  // Retornamos el máximo id
@@ -293,7 +280,29 @@ function updateRangeDistance() {
    
 }
 
+function updateDisAndAgeMaxMin(){
 
+    const formData = new FormData();
+    formData.append("maxDistance", idUser);  // Añadir el id del usuario al que se le dio like
+
+
+    // Hacemos la petición para guardar el like
+    fetch("apis.php?api=insertNewLike", {
+        method: "POST",  // Usamos el método POST
+        body: formData  // Enviamos el FormData
+    })
+        .then(response => {
+            if (!response.ok) {  // Verificar si la respuesta fue exitosa
+                throw new Error("Error al guardar los datos en el servidor");
+            }
+            console.log("Datos guardados exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
+        });
+
+
+}
 
 function updateDisAndAgeMaxMin(maxAge, minAge, maxDistance){
 
