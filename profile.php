@@ -70,10 +70,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 <body>
     <div class="containerMessage">
         <!-- Encabezado -->
-        <div class="header">
-            <h1>IETINDER</h1>
-            
-        </div>
+        <?php include('header.php'); ?>
+
 
         <div class="fieldsContainer">
         <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
@@ -172,11 +170,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
        
 
         <!-- Menú de navegación inferior -->
-        <nav class="bottom-nav">
-            <a href="discover.php">Descobrir</a>
-            <a href="messages.php" class="active">Missatges</a>
-            <a href="profile.php">Perfil</a>
-        </nav>
+        <?php include('footer.php'); ?>
     </div>
     <script>
         let map;
