@@ -7,9 +7,13 @@
 </head>
 <body>
 <?php
+    include_once '../apis.php'; 
+    
     // Paso 1: recoge la URL desde donde viene
     if (isset($_SERVER['HTTP_REFERER'])) {
 
+        $referer = $_SERVER['HTTP_REFERER']; 
+        
         // Paso 2: Verifica si la URL contiene "/login.php"
         if (strpos($referer, '/login.php') === false) {
             logServer("Usuario no identificado ha intentado entrar en el panel de administración");
