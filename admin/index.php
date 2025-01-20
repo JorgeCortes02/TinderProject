@@ -12,7 +12,7 @@
 
         // Paso 2: Verifica si la URL contiene "/login.php"
         if (strpos($referer, '/login.php') === false) {
-            registrarLog("Usuario no identificado ha intentado entrar en el panel de administración");
+            logServer("Usuario no identificado ha intentado entrar en el panel de administración");
             header("Location: /login.php");
             exit;
         }
