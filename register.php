@@ -33,28 +33,49 @@ function loadEnv($path) {
 // Llama a la función para cargar las variables de entorno
 loadEnv(__DIR__ . '/.env');
 
-if(isset($_GET['validate'])){
-    $tokenMd5 = $_GET['validate'];
-    // Desencriptar el token y obtener el userId
-    $userId = substr(md5($tokenMd5), 4, -7);  // Obtener el userId del token original "IETI'userId'TINDER"
+if (isset($_GET['validate'])) {
+    list($tokenMd5, $userId) = explode(':', trim($_GET['validate'])); // Separar el tokenMd5 y el userId
+    //si no es int, levanta error
+    if (!filter_var($userId, FILTER_VALIDATE_INT)) {
+        logServer("ID de usuario no válido.", "ERROR");
+        exit;
+    }
     $originalToken = "IETI" . $userId . "TINDER";
+    $expectedTokenMd5 = md5($originalToken);
 
-    //validación de token
-    if ($tokenMd5 === md5($originalToken)) {
-        // Actualizar el campo login_allowed a 1 (true)
-        $query = $pdo->prepare("UPDATE User SET login_allowed = 1 WHERE UserID = :userId");
+    logServer("User Id recibido: " . $userId);
+    logServer("Token recibido: " . $tokenMd5);
+    logServer("Token esperado: " . $expectedTokenMd5);
+
+    if ($tokenMd5 === $expectedTokenMd5) {
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer("Failed to connect to the database" . $e->getMessage(),'ERROR');
+            exit;
+        }
+        
+        logServer("Token de verificación coincide.");
+        logServer("UPDATE User SET LoginAllowed = 1 WHERE IdUser =".$userId);
+        $query = $pdo->prepare("UPDATE User SET LoginAllowed = 1 WHERE IdUser = :userId".";");
         $query->bindParam(':userId', $userId, PDO::PARAM_INT);
         
         if ($query->execute()) {
             logServer("Cuenta verificada con éxito.");
+            $_SESSION['showVerificationNotification'] = true; //notificacion emergente
+            header("Location: login.php");
         } else {
-            logServer("Error al verificar la cuenta.","ERROR");
+            logServer("Error al verificar la cuenta.", "ERROR");
         }
     } else {
-        logServer("Token de verificación inválido.","ERROR");
+        logServer("Token de verificación inválido.", "ERROR");
     }
-
 }
+
 if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
     $newUserData = [
         'email' => $_POST['email'],
@@ -199,13 +220,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
             </div>
             </form>
         </div>
-
-        <!-- Menú de navegación inferior -->
-        <nav class="bottom-nav">
-            <a href="discover.php">Descubrir</a>
-            <a href="messages.php" class="active">Mensajes</a>
-            <a href="profile.php">Perfil</a>
-        </nav>
     </div>
     <script>
         let map;
@@ -320,74 +334,36 @@ function createUser($newUserData){
 
 function sendVerificationEmail($userId, $userEmail) {
     // Generar un token único para la verificación
-    $token = "IETI" . $userId . "TINDER"; // El formato que mencionaste
-    $tokenMd5 = md5($token);  // Convertimos a MD5 para usarlo como parámetro GET
+    $token = "IETI" . $userId . "TINDER";
+    $tokenMd5 = md5($token);  //  MD5 parámetro GET
+    $tokenWithUserId = $tokenMd5 . ':' . $userId; // Concatenar el userId
     
     // Crear el enlace de verificación
-    $verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
+    // $verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
     //$verificationLink = "http://localhost:3000/register.php?validate=" . $tokenMd5;
-    //$verificationLink = "https://tinder2.ieti.site//register.php?validate=" . $tokenMd5;
+    $verificationLink = "https://tinder2.ieti.site/register.php?validate=" . $tokenWithUserId;
 
     // Cuerpo del correo con estilo
     $subject = "Verifica tu cuenta en IETINDER";
-    $message = "
+    $message = '
     <html>
     <head>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #F4F4F4;
-                color: #292929;
-                padding: 20px;
-            }
-            .container {
-                background-color: #FFFFFF;
-                padding: 20px;
-                border-radius: 8px;
-                text-align: center;
-                max-width: 600px;
-                margin: 0 auto;
-            }
-            .header {
-                background-color: #534FF6;
-                color: #FFFFFF;
-                padding: 15px;
-                font-size: 24px;
-                border-radius: 8px 8px 0 0;
-            }
-            .button {
-                background-color: #4CAF50;
-                color: #FFFFFF;
-                padding: 15px 25px;
-                font-size: 16px;
-                text-decoration: none;
-                border-radius: 5px;
-                display: inline-block;
-                margin-top: 20px;
-            }
-            .footer {
-                margin-top: 30px;
-                color: #8B8EF9;
-                font-size: 14px;
-            }
-        </style>
     </head>
-    <body>
-        <div class='container'>
-            <div class='header'>
+    <body style="font-family: Arial, sans-serif; background-color: #F4F4F4; color: #292929; padding: 20px;">
+        <div class="container" style="background-color: #FFFFFF; padding: 20px; border-radius: 8px; text-align: center; max-width: 600px; margin: 0 auto;">
+            <div class="header" style="background-color: #534FF6; color: #FFFFFF; padding: 15px; font-size: 24px; border-radius: 8px 8px 0 0;">
                 <h1>¡Bienvenido a IETINDER!</h1>
             </div>
             <p>Gracias por registrarte. Haz clic en el siguiente botón para verificar tu cuenta:</p>
-            <a href='$verificationLink' class='button'>Verificar cuenta</a>
-            <div class='footer'>
+            <a href="'.$verificationLink.'" class="button" style="background-color: #4CAF50; color: #FFFFFF; padding: 15px 25px; font-size: 16px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;">Verificar cuenta</a>
+            <div class="footer" style="margin-top: 30px; color: #8B8EF9; font-size: 14px;">
                 <p>Este enlace expirará en 48 horas.</p>
                 <p>Si no solicitaste esta verificación, por favor ignora este correo.</p>
             </div>
         </div>
     </body>
     </html>
-    ";
-    $message = "Hola";
+    ';
     // Headers del correo
     $headers = "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";

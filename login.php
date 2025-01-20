@@ -1,19 +1,26 @@
+<?php
+//necesario para la notificación de verificacion correcta
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+include_once 'apis.php'; 
+include_once 'config.php';
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="notifications.js"></script>
     <title>Login</title>
 </head>
 
 <body id="loginBody">
-
-    <?php    
-    include_once 'apis.php'; 
-    include_once 'config.php';
-
+    <?php
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
@@ -197,6 +204,22 @@
         </br>
         <a href="register.php">Crear una cuenta nueva</a>
     </div>
+
+    <!-- Css message cuando se ha verificado el email -->
+
+    <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const verificationNotification = <?php echo json_encode($_SESSION['showVerificationNotification'] ?? false); ?>;
+
+        if (verificationNotification === true) {
+            // Llamamos a tu función de notificación
+            showNotification("¡Tu cuenta ha sido verificada con éxito!", "success");
+
+            // Luego de mostrar la notificación, desactivamos la variable de sesión
+            <?php $_SESSION['showVerificationNotification'] = false; ?>
+        }
+    });
+</script>
 
 
 </body>

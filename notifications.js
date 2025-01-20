@@ -62,7 +62,7 @@ function showNotification(message, type) {
         setTimeout(() => {
             notification.remove();
         }, 500);
-    }, 3000);
+    }, 5000);
  }
  
  
