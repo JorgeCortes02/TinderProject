@@ -142,10 +142,15 @@ async function downloadData(index) {
                             // Añadir evento de clic en la imagen para pasar a la siguiente
                             carouselContainer.on("click", () => {
                                 images[imageIndex].css("display", "none");
-                                $(".dot").eq(imageIndex).removeClass("active");
+    
+                                // Limitar la selección de dots al contenedor actual
+                                const dots = carouselContainer.find(".dot");
+                                dots.eq(imageIndex).removeClass("active");
+                            
                                 imageIndex = (imageIndex + 1) % images.length; // Siguiente imagen (vuelve al inicio si es la última)
+                                
                                 images[imageIndex].css("display", "block");
-                                $(".dot").eq(imageIndex).addClass("active");
+                                dots.eq(imageIndex).addClass("active");
                             });
 
 
