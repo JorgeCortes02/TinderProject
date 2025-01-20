@@ -450,6 +450,48 @@ body {
     font-size: 18px;
 }
 
+.carousel-container {
+    width: 95%; /* Ajusta el ancho del contenedor */
+    height: 80%; /* Ajusta el alto del contenedor */
+    position: relative;
+    overflow: hidden; /* Evita que las imágenes se desborden */
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%; /* Asegúrate de que las imágenes llenen el contenedor */
+    object-fit: cover; /* Hace que las imágenes llenen el contenedor, recortando si es necesario */
+    display: none; /* Oculta las imágenes inicialmente */
+}
+
+.carousel-img:first-child {
+    display: block; /* Muestra la primera imagen */
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: gray;
+}
+
+
 
 /* MARK: DISCOVER mobile*/
 
