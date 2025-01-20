@@ -143,7 +143,7 @@
 
                 // Pase 3: Comprobar si es administrador o usuario
                 if($_SESSION['user_data']['Role'] === 'Admin'){
-                    registrarLog("Administrador con id: ".$_SESSION['user_data']['IdUser']." ha entrado en el panel de administración");
+                    logServer("Administrador con id: ".$_SESSION['user_data']['IdUser']." ha entrado en el panel de administración");
                     header("Location: admin/index.php");
                     exit;
                 }
