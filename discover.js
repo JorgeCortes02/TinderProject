@@ -86,10 +86,6 @@ $(document).ready(function() {
             preferencesMenu.css("visibility", "hidden");
         })();
       
-     
-       
-       
-
        
     });
     // Cargamos los perfiles iniciales
@@ -137,7 +133,6 @@ async function downloadData(index) {
                             newCard.append(inform);
                             contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
                           
-                        
 
                         }
           

@@ -38,6 +38,21 @@ if (isset($_GET["api"])) {
             sumAndUpdateUserMinMaxAgeAndDistance();
 
             break;
+
+        case "informationProfile":
+            downloadInformForChat();
+            break;
+
+        case "getMessages":
+            downloadMissages();
+            break;
+
+        case "saveNewMessage":
+            saveNewMessage();
+            break;
+        case "downloadLastMessage":
+            downloadLastMessage();
+            break;
     }
 }
 
@@ -86,45 +101,40 @@ function CalcAndOrderbyPosition()
 {
     if (isset($_POST["indextToLoad"])) {
         // Tu ubicación (latitud y longitud)
-        $myLat = (float) $_SESSION["user_data"]["Latitude"]; // Ejemplo de latitud (Nueva York)
-        $myLong = (float) $_SESSION["user_data"]["Longitude"]; // Ejemplo de longitud (Nueva York)
-
+        $myLat = (float) $_SESSION["user_data"]["Latitude"];
+        $myLong = (float) $_SESSION["user_data"]["Longitude"];
+    
         $indexToLoad = $_POST["indextToLoad"];
-
+    
         $users = downloadUsersForDiscover($indexToLoad);
         $users = downloadFotos($users);
         logServer("Calculando distancia de los usuarios respecto a la tuya...");
-
+    
         // Calcular distancia de cada usuario respecto a tu ubicación
-        foreach ($users as &$user) {
-
+        foreach ($users as $key => &$user) { // Usar $key => &$user para acceder al índice
             $user["distance"] = calcularDistance((float) $user["Latitude"], (float) $user["Longitude"], $myLat, $myLong);
-
-
-            if($user["distance"] > $_SESSION["user_data"]["MaxDis"] ||  (int)$user["distance"] > $user["MaxDis"]){
-              
-                $user["TotalPoints"] = 0;
-                logServer("- User:".$user["IdUser"]." Distancia:".$user["distance"]. " Puntos:".$user["TotalPoints"]);
-
-            }else{
-
-               
+    
+            if ($user["distance"] > $_SESSION["user_data"]["MaxDis"] || (int)$user["distance"] > $user["MaxDis"]) {
+                unset($users[$key]); // Eliminar usuario del array
+            } else {
                 $user["TotalPoints"] = CalcFinalPoints($user);
-            logServer("- User:".$user["IdUser"]." Distancia:".$user["distance"]. " Puntos:".$user["TotalPoints"]);
+                logServer("- User:" . $user["IdUser"] . " Distancia:" . $user["distance"] . " Puntos:" . $user["TotalPoints"]);
             }
         }
+    
+        // Reindexar el array después de eliminar elementos
+        $users = array_values($users);
+    
         logServer("Ordenando usuarios por Puntuación...");
         usort($users, function ($a, $b) {
-            
             return $b["TotalPoints"] - $a["TotalPoints"];
-
         });
-        logServer("Se ha recuperado y ordenado a los usuarios que se mostrara.");
+    
+        logServer("Se ha recuperado y ordenado a los usuarios que se mostrarán.");
         // Devolver los resultados como JSON
         header('Content-Type: application/json');
         echo json_encode($users); // Devuelve el array de usuarios como JSON
         exit;
-
     }
 
 }
@@ -671,5 +681,204 @@ function sumAndUpdateUserMinMaxAgeAndDistance(){
     }
 }
 
+
+function downloadInformForChat(){
+
+        logServer("Cargando chats...");
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
+            exit;
+        }
+    
+        // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
+        $userId = $_SESSION['user_data']["IdUser"];
+        
+        // Preparar la consulta de manera segura usando un marcador de posición para :userId
+    
+    
+        $query = $pdo->prepare(
+            "SELECT 
+    CASE 
+        WHEN m.user1Id = :userId THEN m.user2Id
+        WHEN m.user2Id = :userId THEN m.user1Id
+    END AS otherUser,
+    u.Username
+FROM Matches m
+JOIN User u 
+    ON u.IdUser = (
+        CASE 
+            WHEN m.user1Id = :userId THEN m.user2Id
+            WHEN m.user2Id = :userId THEN m.user1Id
+        END
+    )
+WHERE (m.user1Id = :userId OR m.user2Id = :userId)
+  AND m.MatchId = :MatchId;"
+);
+
+    
+        // Ejecutar la consulta con los parámetros correspondientes
+        $query->execute([
+            ':userId' => $userId,
+            ':MatchId' => $_POST["matchId"]
+        ]);
+        $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+      // Asegúrate de enviar un JSON válido como respuesta
+header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
+
+// Si tienes un array como respuesta
+echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
+       
+    
+    
+    }
+
+
+
+    function downloadMissages(){
+
+
+        logServer("Cargando chats...");
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
+            exit;
+        }
+    
+        // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
+        $userId = $_SESSION['user_data']["IdUser"];
+        
+        // Preparar la consulta de manera segura usando un marcador de posición para :userId
+    
+    
+        $query = $pdo->prepare(
+            "SELECT 
+            MessageId,
+            ReceiverUserId,
+            SenderUserId,
+            Text,
+            SentAt
+            FROM Message
+            WHERE MatchId = :MatchId ORDER BY MessageId asc;"
+);
+
+    
+        // Ejecutar la consulta con los parámetros correspondientes
+        $query->execute([
+           
+            ':MatchId' => $_POST["matchId"]
+        ]);
+        $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+      // Asegúrate de enviar un JSON válido como respuesta
+header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
+
+// Si tienes un array como respuesta
+echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
+       
+
+
+    }
+
+    function saveNewMessage()
+    {
+    
+        if (isset($_POST["likedUserId"])) {
+    
+            $likedUserID = $_POST["likedUserId"];
+            $matchId = $_POST["matchId"];
+            $text = $_POST["Text"];
+            try {
+                global $username, $pw;
+                $hostname = "localhost";
+                $dbname = "DatingApp";
+                $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+            } catch (PDOException $e) {
+                echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+                logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+    
+                exit;
+            }
+    
+            try {
+                echo "Comença la inserció<br>";
+                //cadascun d'aquests interrogants serà substituit per un paràmetre.
+                $stmt = $dbh->prepare("INSERT INTO Message (MatchId, SenderUserId, ReceiverUserId,Text) VALUES(?,?,?,?)");
+                //a l'execució de la sentència li passem els paràmetres amb un array 
+                $stmt->execute(array((int)$matchId, $_SESSION['user_data']['IdUser'], $likedUserID,$text));
+                echo "Insertat!";
+                logServer("Like insertado correctamente.");
+            } catch (PDOException $e) {
+                print "Error!: " . $e->getMessage() . " Desfem</br>";
+    
+                logServer("Error al insertar like: " . $e->getMessage(),'ERROR');
+            }
+        }
+    }
+
+
+    function downloadLastMessage(){
+
+
+
+        logServer("Cargando chats...");
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
+            exit;
+        }
+    
+        // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
+        $userId = $_SESSION['user_data']["IdUser"];
+        
+        // Preparar la consulta de manera segura usando un marcador de posición para :userId
+    
+        $query = $pdo->prepare(
+            "SELECT 
+                MessageId,
+                ReceiverUserId,
+                SenderUserId,
+                Text,
+                SentAt
+            FROM Message
+            WHERE MatchId = :MatchId
+            AND SenderUserId = :sentUser
+            AND MessageId > :lastMessageId
+            ORDER BY MessageId ASC;"
+        );
+        
+        // Ejecutar la consulta con los parámetros correspondientes
+        $query->execute([
+            ':MatchId' => $_POST["matchId"],
+            ':sentUser' => $_POST["sentUser"],
+            ':lastMessageId' => (int)$_POST["lastMessageId"] // Asegurando que sea un número
+        ]);
+        
+        $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+      // Asegúrate de enviar un JSON válido como respuesta
+header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
+
+// Si tienes un array como respuesta
+echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
+       
+
+
+    }
+
+    
 ?> 
 
