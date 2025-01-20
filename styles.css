@@ -482,6 +482,48 @@ body {
     font-size: 18px;
 }
 
+.carousel-container {
+    width: 95%; /* Ajusta el ancho del contenedor */
+    height: 80%; /* Ajusta el alto del contenedor */
+    position: relative;
+    overflow: hidden; /* Evita que las imágenes se desborden */
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%; /* Asegúrate de que las imágenes llenen el contenedor */
+    object-fit: cover; /* Hace que las imágenes llenen el contenedor, recortando si es necesario */
+    display: none; /* Oculta las imágenes inicialmente */
+}
+
+.carousel-img:first-child {
+    display: block; /* Muestra la primera imagen */
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: gray;
+}
+
+
 
 <<<<<<< HEAD
   /* Range slider styles */
@@ -1981,4 +2023,57 @@ body {
     font-weight: bold;
     font-size: var(--header-size);
 
+}
+
+/*MARK: ERRORS*/
+#bodyErrors > div{
+    width: 100%;
+    max-width: 460px;
+    height: 100vh;
+    max-height: 800px;
+
+    position: relative;
+    overflow: hidden;
+    
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(83, 79, 246, 0.2);
+    background-color: var(--white);
+}
+
+#bodyErrors main{
+    margin: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#bodyErrors main h1,
+#bodyErrors main h2{
+    margin-bottom: 40px;
+}
+
+
+#bodyErrors main p{
+    color: var(--jetblack);
+    font-family: var(--text-font1);
+    font-size: initial;
+}
+
+#bodyErrors main ul{
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+#bodyErrors main a{
+    background-color: var(--darkblue);
+    color: var(--white);
+    font-family: var(--header-font);
+    font-size: var(--header-size);
+    border: none;
+    padding: 10px 47px;
+    border-radius: 5px;
+    margin-top: 40px;
+    text-align: center;
+    align-self: center;
+    max-width: fit-content;
+    text-decoration: none;
 }
