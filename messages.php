@@ -17,7 +17,10 @@ include 'config.php';
 <body>
     <div class="containerMessage">
         <!-- Encabezado -->
-        <?php include('header.php'); ?>
+        <div class="header">
+            <h1>IETINDER</h1>
+            
+        </div>
 
         <!-- Sección de matches -->
         <div class="matches-section">
@@ -105,8 +108,11 @@ include 'config.php';
     </div>
 </div>
         <!-- Menú de navegación inferior -->
-        <?php include('footer.php'); ?>
-
+        <nav class="bottom-nav">
+            <a href="discover.php">Descobrir</a>
+            <a href="messages.php" class="active">Missatges</a>
+            <a href="profile.php">Perfil</a>
+        </nav>
     </div>
 </body>
 </html>
