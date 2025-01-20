@@ -32,7 +32,7 @@ include 'config.php';
     <link rel="stylesheet" href="styles.css">
 
     <!--notificaciones css message-->
-    <script type ="module" src="notifications.js"></script>
+    <script src="notifications.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script type ="module" src="popups.js"></script>
 
