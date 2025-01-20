@@ -67,8 +67,10 @@ logServer("Cargando perfil del usuario...");
 <body>
     <div class="containerMessage">
         <!-- Encabezado -->
-        <?php include('header.php'); ?>
-
+        <div class="header">
+            <h1>IETINDER</h1>
+            
+        </div>
 
         <div class="fieldsContainer">
         <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
@@ -164,7 +166,11 @@ logServer("Cargando perfil del usuario...");
         </div>
 
         <!-- Menú de navegación inferior -->
-        <?php include('footer.php'); ?>
+        <nav class="bottom-nav">
+            <a href="discover.php">Descobrir</a>
+            <a href="messages.php" class="active">Missatges</a>
+            <a href="profile.php">Perfil</a>
+        </nav>
     </div>
     <script>
         let map;

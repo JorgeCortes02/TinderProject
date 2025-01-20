@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -54,8 +54,7 @@
                                     Latitude, 
                                     Points,
                                     UserAge,
-                                    Bio,
-                                    Role
+                                    Bio
                                 FROM User 
                                 WHERE IdUser = :id;");
         $query->bindParam(":id", $storedUserId);
@@ -140,13 +139,6 @@
                 //Cargamos los datos del usuario en la sesion
                 session_start();
                 getUserData($storedUserId);
-
-                // Pase 3: Comprobar si es administrador o usuario
-                if($_SESSION['user_data']['Role'] === 'Admin'){
-                    registrarLog("Administrador con id: ".$_SESSION['user_data']['IdUser']." ha entrado en el panel de administración");
-                    header("Location: admin/index.php");
-                    exit;
-                }
 
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;
