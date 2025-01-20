@@ -10,9 +10,6 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missatges</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="messages.js"></script>
-    
 </head>
 <body>
     <div class="containerMessage">
@@ -31,7 +28,7 @@ include 'config.php';
                 if (!empty($matchDiccionari)) { // Verifica si $matchDiccionari tiene datos
                     foreach ($matchDiccionari as $match) {
                         echo "
-                            <div class='match-item'  data-img= " . htmlspecialchars($match["img"]) . " data-id='" . htmlspecialchars($match["MatchId"])."'>
+                            <div class='match-item' data-id='" . htmlspecialchars($match["MatchId"]) . "'>
                                 <img src='" . htmlspecialchars($match["img"]) . "' alt='Match Image'>
                             </div>
                         ";
@@ -60,13 +57,13 @@ include 'config.php';
                if (!empty($messageDiccionari)) { // Verifica si $messageDiccionari tiene datos
                    foreach ($messageDiccionari as $conver) {
                        echo "
-                       <div class='message-item' data-img=' " . htmlspecialchars($conver["img"]) . "' data-id='" . htmlspecialchars($conver["MatchId"]) . "' data-name='" . htmlspecialchars($conver["username"]) . "' data-currentUser ='". htmlspecialchars($conver["userId"]) . "'>
+                       <a href='conversa.html' class='message-item'>
                            <img src='" . htmlspecialchars($conver["img"]) . "' alt='Foto de Perfil'>
                            <div class='message-info'>
                                <p class='user-name'>" . htmlspecialchars($conver["username"]) . "</p>
                                <p class='last-message'>" . htmlspecialchars($conver["Text"]) . "</p>
                            </div>
-                       </div>
+                       </a>
                        ";
                    }
                    logServer("Se han descargado mensajes");
@@ -82,28 +79,7 @@ include 'config.php';
                
             </div>
         </div>
-        <div class="containerChat" data-id='' data-otherLikeId=''>
-    <div class="nameAndSelectorButtons">
-        <div class="NameAndReturn">
-            <button id="returnToMessage">Volver</button>
-            <img src="profile.jpg" alt="Foto de perfil" id="fotoPerfilChat">
-            <h4 id="name">Pedro</h4>
-        </div>
-        <div class="Selectors">
-            <button class="selector">Chat</button>
-            <button class="selector">Perfil</button>
-        </div>
-    </div>
 
-    <div class="chat">
-        
-    </div>
-
-    <div class="messageInputContainer">
-        <input id="inputMessage" type="text" placeholder="Escribe tu mensaje aquí..." />
-        <button id="sent">Enviar</button>
-    </div>
-</div>
         <!-- Menú de navegación inferior -->
         <?php include('footer.php'); ?>
 
@@ -153,9 +129,6 @@ function downloadMatches(): array
         ':userId' => $userId
     ]);
     $matchDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
-
-// Añadir el valor de $userId a cada elemento de $matchDiccionari
-
     return $matchDiccionari;
 }
 
@@ -242,11 +215,6 @@ AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;");
         ':userId' => $userId
     ]);
     $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($messageDiccionari as &$item) {
-        $item['userId'] = $userId;  // Agregar el userId a cada elemento
-    }
-    unset($item);
     return $messageDiccionari ;
 
 
