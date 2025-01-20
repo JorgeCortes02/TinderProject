@@ -47,7 +47,7 @@ include 'config.php';
                 }
                 ?>
             </div>
-</div>
+        </div>
 
         <!-- Sección de mensajes -->
         <div class="messages-section">

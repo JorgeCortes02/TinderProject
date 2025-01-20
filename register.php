@@ -33,6 +33,28 @@ function loadEnv($path) {
 // Llama a la función para cargar las variables de entorno
 loadEnv(__DIR__ . '/.env');
 
+if(isset($_GET['validate'])){
+    $tokenMd5 = $_GET['validate'];
+    // Desencriptar el token y obtener el userId
+    $userId = substr(md5($tokenMd5), 4, -7);  // Obtener el userId del token original "IETI'userId'TINDER"
+    $originalToken = "IETI" . $userId . "TINDER";
+
+    //validación de token
+    if ($tokenMd5 === md5($originalToken)) {
+        // Actualizar el campo login_allowed a 1 (true)
+        $query = $pdo->prepare("UPDATE User SET login_allowed = 1 WHERE UserID = :userId");
+        $query->bindParam(':userId', $userId, PDO::PARAM_INT);
+        
+        if ($query->execute()) {
+            logServer("Cuenta verificada con éxito.");
+        } else {
+            logServer("Error al verificar la cuenta.","ERROR");
+        }
+    } else {
+        logServer("Token de verificación inválido.","ERROR");
+    }
+
+}
 if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
     $newUserData = [
         'email' => $_POST['email'],
@@ -53,6 +75,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
 
     createUser($newUserData);
 }
+
 ?>
 
 
@@ -277,7 +300,12 @@ function createUser($newUserData){
     $newUserData['latitude']."', '". $newUserData['bio']."', '". $newUserData['minAge']."', '".$newUserData['maxAge']."')");
 
     if ($query->execute()) {
-        logServer("Usuario credo correctamente.");
+        logServer("Usuario creado correctamente.");
+        $userId = $pdo -> lastInsertId();
+
+        // Enviar el correo de verificación
+        logServer("Enviando correo de verificación a :".$newUserData['email']);
+        sendVerificationEmail($userId, $newUserData['email']);
         
     } else {
         echo "Error al actualizar los datos.";
@@ -289,4 +317,92 @@ function createUser($newUserData){
     unset($pdo);
     unset($query);
 }
+
+function sendVerificationEmail($userId, $userEmail) {
+    // Generar un token único para la verificación
+    $token = "IETI" . $userId . "TINDER"; // El formato que mencionaste
+    $tokenMd5 = md5($token);  // Convertimos a MD5 para usarlo como parámetro GET
+    
+    // Crear el enlace de verificación
+    $verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
+    //$verificationLink = "http://localhost:3000/register.php?validate=" . $tokenMd5;
+    //$verificationLink = "https://tinder2.ieti.site//register.php?validate=" . $tokenMd5;
+
+    // Cuerpo del correo con estilo
+    $subject = "Verifica tu cuenta en IETINDER";
+    $message = "
+    <html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #F4F4F4;
+                color: #292929;
+                padding: 20px;
+            }
+            .container {
+                background-color: #FFFFFF;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .header {
+                background-color: #534FF6;
+                color: #FFFFFF;
+                padding: 15px;
+                font-size: 24px;
+                border-radius: 8px 8px 0 0;
+            }
+            .button {
+                background-color: #4CAF50;
+                color: #FFFFFF;
+                padding: 15px 25px;
+                font-size: 16px;
+                text-decoration: none;
+                border-radius: 5px;
+                display: inline-block;
+                margin-top: 20px;
+            }
+            .footer {
+                margin-top: 30px;
+                color: #8B8EF9;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h1>¡Bienvenido a IETINDER!</h1>
+            </div>
+            <p>Gracias por registrarte. Haz clic en el siguiente botón para verificar tu cuenta:</p>
+            <a href='$verificationLink' class='button'>Verificar cuenta</a>
+            <div class='footer'>
+                <p>Este enlace expirará en 48 horas.</p>
+                <p>Si no solicitaste esta verificación, por favor ignora este correo.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
+    $message = "Hola";
+    // Headers del correo
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    $headers .= "From: no-reply@tinder2.ieti.site\r\n";
+    //$headers .= "Reply-To: no-reply@tinder2.ieti.site\r\n";
+    
+    logServer(" email: ".$userEmail."\nSubject:".$subject."\nmessage: ".$message. "\nheaders: ".$headers);
+    // Enviar el correo
+    if (mail($userEmail, $subject, $message, $headers)) {
+        echo "Correo de verificación enviado con éxito.";
+        logServer("Correo enviado de forma correcta.");
+    } else {
+        echo "Error al enviar el correo de verificación.";
+        logServer("Error al enviar el correo de verificación.","ERROR");
+    }
+}
+
 ?>

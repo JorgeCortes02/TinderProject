@@ -104,19 +104,21 @@ function validateForm() {
         isValid = false;
         logToServer("Orientación invalido",'ERROR');
     }
+    
+    if ($('#password').val() !== $('#password2').val()) {
+        isValid = false;
+        $('#errorPassword').show();  // Mostrar el mensaje de error
+        $('#password').addClass('error-border');  // Marcar el campo de contraseña con error
+        $('#password2').addClass('error-border');  // Marcar el campo de confirmación con error
+        document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
+        logToServer("Error en el registro, las contraseñas no coinciden", 'ERROR');
+    }
 
     if (!isValid) {
         $('#errorMessage').show();
         document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
     } else {
-        if ($('#password').val() !== $('#password2').val()) {
-            isValid = false;
-            $('#errorPassword').show();  // Mostrar el mensaje de error
-            $('#password').addClass('error-border');  // Marcar el campo de contraseña con error
-            $('#password2').addClass('error-border');  // Marcar el campo de confirmación con error
-            document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
-            logToServer("Error en el registro, las contraseñas no coinciden", 'ERROR');
-        }
+        
         console.log('Entrando a guardar datos');
         logToServer('Campos del form correctos.');
         saveProfileChanges();

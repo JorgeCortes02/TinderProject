@@ -166,7 +166,7 @@ p {
  }
  
  
- #loginBody h4#errorEmail, h4#errorPassword {
+ #loginBody h4#errorEmail, h4#errorPassword, h4#errorLogin {
     font-weight: normal;
     display: none;
     color: red;

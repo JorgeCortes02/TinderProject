@@ -93,7 +93,7 @@
         }
 
         // Paso 1: Verificar si el email existe, si existe nos quedamos con su password y su ID
-        $query = $pdo->prepare("SELECT Password, IdUser FROM User WHERE Email = :mail");
+        $query = $pdo->prepare("SELECT Password, IdUser, LoginAllowed FROM User WHERE Email = :mail");
         $query->bindParam(":mail", $email);
         $query->execute();
         $row = $query->fetch();
@@ -115,6 +115,7 @@
             logServer("Email registrado $email");
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
+            $loginAllowed = $row['LoginAllowed'];
 
             //si la contraseña es incorrecta
             if ($storedPassword !== hash('sha256', $password)) {
@@ -130,7 +131,18 @@
 
 
             //si todo es correcto
-            } else {
+            }elseif($loginAllowed !== 1){
+                logServer("Login no verificado, Código: ".$loginAllowed);
+                ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", (event) => {
+                        document.getElementById("errorLogin").style.display = "block"; //mensaje en display
+                    })
+                </script>
+                <?php
+            } 
+            
+                else {
                 logServer("Contraseña  correcta ".hash('sha256', $password));
                 logServer("Inicio de sesión correcto $email : ".hash('sha256', $password));
                 // Seleccionamos el Id que hemos recuperado
@@ -160,6 +172,8 @@
         <h3>App de ligoteo</h3>
         <h4 id="errorEmail">Error: El correo no está registrado</h4>
         <h4 id="errorPassword">Error: Contraseña incorrecta</h4>
+        <h4 id="errorLogin">Error: Cuenta no verificada</h4>
+        
 
 
         <form method="POST">

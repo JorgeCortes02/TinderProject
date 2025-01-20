@@ -1,0 +1,106 @@
+
+[19:15:21] [INFO] [http://localhost:8080/register.php] [UserId=47]: Validando form...
+[19:15:21] [INFO] [http://localhost:8080/register.php] [UserId=47]: Campos del form correctos.
+[19:15:21] [INFO] [http://localhost:8080/register.php] [UserId=47]: creando datos...
+[19:15:21] [INFO] [http://localhost:8080/register.php] [UserId=47]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('wmolinagalan.cf@iesesteveterradas.cat', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'eeeeee', 'rrrr', 'rrrr', 'Pepe', '2010-05-11', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'rrrrrrrr', '18', '99')
+[19:15:21] [ERROR] [http://localhost:8080/register.php] [UserId=47]: Error en la solicitud AJAX para crear usaurio
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: Validando form...
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: Campos del form correctos.
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: creando datos...
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('wmolinagalan.cf@iesesteveterradas.cat', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'eeeeee', 'rrrr', 'rrrr', 'Pepe', '2010-05-11', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'rrrrrrrr', '18', '99')
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: Usuario creado correctamente.
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: Enviando correo de verificación a :wmolinagalan.cf@iesesteveterradas.cat
+[19:17:30] [ERROR] [http://localhost:8080/register.php] [UserId=47]: Error al enviar el correo de verificación.
+[19:17:30] [INFO] [http://localhost:8080/register.php] [UserId=47]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor,,,
+[19:21:01] [INFO] [http://localhost:8080/register.php] [UserId=47]: Validando form...
+[19:21:01] [INFO] [http://localhost:8080/register.php] [UserId=47]: Campos del form correctos.
+[19:21:01] [INFO] [http://localhost:8080/register.php] [UserId=47]: creando datos...
+[19:21:01] [INFO] [http://localhost:8080/register.php] [UserId=47]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('wmolinagalan.cf@iesesteveterradas.cat', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'eeeeee', 'rrrr', 'rrrr', 'Pepe', '2010-05-11', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'rrrrrrrr', '18', '99')
+[19:21:02] [INFO] [http://localhost:8080/register.php] [UserId=47]: Usuario creado correctamente.
+[19:21:02] [INFO] [http://localhost:8080/register.php] [UserId=47]: Enviando correo de verificación a :wmolinagalan.cf@iesesteveterradas.cat
+[19:21:02] [INFO] [http://localhost:8080/register.php] [UserId=47]:  email: wmolinagalan.cf@iesesteveterradas.cat
+Subject:Verifica tu cuenta en IETINDER
+message: 
+    <html>
+    <head>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #F4F4F4;
+                color: #292929;
+                padding: 20px;
+            }
+            .container {
+                background-color: #FFFFFF;
+                padding: 20px;
+                border-radius: 8px;
+                text-align: center;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .header {
+                background-color: #534FF6;
+                color: #FFFFFF;
+                padding: 15px;
+                font-size: 24px;
+                border-radius: 8px 8px 0 0;
+            }
+            .button {
+                background-color: #4CAF50;
+                color: #FFFFFF;
+                padding: 15px 25px;
+                font-size: 16px;
+                text-decoration: none;
+                border-radius: 5px;
+                display: inline-block;
+                margin-top: 20px;
+            }
+            .footer {
+                margin-top: 30px;
+                color: #8B8EF9;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h1>¡Bienvenido a IETINDER!</h1>
+            </div>
+            <p>Gracias por registrarte. Haz clic en el siguiente botón para verificar tu cuenta:</p>
+            <a href='http://localhost:8080/register.php?validate=851483c0f9cff4a153d541827041f894' class='button'>Verificar cuenta</a>
+            <div class='footer'>
+                <p>Este enlace expirará en 48 horas.</p>
+                <p>Si no solicitaste esta verificación, por favor ignora este correo.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
+headers: MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+From: no-reply@tinder2.ieti.site
+Reply-To: no-reply@tinder2.ieti.site
+
+[19:21:02] [ERROR] [http://localhost:8080/register.php] [UserId=47]: Error al enviar el correo de verificación.
+[19:21:02] [INFO] [http://localhost:8080/register.php] [UserId=47]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor,,,
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: Validando form...
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: Campos del form correctos.
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: creando datos...
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('wmolinagalan.cf@iesesteveterradas.cat', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'eeeeee', 'rrrr', 'rrrr', 'Pepe', '2010-05-11', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'rrrrrrrr', '18', '99')
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: Usuario creado correctamente.
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: Enviando correo de verificación a :wmolinagalan.cf@iesesteveterradas.cat
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]:  email: wmolinagalan.cf@iesesteveterradas.cat
+Subject:Verifica tu cuenta en IETINDER
+message: Hola
+headers: MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+From: no-reply@tinder2.ieti.site
+Reply-To: no-reply@tinder2.ieti.site
+
+[19:27:53] [ERROR] [http://localhost:8080/register.php] [UserId=47]: Error al enviar el correo de verificación.
+[19:27:53] [INFO] [http://localhost:8080/register.php] [UserId=47]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor,,,
