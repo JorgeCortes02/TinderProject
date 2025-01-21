@@ -95,19 +95,26 @@ include 'config.php';
             <h4 id="name">Pedro</h4>
         </div>
         <div class="Selectors">
-            <button class="selector">Chat</button>
-            <button class="selector">Perfil</button>
+            <button id="Chat" class="selector">Chat</button>
+            <button id="Profile" class="selector">Perfil</button>
         </div>
     </div>
 
     <div class="chat">
         
     </div>
-
+    <div class="card-profile">
+            
+          
+    
+            
+            </div>
     <div class="messageInputContainer">
         <input id="inputMessage" type="text" placeholder="Escribe tu mensaje aquí..." />
         <button id="sent">Enviar</button>
     </div>
+
+    
 </div>
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">

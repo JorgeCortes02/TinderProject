@@ -65,8 +65,7 @@ include_once 'config.php';
                                     MaxAge,
                                     MinAge,
                                     MaxDis,
-                                    Bio,
-                                    Role
+                                    Bio
                                 FROM User 
                                 WHERE IdUser = :id;");
         $query->bindParam(":id", $storedUserId);

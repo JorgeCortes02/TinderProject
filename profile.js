@@ -9,6 +9,38 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+$(document).ready(function(){
+
+    downloadData("x");
+
+
+    const profileButtom = $("#Profile");
+    const confButton = $("#Conf");
+  
+    
+
+    profileButtom.on("click", function(){
+
+       profileButtom.prop("disabled", true);
+       
+        const contenedorConf =  $(".fieldsContainer");
+        contenedorConf.css("display", "none")
+        const contenedorProfile = $(".card-profile2");
+        contenedorProfile.css("display", "flex")
+      
+    })
+    confButton.on("click", function(){
+        profileButtom.prop("disabled", false);
+        const contenedorConf =  $(".fieldsContainer");
+        contenedorConf.css("display", "flex")
+        const contenedorProfile = $(".card-profile2");
+        contenedorProfile.css("display", "none")
+    })
+
+
+
+
+})
 
 
 /** Guarda los cambios del perfil al servidor usando AJAX */
@@ -96,3 +128,109 @@ function validateForm() {
     }
 }
 
+// Función para recuperar más datos (perfiles) y mostrarlos
+async function downloadData(id) {
+    const formData = new FormData();
+    formData.append("UserId", id);  // Añadir el índice a FormData
+
+    try {
+        // Hacemos la petición para obtener perfiles
+        const response = await fetch("apis.php?api=downloadProfileWithFoto", {
+            method: "POST",  // Usamos el método POST
+            body: formData  // Enviamos el FormData
+        });
+
+        const responseText = await response.text();  // Obtenemos la respuesta como texto
+        console.log("Respuesta del servidor:", responseText); 
+
+        // Si la respuesta no está vacía, intentamos parsear el JSON
+        if (responseText && responseText.trim() != "") {
+            const misDatos = JSON.parse(responseText);  // Intentamos parsear como JSON
+            const contenedor = $(".card-profile2");  // Contenedor donde se muestran las tarjetas
+            console.log(misDatos);
+            
+            // Si hay perfiles, los mostramos
+            if (misDatos.length > 0) {
+                misDatos.forEach(usuario => {
+                   
+                    if(usuario["TotalPoints"] != 0){
+
+                        // contenedor genérico de la carta
+                        const newCard = $("<div>").attr("class", "card-profile-view");
+                        newCard.attr("data-user-id", usuario["IdUser"]);  // Asignamos el id de usuario
+                        
+                        // creación del contenedor del carrusel -> img + puntitos
+                        const carouselContainer = $("<div>").attr("class", "carousel-container card-img");
+                        // creación del contenedor de las fotos
+                        const photosContainer = $("<div>").attr("class", "photos-container");
+
+                        // variables de control de imágenes para la creación de los puntitos
+                        const images = [];
+                        let imageIndex = 0;
+
+                        // creación imágenes del carrusel
+                        for (let i = 0; usuario[`img${i}`]; i++) {
+                            const img = $("<img>")
+                                .attr("src", usuario[`img${i}`])
+                                .attr("class", "carousel-img")
+                                .css("display", i === 0 ? "block" : "none");
+                            
+                            // añadido de la foto en el contenedor de fotos
+                            photosContainer.append(img);
+                            images.push(img);
+                        }
+
+                        // Crear puntitos carrusel
+                        const dotsContainer = $("<div>").attr("class", "dots-container");
+                        for (let i = 0; i < images.length; i++) {
+                            const dot = $("<span>")
+                                .attr("class", `dot ${i === 0 ? "active" : ""}`)
+                                .on("click", () => {
+                                    // Evento al hacer click en el puntito
+                                    images[imageIndex].css("display", "none");
+                                    $(".dot").eq(imageIndex).removeClass("active");
+                                    imageIndex = i;
+                                    images[imageIndex].css("display", "block");
+                                    $(".dot").eq(imageIndex).addClass("active");
+                                });
+                            dotsContainer.append(dot);
+                        }
+
+                        // Añadir evento de clic en la imagen para pasar a la siguiente
+                        carouselContainer.on("click", () => {
+                            images[imageIndex].css("display", "none");
+
+                            // Limitar la selección de dots al contenedor actual
+                            const dots = carouselContainer.find(".dot");
+                            dots.eq(imageIndex).removeClass("active");
+                        
+                            imageIndex = (imageIndex + 1) % images.length; // Siguiente imagen (vuelve al inicio si es la última)
+                            
+                            images[imageIndex].css("display", "block");
+                            dots.eq(imageIndex).addClass("active");
+                        });
+                        
+                        // añadir el contendor de fotos y de puntitos en el contenedor del carousel y añadir el carrousel al contenedor general
+                        carouselContainer.append(photosContainer,dotsContainer);
+                        newCard.append(carouselContainer);
+
+                        // añadir la información al contenedor general
+                        const inform = $("<div>").attr("class", "card-info");
+                        inform.append($("<h2>").text(usuario["Username"] + ", " + usuario["UserAge"]));
+                        newCard.append(inform);
+
+                        contenedor.prepend(newCard);  // Insertamos la nueva tarjeta al principio
+                      
+                    }
+
+                });
+            } else{
+                // Si no hay más perfiles, mostramos un mensaje
+                contenedor.prepend($("<h2>").text("No quedan perfiles por mostrar"));
+              
+            }
+        }
+    } catch (e) {
+        console.error("Error al parsear JSON:", e);  // Si hay error, lo mostramos
+    }
+}

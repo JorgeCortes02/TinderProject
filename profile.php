@@ -68,9 +68,11 @@ logServer("Cargando perfil del usuario...");
         <!-- Encabezado -->
         <div class="header">
             <h1>IETINDER</h1>
-            
         </div>
-
+        <div class="SelectorsProfile">
+            <button id="Profile" class="selector">Perfil</button>
+            <button id="Conf" class="selector">Configuración</button>
+        </div>
         <div class="fieldsContainer">
         <div id = "scroll"></div>
         <div class="error-message" id="errorMessage">
@@ -145,13 +147,25 @@ logServer("Cargando perfil del usuario...");
                     Bisexual
                 </label>
             </div>
+<<<<<<< HEAD
 
+=======
+        
+           
+>>>>>>> 3debde9 (Descripción de los cambios locales)
             <div class="bottom">
             <button class="saveButton" id="saveButton">Guardar</button>
             <a class="toPhotoButton" href="/">Editar Fotos</a>
             </div>
             </form>
         </div>
+
+        <div class="card-profile2">
+            
+          
+    
+            
+            </div>
 
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
