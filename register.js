@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         validateForm();
     });
+
+    var inputPhoto = document.getElementById('photoInput');
+    inputPhoto.addEventListener('change', previewPhoto);
 });
-
-
 
 /** Guarda los cambios del perfil al servidor usando AJAX */
 function saveProfileChanges() {
@@ -71,6 +72,7 @@ function validateForm() {
     $('#errorMessage').hide();
     $('#errorPassword').hide();
     $('#errorMail').hide();
+    $('#errorPhoto').hide();
 
     const email = $('#email').val();
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -125,3 +127,28 @@ function validateForm() {
     }
 }
 
+/* Permite preview de la foto del usuario en el registro*/
+function previewPhoto() {
+    const fileInput = document.getElementById('photoInput');
+    const photoDiv = document.getElementById('UserPhoto');
+  
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const validFormats = ['image/jpeg', 'image/png', 'image/webp'];
+  
+      if (!validFormats.includes(file.type)) {
+        alert('Por favor, selecciona una imagen en formato JPG, JPEG, PNG o WEBP.');
+        logToServer("Error en el formato de archivo seleccionado",'ERROR');
+        fileInput.value = ''; // Limpia el input si el formato es incorrecto
+        return;
+      }
+      
+      logToServer("Preview de foto correcta");
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoDiv.style.backgroundImage = `url('${e.target.result}')`;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  

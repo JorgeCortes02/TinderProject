@@ -10,7 +10,6 @@ function loadEnv($path) {
     if (!file_exists($path)) {
         logServer('El archivo .env no se encuentra en la ruta especificada.','ERROR');
         throw new Exception("El archivo .env no se encuentra en la ruta especificada.");
-        
     }
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);

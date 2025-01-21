@@ -129,6 +129,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
         <div class="error-mail" id="errorMail">
             <h3 class="error">Error: Formato de mail no valido</h3>
         </div>
+        <div class="error-photo" id="errorPhoto">
+            <h3 class="error">Error: Se debe añadir al menos una foto</h3>
+        </div>
+
         <form id="registerForm">
 
             <h2>Crea tu perfil</h2>
@@ -211,9 +215,19 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
             </div>
 
             <div class ="field">
-                <h3>Fotografias: </h3>
-                <!-- Aqui van un insert de las dos primeras fotos-->
-
+                <h3>Fotografia: </h3>
+                <div class ="photoField">
+                    <!-- Aqui van un insert de la  primera foto-->
+                    <section class="registerPhotoSection">
+                        <div class="userPhoto" id="UserPhoto">
+                            
+                        </div>
+                        <button type="button" class="addPhoto" onclick="document.getElementById('photoInput').click()">
+                            <img src="images/anadir.png" alt="Add Photo" width="28" height="28">
+                        </button>
+                        <input type="file" id="photoInput" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
+                    </section>
+                </div>
             </div>
             <div class="bottom">
             <button class="createProfileButton" id="createProfileButton">Crear Perfil</button>
@@ -320,6 +334,7 @@ function createUser($newUserData){
         // Enviar el correo de verificación
         logServer("Enviando correo de verificación a :".$newUserData['email']);
         sendVerificationEmail($userId, $newUserData['email']);
+        insertUserPhoto($userId);
         
     } else {
         echo "Error al actualizar los datos.";
@@ -330,6 +345,10 @@ function createUser($newUserData){
 
     unset($pdo);
     unset($query);
+}
+
+function insertUserPhoto($userId){
+
 }
 
 function sendVerificationEmail($userId, $userEmail) {

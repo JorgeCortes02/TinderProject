@@ -827,22 +827,6 @@ body {
     border-radius: 10px;
 }
 
-.containerMessage button, .toPhotoButton {
-    font-family: var(--header-font);
-    font-size: var(--header-size);
-    padding: 10px 20px;
-    color: var(--white);
-    background-color: var(--darkblue);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-}
-
-.containerMessage button:hover, .toPhotoButton:hover {
-    background-color: var(--middleblue);
-}
 .containerMessage {
     display: inline-block;
     margin-top: 10px;
@@ -1045,7 +1029,7 @@ body {
         border-radius: 10px;
     }
     
-    .containerMessage button, .toPhotoButton {
+    .containerMessage .saveButton, .toPhotoButton {
         font-family: var(--header-font);
         font-size: var(--header-size);
         padding: 10px 20px;
@@ -1775,7 +1759,8 @@ body {
 #register .error h3{
     color: var(--darkred);
 }
-#register .containerMessage .error-message, #register .containerMessage .error-password, #register .containerMessage .error-mail {
+#register .containerMessage .error-message, #register .containerMessage .error-password, 
+#register .containerMessage .error-mail, #register .containerMessage .error-photo{
     color: var(--brightred);
     margin-bottom: 20px;
     display: none; 
@@ -1805,7 +1790,7 @@ body {
     margin: 20px auto;
 }
 
-#register .saveButton, #register .toPhotoButton {
+#register .createProfileButton{
     padding: 10px 20px;
     font-size: var(--header-size);
     font-family: var(--header-font);
@@ -1817,11 +1802,51 @@ body {
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
-#register .saveButton:hover, #register .toPhotoButton:hover {
+#register .createProfileButton:hover, .addPhoto:hover{
     background-color: var(--middleblue);
+}
+
+/*Estilos apartado photoUser*/
+.photoField {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.registerPhotoSection {
+    position: relative;
+    width: 150px; /* Ajusta el tamaño según necesites */
+    height: 150px;
+    border: 2px dashed var(--darkblue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+/* Controla la foto del usuario*/
+.userPhoto {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+#register .addPhoto{
+    background-color: var(--darkblue);
+    border: none;
+    border-radius: 50%; 
+    cursor: pointer;
+    position:absolute;
+    padding: 10px;
+    opacity: 0.8;
+}
+
+#register .addPhoto img{
+    width: 28px;
+    height: 28px;
+    display: block;
 }
 
 /* MAP */

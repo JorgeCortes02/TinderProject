@@ -77,3 +77,11 @@ STARTS CURRENT_TIMESTAMP  -- This will set the event start time to the current t
 DO
   UPDATE User
   SET UserAge = TIMESTAMPDIFF(YEAR, BirthDate, CURDATE());
+
+
+CREATE EVENT delete_unverified_users
+ON SCHEDULE EVERY 48 HOUR
+STARTS CURRENT_TIMESTAMP
+DO
+  DELETE FROM User
+  WHERE LoginAllowed = 0;
