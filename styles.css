@@ -945,6 +945,48 @@ body {
     background-color: var(--middleblue);
 }
 
+/* Carrousel de imagenes */
+.carousel-container {
+    width: 95%;
+    height: 80%;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: none;
+}
+
+.carousel-img:first-child {
+    display: block;
+}
+
+.dots-container {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: gray;
+}
+
 /* MAP */
  #map {
     width: 100%;
