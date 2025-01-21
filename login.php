@@ -38,7 +38,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
+            logServer("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
             exit;
         }
 
@@ -89,7 +89,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
         } catch (PDOException $e) {
             echo "<p>Failed to connect to the database: " . $e->getMessage() . "</p>";
-            registrarLog("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
+            logServer("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
             exit;
         }
 
@@ -101,7 +101,7 @@
 
         // si el email NO existe
         if (!$row) {
-            registrarLog("Email no registrado $email");
+            logServer("Email no registrado $email");
             ?>
             <script>
                 document.addEventListener("DOMContentLoaded", (event) => {
