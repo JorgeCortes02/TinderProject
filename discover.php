@@ -89,7 +89,7 @@ include 'config.php';
         <div class="card-container">
             <?php 
             if($_SESSION["user_data"]["Gender"] == "No Binario"){
-                registrarLog("Al ser no binario no hay matches");
+                logServer("Al ser no binario no hay matches");
                 noProfilesForNobBinari();
             }
           
