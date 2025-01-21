@@ -58,18 +58,23 @@
                                     MaxAge,
                                     MinAge,
                                     MaxDis,
-                                    Bio
+                                    Bio,
+                                    Role
                                 FROM User 
                                 WHERE IdUser = :id;");
         $query->bindParam(":id", $storedUserId);
         $query->execute();
         $query->execute();
 
+        logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
+
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
         // Almacenar el resultado en la sesión
         $_SESSION['user_data'] = $result;
+        logServer("Session iniciada");
 
         //eliminem els objectes per alliberar memòria 
         unset($pdo);
@@ -98,6 +103,7 @@
         $query->bindParam(":mail", $email);
         $query->execute();
         $row = $query->fetch();
+        logServer('SELECT Password, IdUser FROM User WHERE Email ='. $email);
 
         // si el email NO existe
         if (!$row) {
@@ -113,13 +119,14 @@
 
             //si el email SÍ existe
         } else {
-           
+            logServer("Email registrado $email");
+
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
 
             //si la contraseña es incorrecta
             if ($storedPassword !== hash('sha256', $password)) {
-               
+                logServer("Contraseña incorrecta ".hash('sha256', $password));
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
@@ -132,7 +139,9 @@
 
             //si todo es correcto
             } else {
-               
+                logServer("Contraseña  correcta ".hash('sha256', $password));
+                logServer("Inicio de sesión correcto $email : ".hash('sha256', $password));
+
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 
@@ -141,10 +150,17 @@
                 
                 getUserData($storedUserId);
 
+                // Pase 3: Comprobar si es administrador o usuario
+                if($_SESSION['user_data']['Role'] === 'Admin'){
+                    logServer("Administrador identificado ha entrado en el panel de administración");
+                    header("Location: admin/index.php");
+                    exit;
+                }
+
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;
                 //redireccionamos a DISCOVER
-              
+                logServer("Redireccion a discover.php");
                 header("Location: discover.php");
 
             }
