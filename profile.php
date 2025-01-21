@@ -147,12 +147,7 @@ logServer("Cargando perfil del usuario...");
                     Bisexual
                 </label>
             </div>
-<<<<<<< HEAD
 
-=======
-        
-           
->>>>>>> 3debde9 (Descripción de los cambios locales)
             <div class="bottom">
             <button class="saveButton" id="saveButton">Guardar</button>
             <a class="toPhotoButton" href="/">Editar Fotos</a>
