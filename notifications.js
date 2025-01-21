@@ -2,7 +2,7 @@
 
 function showNotification(message, type) {
     let notificationContainer = document.getElementById('notification-container');
-    //logToServer('Notificacion - Mensaje: '+message+ " tipo: "+type);
+   
     //si no existe el contenedor, lo creamos
     if (!notificationContainer) {
         notificationContainer = document.createElement('div');

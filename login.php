@@ -25,6 +25,7 @@ include_once 'config.php';
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
         $password = $_POST['contrassenya'] ?? '';
+       
 
         // Limpieza básica de los datos recibidos
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -44,7 +45,7 @@ include_once 'config.php';
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer("Failed to get DB handle: " . $e->getMessage(), 'ERROR');
+            logServer("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
             exit;
         }
 
@@ -61,14 +62,19 @@ include_once 'config.php';
                                     Latitude, 
                                     Points,
                                     UserAge,
-                                    Bio
+                                    MaxAge,
+                                    MinAge,
+                                    MaxDis,
+                                    Bio,
+                                    Role
                                 FROM User 
                                 WHERE IdUser = :id;");
         $query->bindParam(":id", $storedUserId);
         $query->execute();
         $query->execute();
-        logServer("SELECT IdUser,FirstName,LastName1, LastName2,Username, BirthDate, Orientation,Gender, Longitude, Latitude, Points,UserAge,Bio
-                    FROM User WHERE IdUser = ".$storedUserId);
+
+        logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
 
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -105,6 +111,7 @@ include_once 'config.php';
         $query->execute();
         $row = $query->fetch();
         logServer('SELECT Password, IdUser FROM User WHERE Email ='. $email);
+
         // si el email NO existe
         if (!$row) {
             logServer("Email no registrado $email");
@@ -120,6 +127,7 @@ include_once 'config.php';
             //si el email SÍ existe
         } else {
             logServer("Email registrado $email");
+
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
             $loginAllowed = $row['LoginAllowed'];
@@ -152,12 +160,21 @@ include_once 'config.php';
                 else {
                 logServer("Contraseña  correcta ".hash('sha256', $password));
                 logServer("Inicio de sesión correcto $email : ".hash('sha256', $password));
+
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 
                 //Cargamos los datos del usuario en la sesion
                 session_start();
+                
                 getUserData($storedUserId);
+
+                // Pase 3: Comprobar si es administrador o usuario
+                if($_SESSION['user_data']['Role'] === 'Admin'){
+                    logServer("Administrador identificado ha entrado en el panel de administración");
+                    header("Location: admin/index.php");
+                    exit;
+                }
 
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;

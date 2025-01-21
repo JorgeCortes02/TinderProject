@@ -3,8 +3,12 @@
 
 <?php
 //Llegan los datos del usuario desde el LOGIN
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 
-session_start();
+}
+
+
 include_once 'apis.php'; 
 include 'config.php';
 ?>
@@ -28,13 +32,14 @@ include 'config.php';
     <title>Discover</title>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script type ="module" src="discover.js"></script>
+    <script src="discover.js"></script>
     <link rel="stylesheet" href="styles.css">
+ 
 
     <!--notificaciones css message-->
     <script src="notifications.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script type ="module" src="popups.js"></script>
+    <script src="popups.js"></script>
 
 </head>
 
@@ -43,9 +48,43 @@ include 'config.php';
         <!-- Logo alineado a la izquierda -->
         <div class="header">
             <h1>IETINDER</h1>
-
+            
+            <button id="distance" name="distance"></button>
         </div>
+        
+        <div class="divPreferences">
+            <button id="close" name="close"></button>
+            <div class ="ageAndDisDiv">
+                        
+                            <h4>Preferencia de Edad: </h4>
+                        
+                            <label class="ageText" for="minAge"><span id="minAgeValue"><?php echo $_SESSION['user_data']['MinAge']?></span></label>
+                        
+                            <label class="ageText" for="maxAge"><span id="maxAgeValue"><?php echo $_SESSION['user_data']['MaxAge']?></span></label>
 
+                            <div class="range-slider">
+                                <input type="range" id="minAge" min="18" max="99" value="<?php echo htmlspecialchars($_SESSION['user_data']['MinAge'])?>">
+                                <input type="range" id="maxAge" min="18" max="99" value="<?php echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?>">
+                                <div class="progress"></div>
+                            </div>
+
+            </div>
+        
+            
+            <div class ="ageAndDisDiv">
+                <br>
+                <h4>Preferencia de Distancia: </h4>
+                <div class="divContentLabels">
+                <label id="distanceLabel" for="maxDis"></label>
+                </div>
+              
+                <div class="range-slider">
+                    
+                    <input type="range" id="maxDis" min="0" max="200" value="<?php echo htmlspecialchars($_SESSION['user_data']['MaxDis'])?>">
+                    <div class="progress2"></div>      
+                </div>
+            </div>
+        </div>
         <!-- Caja principal de tarjetas -->
         <div class="card-container">
             <?php 
@@ -71,6 +110,7 @@ include 'config.php';
             <h3><a href="profile.php">Perfil</a></h3>
         </nav>
     </div>
+    
 </body>
 
 </html>
