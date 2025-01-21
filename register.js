@@ -13,55 +13,94 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /** Guarda los cambios del perfil al servidor usando AJAX */
-function saveProfileChanges() {
+function saveProfileData() {
     logToServer('creando datos...');
 
-    // Campos del formulario
-    const email = $('#email').val();
-    const passw = $('#password').val();
-    const firstName = $('#firstName').val();
-    const lastName1 = $('#lastName1').val();
-    const lastName2 = $('#lastName2').val();
-    const userName = $('#userName').val();
-    const birthdate = $('#birthdate').val();
-    const bio = $('#bio').val();
-    const gender = $("input[name='gender']:checked").val(); // Solo guarda la opción seleccionada
-    const orientation = $("input[name='orientacion']:checked").val(); // Solo guarda la opción seleccionada
-    const minAge = 18;
-    const maxAge = 99;
-    const latitude = $('#latitude').val();
-    const longitude = $('#longitude').val();
+    // // Campos del formulario
+    const formData = new FormData();
+    formData.append('action', 'create_user');
+    formData.append('email', $('#email').val());
+    formData.append('passw', $('#password').val());
+    formData.append('firstName', $('#firstName').val());
+    formData.append('lastName1', $('#lastName1').val());
+    formData.append('lastName2', $('#lastName2').val());
+    formData.append('userName', $('#userName').val());
+    formData.append('birthDate', $('#birthdate').val());
+    formData.append('bio', $('#bio').val());
+    formData.append('gender', $("input[name='gender']:checked").val());
+    formData.append('orientation', $("input[name='orientacion']:checked").val());
+    formData.append('latitude', $('#latitude').val());
+    formData.append('longitude', $('#longitude').val());
+    formData.append('minAge', 18);
+    formData.append('maxAge', 99);
+
+    // Agregar el archivo seleccionado al FormData
+    const fileInput = document.getElementById('photoInput');
+    if (fileInput.files.length > 0) {
+        formData.append('userImage', fileInput.files[0]);
+    }
 
     // Envío de datos con AJAX
     $.ajax({
         url: 'register.php',
         type: 'POST',
-        data: {
-            action: 'create_user',
-            email: email,
-            passw: passw,
-            firstName: firstName,
-            lastName1: lastName1,
-            lastName2: lastName2,
-            userName: userName,
-            birthDate: birthdate,
-            bio: bio,
-            gender: gender,
-            orientation: orientation,
-            latitude: latitude,
-            longitude: longitude,
-            minAge: minAge,
-            maxAge: maxAge
-        },
+        data: formData,
+        processData: false, // Impide que jQuery procese los datos
+        contentType: false, // Impide que jQuery establezca el tipo de contenido
         success: function(response) {
             console.log('datos actualizados correctamente');
-            logToServer('Solicitud AJAX correcta, enviando petición de crear usuario al servidor,,,');
+            logToServer('Solicitud AJAX correcta, enviando petición de crear usuario al servidor...');
         },
         error: function(error) {
             console.error("Error al actualizar los datos: ", error);
-            logToServer("Error en la solicitud AJAX para crear usaurio", "ERROR");
+            logToServer("Error en la solicitud AJAX para crear usuario", "ERROR");
         }
     });
+    // const email = $('#email').val();
+    // const passw = $('#password').val();
+    // const firstName = $('#firstName').val();
+    // const lastName1 = $('#lastName1').val();
+    // const lastName2 = $('#lastName2').val();
+    // const userName = $('#userName').val();
+    // const birthdate = $('#birthdate').val();
+    // const bio = $('#bio').val();
+    // const gender = $("input[name='gender']:checked").val(); // Solo guarda la opción seleccionada
+    // const orientation = $("input[name='orientacion']:checked").val(); // Solo guarda la opción seleccionada
+    // const minAge = 18;
+    // const maxAge = 99;
+    // const latitude = $('#latitude').val();
+    // const longitude = $('#longitude').val();
+
+    // // Envío de datos con AJAX
+    // $.ajax({
+    //     url: 'register.php',
+    //     type: 'POST',
+    //     data: {
+    //         action: 'create_user',
+    //         email: email,
+    //         passw: passw,
+    //         firstName: firstName,
+    //         lastName1: lastName1,
+    //         lastName2: lastName2,
+    //         userName: userName,
+    //         birthDate: birthdate,
+    //         bio: bio,
+    //         gender: gender,
+    //         orientation: orientation,
+    //         latitude: latitude,
+    //         longitude: longitude,
+    //         minAge: minAge,
+    //         maxAge: maxAge
+    //     },
+    //     success: function(response) {
+    //         console.log('datos actualizados correctamente');
+    //         logToServer('Solicitud AJAX correcta, enviando petición de crear usuario al servidor,,,');
+    //     },
+    //     error: function(error) {
+    //         console.error("Error al actualizar los datos: ", error);
+    //         logToServer("Error en la solicitud AJAX para crear usaurio", "ERROR");
+    //     }
+    // });
 }
 
 /** Valida que todos los campos requeridos tengan contenido */
@@ -116,6 +155,8 @@ function validateForm() {
         logToServer("Error en el registro, las contraseñas no coinciden", 'ERROR');
     }
 
+/* Validacion de imagen*/
+
     if (!isValid) {
         $('#errorMessage').show();
         document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
@@ -123,7 +164,7 @@ function validateForm() {
         
         console.log('Entrando a guardar datos');
         logToServer('Campos del form correctos.');
-        saveProfileChanges();
+        saveProfileData();
     }
 }
 

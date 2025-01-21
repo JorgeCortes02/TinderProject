@@ -70,6 +70,7 @@ if (isset($_GET['validate'])) {
             header("Location: login.php");
         } else {
             logServer("Error al verificar la cuenta.", "ERROR");
+            header("Location: register.php");
         }
     } else {
         logServer("Token de verificación inválido.", "ERROR");
@@ -77,6 +78,7 @@ if (isset($_GET['validate'])) {
 }
 
 if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
+    // Recoger los campos del formulario
     $newUserData = [
         'email' => $_POST['email'],
         'passw' => $_POST['passw'],
@@ -96,7 +98,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
 
     createUser($newUserData);
 }
-
 ?>
 
 
@@ -166,7 +167,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
                 </div>
             <div class ="field">
                 <h3>Fecha de Nacimiento: </h3>
-                <input type="date" id="birthdate"required>
+                <input type="date" id="birthdate" max ="<?php echo date('Y-m-d'); ?>"required>
                 </div>
             <div class ="field radioField">
                 <h3>Género: </h3>
@@ -225,7 +226,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
                         <button type="button" class="addPhoto" onclick="document.getElementById('photoInput').click()">
                             <img src="images/anadir.png" alt="Add Photo" width="28" height="28">
                         </button>
-                        <input type="file" id="photoInput" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
+                        <input type="file" id="photoInput" name="userImage" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
                     </section>
                 </div>
             </div>
@@ -333,7 +334,7 @@ function createUser($newUserData){
 
         // Enviar el correo de verificación
         logServer("Enviando correo de verificación a :".$newUserData['email']);
-        sendVerificationEmail($userId, $newUserData['email']);
+        //sendVerificationEmail($userId, $newUserData['email']);
         insertUserPhoto($userId);
         
     } else {
@@ -348,7 +349,54 @@ function createUser($newUserData){
 }
 
 function insertUserPhoto($userId){
+    $uploadDir = 'images/';
 
+    if(isset($_FILES['userImage']) && $_FILES['userImage']['error'] === UPLOAD_ERR_OK){
+        //tipos de archivo: jpg png webp jpeg
+        $fileType = $_FILES['userImage']['type'];
+        logServer("Tipo de archivo dado en campo imagen: " .$fileType);
+        $validTypes = ['image/jpeg','image/png','image/jpg','image/webp'];
+
+        if(!in_array($fileType , $validTypes)){
+            logServer("Formato de archivo no válido","ERROR");
+            return;
+        }
+
+        //Nombre del archivo, nombre unico en abse al user id
+        $fileName = uniqid('user_' . $userId . '_') . '.' . pathinfo($_FILES['userImage']['name'], PATHINFO_EXTENSION);
+        $filePath = $uploadDir . $fileName;
+
+            // Mueve el archivo a la carpeta images
+        if (move_uploaded_file($_FILES['userImage']['tmp_name'], $filePath)) {
+            // Si el archivo se subió correctamente, inserta la ruta en la base de datos
+            try {
+                global $username, $pw;
+                $hostname = "localhost";
+                $dbname = "DatingApp";
+                $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+                
+                // Inserta la ruta de la foto en la tabla photo
+                $query = $pdo->prepare("INSERT INTO photo (UserId, URL) VALUES (:userId, :photoURL)");
+                $query->bindParam(':userId', $userId, PDO::PARAM_INT);
+                $query->bindParam(':photoURL', $filePath, PDO::PARAM_STR);
+                
+                logServer("INSERT INTO photo (UserId, URL) VALUES (".$userId.", ".$filePath.")");
+
+                if ($query->execute()) {
+                    logServer("Foto de perfil añadida correctamente para el usuario ID: $userId.");
+                } else {
+                    logServer("Error al guardar la foto de perfil para el usuario ID: $userId.", 'ERROR');
+                }
+            }catch (PDOException $e) {
+                logServer("Error al conectar con la base de datos para guardar la foto: " . $e->getMessage(), 'ERROR');
+            }
+        } else {
+            logServer("Error al mover el archivo de la foto de perfil.", 'ERROR');
+        }
+    } else {
+
+        logServer("No se ha subido ningún archivo o ha ocurrido un error con la carga.", 'ERROR');
+    }
 }
 
 function sendVerificationEmail($userId, $userEmail) {
