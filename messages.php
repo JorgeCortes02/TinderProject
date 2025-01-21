@@ -52,7 +52,7 @@ include 'config.php';
                 }
                 ?>
             </div>
-</div>
+        </div>
 
         <!-- Sección de mensajes -->
         <div class="messages-section">
@@ -111,8 +111,8 @@ include 'config.php';
 </div>
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
-            <a href="discover.php">Descobrir</a>
-            <a href="messages.php" class="active">Missatges</a>
+            <a href="discover.php">Descubrir</a>
+            <a href="messages.php" class="active">Mensajes</a>
             <a href="profile.php">Perfil</a>
         </nav>
     </div>

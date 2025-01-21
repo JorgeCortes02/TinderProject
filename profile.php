@@ -10,7 +10,6 @@ function loadEnv($path) {
     if (!file_exists($path)) {
         logServer('El archivo .env no se encuentra en la ruta especificada.','ERROR');
         throw new Exception("El archivo .env no se encuentra en la ruta especificada.");
-        
     }
 
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -73,8 +72,9 @@ logServer("Cargando perfil del usuario...");
         </div>
 
         <div class="fieldsContainer">
-        <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
-            <div id = "scroll"></div>
+        <div id = "scroll"></div>
+        <div class="error-message" id="errorMessage">
+            <h3 class="error">Error: No se puede dejar un campo vacío</h3></div>
         <form id="profileForm">
 
             <h2>Edita tu perfil</h2>
@@ -95,7 +95,7 @@ logServer("Cargando perfil del usuario...");
                 </div>
             <div class ="field">
                 <h3>Fecha de Nacimiento: </h3>
-                <input type="text" id="birthdate" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
+                <input type="date" id="birthdate" max ="<?php echo date('Y-m-d'); ?>" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
                 </div>
             <div class ="field">
                 <h3>Biografia: </h3>
@@ -145,19 +145,7 @@ logServer("Cargando perfil del usuario...");
                     Bisexual
                 </label>
             </div>
-        
-            <!-- <div class ="field">
-                <h3>Preferencia de Edad: </h3>
-                <label class="ageText" for="minAge">Edad Mínima: <span id="minAgeValue">$_SESSION['user_data']['MinAge'])?></span></label>
-                </br>
-                <label class="ageText" for="maxAge">Edad Máxima: <span id="maxAgeValue">$_SESSION['user_data']['MaxAge'])?></span></label>
 
-                <div class="range-slider">
-                    <input type="range" id="minAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MinAge'])?>" oninput="updateRange()">
-                    <input type="range" id="maxAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?>" oninput="updateRange()">
-                    <div class="progress"></div>
-                </div>
-            </div> -->
             <div class="bottom">
             <button class="saveButton" id="saveButton">Guardar</button>
             <a class="toPhotoButton" href="/">Editar Fotos</a>
@@ -167,8 +155,8 @@ logServer("Cargando perfil del usuario...");
 
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
-            <a href="discover.php">Descobrir</a>
-            <a href="messages.php" class="active">Missatges</a>
+            <a href="discover.php">Descubrir</a>
+            <a href="messages.php" class="active">Mensajes</a>
             <a href="profile.php">Perfil</a>
         </nav>
     </div>

@@ -155,7 +155,7 @@ function downloadUsersForDiscover($indexToLoad): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -573,7 +573,7 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
-            logServer("Usuario actualizado con éxito.",'ERROR');
+            logServer("Usuario actualizado con éxito.");
         } else {
             echo "Error al actualizar el usuario.";
             logServer("Error al actualizar el usuario",'ERROR');
@@ -627,7 +627,7 @@ function sumAndUpdateUserMinMaxAgeAndDistance(){
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
             exit;
         }
     
