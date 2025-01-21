@@ -56,51 +56,6 @@ function saveProfileData() {
             logToServer("Error en la solicitud AJAX para crear usuario", "ERROR");
         }
     });
-    // const email = $('#email').val();
-    // const passw = $('#password').val();
-    // const firstName = $('#firstName').val();
-    // const lastName1 = $('#lastName1').val();
-    // const lastName2 = $('#lastName2').val();
-    // const userName = $('#userName').val();
-    // const birthdate = $('#birthdate').val();
-    // const bio = $('#bio').val();
-    // const gender = $("input[name='gender']:checked").val(); // Solo guarda la opción seleccionada
-    // const orientation = $("input[name='orientacion']:checked").val(); // Solo guarda la opción seleccionada
-    // const minAge = 18;
-    // const maxAge = 99;
-    // const latitude = $('#latitude').val();
-    // const longitude = $('#longitude').val();
-
-    // // Envío de datos con AJAX
-    // $.ajax({
-    //     url: 'register.php',
-    //     type: 'POST',
-    //     data: {
-    //         action: 'create_user',
-    //         email: email,
-    //         passw: passw,
-    //         firstName: firstName,
-    //         lastName1: lastName1,
-    //         lastName2: lastName2,
-    //         userName: userName,
-    //         birthDate: birthdate,
-    //         bio: bio,
-    //         gender: gender,
-    //         orientation: orientation,
-    //         latitude: latitude,
-    //         longitude: longitude,
-    //         minAge: minAge,
-    //         maxAge: maxAge
-    //     },
-    //     success: function(response) {
-    //         console.log('datos actualizados correctamente');
-    //         logToServer('Solicitud AJAX correcta, enviando petición de crear usuario al servidor,,,');
-    //     },
-    //     error: function(error) {
-    //         console.error("Error al actualizar los datos: ", error);
-    //         logToServer("Error en la solicitud AJAX para crear usaurio", "ERROR");
-    //     }
-    // });
 }
 
 /** Valida que todos los campos requeridos tengan contenido */
@@ -156,6 +111,13 @@ function validateForm() {
     }
 
 /* Validacion de imagen*/
+    const fileInput = $('#photoInput')[0];
+    if(!fileInput.files.length){
+        $('.registerPhotoSection').addClass('error-border');
+        $('#errorPhoto').show();
+        isValid = false;
+        logToServer("No se ha seleccionado una imagen", "ERROR");
+    }
 
     if (!isValid) {
         $('#errorMessage').show();

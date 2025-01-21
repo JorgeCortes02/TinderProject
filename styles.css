@@ -1765,7 +1765,8 @@ body {
     margin-bottom: 20px;
     display: none; 
 }
-#register .containerMessage .error-message .error,#register .containerMessage .error-mail .error, #register .containerMessage .error-password .error {
+#register .containerMessage .error-message .error,#register .containerMessage .error-mail .error, 
+#register .containerMessage .error-password .error, #register .containerMessage .error-photo .error {
     color: var(--darkred);
 }
 #register .fieldsContainer .error-border {

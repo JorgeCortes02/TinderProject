@@ -130,9 +130,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
         <div class="error-mail" id="errorMail">
             <h3 class="error">Error: Formato de mail no valido</h3>
         </div>
-        <div class="error-photo" id="errorPhoto">
-            <h3 class="error">Error: Se debe añadir al menos una foto</h3>
-        </div>
 
         <form id="registerForm">
 
@@ -228,6 +225,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
                         </button>
                         <input type="file" id="photoInput" name="userImage" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
                     </section>
+                </div>
+                <div class="error-photo" id="errorPhoto">
+                    <h3 class="error">Se debe añadir al menos una foto</h3>
                 </div>
             </div>
             <div class="bottom">
