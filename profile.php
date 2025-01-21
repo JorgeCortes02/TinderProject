@@ -160,7 +160,7 @@ logServer("Cargando perfil del usuario...");
             </div> -->
             <div class="bottom">
             <button class="saveButton" id="saveButton">Guardar</button>
-            <a class="toPhotoButton" href="/">Editar Fotos</a>
+            <a class="toPhotoButton" href="photos.php">Editar Fotos</a>
             </div>
             </form>
         </div>

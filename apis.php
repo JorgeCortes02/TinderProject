@@ -50,6 +50,22 @@ if (isset($_GET["api"])) {
         case "uploadNewDisMaxAndMinorAge":
             sumAndUpdateUserMinMaxAgeAndDistance();
             break;
+        
+        case "getUserID":
+            getUserID();
+            break;
+
+        case "downloadImages":
+            downloadImages();
+            break;
+        
+        case "deletePhoto":
+            deletePhoto();
+            break;
+
+        case "addPhoto":
+            addPhoto();
+            break;
     }
 }
 
@@ -863,7 +879,136 @@ echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
 
     }
 
-    
+// Función para obtener el id del usuario
+function getUserID(){
+    if (isset($_SESSION['user_data']['IdUser'])) {
+        echo json_encode(['userID' => $_SESSION['user_data']['IdUser']]);
+    } else {
+        echo json_encode(['error' => 'Usuario no autenticado']);
+    }
+}
 
-?> 
 
+// Función para cargar las fotos
+function downloadImages(){
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $userID = $_POST['userID'];
+
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer("Error al conectar a la BBDD. Failed to get DB handle: " . $e->getMessage(), "ERROR");
+            exit;
+        }
+
+        $query = $pdo->prepare("SELECT URL FROM Photo where UserId = :id;");
+        logServer("SELECT URL FROM Photo where UserId = " . $userID . ";");
+        $query->bindParam(":id", $userID);
+        $query->execute();
+        $photos = $query->fetchAll(PDO::FETCH_COLUMN);
+
+        $arrayImageUser = [];
+        foreach ($photos as $img) {
+            $arrayImageUser[] = $img;
+        }
+
+        // Devolver los resultados como JSON
+        header('Content-Type: application/json');
+        echo json_encode($arrayImageUser);
+        exit;
+
+    }
+}
+
+
+// Función para eliminar fotos
+function deletePhoto(){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $userId = $_POST['userID'];
+        $imgSrc = $_POST['imgSrc'];
+
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer("Error al conectar a la BBDD. Failed to get DB handle: " . $e->getMessage(), "ERROR");
+            exit;
+        }
+
+        try {
+
+            $query = $pdo->prepare("DELETE FROM Photo where URL= :url and UserId= :id;");
+            logServer("DELETE FROM Photo where URL=". $userId ." and UserId=". $imgSrc . ";");
+            $query->bindParam(":url", $imgSrc);
+            $query->bindParam(":id", $userId);
+            $query->execute();
+
+            if ($query->rowCount() > 0) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Foto eliminada correctamente de la base de datos.'
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'No se encontró la foto para eliminar.'
+                ]);
+            }
+
+            exit;
+        }
+
+        catch (PDOException $e) {
+            // Si ocurre un error durante la ejecución de la consulta
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()
+            ]);
+        }
+
+    }
+}
+
+
+// Función para añadir fotos
+function addPhoto(){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer("Error al conectar a la BBDD. Failed to get DB handle: " . $e->getMessage(), "ERROR");
+            exit;
+        }
+
+        try {
+            
+        }
+
+        catch (PDOException $e) {
+            // Si ocurre un error durante la ejecución de la consulta
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()
+            ]);
+        }
+
+    }
+}
+
+?>
