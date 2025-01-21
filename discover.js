@@ -76,13 +76,7 @@ $(document).ready(function() {
             await downloadData(indexToDownload);
             indexToDownload = calcMaxId();  // Actualizamos el índice
             preferencesMenu.css("visibility", "hidden");
-        })();
-      
-     
-       
-       
-
-       
+        })();       
     });
     // Cargamos los perfiles iniciales
     (async () => {
