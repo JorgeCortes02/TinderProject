@@ -54,6 +54,9 @@
                                     Latitude, 
                                     Points,
                                     UserAge,
+                                    MaxAge,
+                                    MinAge,
+                                    MaxDis,
                                     Bio,
                                     Role
                                 FROM User 
@@ -61,8 +64,9 @@
         $query->bindParam(":id", $storedUserId);
         $query->execute();
         $query->execute();
-        logServer("SELECT IdUser,FirstName,LastName1, LastName2,Username, BirthDate, Orientation,Gender, Longitude, Latitude, Points,UserAge,Bio
-                    FROM User WHERE IdUser = ".$storedUserId);
+
+        logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
 
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -99,6 +103,7 @@
         $query->execute();
         $row = $query->fetch();
         logServer('SELECT Password, IdUser FROM User WHERE Email ='. $email);
+
         // si el email NO existe
         if (!$row) {
             logServer("Email no registrado $email");
@@ -114,6 +119,7 @@
             //si el email SÍ existe
         } else {
             logServer("Email registrado $email");
+
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
 
@@ -134,6 +140,7 @@
             } else {
                 logServer("Contraseña  correcta ".hash('sha256', $password));
                 logServer("Inicio de sesión correcto $email : ".hash('sha256', $password));
+
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 
@@ -143,7 +150,7 @@
 
                 // Pase 3: Comprobar si es administrador o usuario
                 if($_SESSION['user_data']['Role'] === 'Admin'){
-                    logServer("Administrador con id: ".$_SESSION['user_data']['IdUser']." ha entrado en el panel de administración");
+                    logServer("Administrador identificado ha entrado en el panel de administración");
                     header("Location: admin/index.php");
                     exit;
                 }

@@ -8,22 +8,10 @@
 <body>
 <?php
     include_once '../apis.php'; 
-    
-    // Paso 1: recoge la URL desde donde viene
-    if (isset($_SERVER['HTTP_REFERER'])) {
 
-        $referer = $_SERVER['HTTP_REFERER']; 
-        
-        // Paso 2: Verifica si la URL contiene "/login.php"
-        if (strpos($referer, '/login.php') === false) {
-            logServer("Usuario no identificado ha intentado entrar en el panel de administración");
-            header("Location: /login.php");
-            exit;
-        }
-    }
-    else {
-        echo "No se pudo determinar el sitio de origen.";
-        // Redirige al la página de error403
+    // Paso 1: recoge la URL desde donde viene, si no hay te dirige al error
+    if (!isset($_SERVER['HTTP_REFERER'])) {
+        logServer("Usuario no identificado ha intentado entrar en el panel de administración");
         header("Location: /errors/error403.php");
         exit();
     }
