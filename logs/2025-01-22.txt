@@ -1,0 +1,14 @@
+[19:04:14] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[19:04:14] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[19:04:14] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña incorrecta 9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c
+[19:04:22] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[19:04:22] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[19:04:22] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Login no verificado, Código: 0
+[19:05:30] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[19:05:30] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[19:05:30] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[19:05:30] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[19:05:32] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =luis.martinez@ieti.site
+[19:05:32] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado luis.martinez@ieti.site
+[19:05:32] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[19:05:32] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto luis.martinez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f

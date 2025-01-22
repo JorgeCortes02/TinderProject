@@ -120,119 +120,122 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
         </div>
 
         <div class="fieldsContainerRegiter">
-        <div id = "scroll"></div>
-        <div class="error-message" id="errorMessage">
-            <h3 class="error">Error: No se puede dejar un campo vacío</h3>
-        </div>
-        <div class="error-password" id="errorPassword">
-            <h3 class="error">Error: Las contraseñas no coinciden</h3>
-        </div>
-        <div class="error-mail" id="errorMail">
-            <h3 class="error">Error: Formato de mail no valido</h3>
-        </div>
+            <div id = "scroll"></div>
 
-        <form id="registerForm">
+            <a class ="backButton" href="/login.php">Volver</a>
 
-            <h2>Crea tu perfil</h2>
-<!-- User Info-->
-            <div class ="field">
-                <h3>Email: </h3>
-                <input type="email" id="email" placeholder="xxxx@ieti.site" required>
-                </div>
-            <div class ="field">
-                <h3>Contraseña: </h3>
-                <input type="password" id="password" placeholder="******" required>
-                </div>
-            <div class ="field">
-                <h3>Repetir Contraseña: </h3>
-                <input type="password" id="password2" placeholder="******" required>
-                </div>
-            
-            <div class ="field">
-                <h3>Nombre: </h3>
-                <input type="text" id="firstName" placeholder="Ernesto" required>
-                </div>
-                <!-- <small id="nombreError" style="color: red; display: none;">Name is required</small> -->
-            <div class ="field">
-                <h3>Apellidos: </h3>
-                <input type="text" id="lastName1" placeholder="Gomez" required>
-                <input type="text" id="lastName2" placeholder="Martinez" required>
+            <div class="error-message" id="errorMessage">
+                <h3 class="error">Error: No se puede dejar un campo vacío</h3>
             </div>
-            <div class ="field">
-                <h3>Alias: </h3>
-                <input type="text" id="userName" placeholder="Terreneitor33" required>
-                </div>
-            <div class ="field">
-                <h3>Fecha de Nacimiento: </h3>
-                <input type="date" id="birthdate" max ="<?php echo date('Y-m-d'); ?>"required>
-                </div>
-            <div class ="field radioField">
-                <h3>Género: </h3>
-                <label>
-                    <input type="radio" name="gender" value="Hombre" required>
-                    Hombre
-                </label>
-                </br>
-                <label>
-                    <input type="radio" name="gender" value="Mujer" required>
-                    Mujer
-                </label>
-                </br>
-                <label>
-                    <input type="radio" name="gender" value="No Binario" required>
-                    No Binario
-                </label>
+            <div class="error-password" id="errorPassword">
+                <h3 class="error">Error: Las contraseñas no coinciden</h3>
             </div>
-            <div class ="field radioField">
-                <h3>Orientación: </h3>
-                <label>
-                    <input type="radio" name="orientacion" value="Heterosexual"required>
-                    Heterosexual
-                </label>
-                </br>
-                <label>
-                    <input type="radio" name="orientacion" value="Homosexual"required>
-                    Homosexual
-                </label>
-                </br>
-                <label>
-                    <input type="radio" name="orientacion" value="Bisexual" required>
-                    Bisexual
-                </label>
-            </div>
-            <div class ="field">
-                <h3>Biografia: </h3>
-                <textarea id="bio" rows="10" cols ="50" placeholder="Me gusta el buen vino y leer bajo un arbol al atardecer..." required></textarea>
-                </div>
-            <div class ="field">
-                <h3>Tu localización: </h3>
-                <!-- API DE GOOGLE MAPS PARA ELEGIR COORDS (PRIMERO LATITUD Y DESPUES LONGITUD)-->
-                <div id="map" style="height: 400px; width: 100%;"></div>
-                <input type="text" id="latitude" value="41.355866" required>
-                <input type="text" id="longitude" value="2.077589" required>
+            <div class="error-mail" id="errorMail">
+                <h3 class="error">Error: Formato de mail no valido</h3>
             </div>
 
-            <div class ="field">
-                <h3>Fotografia: </h3>
-                <div class ="photoField">
-                    <!-- Aqui van un insert de la  primera foto-->
-                    <section class="registerPhotoSection">
-                        <div class="userPhoto" id="UserPhoto">
-                            
-                        </div>
-                        <button type="button" class="addPhoto" onclick="document.getElementById('photoInput').click()">
-                            <img src="images/anadir.png" alt="Add Photo" width="28" height="28">
-                        </button>
-                        <input type="file" id="photoInput" name="userImage" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
-                    </section>
+            <form id="registerForm">
+
+                <h2>Crea tu perfil</h2>
+    <!-- User Info-->
+                <div class ="field">
+                    <h3>Email: </h3>
+                    <input type="email" id="email" placeholder="xxxx@ieti.site" required>
                 </div>
-                <div class="error-photo" id="errorPhoto">
-                    <h3 class="error">Se debe añadir al menos una foto</h3>
+                <div class ="field">
+                    <h3>Contraseña: </h3>
+                    <input type="password" id="password" placeholder="******" required>
                 </div>
-            </div>
-            <div class="bottom">
-            <button class="createProfileButton" id="createProfileButton">Crear Perfil</button>
-            </div>
+                <div class ="field">
+                    <h3>Repetir Contraseña: </h3>
+                    <input type="password" id="password2" placeholder="******" required>
+                </div>
+                
+                <div class ="field">
+                    <h3>Nombre: </h3>
+                    <input type="text" id="firstName" placeholder="Ernesto" required>
+                </div>
+                    <!-- <small id="nombreError" style="color: red; display: none;">Name is required</small> -->
+                <div class ="field">
+                    <h3>Apellidos: </h3>
+                    <input type="text" id="lastName1" placeholder="Gomez" required>
+                    <input type="text" id="lastName2" placeholder="Martinez" required>
+                </div>
+                <div class ="field">
+                    <h3>Alias: </h3>
+                    <input type="text" id="userName" placeholder="Terreneitor33" required>
+                </div>
+                <div class ="field">
+                    <h3>Fecha de Nacimiento: </h3>
+                    <input type="date" id="birthdate" max ="<?php echo date('Y-m-d'); ?>"required>
+                    </div>
+                <div class ="field radioField">
+                    <h3>Género: </h3>
+                    <label>
+                        <input type="radio" name="gender" value="Hombre" required>
+                        Hombre
+                    </label>
+                    </br>
+                    <label>
+                        <input type="radio" name="gender" value="Mujer" required>
+                        Mujer
+                    </label>
+                    </br>
+                    <label>
+                        <input type="radio" name="gender" value="No Binario" required>
+                        No Binario
+                    </label>
+                </div>
+                <div class ="field radioField">
+                    <h3>Orientación: </h3>
+                    <label>
+                        <input type="radio" name="orientacion" value="Heterosexual"required>
+                        Heterosexual
+                    </label>
+                    </br>
+                    <label>
+                        <input type="radio" name="orientacion" value="Homosexual"required>
+                        Homosexual
+                    </label>
+                    </br>
+                    <label>
+                        <input type="radio" name="orientacion" value="Bisexual" required>
+                        Bisexual
+                    </label>
+                </div>
+                <div class ="field">
+                    <h3>Biografia: </h3>
+                    <textarea id="bio" rows="10" cols ="50" placeholder="Me gusta el buen vino y leer bajo un arbol al atardecer..." required></textarea>
+                    </div>
+                <div class ="field">
+                    <h3>Tu localización: </h3>
+                    <!-- API DE GOOGLE MAPS PARA ELEGIR COORDS (PRIMERO LATITUD Y DESPUES LONGITUD)-->
+                    <div id="map" style="height: 400px; width: 100%;"></div>
+                    <input type="text" id="latitude" value="41.355866" required>
+                    <input type="text" id="longitude" value="2.077589" required>
+                </div>
+
+                <div class ="field">
+                    <h3>Fotografia: </h3>
+                    <div class ="photoField">
+                        <!-- Aqui van un insert de la  primera foto-->
+                        <section class="registerPhotoSection">
+                            <div class="userPhoto" id="UserPhoto">
+                                
+                            </div>
+                            <button type="button" class="addPhoto" onclick="document.getElementById('photoInput').click()">
+                                <img src="images/anadir.png" alt="Add Photo" width="28" height="28">
+                            </button>
+                            <input type="file" id="photoInput" name="userImage" accept=".jpg, .jpeg, .png, .webp" style="display: none;">
+                        </section>
+                    </div>
+                    <div class="error-photo" id="errorPhoto">
+                        <h3 class="error">Se debe añadir al menos una foto</h3>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <button class="createProfileButton" id="createProfileButton">Crear Perfil</button>
+                </div>
             </form>
         </div>
     </div>
