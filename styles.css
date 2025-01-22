@@ -2137,7 +2137,7 @@ body {
 
 /* MARK: REGISTER */
 
-#register .fieldsContainer {
+.fieldsContainerRegiter{
     width: 100%;
     overflow-y: auto;
     max-width: 800px;
