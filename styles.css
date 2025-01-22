@@ -2173,20 +2173,92 @@ body {
 
 }
 
+/* MARK: VIEW CHANGE PHOTOS */
+
+.containerFromViewPhoto {
+    justify-content: flex-start;
+}
+
+#bodyPhotos .container main > h2 {
+    margin: 20px;
+}
+
+#containerPhotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.newPhotoPanel {
+    width: 150px; /* Ancho de los paneles */
+    height: 150px; /* Alto de los paneles, creando un cuadrado */
+    background-color: #d3d3d3; /* Color gris de fondo */
+    border: 1px solid #ccc; /* Un borde sutil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative; /* Esto es necesario para que el texto se posicione dentro de este contenedor */
+}
+
+.main-photo-text {
+    position: absolute; /* Posiciona el texto dentro del contenedor */
+    bottom: 0; /* Alinea el texto en la parte inferior */
+    width: 100%; /* Asegura que el texto ocupe todo el ancho del panel */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para que el texto sea legible sobre la foto */
+    color: #fff; /* Color del texto blanco */
+    text-align: center;
+    padding: 5px 0; /* Espaciado interno para mejorar la apariencia */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    z-index: 1;
+}
+
+.newPhotoPanel img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Asegura que la imagen se ajuste bien */
+}
+
+/* Estilo para el botón de cierre */
+.close-btn {
+    position: absolute;
+    top: 5px;   /* Ajusta la distancia desde la parte superior */
+    right: 5px; /* Ajusta la distancia desde la parte derecha */
+    width: 20px; /* Tamaño del botón de cierre */
+    height: 20px; /* Tamaño del botón de cierre */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.newPhotoPanel img.add-img {
+    width: 50px; /* Ajusta el tamaño de la imagen 'add.png', puedes cambiar el valor */
+    height: 50px; /* Ajusta la altura de la imagen 'add.png', asegurando que sea proporcional */
+    object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
+    cursor: pointer; /* Cambia el cursor cuando se pasa sobre la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente dentro del contenedor */
+    display: block; /* Hace que la imagen se comporte como un bloque, permitiendo el centrado */
+}
+
 
 /* MARK: REGISTER */
-
-#register .fieldsContainer {
+.fieldsContainerRegiter{
     width: 100%;
     overflow-y: auto;
     max-width: 800px;
-    margin: 20px auto;
     background-color: var(--lightblue);
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    padding-top: 40px ;
 }
 
+#register #registerForm h2{
+    font-weight: 600;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
 #register .field {
     margin-bottom: 30px;
 }
@@ -2264,10 +2336,6 @@ body {
 #register .fieldsContainer .radioField .error-border{
     color: var(--darkred);
 }
-#register .fieldsContainer h2{
-    margin-bottom: 10px;
-
-}
 #register .error-mail, #register .error-password{
     color: var(--darkred) !important;
 }
@@ -2295,7 +2363,23 @@ body {
     margin-bottom: 30px;
 }
 
-#register .createProfileButton:hover, .addPhoto:hover{
+#register .backButton{
+    padding: 10px 10px;
+    font-size: var(--header-size);
+    font-family: var(--header-font);
+    font-weight: 600;
+    background-color: var(--darkblue);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 50px;
+}
+
+#register .createProfileButton:hover, .addPhoto:hover, .backButton{
     background-color: var(--middleblue);
 }
 
