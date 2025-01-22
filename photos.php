@@ -19,10 +19,17 @@
             justify-content: flex-start;
         }
 
+        #bodyPhotos .container main > h2{
+            margin: 20px;
+        }
+
         #containerPhotos {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px; /* Espaciado entre los paneles */
+            gap: 20px;
+
+            justify-content: center;
+            margin-top: 10%;
         }
 
         .newPhotoPanel {
@@ -59,7 +66,7 @@
     <title>Editar mis fotos</title>
 </head>
 
-<body>
+<body id="bodyPhotos">
 
     <div class="container">
 

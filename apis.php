@@ -63,8 +63,8 @@ if (isset($_GET["api"])) {
             deletePhoto();
             break;
 
-        case "addPhoto":
-            addPhoto();
+        case "uploadPhoto":
+            uploadPhoto();
             break;
     }
 }
@@ -946,7 +946,7 @@ function deletePhoto(){
         }
 
         try {
-
+            
             $query = $pdo->prepare("DELETE FROM Photo where URL= :url and UserId= :id;");
             logServer("DELETE FROM Photo where URL=". $userId ." and UserId=". $imgSrc . ";");
             $query->bindParam(":url", $imgSrc);
@@ -954,6 +954,7 @@ function deletePhoto(){
             $query->execute();
 
             if ($query->rowCount() > 0) {
+                
                 echo json_encode([
                     'success' => true,
                     'message' => 'Foto eliminada correctamente de la base de datos.'
@@ -963,6 +964,26 @@ function deletePhoto(){
                     'success' => false,
                     'message' => 'No se encontró la foto para eliminar.'
                 ]);
+            }
+
+            // eliminar la foto del server
+            $filePath = $_SERVER['DOCUMENT_ROOT']."/" . $imgSrc;
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                    logServer("Archivo eliminado localmente: " . $filePath, "INFO");
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'No se pudo eliminar el archivo local.'
+                    ]);
+                    exit;
+                }
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Archivo local no encontrado: ' . $filePath
+                ]);
+                exit;
             }
 
             exit;
@@ -981,10 +1002,30 @@ function deletePhoto(){
 
 
 // Función para añadir fotos
-function addPhoto(){
+function uploadPhoto() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+        // verificar que se ha subido un arhivo
+        if (!isset($_FILES['file'])) {
+            echo json_encode(['success' => false,'message' => 'No se ha subido ningún archivo.']);
+            exit; 
+        }
 
+        $userId = $_POST['userID'];
+        $file = $_FILES['file'];
+
+
+        // Validar si el archivo es válido
+        $validExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+        $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if (!in_array($fileExtension, $validExtensions)) {
+            echo json_encode(['success' => false, 'message' => 'Formato de archivo no permitido.']);
+            exit;
+        }
+
+       
+
+        // conectar bd
         try {
             global $username, $pw;
             $hostname = "localhost";
@@ -992,22 +1033,51 @@ function addPhoto(){
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer("Error al conectar a la BBDD. Failed to get DB handle: " . $e->getMessage(), "ERROR");
             exit;
         }
 
+        // Consulta para obtener el número de fotos del usuario y así poner el nombre de la foto
         try {
-            
+            $query = $pdo->prepare("SELECT count(URL) AS photoCount FROM Photo WHERE UserId = :id;");
+            $query->bindParam(":id", $userId);
+            $query->execute();
+
+            // Obtener el número de fotos
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $photoCount = $result['photoCount'] ?? 0;
+
+        } catch (PDOException $e) {
+            echo json_encode(['success' => false,'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()]);
+            exit;
         }
 
-        catch (PDOException $e) {
-            // Si ocurre un error durante la ejecución de la consulta
-            echo json_encode([
-                'success' => false,
-                'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()
-            ]);
+        // definir el nombre del archivo
+        $photoNumber = $photoCount + 1;
+        $fileName = "imagen{$photoNumber}_user{$userId}." . $fileExtension;
+        $uploadDir = "images/";
+        $filePath = $uploadDir . $fileName;
+
+        // Mover el archivo al directorio de imágenes
+        if (!move_uploaded_file($file['tmp_name'], $filePath)) {
+            echo json_encode(['success' => false, 'message' => 'Error al mover el archivo al directorio.']);
+            exit;
         }
 
+        // Guardar la URL de la foto en la base de datos
+        try {
+            $insertQuery = $pdo->prepare("INSERT INTO Photo (UserId, URL) VALUES (:userId, :url)");
+            $insertQuery->bindParam(":userId", $userId, PDO::PARAM_INT);
+            $insertQuery->bindParam(":url", $filePath, PDO::PARAM_STR);
+            $insertQuery->execute();
+        } catch (PDOException $e) {
+            echo json_encode(['success' => false, 'message' => 'Error al guardar la URL en la base de datos: ' . $e->getMessage()]);
+            exit;
+        }
+                
+        // Devolver la respuesta de éxito
+        echo json_encode(['success' => true, 'fileURL' => $filePath]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
     }
 }
 
