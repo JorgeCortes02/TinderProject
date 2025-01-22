@@ -29,7 +29,7 @@ if (isset($_GET["api"])) {
         case "logEvent":
             $input = json_decode(file_get_contents('php://input'), true); // Decodificar JSON
             if (isset($input["mensajeLog"]) && isset($input["tipoLog"]) && isset($input["pagLog"])) {
-                logEvent($input["mensajeLog"], $input["tipoLog"], $input["pagLog"]);
+                logEvent($input["mensajeLog"], $input["pagLog"],$input["tipoLog"]);
             } 
             break;
 
@@ -71,6 +71,9 @@ if (isset($_GET["api"])) {
         case "uploadPhoto":
             uploadPhoto();
             break;
+        case "destroySession":
+                destroySession();
+                break;
     }
 }
 
@@ -602,7 +605,7 @@ function sumAndUpdateUserPoints(){
     }
 }
 
-function logEvent($mensaje, $tipo = 'INFO',$pag){
+function logEvent($mensaje,$pag,$tipo = 'INFO'){
 
     $fecha = date('Y-m-d');
     $hora = date('H:i:s', time() + 3600);
@@ -624,7 +627,7 @@ function logEvent($mensaje, $tipo = 'INFO',$pag){
 
 function logServer($mensaje, $tipo = 'INFO'){
     $pag = getFullUrl();
-    logEvent($mensaje, $tipo, $pag);
+    logEvent($mensaje,  $pag,$tipo);
 }
 
 function getFullUrl() {
@@ -1142,5 +1145,12 @@ function uploadPhoto() {
         echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
     }
 }
+function destroySession(){
 
+    session_destroy();
+
+    // Redirigir al usuario, por ejemplo, a la página de inicio de sesión
+    header("Location: login.php");
+    exit;
+}
 ?>
