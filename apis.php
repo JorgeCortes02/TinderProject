@@ -51,8 +51,25 @@ if (isset($_GET["api"])) {
             sumAndUpdateUserMinMaxAgeAndDistance();
             break;
         
+
         case "downloadProfileWithFoto":
             downloadProfileWithFoto();
+            break;
+        
+        case "getUserID":
+            getUserID();
+            break;
+
+        case "downloadImages":
+            downloadImages();
+            break;
+        
+        case "deletePhoto":
+            deletePhoto();
+            break;
+
+        case "uploadPhoto":
+            uploadPhoto();
             break;
     }
 }
@@ -868,6 +885,7 @@ echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
     }
 
 
+
     function downloadProfile(): array
 {
 
@@ -922,5 +940,207 @@ function downloadProfileWithFoto(){
 
 
 
-?> 
+// Función para obtener el id del usuario
+function getUserID(){
+    if (isset($_SESSION['user_data']['IdUser'])) {
+        echo json_encode(['userID' => $_SESSION['user_data']['IdUser']]);
+    } else {
+        echo json_encode(['error' => 'Usuario no autenticado']);
+    }
+}
 
+
+// Función para cargar las fotos
+function downloadImages(){
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $userID = $_POST['userID'];
+
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer("Error al conectar a la BBDD. Failed to get DB handle: " . $e->getMessage(), "ERROR");
+            exit;
+        }
+
+        $query = $pdo->prepare("SELECT URL FROM Photo where UserId = :id;");
+        logServer("SELECT URL FROM Photo where UserId = " . $userID . ";");
+        $query->bindParam(":id", $userID);
+        $query->execute();
+        $photos = $query->fetchAll(PDO::FETCH_COLUMN);
+
+        $arrayImageUser = [];
+        foreach ($photos as $img) {
+            $arrayImageUser[] = $img;
+        }
+
+        // Devolver los resultados como JSON
+        header('Content-Type: application/json');
+        echo json_encode($arrayImageUser);
+        exit;
+
+    }
+}
+
+
+// Función para eliminar fotos
+function deletePhoto(){
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        $userId = $_POST['userID'];
+        $imgSrc = $_POST['imgSrc'];
+
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            logServer("Error al conectar a la BBDD. Failed to get DB handle: " . $e->getMessage(), "ERROR");
+            exit;
+        }
+
+        try {
+            
+            $query = $pdo->prepare("DELETE FROM Photo where URL= :url and UserId= :id;");
+            logServer("DELETE FROM Photo where URL=". $userId ." and UserId=". $imgSrc . ";");
+            $query->bindParam(":url", $imgSrc);
+            $query->bindParam(":id", $userId);
+            $query->execute();
+
+            if ($query->rowCount() > 0) {
+                
+                echo json_encode([
+                    'success' => true,
+                    'message' => 'Foto eliminada correctamente de la base de datos.'
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'No se encontró la foto para eliminar.'
+                ]);
+            }
+
+            // eliminar la foto del server
+            $filePath = $_SERVER['DOCUMENT_ROOT']."/" . $imgSrc;
+            if (file_exists($filePath)) {
+                if (unlink($filePath)) {
+                    logServer("Archivo eliminado localmente: " . $filePath, "INFO");
+                } else {
+                    echo json_encode([
+                        'success' => false,
+                        'message' => 'No se pudo eliminar el archivo local.'
+                    ]);
+                    exit;
+                }
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => 'Archivo local no encontrado: ' . $filePath
+                ]);
+                exit;
+            }
+
+
+            exit;
+        }
+
+        catch (PDOException $e) {
+            // Si ocurre un error durante la ejecución de la consulta
+            echo json_encode([
+                'success' => false,
+                'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()
+            ]);
+        }
+
+    }
+}
+
+
+// Función para añadir fotos
+function uploadPhoto() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        // verificar que se ha subido un arhivo
+        if (!isset($_FILES['file'])) {
+            echo json_encode(['success' => false,'message' => 'No se ha subido ningún archivo.']);
+            exit; 
+        }
+
+        $userId = $_POST['userID'];
+        $file = $_FILES['file'];
+
+
+        // Validar si el archivo es válido
+        $validExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+        $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+        if (!in_array($fileExtension, $validExtensions)) {
+            echo json_encode(['success' => false, 'message' => 'Formato de archivo no permitido.']);
+            exit;
+        }
+
+       
+
+        // conectar bd
+        try {
+            global $username, $pw;
+            $hostname = "localhost";
+            $dbname = "DatingApp";
+            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+        } catch (PDOException $e) {
+            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+            exit;
+        }
+
+        // Consulta para obtener el número de fotos del usuario y así poner el nombre de la foto
+        try {
+            $query = $pdo->prepare("SELECT count(URL) AS photoCount FROM Photo WHERE UserId = :id;");
+            $query->bindParam(":id", $userId);
+            $query->execute();
+
+            // Obtener el número de fotos
+            $result = $query->fetch(PDO::FETCH_ASSOC);
+            $photoCount = $result['photoCount'] ?? 0;
+
+        } catch (PDOException $e) {
+            echo json_encode(['success' => false,'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()]);
+            exit;
+        }
+
+        // definir el nombre del archivo
+        $photoNumber = $photoCount + 1;
+        $fileName = "imagen{$photoNumber}_user{$userId}." . $fileExtension;
+        $uploadDir = "images/";
+        $filePath = $uploadDir . $fileName;
+
+        // Mover el archivo al directorio de imágenes
+        if (!move_uploaded_file($file['tmp_name'], $filePath)) {
+            echo json_encode(['success' => false, 'message' => 'Error al mover el archivo al directorio.']);
+            exit;
+        }
+
+        // Guardar la URL de la foto en la base de datos
+        try {
+            $insertQuery = $pdo->prepare("INSERT INTO Photo (UserId, URL) VALUES (:userId, :url)");
+            $insertQuery->bindParam(":userId", $userId, PDO::PARAM_INT);
+            $insertQuery->bindParam(":url", $filePath, PDO::PARAM_STR);
+            $insertQuery->execute();
+        } catch (PDOException $e) {
+            echo json_encode(['success' => false, 'message' => 'Error al guardar la URL en la base de datos: ' . $e->getMessage()]);
+            exit;
+        }
+                
+        // Devolver la respuesta de éxito
+        echo json_encode(['success' => true, 'fileURL' => $filePath]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Método no permitido.']);
+    }
+}
+
+?>
