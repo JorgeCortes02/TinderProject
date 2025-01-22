@@ -167,7 +167,7 @@ function getMessages(data,type){
                            divMessage.attr("data-datatime",element["SentAt"] )
                            divMessage.attr("data-MsiD",element["MessageId"] )
                            contenedorMensages.append(divMessage)
-                           contenedorChat.attr("data-otherUserId", element["SenderUserId"])
+                           contenedorChat.attr("data-otherlikeid", element["SenderUserId"])
                         } else{
                             let divMessage =  $("<div>")
                            divMessage.attr("class", "chatMessage sent")
@@ -184,7 +184,7 @@ function getMessages(data,type){
 
         }
          
-       
+       data-otherlikeiddata-otherlikeid
     })
     .catch(error => {
         console.error("Error en la petición:", error);  // Si ocurre un error, lo mostramos
@@ -316,7 +316,7 @@ function downloadLastMessage() {
                 contenedorMensages.append(divMessage);
 
                 // Actualizar el usuario
-                contenedorChat.attr("data-otherUserId", element["SenderUserId"]);
+                contenedorChat.attr("data-otherlikeid", element["SenderUserId"]);
 
                 lastdata = element["SentAt"];
             });

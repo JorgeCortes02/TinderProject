@@ -337,7 +337,7 @@ function createUser($newUserData){
 
         // Enviar el correo de verificación
         logServer("Enviando correo de verificación a :".$newUserData['email']);
-        //sendVerificationEmail($userId, $newUserData['email']);
+        sendVerificationEmail($userId, $newUserData['email']);
         insertUserPhoto($userId);
         
     } else {
@@ -409,7 +409,7 @@ function sendVerificationEmail($userId, $userEmail) {
     $tokenWithUserId = $tokenMd5 . ':' . $userId; // Concatenar el userId
     
     // Crear el enlace de verificación
-    // $verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
+    //$verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
     //$verificationLink = "http://localhost:3000/register.php?validate=" . $tokenMd5;
     $verificationLink = "https://tinder2.ieti.site/register.php?validate=" . $tokenWithUserId;
 
