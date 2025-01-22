@@ -119,7 +119,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
             <h1>IETINDER - Registrate!</h1>
         </div>
 
-        <div class="fieldsContainerRegiter">
+        <div class="fieldsContainer">
         <div id = "scroll"></div>
         <div class="error-message" id="errorMessage">
             <h3 class="error">Error: No se puede dejar un campo vacío</h3>
