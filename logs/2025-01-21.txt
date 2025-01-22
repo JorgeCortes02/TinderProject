@@ -206,15 +206,3 @@ AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
 [21:35:54] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
 [21:35:54] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
 [21:35:54] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[21:48:16] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[21:48:21] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:41:53] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:41:55] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:41:59] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:45:25] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:45:25] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:45:26] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:45:26] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:45:26] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:45:26] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
-[22:47:01] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
