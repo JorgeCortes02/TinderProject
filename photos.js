@@ -98,6 +98,7 @@ $(document).ready(function () {
                     const addImg = $("<img>")
                         .attr("src", "images/add.png")
                         .attr("alt", "Añadir foto")
+                        .addClass("add-img")
                         .css({ cursor: "pointer" })
                         .on("click", () => addNewPhoto(i));
 
