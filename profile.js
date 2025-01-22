@@ -16,7 +16,7 @@ $(document).ready(function(){
 
     const profileButtom = $("#Profile");
     const confButton = $("#Conf");
-  
+    const preferencesButton = $("#divPreferencesProfile");
     
 
     profileButtom.on("click", function(){
@@ -37,7 +37,15 @@ $(document).ready(function(){
         contenedorProfile.css("display", "none")
     })
 
+    preferencesButton.on("click", function(){
+        if(preferencesMenu.css("display") == "flex"){
+            preferencesMenu.css("display", "none");
 
+        }else{
+            preferencesMenu.css("display", "flex");
+        }
+        
+    });
 
 
 })

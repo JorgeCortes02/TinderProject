@@ -1,0 +1,184 @@
+[12:42:42] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[12:42:44] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = 1
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=1]: Session iniciada
+[12:42:50] [INFO] [http://localhost:8000/login.php] [UserId=1]: Redireccion a discover.php
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.72024997284 Puntos:600
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:29 Distancia:181.48464690834 Puntos:600
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[12:42:50] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[12:42:50] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:42:53] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:42:53] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:42:53] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Cargando matches...
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Cargando fotos de matches...
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Se han descargado Matches
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Cargando chats...
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Cargando fotos de los chats...
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 5 LIMIT 1;
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Foto cargada
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Foto cargada
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Foto cargada
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Foto cargada
+[12:42:56] [INFO] [http://localhost:8000/messages.php] [UserId=1]: Se han descargado mensajes
+[12:42:56] [INFO] [http://localhost:8000/profile.jpg] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:42:56] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.72024997284 Puntos:600
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:29 Distancia:181.48464690834 Puntos:600
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[12:42:57] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[12:42:57] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:43:02] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:43:05] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:43:17] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: Email registrado carlos.gomez@ieti.site
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = 1
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: Session iniciada
+[12:43:22] [INFO] [http://localhost:8000/login.php] [UserId=1]: Redireccion a discover.php
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.72024997284 Puntos:600
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:29 Distancia:181.48464690834 Puntos:600
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[12:43:22] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[12:43:22] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.72024997284 Puntos:600
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:29 Distancia:181.48464690834 Puntos:600
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[12:45:01] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[12:45:01] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:45:02] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:45:02] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:45:02] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:45:52] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:45:52] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:45:52] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:46:24] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:46:24] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:46:24] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:47:26] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:47:26] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:47:26] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:49:47] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:49:47] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:49:47] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:49:59] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:49:59] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:49:59] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:50:14] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:50:14] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:50:14] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:51:38] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:51:38] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:51:38] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:51:50] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:51:50] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:51:50] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:51:58] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:51:58] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:51:58] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:52:30] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:52:30] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:52:30] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:53:17] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:53:17] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:53:17] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:53:32] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:53:33] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:53:33] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:54:45] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:54:45] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:54:45] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:54:46] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:54:46] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:54:46] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:55:00] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:55:01] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:55:01] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:55:18] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:55:18] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:55:18] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:55:48] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:55:48] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:55:48] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:56:22] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:56:22] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:56:22] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:56:35] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:56:35] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:56:35] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:56:49] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:56:49] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:56:49] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:56:49] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:56:49] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:56:49] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:57:10] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:57:10] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:57:10] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:57:26] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:57:26] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:57:26] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[12:57:28] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[12:57:28] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[12:57:28] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[13:01:08] [INFO] [http://localhost:8000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[13:01:08] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[13:01:08] [INFO] [http://localhost:8000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
