@@ -54,6 +54,10 @@ if (isset($_GET["api"])) {
         case "downloadProfileWithFoto":
             downloadProfileWithFoto();
             break;
+        
+        case "destroySession":
+            destroySession();
+            break;
     }
 }
 
@@ -920,7 +924,14 @@ function downloadProfileWithFoto(){
 }
 
 
+function destroySession(){
 
+    session_destroy();
+
+    // Redirigir al usuario, por ejemplo, a la página de inicio de sesión
+    header("Location: login.php");
+    exit;
+}
 
 ?> 
 
