@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include_once 'apis.php'; 
 include 'config.php';
 ?>
@@ -10,6 +12,9 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missatges</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="messages.js"></script>
+    
 </head>
 <body>
     <div class="containerMessage">
@@ -31,23 +36,23 @@ include 'config.php';
                 if (!empty($matchDiccionari)) { // Verifica si $matchDiccionari tiene datos
                     foreach ($matchDiccionari as $match) {
                         echo "
-                            <div class='match-item' data-id='" . htmlspecialchars($match["MatchId"]) . "'>
+                            <div class='match-item'  data-img= " . htmlspecialchars($match["img"]) . " data-id='" . htmlspecialchars($match["MatchId"])."'>
                                 <img src='" . htmlspecialchars($match["img"]) . "' alt='Match Image'>
                             </div>
                         ";
                         
-                    }registrarLog("Se han descargado Matches");
+                    }logServer("Se han descargado Matches");
                 } else {
                     echo "
                         <div class='no-matches'>
                             <h4>No hay matches disponibles en este momento.</h4>
                         </div>
                     ";
-                    registrarLog("No se han encontrado Matches");
+                    logServer("No se han encontrado Matches");
                 }
                 ?>
             </div>
-</div>
+        </div>
 
         <!-- Sección de mensajes -->
         <div class="messages-section">
@@ -60,33 +65,61 @@ include 'config.php';
                if (!empty($messageDiccionari)) { // Verifica si $messageDiccionari tiene datos
                    foreach ($messageDiccionari as $conver) {
                        echo "
-                       <a href='conversa.html' class='message-item'>
+                       <div class='message-item' data-img=' " . htmlspecialchars($conver["img"]) . "' data-id='" . htmlspecialchars($conver["MatchId"]) . "' data-name='" . htmlspecialchars($conver["username"]) . "' data-currentUser ='". htmlspecialchars($conver["userId"]) . "'>
                            <img src='" . htmlspecialchars($conver["img"]) . "' alt='Foto de Perfil'>
                            <div class='message-info'>
                                <p class='user-name'>" . htmlspecialchars($conver["username"]) . "</p>
                                <p class='last-message'>" . htmlspecialchars($conver["Text"]) . "</p>
                            </div>
-                       </a>
+                       </div>
                        ";
                    }
-                   registrarLog("Se han descargado mensajes");
+                   logServer("Se han descargado mensajes");
                } else {
                    echo "
                     <div class='no-matches'>
                             <h4>No hay mensajes disponibles en este momento.</h4>
                         </div>
-                   ";registrarLog("No Se han descargado Mensajes");
+                   ";logServer("No Se han descargado Mensajes");
                }
                ?>
             
                
             </div>
         </div>
+        <div class="containerChat" data-id='' data-otherLikeId=''>
+    <div class="nameAndSelectorButtons">
+        <div class="NameAndReturn">
+            <button id="returnToMessage">Volver</button>
+            <img src="profile.jpg" alt="Foto de perfil" id="fotoPerfilChat">
+            <h4 id="name">Pedro</h4>
+        </div>
+        <div class="Selectors">
+            <button id="Chat" class="selector">Chat</button>
+            <button id="Profile" class="selector">Perfil</button>
+        </div>
+    </div>
 
+    <div class="chat">
+        
+    </div>
+    <div class="card-profile">
+            
+          
+    
+            
+            </div>
+    <div class="messageInputContainer">
+        <input id="inputMessage" type="text" placeholder="Escribe tu mensaje aquí..." />
+        <button id="sent">Enviar</button>
+    </div>
+
+    
+</div>
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
-            <a href="discover.php">Descobrir</a>
-            <a href="messages.php" class="active">Missatges</a>
+            <a href="discover.php">Descubrir</a>
+            <a href="messages.php" class="active">Mensajes</a>
             <a href="profile.php">Perfil</a>
         </nav>
     </div>
@@ -106,7 +139,7 @@ function downloadMatches(): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD para descargar Matches. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -115,8 +148,9 @@ function downloadMatches(): array
     
     // Preparar la consulta de manera segura usando un marcador de posición para :userId
 
-
-
+        logServer("Cargando matches...");
+        logServer("SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; ");
         $query = $pdo->prepare(
             "SELECT MatchId,
                     User1Id,
@@ -134,12 +168,17 @@ function downloadMatches(): array
         ':userId' => $userId
     ]);
     $matchDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+
+// Añadir el valor de $userId a cada elemento de $matchDiccionari
+
     return $matchDiccionari;
 }
 
 function downloadFotosForMatches($matchDiccionari)
 {
 
+    logServer("Cargando fotos de matches...");
+        
     foreach ($matchDiccionari as &$match) {
 
         try {
@@ -149,16 +188,16 @@ function downloadFotosForMatches($matchDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD al descargar mensajes. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
             exit;
         }
 
         if($match["User1Id"] ==  $_SESSION['user_data']["IdUser"]){
-
+            logServer("SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;");
             $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $match["User2Id"] . " LIMIT 1;");
 
         }else{
-
+            logServer("SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;");
             $query = $pdo->prepare("SELECT URL FROM Photo where UserId = " . $match["User1Id"] . " LIMIT 1;");
         }
     
@@ -179,8 +218,7 @@ function downloadFotosForMatches($matchDiccionari)
 }
 
 function downloadChats(){
-
-
+    logServer("Cargando chats...");
     try {
         global $username, $pw;
         $hostname = "localhost";
@@ -188,7 +226,7 @@ function downloadChats(){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -209,13 +247,21 @@ JOIN (
 ) AS sub ON m.MessageId = sub.LastMessageId
 ORDER BY m.SentAt DESC;"
     );
-                    
+
+    logServer("SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;");
 
     // Ejecutar la consulta con los parámetros correspondientes
     $query->execute([
         ':userId' => $userId
     ]);
     $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($messageDiccionari as &$item) {
+        $item['userId'] = $userId;  // Agregar el userId a cada elemento
+    }
+    unset($item);
     return $messageDiccionari ;
 
 
@@ -223,7 +269,7 @@ ORDER BY m.SentAt DESC;"
 
 function downloadFotosForChats($messageDiccionari)
 {
-
+    logServer("Cargando fotos de los chats...");
     foreach ($messageDiccionari as &$conver) {
 
         try {
@@ -233,7 +279,7 @@ function downloadFotosForChats($messageDiccionari)
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
             exit;
         }
         $userId = $_SESSION['user_data']["IdUser"];
@@ -242,12 +288,20 @@ function downloadFotosForChats($messageDiccionari)
             $query = $pdo->prepare("SELECT u.Username, p.URL FROM User u 
                         LEFT JOIN Photo p ON u.IdUser = p.UserId 
                         WHERE u.IdUser = " . $conver["SenderUserId"] . " LIMIT 1;");
+            
+            logServer("SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = " . $conver["SenderUserId"] . " LIMIT 1;");
 
             
 
         }else{
 
             $query = $pdo->prepare("SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = " . $conver["ReceiverUserId"] . " LIMIT 1;");
+
+            logServer("SELECT u.Username, p.URL FROM User u 
             LEFT JOIN Photo p ON u.IdUser = p.UserId 
             WHERE u.IdUser = " . $conver["ReceiverUserId"] . " LIMIT 1;");
         }
@@ -259,6 +313,7 @@ $photoData = $query->fetchAll(PDO::FETCH_ASSOC);
 // Recorrer los resultados y asignar los valores al array $conver
 foreach ($photoData as $data) {
     // Guardar Username y URL de la foto para cada usuario en $conver
+    logServer("Foto cargada");
     $conver["username"] = $data['Username'];
     $conver["img"] = $data['URL'];
     
@@ -268,6 +323,4 @@ foreach ($photoData as $data) {
     return $messageDiccionari;
 
 }
-
-
 ?>

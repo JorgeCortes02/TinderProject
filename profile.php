@@ -2,13 +2,13 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include_once 'apis.php'; 
+include 'apis.php'; 
 include 'config.php';
-registrarLog("Redireccion a profile.php");
 
 // Función para cargar el archivo .env
 function loadEnv($path) {
     if (!file_exists($path)) {
+        logServer('El archivo .env no se encuentra en la ruta especificada.','ERROR');
         throw new Exception("El archivo .env no se encuentra en la ruta especificada.");
     }
 
@@ -32,10 +32,6 @@ function loadEnv($path) {
 // Llama a la función para cargar las variables de entorno
 loadEnv(__DIR__ . '/.env');
 
-
-//andamio para pruebas
-//recuperarUserDataDePrueba();
-//var_dump($_SESSION['user_data']['FirstName']);
 // Verificar si se ha realizado la solicitud AJAX de hacer update a la sesion para actualizar valores
 if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     $_SESSION['user_data']['FirstName'] = $_POST['firstName'];
@@ -52,7 +48,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
     // Llamar a la función para actualizar en la base de datos
     updateUserData($_SESSION['user_data']);
 }
-
+logServer("Cargando perfil del usuario...");
 ?>
 
 
@@ -61,7 +57,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="profile.js"></script>
+    <script type="module" src="profile.js"></script>
     <title>Profile</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -72,12 +68,23 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
         <!-- Encabezado -->
         <div class="header">
             <h1>IETINDER</h1>
-            
+            <button id="menulogout" name="menu"></button>
         </div>
-
+        
+        <div class="divPreferencesProfile">
+            <button id="logOut" name="logOut">Cerrar Sesión</button>
+            <button id="changePass" name="changePass">Cambiar Contraseña</button>
+            <button id="deleteAcount" name="deleteAcount">Eliminar Cuenta</button>
+        </div>
+        
+        <div class="SelectorsProfile">
+            <button id="Profile" class="selector">Perfil</button>
+            <button id="Conf" class="selector">Configuración</button>
+        </div>
         <div class="fieldsContainer">
-        <div class="error-message" id="errorMessage">Error: no se puede dejar un campo vacío</div>
-            <div id = "scroll"></div>
+        <div id = "scroll"></div>
+        <div class="error-message" id="errorMessage">
+            <h3 class="error">Error: No se puede dejar un campo vacío</h3></div>
         <form id="profileForm">
 
             <h2>Edita tu perfil</h2>
@@ -98,7 +105,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                 </div>
             <div class ="field">
                 <h3>Fecha de Nacimiento: </h3>
-                <input type="text" id="birthdate" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
+                <input type="date" id="birthdate" max ="<?php echo date('Y-m-d'); ?>" value="<?php echo htmlspecialchars($_SESSION['user_data']['BirthDate'])?>" required>
                 </div>
             <div class ="field">
                 <h3>Biografia: </h3>
@@ -148,19 +155,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
                     Bisexual
                 </label>
             </div>
-        
-            <!-- <div class ="field">
-                <h3>Preferencia de Edad: </h3>
-                <label class="ageText" for="minAge">Edad Mínima: <span id="minAgeValue">$_SESSION['user_data']['MinAge'])?></span></label>
-                </br>
-                <label class="ageText" for="maxAge">Edad Máxima: <span id="maxAgeValue">$_SESSION['user_data']['MaxAge'])?></span></label>
 
-                <div class="range-slider">
-                    <input type="range" id="minAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MinAge'])?>" oninput="updateRange()">
-                    <input type="range" id="maxAge" min="18" max="99" value=" echo htmlspecialchars($_SESSION['user_data']['MaxAge'])?>" oninput="updateRange()">
-                    <div class="progress"></div>
-                </div>
-            </div> -->
             <div class="bottom">
             <button class="saveButton" id="saveButton">Guardar</button>
             <a class="toPhotoButton" href="/">Editar Fotos</a>
@@ -168,13 +163,17 @@ if (isset($_POST['action']) && $_POST['action'] == 'update_session') {
             </form>
         </div>
 
-
-       
+        <div class="card-profile2">
+            
+          
+    
+            
+            </div>
 
         <!-- Menú de navegación inferior -->
         <nav class="bottom-nav">
-            <a href="discover.php">Descobrir</a>
-            <a href="messages.php" class="active">Missatges</a>
+            <a href="discover.php">Descubrir</a>
+            <a href="messages.php" class="active">Mensajes</a>
             <a href="profile.php">Perfil</a>
         </nav>
     </div>
@@ -247,7 +246,7 @@ function updateUserData($userData){
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        registrarLog("Profile - Failed to connect to the database" . $e->getMessage(),'ERROR');
+        logServer("Failed to connect to the database" . $e->getMessage(),'ERROR');
         exit;
     }
 
@@ -264,6 +263,7 @@ function updateUserData($userData){
                                 Bio = :bio
                             WHERE IdUser = :userId");
     // bindParam
+
     $query->bindParam(':firstName', $userData['FirstName'], PDO::PARAM_STR);
     $query->bindParam(':lastName1', $userData['LastName1'], PDO::PARAM_STR);
     $query->bindParam(':lastName2', $userData['LastName2'], PDO::PARAM_STR);
@@ -276,14 +276,20 @@ function updateUserData($userData){
     $query->bindParam(':userId', $userData['IdUser'], PDO::PARAM_INT);
     $query->bindParam(':bio', $userData['Bio'], PDO::PARAM_STR);
 
+    logServer("UPDATE User SET FirstName = ". $userData['FirstName'].", LastName1 = ".$userData['LastName1'].", LastName2 =".$userData['LastName2'].
+    ", Username =". $userData['Username'].", BirthDate =". $userData['BirthDate'].", Orientation =". $userData['Orientation'].", Gender =". 
+    $userData['Gender'].", Longitude =". $userData['Longitude'].", Latitude =". $userData['Latitude'].", Bio =". $userData['Bio']."
+     WHERE IdUser =". $userData['IdUser']);
+
     if ($query->execute()) {
-        registrarLog("Datos actualizados correctamente para el usuario con ID: " . $userData['IdUser']);
+        logServer("Datos actualizados correctamente para el usuario.");
         
     } else {
         echo "Error al actualizar los datos.";
-        registrarLog("Error al actualizar los datos en UpdateUserData.",'ERROR');
+        logServer("Error al actualizar los datos en UpdateUserData.",'ERROR');
 
     }
+
 
     unset($pdo);
     unset($query);

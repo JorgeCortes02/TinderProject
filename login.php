@@ -1,24 +1,31 @@
+<?php
+//necesario para la notificación de verificacion correcta
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+include_once 'apis.php'; 
+include_once 'config.php';
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" type="text/css">
+    <script src="notifications.js"></script>
     <title>Login</title>
 </head>
 
 <body id="loginBody">
-
-    <?php    
-    include_once 'apis.php'; 
-    include_once 'config.php';
-
+    <?php
     // Cuando se ha hecho submit en el form de login
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $email = $_POST['mail'] ?? '';
         $password = $_POST['contrassenya'] ?? '';
-        registrarLog("Solicitud de inicio de sesión $email : $password",'INFO');
+       
 
         // Limpieza básica de los datos recibidos
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
@@ -38,7 +45,7 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            registrarLog("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
+            logServer("Login - Failed to get DB handle: " . $e->getMessage(), 'ERROR');
             exit;
         }
 
@@ -55,6 +62,9 @@
                                     Latitude, 
                                     Points,
                                     UserAge,
+                                    MaxAge,
+                                    MinAge,
+                                    MaxDis,
                                     Bio
                                 FROM User 
                                 WHERE IdUser = :id;");
@@ -62,11 +72,15 @@
         $query->execute();
         $query->execute();
 
+        logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
+
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
         // Almacenar el resultado en la sesión
         $_SESSION['user_data'] = $result;
+        logServer("Session iniciada");
 
         //eliminem els objectes per alliberar memòria 
         unset($pdo);
@@ -86,19 +100,20 @@
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $pw);
         } catch (PDOException $e) {
             echo "<p>Failed to connect to the database: " . $e->getMessage() . "</p>";
-            registrarLog("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
+            logServer("Login - Failed to connect to the database in login: " . $e->getMessage(),'ERROR');
             exit;
         }
 
         // Paso 1: Verificar si el email existe, si existe nos quedamos con su password y su ID
-        $query = $pdo->prepare("SELECT Password, IdUser FROM User WHERE Email = :mail");
+        $query = $pdo->prepare("SELECT Password, IdUser, LoginAllowed FROM User WHERE Email = :mail");
         $query->bindParam(":mail", $email);
         $query->execute();
         $row = $query->fetch();
+        logServer('SELECT Password, IdUser FROM User WHERE Email ='. $email);
 
         // si el email NO existe
         if (!$row) {
-            registrarLog("Email no registrado $email");
+            logServer("Email no registrado $email");
             ?>
             <script>
                 document.addEventListener("DOMContentLoaded", (event) => {
@@ -110,13 +125,15 @@
 
             //si el email SÍ existe
         } else {
-            registrarLog("Email registrado $email");
+            logServer("Email registrado $email");
+
             // Paso 2: Verificar si la contraseña es correcta
             $storedPassword = $row['Password'];
+            $loginAllowed = $row['LoginAllowed'];
 
             //si la contraseña es incorrecta
             if ($storedPassword !== hash('sha256', $password)) {
-                registrarLog("Contraseña incorrecta".hash('sha256', $password));
+                logServer("Contraseña incorrecta ".hash('sha256', $password));
                 ?>
                 <script>
                     document.addEventListener("DOMContentLoaded", (event) => {
@@ -128,21 +145,40 @@
 
 
             //si todo es correcto
-            } else {
-                registrarLog("Contraseña  correcta ".hash('sha256', $password));
-                registrarLog("Inicio de sesión correcto $email : ".hash('sha256', $password));
+            }elseif($loginAllowed !== 1){
+                logServer("Login no verificado, Código: ".$loginAllowed);
+                ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", (event) => {
+                        document.getElementById("errorLogin").style.display = "block"; //mensaje en display
+                    })
+                </script>
+                <?php
+            } 
+            
+                else {
+                logServer("Contraseña  correcta ".hash('sha256', $password));
+                logServer("Inicio de sesión correcto $email : ".hash('sha256', $password));
+
                 // Seleccionamos el Id que hemos recuperado
                 $storedUserId = $row['IdUser'];
 
                 //Cargamos los datos del usuario en la sesion
                 session_start();
-                registrarLog("Session iniciada");
+                
                 getUserData($storedUserId);
+
+                // Pase 3: Comprobar si es administrador o usuario
+                if($_SESSION['user_data']['Role'] === 'Admin'){
+                    logServer("Administrador identificado ha entrado en el panel de administración");
+                    header("Location: admin/index.php");
+                    exit;
+                }
 
                 //Preparamos para que salga una notificacion de inicio de sesión
                 $_SESSION['showLoginNotification'] = true;
                 //redireccionamos a DISCOVER
-                registrarLog("Redireccion a discover.php");
+                logServer("Redireccion a discover.php");
                 header("Location: discover.php");
 
             }
@@ -159,6 +195,8 @@
         <h3>App de ligoteo</h3>
         <h4 id="errorEmail">Error: El correo no está registrado</h4>
         <h4 id="errorPassword">Error: Contraseña incorrecta</h4>
+        <h4 id="errorLogin">Error: Cuenta no verificada</h4>
+        
 
 
         <form method="POST">
@@ -180,8 +218,24 @@
 
         <a href="">¿Has olvidado la contraseña?</a>
         </br>
-        <a href="">Crear una cuenta nueva</a>
+        <a href="register.php">Crear una cuenta nueva</a>
     </div>
+
+    <!-- Css message cuando se ha verificado el email -->
+
+    <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+        const verificationNotification = <?php echo json_encode($_SESSION['showVerificationNotification'] ?? false); ?>;
+
+        if (verificationNotification === true) {
+            // Llamamos a tu función de notificación
+            showNotification("¡Tu cuenta ha sido verificada con éxito!", "success");
+
+            // Luego de mostrar la notificación, desactivamos la variable de sesión
+            <?php $_SESSION['showVerificationNotification'] = false; ?>
+        }
+    });
+</script>
 
 
 </body>

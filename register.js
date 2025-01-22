@@ -1,0 +1,157 @@
+
+import { logToServer } from './lib.js';
+
+document.addEventListener('DOMContentLoaded', function() {
+    var saveButton = document.getElementById('createProfileButton');
+    saveButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        validateForm();
+    });
+
+    var inputPhoto = document.getElementById('photoInput');
+    inputPhoto.addEventListener('change', previewPhoto);
+});
+
+/** Guarda los cambios del perfil al servidor usando AJAX */
+function saveProfileData() {
+    logToServer('creando datos...');
+
+    // // Campos del formulario
+    const formData = new FormData();
+    formData.append('action', 'create_user');
+    formData.append('email', $('#email').val());
+    formData.append('passw', $('#password').val());
+    formData.append('firstName', $('#firstName').val());
+    formData.append('lastName1', $('#lastName1').val());
+    formData.append('lastName2', $('#lastName2').val());
+    formData.append('userName', $('#userName').val());
+    formData.append('birthDate', $('#birthdate').val());
+    formData.append('bio', $('#bio').val());
+    formData.append('gender', $("input[name='gender']:checked").val());
+    formData.append('orientation', $("input[name='orientacion']:checked").val());
+    formData.append('latitude', $('#latitude').val());
+    formData.append('longitude', $('#longitude').val());
+    formData.append('minAge', 18);
+    formData.append('maxAge', 99);
+
+    // Agregar el archivo seleccionado al FormData
+    const fileInput = document.getElementById('photoInput');
+    if (fileInput.files.length > 0) {
+        formData.append('userImage', fileInput.files[0]);
+    }
+
+    // Envío de datos con AJAX
+    $.ajax({
+        url: 'register.php',
+        type: 'POST',
+        data: formData,
+        processData: false, // Impide que jQuery procese los datos
+        contentType: false, // Impide que jQuery establezca el tipo de contenido
+        success: function(response) {
+            console.log('datos actualizados correctamente');
+            logToServer('Solicitud AJAX correcta, enviando petición de crear usuario al servidor...');
+        },
+        error: function(error) {
+            console.error("Error al actualizar los datos: ", error);
+            logToServer("Error en la solicitud AJAX para crear usuario", "ERROR");
+        }
+    });
+}
+
+/** Valida que todos los campos requeridos tengan contenido */
+function validateForm() {
+    logToServer("Validando form...");
+    let isValid = true;
+    $('.error-border').removeClass('error-border');
+    $('#errorMessage').hide();
+    $('#errorPassword').hide();
+    $('#errorMail').hide();
+    $('#errorPhoto').hide();
+
+    const email = $('#email').val();
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
+    if (!emailPattern.test(email)) {
+        $('#email').addClass('error-border');
+        $('#errorMail').show(); 
+        document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
+        isValid = false;
+        logToServer("Correo electrónico inválido", "ERROR");
+    }
+
+    // Si alguno de los inputs requeridos no tiene texto, levanta error
+    $('#registerForm input[required], #registerForm textarea[required]').each(function() {
+        if ($(this).val().trim() === '') {
+            $(this).addClass('error-border');
+            isValid = false;
+            logToServer('Campos en el form vacios','ERROR');
+        }
+    });
+
+    // Si gender o orientacion no está seleccionado, levanta error
+    if (!$('input[name="gender"]:checked').length) {
+        $('h3:contains("Género")').addClass('error-border');
+        isValid = false;
+        logToServer("Género invalido",'ERROR');
+    }
+
+    if (!$('input[name="orientacion"]:checked').length) {
+        $('h3:contains("Orientación")').addClass('error-border');
+        isValid = false;
+        logToServer("Orientación invalido",'ERROR');
+    }
+    
+    if ($('#password').val() !== $('#password2').val()) {
+        isValid = false;
+        $('#errorPassword').show();  // Mostrar el mensaje de error
+        $('#password').addClass('error-border');  // Marcar el campo de contraseña con error
+        $('#password2').addClass('error-border');  // Marcar el campo de confirmación con error
+        document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
+        logToServer("Error en el registro, las contraseñas no coinciden", 'ERROR');
+    }
+
+/* Validacion de imagen*/
+    const fileInput = $('#photoInput')[0];
+    if(!fileInput.files.length){
+        $('.registerPhotoSection').addClass('error-border');
+        $('#errorPhoto').show();
+        isValid = false;
+        logToServer("No se ha seleccionado una imagen", "ERROR");
+    }
+
+    if (!isValid) {
+        $('#errorMessage').show();
+        document.getElementById('scroll').scrollIntoView({ behavior: 'smooth' });
+    } else {
+        
+        console.log('Entrando a guardar datos');
+        logToServer('Campos del form correctos.');
+        saveProfileData();
+    }
+}
+
+/* Permite preview de la foto del usuario en el registro*/
+function previewPhoto() {
+    const fileInput = document.getElementById('photoInput');
+    const photoDiv = document.getElementById('UserPhoto');
+  
+    if (fileInput.files && fileInput.files[0]) {
+      const file = fileInput.files[0];
+      const validFormats = ['image/jpeg', 'image/png', 'image/webp'];
+  
+      if (!validFormats.includes(file.type)) {
+        alert('Por favor, selecciona una imagen en formato JPG, JPEG, PNG o WEBP.');
+        logToServer("Error en el formato de archivo seleccionado",'ERROR');
+        fileInput.value = ''; // Limpia el input si el formato es incorrecto
+        return;
+      }
+      
+      logToServer("Preview de foto correcta");
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoDiv.style.backgroundImage = `url('${e.target.result}')`;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+  
