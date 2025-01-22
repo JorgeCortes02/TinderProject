@@ -13,62 +13,13 @@
     <script type="module" src="photos.js"></script>
 
     <link rel="stylesheet" href="styles.css">
-    <style>
-
-        .container{
-            justify-content: flex-start;
-        }
-
-        #bodyPhotos .container main > h2{
-            margin: 20px;
-        }
-
-        #containerPhotos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-
-            justify-content: center;
-            margin-top: 10%;
-        }
-
-        .newPhotoPanel {
-            width: 150px; /* Ancho de los paneles */
-            height: 150px; /* Alto de los paneles, creando un cuadrado */
-            background-color: #d3d3d3; /* Color gris de fondo */
-            border: 1px solid #ccc; /* Un borde sutil */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative; /* Esto es necesario para que el botón se posicione en relación a este contenedor */
-        }
-
-        .newPhotoPanel img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover; /* Asegura que la imagen se ajuste bien */
-        }
-
-        /* Estilo para el botón de cierre */
-        .close-btn {
-            position: absolute;
-            top: 5px;   /* Ajusta la distancia desde la parte superior */
-            right: 5px; /* Ajusta la distancia desde la parte derecha */
-            width: 20px; /* Tamaño del botón de cierre */
-            height: 20px; /* Tamaño del botón de cierre */
-            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-        }
-
-
-    </style>
 
     <title>Editar mis fotos</title>
 </head>
 
 <body id="bodyPhotos">
 
-    <div class="container">
+    <div class="container containerFromViewPhoto">
 
         <?php include('./header.php') ?>
 

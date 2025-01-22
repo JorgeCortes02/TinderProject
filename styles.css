@@ -2055,6 +2055,71 @@ body {
 
 /* MARK: VIEW CHANGE PHOTOS */
 
+.containerFromViewPhoto {
+    justify-content: flex-start;
+}
+
+#bodyPhotos .container main > h2 {
+    margin: 20px;
+}
+
+#containerPhotos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.newPhotoPanel {
+    width: 150px; /* Ancho de los paneles */
+    height: 150px; /* Alto de los paneles, creando un cuadrado */
+    background-color: #d3d3d3; /* Color gris de fondo */
+    border: 1px solid #ccc; /* Un borde sutil */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative; /* Esto es necesario para que el texto se posicione dentro de este contenedor */
+}
+
+.main-photo-text {
+    position: absolute; /* Posiciona el texto dentro del contenedor */
+    bottom: 0; /* Alinea el texto en la parte inferior */
+    width: 100%; /* Asegura que el texto ocupe todo el ancho del panel */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para que el texto sea legible sobre la foto */
+    color: #fff; /* Color del texto blanco */
+    text-align: center;
+    padding: 5px 0; /* Espaciado interno para mejorar la apariencia */
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    z-index: 1;
+}
+
+.newPhotoPanel img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover; /* Asegura que la imagen se ajuste bien */
+}
+
+/* Estilo para el botón de cierre */
+.close-btn {
+    position: absolute;
+    top: 5px;   /* Ajusta la distancia desde la parte superior */
+    right: 5px; /* Ajusta la distancia desde la parte derecha */
+    width: 20px; /* Tamaño del botón de cierre */
+    height: 20px; /* Tamaño del botón de cierre */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+}
+
+.newPhotoPanel img.add-img {
+    width: 50px; /* Ajusta el tamaño de la imagen 'add.png', puedes cambiar el valor */
+    height: 50px; /* Ajusta la altura de la imagen 'add.png', asegurando que sea proporcional */
+    object-fit: contain; /* Asegura que la imagen mantenga sus proporciones */
+    cursor: pointer; /* Cambia el cursor cuando se pasa sobre la imagen */
+    margin: 0 auto; /* Centra la imagen horizontalmente dentro del contenedor */
+    display: block; /* Hace que la imagen se comporte como un bloque, permitiendo el centrado */
+}
 
 
 /*MARK: ERRORS*/
