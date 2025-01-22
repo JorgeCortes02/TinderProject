@@ -899,7 +899,7 @@ echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -1073,6 +1073,7 @@ function uploadPhoto() {
         // Verificar que se ha subido un archivo
         if (!isset($_FILES['file'])) {
             echo json_encode(['success' => false, 'message' => 'No se ha subido ningún archivo.']);
+            logServer("No se ha subido ningún archivo.",'ERROR');
             exit; 
         }
 
@@ -1084,6 +1085,7 @@ function uploadPhoto() {
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         if (!in_array($fileExtension, $validExtensions)) {
             echo json_encode(['success' => false, 'message' => 'Formato de archivo no permitido.']);
+            logServer("Formato de archivo no permitido.",'ERROR');
             exit;
         }
 
@@ -1137,6 +1139,7 @@ function uploadPhoto() {
         // Mover el archivo al directorio de imágenes
         if (!move_uploaded_file($file['tmp_name'], $filePath)) {
             echo json_encode(['success' => false, 'message' => 'Error al mover el archivo al directorio.']);
+            logServer("Error al mover el archivo al directorio.",'ERROR');
             exit;
         }
 
@@ -1146,6 +1149,8 @@ function uploadPhoto() {
             $insertQuery->bindParam(":userId", $userId, PDO::PARAM_INT);
             $insertQuery->bindParam(":url", $filePath, PDO::PARAM_STR);
             $insertQuery->execute();
+            logServer("INSERT INTO Photo (UserId, URL) VALUES (".$userId.",".$filePath.");");
+
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Error al guardar la URL en la base de datos: ' . $e->getMessage()]);
             exit;
@@ -1159,7 +1164,7 @@ function uploadPhoto() {
 }
 
 function destroySession(){
-
+    logServer("Eliminando sesión...");
     session_destroy();
 
     // Redirigir al usuario, por ejemplo, a la página de inicio de sesión
