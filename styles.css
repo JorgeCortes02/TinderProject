@@ -942,8 +942,8 @@ body {
 .containerMessage .error-message .error {
     color: var(--darkred);
 }
-.fieldsContainer .error-border {
-    border-color: var(--brightred);
+.error-border {
+    border-color: var(--brightred) !important;
 }
 .fieldsContainer h2{
 
@@ -2320,20 +2320,25 @@ body {
 #register .error h3{
     color: var(--darkred);
 }
-#register .containerMessage .error-message, #register .containerMessage .error-password, 
-#register .containerMessage .error-mail, #register .containerMessage .error-photo{
+#register .error-message, 
+#register .error-password, 
+#register .error-mail, 
+#register .error-photo{
     color: var(--brightred);
     margin-bottom: 20px;
     display: none; 
 }
-#register .containerMessage .error-message .error,#register .containerMessage .error-mail .error, 
-#register .containerMessage .error-password .error, #register .containerMessage .error-photo .error {
+#register .error-message .error,
+#register .error-mail .error, 
+#register .error-password .error, 
+#register .error-photo .error {
     color: var(--darkred);
 }
-#register .fieldsContainer .error-border {
+
+#register .error-border {
     border-color: var(--brightred);
 }
-#register .fieldsContainer .radioField .error-border{
+#register .radioField .error-border{
     color: var(--darkred);
 }
 #register .error-mail, #register .error-password{
@@ -2376,10 +2381,10 @@ body {
     text-align: center;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    margin-bottom: 50px;
+    margin-bottom: 50px !important;
 }
 
-#register .createProfileButton:hover, .addPhoto:hover, .backButton{
+#register .createProfileButton:hover, .addPhoto:hover, .backButton:hover{
     background-color: var(--middleblue);
 }
 
