@@ -51,6 +51,11 @@ if (isset($_GET["api"])) {
             sumAndUpdateUserMinMaxAgeAndDistance();
             break;
         
+
+        case "downloadProfileWithFoto":
+            downloadProfileWithFoto();
+            break;
+        
         case "getUserID":
             getUserID();
             break;
@@ -171,7 +176,7 @@ function downloadUsersForDiscover($indexToLoad): array
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -589,7 +594,7 @@ function sumAndUpdateUserPoints(){
         // Ejecutar la consulta
         if ($stmt->execute()) {
             echo "Usuario actualizado con éxito.";
-            logServer("Usuario actualizado con éxito.",'ERROR');
+            logServer("Usuario actualizado con éxito.");
         } else {
             echo "Error al actualizar el usuario.";
             logServer("Error al actualizar el usuario",'ERROR');
@@ -643,7 +648,7 @@ function sumAndUpdateUserMinMaxAgeAndDistance(){
             $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+            logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
             exit;
         }
     
@@ -879,6 +884,62 @@ echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
 
     }
 
+
+
+    function downloadProfile(): array
+{
+
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        exit;
+    }
+
+    if($_POST["UserId"] == "x"){
+
+        $userId = $_SESSION['user_data']["IdUser"];
+    }else{
+        $userId = (int)$_POST["UserId"];
+    }
+    
+    // Preparar la consulta de manera segura usando un marcador de posición para :userId
+
+    
+        $query = $pdo->prepare(
+           "SELECT 
+            IdUser, 
+            Username, 
+            UserAge
+            FROM User
+            WHERE IdUser = :userId "
+        );
+      
+    // Ejecutar la consulta con los parámetros correspondientes
+    $query->execute([
+       ':userId' =>  $userId
+        
+    ]);
+    $users = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $users;
+}
+
+function downloadProfileWithFoto(){
+
+    $users = downloadProfile();
+    $users = downloadFotos($users);
+     header('Content-Type: application/json');
+        echo json_encode($users); // Devuelve el array de usuarios como JSON
+        exit;
+}
+
+
+
+
 // Función para obtener el id del usuario
 function getUserID(){
     if (isset($_SESSION['user_data']['IdUser'])) {
@@ -985,6 +1046,7 @@ function deletePhoto(){
                 ]);
                 exit;
             }
+
 
             exit;
         }
