@@ -68,7 +68,15 @@ logServer("Cargando perfil del usuario...");
         <!-- Encabezado -->
         <div class="header">
             <h1>IETINDER</h1>
+            <button id="menulogout" name="menu"></button>
         </div>
+        
+        <div class="divPreferencesProfile">
+            <button id="logOut" name="logOut">Cerrar Sesión</button>
+            <button id="changePass" name="changePass">Cambiar Contraseña</button>
+            <button id="deleteAcount" name="deleteAcount">Eliminar Cuenta</button>
+        </div>
+        
         <div class="SelectorsProfile">
             <button id="Profile" class="selector">Perfil</button>
             <button id="Conf" class="selector">Configuración</button>

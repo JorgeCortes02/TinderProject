@@ -29,7 +29,7 @@ if (isset($_GET["api"])) {
         case "logEvent":
             $input = json_decode(file_get_contents('php://input'), true); // Decodificar JSON
             if (isset($input["mensajeLog"]) && isset($input["tipoLog"]) && isset($input["pagLog"])) {
-                logEvent($input["mensajeLog"], $input["tipoLog"], $input["pagLog"]);
+                logEvent($input["mensajeLog"], $input["pagLog"],$input["tipoLog"]);
             } 
             break;
 
@@ -71,6 +71,9 @@ if (isset($_GET["api"])) {
         case "uploadPhoto":
             uploadPhoto();
             break;
+        case "destroySession":
+                destroySession();
+                break;
     }
 }
 
@@ -602,7 +605,7 @@ function sumAndUpdateUserPoints(){
     }
 }
 
-function logEvent($mensaje, $tipo = 'INFO',$pag){
+function logEvent($mensaje,$pag,$tipo = 'INFO'){
 
     $fecha = date('Y-m-d');
     $hora = date('H:i:s', time() + 3600);
@@ -624,7 +627,7 @@ function logEvent($mensaje, $tipo = 'INFO',$pag){
 
 function logServer($mensaje, $tipo = 'INFO'){
     $pag = getFullUrl();
-    logEvent($mensaje, $tipo, $pag);
+    logEvent($mensaje,  $pag,$tipo);
 }
 
 function getFullUrl() {
@@ -896,7 +899,7 @@ echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
         $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
     } catch (PDOException $e) {
         echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-        logServer("Error al conectar a la BBDD. Failed to get DB handle: $e->getMessage()", "ERROR");
+        logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
         exit;
     }
 
@@ -1067,27 +1070,35 @@ function deletePhoto(){
 function uploadPhoto() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-        // verificar que se ha subido un arhivo
+        // Verificar que se ha subido un archivo
         if (!isset($_FILES['file'])) {
-            echo json_encode(['success' => false,'message' => 'No se ha subido ningún archivo.']);
+            echo json_encode(['success' => false, 'message' => 'No se ha subido ningún archivo.']);
+            logServer("No se ha subido ningún archivo.",'ERROR');
             exit; 
         }
 
         $userId = $_POST['userID'];
         $file = $_FILES['file'];
 
-
         // Validar si el archivo es válido
         $validExtensions = ['jpg', 'jpeg', 'png', 'webp'];
         $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
         if (!in_array($fileExtension, $validExtensions)) {
             echo json_encode(['success' => false, 'message' => 'Formato de archivo no permitido.']);
+            logServer("Formato de archivo no permitido.",'ERROR');
             exit;
         }
 
-       
+        // Obtener el nombre original del archivo (sin la extensión)
+        $originalFileName = pathinfo($file['name'], PATHINFO_FILENAME);
 
-        // conectar bd
+        // Limpiar caracteres no deseados del nombre original
+        $cleanFileName = preg_replace('/[^a-zA-Z0-9_-]/', '_', $originalFileName);
+
+        // Directorio de subida
+        $uploadDir = "images/";
+
+        // Conectar a la base de datos
         try {
             global $username, $pw;
             $hostname = "localhost";
@@ -1098,30 +1109,37 @@ function uploadPhoto() {
             exit;
         }
 
-        // Consulta para obtener el número de fotos del usuario y así poner el nombre de la foto
+        // Verificar si el nombre del archivo ya existe en la base de datos y ajustar si es necesario
         try {
-            $query = $pdo->prepare("SELECT count(URL) AS photoCount FROM Photo WHERE UserId = :id;");
-            $query->bindParam(":id", $userId);
-            $query->execute();
+            $suffix = 0;
+            $uniqueFileName = $cleanFileName;
+            do {
+                // Si hay un sufijo, agregarlo al nombre del archivo
+                if ($suffix > 0) {
+                    $uniqueFileName = $cleanFileName . "_{$suffix}";
+                }
 
-            // Obtener el número de fotos
-            $result = $query->fetch(PDO::FETCH_ASSOC);
-            $photoCount = $result['photoCount'] ?? 0;
+                // Construir la ruta completa del archivo
+                $filePath = $uploadDir . $uniqueFileName . "." . $fileExtension;
+
+                // Consultar si ya existe un archivo con esta ruta en la base de datos
+                $query = $pdo->prepare("SELECT COUNT(*) FROM Photo WHERE URL = :url");
+                $query->bindParam(":url", $filePath, PDO::PARAM_STR);
+                $query->execute();
+                $exists = $query->fetchColumn() > 0;
+
+                $suffix++;
+            } while ($exists);
 
         } catch (PDOException $e) {
-            echo json_encode(['success' => false,'message' => 'Error al ejecutar la consulta: ' . $e->getMessage()]);
+            echo json_encode(['success' => false, 'message' => 'Error al verificar la existencia del archivo: ' . $e->getMessage()]);
             exit;
         }
-
-        // definir el nombre del archivo
-        $photoNumber = $photoCount + 1;
-        $fileName = "imagen{$photoNumber}_user{$userId}." . $fileExtension;
-        $uploadDir = "images/";
-        $filePath = $uploadDir . $fileName;
 
         // Mover el archivo al directorio de imágenes
         if (!move_uploaded_file($file['tmp_name'], $filePath)) {
             echo json_encode(['success' => false, 'message' => 'Error al mover el archivo al directorio.']);
+            logServer("Error al mover el archivo al directorio.",'ERROR');
             exit;
         }
 
@@ -1131,11 +1149,13 @@ function uploadPhoto() {
             $insertQuery->bindParam(":userId", $userId, PDO::PARAM_INT);
             $insertQuery->bindParam(":url", $filePath, PDO::PARAM_STR);
             $insertQuery->execute();
+            logServer("INSERT INTO Photo (UserId, URL) VALUES (".$userId.",".$filePath.");");
+
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Error al guardar la URL en la base de datos: ' . $e->getMessage()]);
             exit;
         }
-                
+
         // Devolver la respuesta de éxito
         echo json_encode(['success' => true, 'fileURL' => $filePath]);
     } else {
@@ -1143,4 +1163,12 @@ function uploadPhoto() {
     }
 }
 
+function destroySession(){
+    logServer("Eliminando sesión...");
+    session_destroy();
+
+    // Redirigir al usuario, por ejemplo, a la página de inicio de sesión
+    header("Location: login.php");
+    exit;
+}
 ?>
