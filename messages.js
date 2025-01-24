@@ -184,7 +184,7 @@ function getMessages(data,type){
 
         }
          
-       
+       data-otherlikeiddata-otherlikeid
     })
     .catch(error => {
         console.error("Error en la petición:", error);  // Si ocurre un error, lo mostramos
