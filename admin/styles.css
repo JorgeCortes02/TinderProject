@@ -1,0 +1,68 @@
+/* MARK: PANEL ADMINISTRADOR*/
+#usersAdmin header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#usersAdmin header img{
+    width: 10%;
+    margin: 20px 10px;
+}
+
+
+/* MARK: PANEL LISTADO USUARIOS*/
+
+#usersAdmin main{
+    background-color: rgb(174, 174, 239);
+}
+
+
+#usersAdmin main table{
+    width: 100%;
+    height: 100%;
+}
+
+#usersAdmin main table td, 
+#usersAdmin main table th {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+#usersAdmin main table tr {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#usersAdmin main table tr:hover {
+    background-color: #f0f0f0; 
+}
+
+
+
+/* Estilos para el paginador */
+#paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#paginator button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    cursor: pointer;
+}
+
+#paginator button.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: 1px solid #007bff;
+}
+
+#paginator button:hover {
+    background-color: #007bff;
+    color: white;
+}

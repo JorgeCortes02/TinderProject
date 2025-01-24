@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
 </head>
-<body>
+
 <?php
 
     session_start();
@@ -28,7 +28,16 @@
 
 ?>
 
-<h1>Bienvenido al Panel de Administración</h1>
+<body id="adminIndex">
+
+    <h1>Bienvenido al Panel de Administración</h1>
+
+    <main>
+    
+        <a href="users.php">Listar usuarios</a>
+        <a href="logs.php">Listar logs</a>
+
+    </main>
 
 </body>
 </html>
