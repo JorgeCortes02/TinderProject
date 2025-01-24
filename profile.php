@@ -170,12 +170,7 @@ logServer("Cargando perfil del usuario...");
             
             </div>
 
-        <!-- Menú de navegación inferior -->
-        <nav class="bottom-nav">
-            <a href="discover.php">Descubrir</a>
-            <a href="messages.php" class="active">Mensajes</a>
-            <a href="profile.php">Perfil</a>
-        </nav>
+            <?php include ('footer.php');?>
     </div>
     <script>
         let map;

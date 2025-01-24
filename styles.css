@@ -859,6 +859,10 @@ body {
     background-color: var(--middleblue); /* Azul intermedio */
     transform: translateY(-3px);
 }
+.selectedTab{
+    background-color: var(--middleblue) !important; 
+}
+
 #profileBody h1 {
     color: var(--white);
 }

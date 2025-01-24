@@ -1,4 +1,4 @@
 <?php
-$username = "root";
-$pw = "1234";
+$username = "admin";
+$pw = "admin123";
 ?>

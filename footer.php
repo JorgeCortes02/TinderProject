@@ -1,5 +1,5 @@
 <nav class="bottom-nav">
-    <h3><a href="discover.php">Descobrir</a></h3>
-    <h3><a href="messages.php">Missatges</a></h3>
-    <h3><a href="profile.php">Perfil</a></h3>
+    <h3 class ="footer-discover"><a href="discover.php">Descubrir</a></h3>
+    <h3 class ="footer-message"><a href="messages.php">Mensajes</a></h3>
+    <h3 class ="footer-profile"><a href="profile.php">Perfil</a></h3>
 </nav>

@@ -19,10 +19,15 @@ $(document).ready(function(){
     const preferencesButton = $("#menulogout");
     const preferencesDiv = $(".divPreferencesProfile");
     const logOutButton = $("#logOut");
+    profileButtom.addClass("selectedTab");
 
     profileButtom.on("click", function(){
 
+       profileButtom.addClass('selectedTab');
+       confButton.removeClass('selectedTab');//boramos estlos del otro
+
        profileButtom.prop("disabled", true);
+       profileButtom.addClass("selectedTab");
        
         const contenedorConf =  $(".fieldsContainer");
         contenedorConf.css("display", "none")
@@ -31,6 +36,9 @@ $(document).ready(function(){
       
     })
     confButton.on("click", function(){
+        profileButtom.removeClass('selectedTab');
+        confButton.addClass('selectedTab');
+
         profileButtom.prop("disabled", false);
         const contenedorConf =  $(".fieldsContainer");
         contenedorConf.css("display", "flex")

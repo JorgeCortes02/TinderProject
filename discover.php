@@ -104,11 +104,8 @@ include 'config.php';
         </div>
 
         <!-- Menú de navegación -->
-        <nav class="bottom-nav">
-            <h3><a href="#">Descubrir</a></h3>
-            <h3><a href="messages.php#">Mensajes</a></h3>
-            <h3><a href="profile.php">Perfil</a></h3>
-        </nav>
+        <?php include ('footer.php');?>
+
     </div>
     
 </body>
