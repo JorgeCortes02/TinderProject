@@ -7,15 +7,28 @@
 </head>
 <body>
 <?php
+
+    session_start();
+
     include_once '../apis.php'; 
 
-    // Paso 1: recoge la URL desde donde viene, si no hay te dirige al error
-    if (!isset($_SERVER['HTTP_REFERER'])) {
-        logServer("Usuario no identificado ha intentado entrar en el panel de administración");
-        header("Location: /errors/error403.php");
+    // si no estás identificado -> error403
+    if (!isset($_SESSION['user_data'])) {
+        logServer("Acceso no autorizado: usuario no identificado ha intentado entrar en el panel de administración");
+        http_response_code(403);
         exit();
     }
+
+    // si estás identificado pero no tienes los permisos -> error401
+    if ($_SESSION['user_data']['Role'] !== 'Admin') {
+        logServer("Acceso denegado: usuario con ID {$_SESSION['user_data']['ID']} intentó acceder sin permisos de administrador.");
+        http_response_code(401);
+        exit();
+    }
+
 ?>
-    
+
+<h1>Bienvenido al Panel de Administración</h1>
+
 </body>
 </html>
