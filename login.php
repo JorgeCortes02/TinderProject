@@ -217,7 +217,7 @@ include_once 'config.php';
         </form>
 
 
-        <a href="">¿Has olvidado la contraseña?</a>
+        <a href="forgot_password.php">¿Has olvidado la contraseña?</a>
         </br>
         <a href="register.php">Crear una cuenta nueva</a>
     </div>

@@ -1,4 +1,9 @@
 <?php
+// Incluir el autoload de Composer
+require 'vendor/autoload.php'; 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 include 'config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -74,6 +79,10 @@ if (isset($_GET["api"])) {
         case "destroySession":
                 destroySession();
                 break;
+        
+        case "generateLinkForChangePass":
+            generateLinkForChangePass();
+            break;
     }
 }
 
@@ -1171,4 +1180,130 @@ function destroySession(){
     header("Location: login.php");
     exit;
 }
+
+function getIDByMail($email){
+
+
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
+        exit;
+    }
+   
+    
+    // Preparar la consulta de manera segura usando un marcador de posición para :userId
+
+    
+    $query = $pdo->prepare(
+        "SELECT 
+         IdUser
+         FROM User
+         WHERE Email = :Email"
+     );
+     
+     // Ejecutar la consulta con los parámetros correspondientes
+     $query->execute([
+        ':Email' => $email
+     ]);
+     
+     // Obtener solo el valor de la columna 'IdUser' de la primera fila
+     $userId = $query->fetchColumn();
+     
+     return $userId;
+
+    }
+
+    function generateLinkForChangePass() {
+        // Obtenemos el ID del usuario mediante su email
+        $userId = getIDByMail($_POST["email"]);
+    
+        if ($userId === false) {
+            // Si no se encuentra el usuario, devolvemos un mensaje de error
+            echo "0";
+        } else {
+            // Si se encuentra el usuario, encriptamos el ID
+            $encryptID = encrypt($userId, "grupo2Ietinder");
+            $encryptMail = encrypt($_POST["email"], "grupo2Ietinder");
+
+            $encrypt= $encryptID . ":" . $encryptMail;
+            // Creamos el enlace de verificación
+            $verificationLink = "https://tinder2.ieti.site/forgot_password.php?token=" . $encrypt;
+    
+            // Configuramos el mensaje de correo
+            $subject = "Cambia tu contraseña en IETINDER";
+            $message = '
+            <html>
+            <head>
+            </head>
+            <body style="font-family: Arial, sans-serif; background-color: #F4F4F4; color: #292929; padding: 20px;">
+                <div class="container" style="background-color: #FFFFFF; padding: 20px; border-radius: 8px; text-align: center; max-width: 600px; margin: 0 auto;">
+                    <div class="header" style="background-color: #534FF6; color: #FFFFFF; padding: 15px; font-size: 24px; border-radius: 8px 8px 0 0;">
+                        <h1>¡Cambio de contraseña en IETINDER!</h1>
+                    </div>
+                    <p>Haz click en el siguiente botón para resetear tu contraseña:</p>
+                    <a href="'.$verificationLink.'" class="button" style="background-color: #4CAF50; color: #FFFFFF; padding: 15px 25px; font-size: 16px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px;">Verificar cuenta</a>
+                    <div class="footer" style="margin-top: 30px; color: #8B8EF9; font-size: 14px;">
+                       <p>Si no solicitaste este cambio, por favor ignora este correo.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+            ';
+    
+            // Configuración de PHPMailer
+            $mail = new PHPMailer(true);
+    
+            try {
+                // Configuración del servidor SMTP
+                $mail->isSMTP();  
+                $mail->Host = 'smtp.gmail.com';  // Cambia a tu servidor SMTP
+                $mail->SMTPAuth = true;
+                $mail->Username = 'jcortesblanquez.cf@iesesteveterradas.cat'; // Tu correo
+                $mail->Password = 'wrhgoklxamuzrkrt';     // Tu contraseña (o contraseña de aplicación)
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                $mail->Port = 587;
+    
+                // Datos del correo
+                $mail->setFrom('no-reply@tinder2.ieti.site', 'no-reply@tinder2.ieti.site'); // Dirección "De"
+                $mail->addAddress($_POST['email'], 'Usuario');  // Dirección del destinatario
+                $mail->Subject = $subject;
+                $mail->Body    = $message;
+                $mail->isHTML(true);  // Establecer el cuerpo del mensaje en formato HTML
+    
+                // Enviar el correo
+                $mail->send();
+                echo "1";  // Mensaje de éxito
+            } catch (Exception $e) {
+                echo "Error al enviar el correo de verificación: {$mail->ErrorInfo}";  // Mensaje de error
+            }
+        }
+    }
+
+    // Función para encriptar datos
+function encrypt($data, $key) {
+    // Generamos un IV (vector de inicialización) aleatorio
+    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+
+    // Encriptamos el dato usando AES-256-CBC
+    $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+
+    // Retornamos los datos encriptados junto con el IV para poder desencriptarlos luego
+    return base64_encode($encryptedData . '::' . $iv);
+}
+
+
+// Función para desencriptar datos
+function decrypt($data, $key) {
+    // Decodificamos los datos encriptados (el IV y los datos encriptados están concatenados)
+    list($encryptedData, $iv) = explode('::', base64_decode($data), 2);
+
+    // Desencriptamos los datos usando AES-256-CBC y el IV
+    return openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
+}
+
 ?>

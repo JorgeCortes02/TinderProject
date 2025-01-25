@@ -1,70 +1,71 @@
-
-
 function showNotification(message, type) {
-    let notificationContainer = document.getElementById('notification-container');
-   
-    //si no existe el contenedor, lo creamos
-    if (!notificationContainer) {
-        notificationContainer = document.createElement('div');
-        notificationContainer.id = 'notification-container';
-        document.body.appendChild(notificationContainer);
+    // Buscar el primer hijo directo del <body>
+    let parentContainer = $('body > *').first();
+
+    // Si no se encuentra ningún hijo directo, crear un contenedor dentro del body
+    if (parentContainer.length === 0) {
+        console.warn('No se encontró ningún contenedor dentro del body. Creando uno automáticamente.');
+        parentContainer = $('<div class="default-container"></div>').appendTo('body');
     }
-    //crear la notificación
-    const notification = document.createElement('div');
-    notification.classList.add('notification');
 
-    //centrar icono y mensaje
-    const notificationContent = document.createElement('div');
-    notificationContent.classList.add('notificationContent');
-    notification.appendChild(notificationContent);
+    // Buscar o crear el contenedor de notificaciones dentro del contenedor encontrado
+    let notificationContainer = parentContainer.find('#notification-container');
 
-    //añadir icono a la izquierda
-    const iconContainer = document.createElement('div');
-    iconContainer.classList.add('iconContainer');
-    notificationContent.appendChild(iconContainer);
+    if (notificationContainer.length === 0) {
+        notificationContainer = $('<div id="notification-container"></div>').appendTo(parentContainer);
+    }
 
-    //CAMBIO ICONO SEGUN TIPO
+    // Crear la notificación
+    const notification = $('<div class="notification"></div>');
+
+    // Contenido de la notificación (icono y mensaje)
+    const notificationContent = $('<div class="notificationContent"></div>').appendTo(notification);
+
+    // Añadir icono a la izquierda
+    const iconContainer = $('<div class="iconContainer"></div>').appendTo(notificationContent);
+
+    // Cambiar icono según el tipo
     switch (type) {
         case 'error':
-            iconContainer.innerHTML = '<i class="fas fa-times"></i>';//X
+            iconContainer.html('<i class="fas fa-times"></i>'); // X
             break;
         case 'warning':
-            iconContainer.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';//triangulo!
+            iconContainer.html('<i class="fas fa-exclamation-triangle"></i>'); // Triángulo !
             break;
         case 'success':
-            iconContainer.innerHTML = '<i class="fas fa-check"></i>';//tick
+            iconContainer.html('<i class="fas fa-check"></i>'); // Tick
             break;
         case 'info':
-            iconContainer.innerHTML = '<i class="fas fa-info-circle"></i>';//info
+            iconContainer.html('<i class="fas fa-info-circle"></i>'); // Info
             break;
         case 'match':
-            iconContainer.innerHTML = '<i class="fas fa-heart"></i>';//corazon
+            iconContainer.html('<i class="fas fa-heart"></i>'); // Corazón
             break;
     }
-    //añadir mensaje a la derecha
-    const messageContainer = document.createElement('div');
-    messageContainer.classList.add('messageContainer');
-    messageContainer.textContent = message;
-    notificationContent.appendChild(messageContainer);
 
-    //añadir notificación al contenedor
-    notificationContainer.appendChild(notification);
+    // Añadir mensaje a la derecha
+    const messageContainer = $('<div class="messageContainer"></div>').text(message).appendTo(notificationContent);
 
-    //MOSTRAR NOTIFICACION (slide abajo)
+    // Añadir notificación al contenedor
+    notificationContainer.append(notification);
+
+    // Mostrar notificación (animación de slide hacia abajo)
     setTimeout(() => {
-        notification.style.opacity = '1';
-        notification.style.transform = 'translateY(10px)';
+        notification.css({
+            opacity: '1',
+            transform: 'translateY(10px)'
+        });
     }, 100);
-    //ELIMINAR notificación a los 3seg (slide arriba)
+
+    // Eliminar notificación después de 5 segundos (slide hacia arriba)
     setTimeout(() => {
-        notification.style.opacity = '0';
-        notification.style.transform = 'translateY(-100%)';
+        notification.css({
+            opacity: '0',
+            transform: 'translateY(-100%)'
+        });
+
         setTimeout(() => {
             notification.remove();
         }, 500);
     }, 5000);
- }
- 
- 
- 
- 
+}
