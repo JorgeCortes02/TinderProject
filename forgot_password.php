@@ -83,8 +83,7 @@ if(isset($_GET["token"])){
    
     $idUser = decrypt($idUser, "grupo2Ietinder");
     $mail = decrypt($mail, "grupo2Ietinder");
-    echo "<script>console.log('".$_GET["token"]."');</script>";
-    echo "<script>console.log('".$idUser."');</script>";
+   
     $isACorrectToken = isAVlidToken($idUser,$mail);
 
     if($isACorrectToken == 1){

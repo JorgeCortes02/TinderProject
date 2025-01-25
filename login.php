@@ -1,6 +1,10 @@
 <?php
 //necesario para la notificación de verificacion correcta
+//Llegan los datos del usuario desde el LOGIN
 if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}else{
+    session_destroy();
     session_start();
 }
 
@@ -65,6 +69,7 @@ include_once 'config.php';
                                     MaxAge,
                                     MinAge,
                                     MaxDis,
+                                    DeleteAccount,
                                     Bio,
                                     Role
                                 FROM User 
@@ -106,7 +111,7 @@ include_once 'config.php';
         }
 
         // Paso 1: Verificar si el email existe, si existe nos quedamos con su password y su ID
-        $query = $pdo->prepare("SELECT Password, IdUser, LoginAllowed FROM User WHERE Email = :mail");
+        $query = $pdo->prepare("SELECT Password, IdUser, LoginAllowed, DeleteAccount FROM User WHERE Email = :mail");
         $query->bindParam(":mail", $email);
         $query->execute();
         $row = $query->fetch();
@@ -140,6 +145,18 @@ include_once 'config.php';
                     document.addEventListener("DOMContentLoaded", (event) => {
                         Array.from(document.getElementsByTagName("input"))[1].style.borderColor = "red"; //borde rojo en input
                         document.getElementById("errorPassword").style.display = "block"; //mensaje en display
+                    })
+                </script>
+                <?php
+
+
+            //si todo es correcto
+            }if ($row["DeleteAccount"] !=0 ) {
+                
+                ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", (event) => {
+                        document.getElementById("errorLogin").style.display = "block"; //mensaje en display
                     })
                 </script>
                 <?php
@@ -196,7 +213,7 @@ include_once 'config.php';
         <h3>App de ligoteo</h3>
         <h4 id="errorEmail">Error: El correo no está registrado</h4>
         <h4 id="errorPassword">Error: Contraseña incorrecta</h4>
-        <h4 id="errorLogin">Error: Cuenta no verificada</h4>
+        <h4 id="errorLogin">Error: Cuenta no verificada o eliminada</h4>
         
 
 

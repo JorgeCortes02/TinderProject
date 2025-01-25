@@ -76,7 +76,7 @@ fetch('apis.php?api=generateLinkForChangePass', {
 
 
 function savePass(newPassword){
-    console.log(typeof(newPassword))
+    
 
     const formData = new FormData();
     

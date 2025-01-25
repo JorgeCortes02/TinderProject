@@ -61,7 +61,7 @@ logServer("Cargando perfil del usuario...");
     <title>Profile</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css">
-
+    <script src="notifications.js"></script>
 </head>
 <body>
     <div class="containerMessage">

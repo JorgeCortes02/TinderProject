@@ -88,6 +88,10 @@ if (isset($_GET["api"])) {
         case "saveANewPass":
             saveANewPass();
             break;
+        
+        case "softDeleteAccount":
+            softDeleteAccount();
+            break;
     }
 }
 
@@ -1431,5 +1435,44 @@ function saveANewPass(){
 
 
 }
+function softDeleteAccount(){
+
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
+        exit;
+    }
+
+    // Datos que quieres actualizar
+    $id = $_SESSION["user_data"]["IdUser"]; // ID del usuario a actualizar
+   
+
+    // Preparar la consulta UPDATE
+    $sql = "UPDATE User SET DeleteAccount = 1 WHERE IdUser = :id";
+    logServer("UPDATE User SET DeleteAccount = 1 WHERE IdUser = :id");
+
+    // Preparar la declaración
+    $stmt = $pdo->prepare($sql);
+
+    // Vincular los parámetros a las variables
+    
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    // Ejecutar la consulta
+    if ($stmt->execute()) {
+        echo "Usuario actualizado con éxito.";
+        logServer("Usuario actualizado con éxito.");
+    } else {
+        echo "Error al actualizar el usuario.";
+        logServer("Error al actualizar el usuario",'ERROR');
+    }
+   }
+
 
 ?>
