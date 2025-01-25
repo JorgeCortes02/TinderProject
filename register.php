@@ -1,4 +1,9 @@
 <?php
+// Incluir el autoload de Composer
+require 'vendor/autoload.php'; 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -402,6 +407,8 @@ function insertUserPhoto($userId){
     }
 }
 
+
+
 function sendVerificationEmail($userId, $userEmail) {
     // Generar un token único para la verificación
     $token = "IETI" . $userId . "TINDER";
@@ -409,8 +416,6 @@ function sendVerificationEmail($userId, $userEmail) {
     $tokenWithUserId = $tokenMd5 . ':' . $userId; // Concatenar el userId
     
     // Crear el enlace de verificación
-    //$verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
-    //$verificationLink = "http://localhost:3000/register.php?validate=" . $tokenMd5;
     $verificationLink = "https://tinder2.ieti.site/register.php?validate=" . $tokenWithUserId;
 
     // Cuerpo del correo con estilo
@@ -434,20 +439,35 @@ function sendVerificationEmail($userId, $userEmail) {
     </body>
     </html>
     ';
-    // Headers del correo
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: no-reply@tinder2.ieti.site\r\n";
-    //$headers .= "Reply-To: no-reply@tinder2.ieti.site\r\n";
+
+    // Configuración de PHPMailer
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración del servidor SMTP
+        $mail->isSMTP();  
+        $mail->Host = 'smtp.gmail.com';  // Cambia a tu servidor SMTP
+        $mail->SMTPAuth = true;
+        $mail->Username = 'jcortesblanquez.cf@iesesteveterradas.cat'; // Tu correo
+        $mail->Password = 'wrhgoklxamuzrkrt';     // Tu contraseña (o contraseña de aplicación)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
     
-    logServer(" email: ".$userEmail."\nSubject:".$subject."\nmessage: ".$message. "\nheaders: ".$headers);
-    // Enviar el correo
-    if (mail($userEmail, $subject, $message, $headers)) {
+
+        // Datos del correo
+        $mail->setFrom('no-reply@tinder2.ieti.site', 'no-reply@tinder2.ieti.site'); // Dirección "De"
+        $mail->addAddress($userEmail, 'Usuario');  // Dirección del destinatario
+        $mail->Subject = $subject;
+        $mail->Body    = $message;
+        $mail->isHTML(true);  // Establecer el cuerpo del mensaje en formato HTML
+
+        // Enviar el correo
+        $mail->send();
         echo "Correo de verificación enviado con éxito.";
         logServer("Correo enviado de forma correcta.");
-    } else {
-        echo "Error al enviar el correo de verificación.";
-        logServer("Error al enviar el correo de verificación.","ERROR");
+    } catch (Exception $e) {
+        echo "Error al enviar el correo de verificación: {$mail->ErrorInfo}";
+        logServer("Error al enviar el correo de verificación: {$mail->ErrorInfo}", "ERROR");
     }
 }
 
