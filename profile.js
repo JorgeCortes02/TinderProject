@@ -19,7 +19,9 @@ $(document).ready(function(){
     const preferencesButton = $("#menulogout");
     const preferencesDiv = $(".divPreferencesProfile");
     const logOutButton = $("#logOut");
-    profileButtom.addClass("selectedTab");
+    const deleteAccountButtom = $("#deleteAcount");
+
+    profileButtom.addClass("selectedTab"); //Siempre empezamos en preview de perfil
 
     profileButtom.on("click", function(){
 
@@ -62,6 +64,15 @@ $(document).ready(function(){
         
     });
 
+    deleteAccountButtom.on("click", function(){
+        showNotification("Cuenta Eliminada", "succes");
+        deleteAccount();
+        $(".divPreferencesProfile").css("display", "none")
+        setTimeout(() => {
+            window.location.href = 'login.php';
+        }, 3000);
+    })
+
 })
 
 
@@ -78,8 +89,6 @@ function saveProfileChanges() {
     const bio = $('#bio').val();
     const gender = $("input[name='gender']:checked").val(); // Solo guarda la opción seleccionada
     const orientation = $("input[name='orientacion']:checked").val(); // Solo guarda la opción seleccionada
-    // const minAge = $('#minAge').val();
-    // const maxAge = $('#maxAge').val();
     const latitude = $('#latitude').val();
     const longitude = $('#longitude').val();
 
@@ -274,4 +283,21 @@ function deleteSession() {
 
 
         window.location.href = "login.php";   
+}
+function deleteAccount(){
+
+    fetch("apis.php?api=softDeleteAccount", {
+        method: "POST",  // Usamos el método POST
+        // No necesitas incluir 'body' si no hay datos a enviar
+    })
+        .then(response => {
+            if (!response.ok) {  // Verificar si la respuesta fue exitosa
+                showNotification("Error al eliminar cuenta", "error");
+                throw new Error("Error al guardar los datos en el servidor");
+            } 
+        })
+        .catch(error => {
+            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
+        });
+
 }
