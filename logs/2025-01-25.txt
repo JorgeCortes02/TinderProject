@@ -27,3 +27,58 @@
 [14:13:38] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
 [14:13:38] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
 [14:13:38] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.72024997284 Puntos:600
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:26 Distancia:137.57526749315 Puntos:600
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:29 Distancia:181.48464690834 Puntos:600
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[14:21:26] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[15:37:01] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[15:37:01] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[15:37:39] [INFO] [http://localhost:8000/login.php] [UserId=1]: SELECT Password, IdUser FROM User WHERE Email =jorge.cortes.blanquez02@gmail.com
+[15:37:39] [INFO] [http://localhost:8000/login.php] [UserId=1]: Email registrado jorge.cortes.blanquez02@gmail.com
+[15:37:39] [INFO] [http://localhost:8000/login.php] [UserId=1]: Contraseña incorrecta d2dff1c09f82ed9538a3fbeca53f555143f7894c540b70b0b46bf162771e3fe5
+[15:38:05] [INFO] [http://localhost:8000/login.php] [UserId=1]: SELECT Password, IdUser FROM User WHERE Email =jorge.cortes.blanquez02@gmail.com
+[15:38:05] [INFO] [http://localhost:8000/login.php] [UserId=1]: Email registrado jorge.cortes.blanquez02@gmail.com
+[15:38:05] [INFO] [http://localhost:8000/login.php] [UserId=1]: Contraseña incorrecta d2dff1c09f82ed9538a3fbeca53f555143f7894c540b70b0b46bf162771e3fe5
+[15:38:08] [INFO] [http://localhost:8000/login.php] [UserId=1]: SELECT Password, IdUser FROM User WHERE Email =jorge.cortes.blanquez02@gmail.com
+[15:38:08] [INFO] [http://localhost:8000/login.php] [UserId=1]: Email registrado jorge.cortes.blanquez02@gmail.com
+[15:38:08] [INFO] [http://localhost:8000/login.php] [UserId=1]: Contraseña incorrecta d2dff1c09f82ed9538a3fbeca53f555143f7894c540b70b0b46bf162771e3fe5
+[15:40:03] [INFO] [http://localhost:8000/login.php] [UserId=1]: SELECT Password, IdUser FROM User WHERE Email =jorge.cortes.blanquez02@gmail.com
+[15:40:03] [INFO] [http://localhost:8000/login.php] [UserId=1]: Email registrado jorge.cortes.blanquez02@gmail.com
+[15:40:03] [INFO] [http://localhost:8000/login.php] [UserId=1]: Contraseña incorrecta 5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9
+[15:44:20] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[15:44:20] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:16:15] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:16:15] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:16:57] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:16:57] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:17:28] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:17:28] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:17:55] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:17:55] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:19:19] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:19:19] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:20:41] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:20:41] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:22:27] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:22:27] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:24:43] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:24:43] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.
+[16:26:52] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: UPDATE User SET Password = :newPass WHERE IdUser = :id
+[16:26:52] [INFO] [http://localhost:8000/apis.php?api=saveANewPass] [UserId=1]: Usuario actualizado con éxito.

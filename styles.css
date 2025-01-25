@@ -2578,3 +2578,7 @@ body {
 .pass-div, .email-div {
     margin-bottom: 30px;
 }
+#error-messagePass{
+    display: none;
+    color: red;
+}

@@ -5,6 +5,9 @@
 //Llegan los datos del usuario desde el LOGIN
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
+}else{
+    session_destroy();
+    session_start();
 }
 
 include_once 'apis.php'; 
@@ -42,7 +45,9 @@ include 'config.php';
                         <h3>Repetir Contraseña:</h3>
                         <input type='password' id='password2' placeholder='******' required>
                     </div>
+                       <div id='error-messagePass'>Las contraseñas no cumplen los requisitos o no coinciden.</div>
                     <button id='sendPass'>Actualizar Contraseña</button>
+
                   </div>";
         } else {
             echo "<div class='email-div'>
@@ -68,3 +73,43 @@ include 'config.php';
 </body>
 
 </html>
+
+
+
+<?php 
+
+if(isset($_GET["token"])){
+    list($idUser, $mail) = explode(';', trim($_GET['token']));
+   
+    $idUser = decrypt($idUser, "grupo2Ietinder");
+    $mail = decrypt($mail, "grupo2Ietinder");
+    echo "<script>console.log('".$_GET["token"]."');</script>";
+    echo "<script>console.log('".$idUser."');</script>";
+    $isACorrectToken = isAVlidToken($idUser,$mail);
+
+    if($isACorrectToken == 1){
+
+        $_SESSION["user"]["id"] = $idUser;
+
+    }else{
+       
+      
+       
+    }
+    
+}
+
+if(isset($_GET["error"])){
+
+    echo "<script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+       
+            showNotification('El token no es valido, intenta recuperar la contraseña de nuevo', 'error');
+            
+        }
+        )
+
+     </script>";
+}
+
+?>

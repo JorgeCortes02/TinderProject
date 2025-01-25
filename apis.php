@@ -4,6 +4,7 @@ require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+
 include 'config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -82,6 +83,10 @@ if (isset($_GET["api"])) {
         
         case "generateLinkForChangePass":
             generateLinkForChangePass();
+            break;
+
+        case "saveANewPass":
+            saveANewPass();
             break;
     }
 }
@@ -1230,9 +1235,9 @@ function getIDByMail($email){
             $encryptID = encrypt($userId, "grupo2Ietinder");
             $encryptMail = encrypt($_POST["email"], "grupo2Ietinder");
 
-            $encrypt= $encryptID . ":" . $encryptMail;
+            $encrypt= $encryptID . ";" . $encryptMail;
             // Creamos el enlace de verificación
-            $verificationLink = "https://tinder2.ieti.site/forgot_password.php?token=" . $encrypt;
+            $verificationLink = "http://localhost:8000/forgot_password.php?token=" . $encrypt;
     
             // Configuramos el mensaje de correo
             $subject = "Cambia tu contraseña en IETINDER";
@@ -1296,14 +1301,135 @@ function encrypt($data, $key) {
     return base64_encode($encryptedData . '::' . $iv);
 }
 
-
 // Función para desencriptar datos
 function decrypt($data, $key) {
     // Decodificamos los datos encriptados (el IV y los datos encriptados están concatenados)
-    list($encryptedData, $iv) = explode('::', base64_decode($data), 2);
+    $decodedData = base64_decode($data);
+    
+    // Verificamos si la decodificación fue exitosa
+    if ($decodedData === false) {
+        return false;
+    }
+
+    // Intentamos separar los datos en el IV y los datos encriptados usando '::' como separador
+    $parts = explode('::', $decodedData, 2);
+
+    // Si no conseguimos dos partes, significa que el formato no es correcto
+    if (count($parts) !== 2) {
+        return false; // O puedes devolver un mensaje de error específico: "Error: Datos mal formateados."
+    }
+
+    // Extraemos el encryptedData y el IV
+    list($encryptedData, $iv) = $parts;
+
+    // Longitud correcta del IV para AES-256-CBC
+    $ivLength = openssl_cipher_iv_length('aes-256-cbc');
+
+    // Verificar si el IV es null o tiene la longitud incorrecta
+    if ($iv === null || strlen($iv) !== $ivLength) {
+        return false; // O puedes devolver un mensaje de error: "Error: IV tiene longitud incorrecta";
+    }
 
     // Desencriptamos los datos usando AES-256-CBC y el IV
-    return openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
+    $decrypted = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
+
+    // Si no se pudo desencriptar, devolvemos false
+    if ($decrypted === false) {
+        return false; // También puedes devolver otro tipo de mensaje si lo prefieres
+    }
+
+    return $decrypted;
+}
+
+function isAVlidToken($userId, $email){
+
+
+try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer("Error al conectar a la BBDD. Failed to get DB handle:". $e->getMessage(), "ERROR");
+        exit;
+    }
+   
+    
+    // Preparar la consulta de manera segura usando un marcador de posición para :userId
+
+    
+    $query = $pdo->prepare(
+        "SELECT 
+         1
+         FROM User
+         WHERE Email = :Email
+         AND IdUser = :isUser"
+     );
+     
+     // Ejecutar la consulta con los parámetros correspondientes
+     $query->execute([
+        ':Email' => $email,
+        ':isUser' => $userId
+     ]);
+     
+     // Obtener solo el valor de la columna 'IdUser' de la primera fila
+     $userId = $query->fetchColumn();
+     
+     return $userId;
+
+}
+
+
+function saveANewPass(){
+
+   if(isset($_POST["newPass"])){
+
+    $newPass = $_POST["newPass"];
+  
+
+   
+    
+    $hashedPassword = hash('sha256',  $newPass);
+    
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
+        exit;
+    }
+
+    // Datos que quieres actualizar
+    $id = $_SESSION["user"]["id"]; // ID del usuario a actualizar
+   
+
+    // Preparar la consulta UPDATE
+    $sql = "UPDATE User SET Password = :newPass WHERE IdUser = :id";
+    logServer("UPDATE User SET Password = :newPass WHERE IdUser = :id");
+
+    // Preparar la declaración
+    $stmt = $pdo->prepare($sql);
+
+    // Vincular los parámetros a las variables
+    $stmt->bindParam(':newPass', $hashedPassword , PDO::PARAM_STR); // Cambié a PDO::PARAM_INT
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+    // Ejecutar la consulta
+    if ($stmt->execute()) {
+        echo "Usuario actualizado con éxito.";
+        logServer("Usuario actualizado con éxito.");
+    } else {
+        echo "Error al actualizar el usuario.";
+        logServer("Error al actualizar el usuario",'ERROR');
+    }
+   }
+
+
 }
 
 ?>
