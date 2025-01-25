@@ -339,14 +339,11 @@ function createUser($newUserData){
     if ($query->execute()) {
         logServer("Usuario creado correctamente.");
         $userId = $pdo -> lastInsertId();
-
         // Enviar el correo de verificación
         logServer("Enviando correo de verificación a :".$newUserData['email']);
         sendVerificationEmail($userId, $newUserData['email']);
         insertUserPhoto($userId);
-        
     } else {
-        echo "Error al actualizar los datos.";
         logServer("Error al crear el usuario.",'ERROR');
 
     }

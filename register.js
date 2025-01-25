@@ -84,7 +84,7 @@ function validateForm() {
         if ($(this).val().trim() === '') {
             $(this).addClass('error-border');
             isValid = false;
-            logToServer('Campos en el form vacios','ERROR');
+            logToServer('Campo del form vacio','ERROR');
         }
     });
 

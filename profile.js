@@ -51,9 +51,11 @@ $(document).ready(function(){
     preferencesButton.on("click", function(){
         if(preferencesDiv.css("display") == "flex"){
             preferencesDiv.css("display", "none");
+            preferencesButton.css("background-color", "transparent");
 
         }else{
             preferencesDiv.css("display", "flex");
+            preferencesButton.css("background-color", "var(--middleblue)");
         }
         
     });

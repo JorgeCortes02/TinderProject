@@ -500,9 +500,10 @@ body {
     margin-left: 0;
     width: 100%;
     margin-top: 10px;
-    border-top: 1px solid var(--lightblue);
     position: absolute;
     bottom: 0;
+    border-top: 1px solid var(--darkblue);
+    border-bottom: 1px solid var(--darkblue);
 }
 
 .bottom-nav a {
@@ -512,7 +513,12 @@ body {
     font-size: 18px;
 }
 
-
+.bottom-nav h3.active a {
+    color: var(--darkblue);
+    font-weight: bold; 
+    background-color: var(--lightblue);
+    padding: 20px 15px 21px 15px;
+}
 
   /* Range slider styles */
   .range-slider {
@@ -860,7 +866,7 @@ body {
     transform: translateY(-3px);
 }
 .selectedTab{
-    background-color: var(--middleblue) !important; 
+    background-color: var(--middleblue) !important;
 }
 
 #profileBody h1 {
@@ -2125,7 +2131,7 @@ body {
 /* MARK: NOTIFICATIONS */
 
 #notification-container{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -2490,99 +2496,4 @@ body {
     align-self: center;
     max-width: fit-content;
     text-decoration: none;
-}
-
-/* MARK PASSWORS*/
-.fieldsContainerPass {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    max-width: 800px;
-    background-color: var(--lightblue);
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
-    border-radius: 12px;
-    margin: 0 auto;
-    height: 100%;
-    transition: box-shadow 0.3s ease; /* Transición suave */
-}
-
-.fieldsContainerPass:hover {
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); /* Sombra más intensa cuando el contenedor se activa */
-}
-.fieldsContainerPass h1{
-
-    margin-bottom: 30px;
-}
-/* Títulos dentro de .pass-div y .email-div */
-.pass-div h3, .email-div h3 {
-    font-size: 18px;
-    color: #1f4d75;
-    font-weight: 500;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Estilo de los títulos de los campos */
-.field-p h3, .field h3 {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-/* Inputs dentro de .pass-div y .email-div */
-.pass-div input[type="password"],
-.email-div input[type="email"] {
-    width: 100%;
-    padding: 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-    background-color: #fff;
-    transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-.pass-div input[type="password"]:focus,
-.email-div input[type="email"]:focus {
-    border-color: #1f4d75; /* Bordes de color azul cuando está en foco */
-    box-shadow: 0 0 5px rgba(31, 77, 117, 0.3); /* Sombra sutil cuando se enfoca */
-    outline: none;
-}
-
-/* Botones dentro de .pass-div y .email-div */
-.pass-div button,
-.email-div button {
-    padding: 15px 25px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #1f4d75; /* Azul */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.pass-div button:hover,
-.email-div button:hover {
-    background-color: #163d59; /* Azul más oscuro */
-    transform: translateY(-3px); /* Ligero movimiento hacia arriba */
-}
-
-.pass-div button:active,
-.email-div button:active {
-    transform: translateY(1px); /* Efecto de "presionar" el botón */
-}
-
-/* Estilo de los divs */
-.pass-div, .email-div {
-    margin-bottom: 30px;
-}
-#error-messagePass{
-    display: none;
-    color: red;
 }

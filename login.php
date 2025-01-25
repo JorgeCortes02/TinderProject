@@ -79,7 +79,7 @@ include_once 'config.php';
         $query->execute();
 
         logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
-                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
+                    DeleteAccount,Bio,Role FROM User WHERE IdUser = ".$storedUserId);
 
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
