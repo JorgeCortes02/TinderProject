@@ -35,3 +35,209 @@
 [14:30:13] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Email registrado david.lopez@ieti.site
 [14:30:13] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Contraseña incorrecta bdd97f585127c5ee108f000b1f0c8f20797048dfb7dbce6584f76420581074e1
 [14:30:13] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[17:11:55] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[17:11:55] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[17:11:55] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña incorrecta 6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b
+[17:12:02] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[17:12:02] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[17:12:02] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña incorrecta 1defeffe05b2a93f2fbb197fb2f2562ea236488a09c43e7520e0010bc8035a1b
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto javier.ruiz@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    DeleteAccount,Bio,Role FROM User WHERE IdUser = 3
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=3]: Session iniciada
+[17:12:36] [INFO] [http://localhost:8080/login.php] [UserId=3]: Redireccion a discover.php
+[17:12:37] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[17:12:37] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[17:12:37] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[17:12:37] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[17:12:37] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Puntos finales del usuario = 600
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: - User:11 Distancia:198.74506401477 Puntos:600
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[17:12:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Puntos finales del usuario = 600
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: - User:11 Distancia:198.74506401477 Puntos:600
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[17:13:04] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Puntos finales del usuario = 600
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: - User:11 Distancia:198.74506401477 Puntos:600
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[17:13:23] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Puntos finales del usuario = 600
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: - User:11 Distancia:198.74506401477 Puntos:600
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[17:16:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Puntos finales del usuario = 600
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: - User:11 Distancia:198.74506401477 Puntos:600
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[17:16:21] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[17:17:10] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[17:17:11] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[19:56:10] [INFO] [http://localhost:8080/] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[19:56:14] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[19:56:14] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[19:56:14] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña incorrecta a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto javier.ruiz@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    DeleteAccount,Bio,Role FROM User WHERE IdUser = 3
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=3]: Session iniciada
+[19:56:20] [INFO] [http://localhost:8080/login.php] [UserId=3]: Redireccion a discover.php
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[19:56:20] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 2;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 8;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 11;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 14;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 19;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 26;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 31;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 32;
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:02:48] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:03:00] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[20:03:00] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:03:00] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:03:01] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
