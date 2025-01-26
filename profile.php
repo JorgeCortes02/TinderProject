@@ -58,10 +58,11 @@ logServer("Cargando perfil del usuario...");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="profile.js"></script>
-    <title>Profile</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
     <script src="notifications.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <div class="containerMessage">

@@ -61,18 +61,20 @@ $(document).ready(function(){
     });
 
     logOutButton.on("click", function(){
-       
+        showNotification("Sesión cerrada", "info");
         deleteSession();
-        
+        setTimeout(() => {
+            window.location.href = 'login.php';
+        }, 4000);
     });
 
     deleteAccountButtom.on("click", function(){
-        showNotification("Cuenta Eliminada", "succes");
+        showNotification("Cuenta Eliminada", "warning");
         deleteAccount();
         $(".divPreferencesProfile").css("display", "none")
         setTimeout(() => {
             window.location.href = 'login.php';
-        }, 3000);
+        }, 4000);
     })
 
 })
@@ -114,6 +116,8 @@ function saveProfileChanges() {
         success: function(response) {
             console.log('datos actualizados correctamente');
             logToServer('saveProfileChanges - Solicitud AJAX correcta');
+
+            showNotification("Perfil actualizado","success");
         },
         error: function(error) {
             console.error("Error al actualizar los datos: ", error);
@@ -296,7 +300,7 @@ function deleteAccount(){
             if (!response.ok) {  // Verificar si la respuesta fue exitosa
                 showNotification("Error al eliminar cuenta", "error");
                 throw new Error("Error al guardar los datos en el servidor");
-            } 
+            }
         })
         .catch(error => {
             console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos

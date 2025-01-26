@@ -11,6 +11,7 @@
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="module" src="photos.js"></script>
+    <script src="notifications.js"></script>
 
     <link rel="stylesheet" href="styles.css">
 

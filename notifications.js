@@ -69,3 +69,6 @@ function showNotification(message, type) {
         }, 500);
     }, 5000);
 }
+
+// Exponer la función en el objeto global para usarla en otros scripts
+window.showNotification = showNotification;

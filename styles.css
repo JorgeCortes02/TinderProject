@@ -521,7 +521,7 @@ body {
 }
 
   /* Range slider styles */
-  .range-slider {
+.range-slider {
     width: 100%;
     position: relative;
     height: 10px;
@@ -530,7 +530,7 @@ body {
     overflow: hidden;
     margin-top: 10px;
   }
- .range-slider input {
+.range-slider input {
     position: absolute;
     width: 100%;
     pointer-events: none;
@@ -541,7 +541,8 @@ body {
     padding: 0;
     margin-bottom: 0;
   }
-  .range-slider input::-webkit-slider-thumb {
+
+.range-slider input::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
     z-index: 2;
@@ -553,7 +554,7 @@ body {
     -webkit-appearance: none;
     border: 2px solid var(--lightblue);
   }
-   .range-slider input::-moz-range-thumb {
+.range-slider input::-moz-range-thumb {
     pointer-events: all;
     position: relative;
     z-index: 2;
@@ -563,28 +564,28 @@ body {
     background: var(--jetblack);
     cursor: pointer;
   }
-  .range-slider .progress {
+
+.range-slider .progress {
     position: absolute;
     height: 10px;
     background: var(--darkblue);
     z-index: 1;
     border-radius: 5px;
     top: 0;
-  }
-  .range-slider .progress2 {
+}
+.range-slider .progress2 {
     position: absolute;
     height: 10px;
     background: var(--darkblue);
     z-index: 1;
     border-radius: 5px;
     top: 0;
-  }
+}
   /* Aseguramos que la barra de progreso tenga un rango adecuado */
- .range-slider input#minAge:focus + .progress,
- .range-slider input#maxAge:focus + .progress {
+.range-slider input#minAge:focus + .progress,
+.range-slider input#maxAge:focus + .progress {
     outline: none;
 }
-
 
 
 /* MARK: DISCOVER mobile*/
@@ -961,62 +962,6 @@ body {
 
 }
 
-/* Range slider styles */
- .range-slider {
-    width: 100%;
-    position: relative;
-    height: 10px;
-    background: #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 20px;
-  }
- .range-slider input {
-    position: absolute;
-    width: 100%;
-    pointer-events: none;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 10px;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  .range-slider input::-webkit-slider-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 2;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: var(--jetblack);
-    cursor: pointer;
-    -webkit-appearance: none;
-    border: 2px solid var(--lightblue);
-  }
-   .range-slider input::-moz-range-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 2;
-    height: 20px;
-    width: 200px;
-    border-radius: 50%;
-    background: var(--jetblack);
-    cursor: pointer;
-  }
-  .range-slider .progress {
-    position: absolute;
-    height: 10px;
-    background: var(--darkblue);
-    z-index: 1;
-    border-radius: 5px;
-    top: 0;
-  }
-  /* Aseguramos que la barra de progreso tenga un rango adecuado */
- .range-slider input#minAge:focus + .progress,
- .range-slider input#maxAge:focus + .progress {
-    outline: none;
-}
 
 
  .bottom {
@@ -1223,66 +1168,6 @@ body {
         border-color: var(--brightred);
     }
     
-    
-
-    /* Range slider styles */
-     .range-slider {
-        width: 100%;
-        position: relative;
-        height: 10px;
-        background: #ddd;
-        border-radius: 5px;
-        overflow: hidden;
-        margin-top: 20px;
-      }
-     .range-slider input {
-        position: absolute;
-        width: 100%;
-        pointer-events: none;
-        -webkit-appearance: none;
-        appearance: none;
-        height: 10px;
-        background: transparent;
-        padding: 0;
-        margin-bottom: 0;
-      }
-      .range-slider input::-webkit-slider-thumb {
-        pointer-events: all;
-        position: relative;
-        z-index: 2;
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background: var(--jetblack);
-        cursor: pointer;
-        -webkit-appearance: none;
-        border: 2px solid var(--lightblue);
-      }
-       .range-slider input::-moz-range-thumb {
-        pointer-events: all;
-        position: relative;
-        z-index: 2;
-        height: 20px;
-        width: 200px;
-        border-radius: 50%;
-        background: var(--jetblack);
-        cursor: pointer;
-      }
-      .range-slider .progress {
-        position: absolute;
-        height: 10px;
-        background: var(--darkblue);
-        z-index: 1;
-        border-radius: 5px;
-        top: 0;
-      }
-      /* Aseguramos que la barra de progreso tenga un rango adecuado */
-     .range-slider input#minAge:focus + .progress,
-     .range-slider input#maxAge:focus + .progress {
-        outline: none;
-    }
-    
-
     
      .bottom {
         width: 100%;
@@ -2142,7 +2027,7 @@ body {
 }
 
 .notification {
-    background-color: #8B8EF9;
+    background-color: #c562ff;
     width: 460px;
     height: 100px;
     padding: 10px;
