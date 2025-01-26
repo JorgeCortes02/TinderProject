@@ -1,27 +1,15 @@
 function showNotification(message, type) {
-    // Buscar el primer hijo directo del <body>
-    let parentContainer = $('body > *').first();
-
-    // Si no se encuentra ningún hijo directo, crear un contenedor dentro del body
-    if (parentContainer.length === 0) {
-        console.warn('No se encontró ningún contenedor dentro del body. Creando uno automáticamente.');
-        parentContainer = $('<div class="default-container"></div>').appendTo('body');
-    }
-
-    // Buscar o crear el contenedor de notificaciones dentro del contenedor encontrado
-    let notificationContainer = parentContainer.find('#notification-container');
+    // Buscar o crear un contenedor de notificaciones global en el <body>
+    let notificationContainer = $('#notification-container');
 
     if (notificationContainer.length === 0) {
-        notificationContainer = $('<div id="notification-container"></div>').appendTo(parentContainer);
+        console.warn('No se encontró el contenedor de notificaciones. Creándolo automáticamente.');
+        notificationContainer = $('<div id="notification-container"></div>').appendTo('body');
     }
 
     // Crear la notificación
     const notification = $('<div class="notification"></div>');
-
-    // Contenido de la notificación (icono y mensaje)
     const notificationContent = $('<div class="notificationContent"></div>').appendTo(notification);
-
-    // Añadir icono a la izquierda
     const iconContainer = $('<div class="iconContainer"></div>').appendTo(notificationContent);
 
     // Cambiar icono según el tipo
@@ -41,27 +29,30 @@ function showNotification(message, type) {
         case 'match':
             iconContainer.html('<i class="fas fa-heart"></i>'); // Corazón
             break;
+        default:
+            console.warn('Tipo de notificación desconocido:', type);
+            iconContainer.html('<i class="fas fa-question-circle"></i>'); // Icono por defecto
+            break;
     }
 
     // Añadir mensaje a la derecha
-    const messageContainer = $('<div class="messageContainer"></div>').text(message).appendTo(notificationContent);
+    $('<div class="messageContainer"></div>')
+        .text(message)
+        .appendTo(notificationContent);
 
-    // Añadir notificación al contenedor
     notificationContainer.append(notification);
 
-    // Mostrar notificación (animación de slide hacia abajo)
     setTimeout(() => {
         notification.css({
             opacity: '1',
-            transform: 'translateY(10px)'
+            transform: 'translateY(0)',
         });
     }, 100);
 
-    // Eliminar notificación después de 5 segundos (slide hacia arriba)
     setTimeout(() => {
         notification.css({
             opacity: '0',
-            transform: 'translateY(-100%)'
+            transform: 'translateY(-20px)',
         });
 
         setTimeout(() => {
@@ -70,5 +61,5 @@ function showNotification(message, type) {
     }, 5000);
 }
 
-// Exponer la función en el objeto global para usarla en otros scripts
+// Exponer la función en el objeto global
 window.showNotification = showNotification;
