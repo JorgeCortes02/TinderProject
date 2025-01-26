@@ -50,6 +50,11 @@ function saveProfileData() {
         success: function(response) {
             console.log('datos actualizados correctamente');
             logToServer('Solicitud AJAX correcta, enviando petición de crear usuario al servidor...');
+            showNotification("Tu cuenta se ha registrado", "success");
+            setTimeout(() => {
+                window.location.href = 'login.php';
+            }, 4000);
+
         },
         error: function(error) {
             console.error("Error al actualizar los datos: ", error);
@@ -84,7 +89,7 @@ function validateForm() {
         if ($(this).val().trim() === '') {
             $(this).addClass('error-border');
             isValid = false;
-            logToServer('Campos en el form vacios','ERROR');
+            logToServer('Campo del form vacio','ERROR');
         }
     });
 

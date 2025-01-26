@@ -75,7 +75,7 @@ if (isset($_GET['validate'])) {
             header("Location: login.php");
         } else {
             logServer("Error al verificar la cuenta.", "ERROR");
-            header("Location: register.php");
+            header("Location: login.php");
         }
     } else {
         logServer("Token de verificación inválido.", "ERROR");
@@ -100,7 +100,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
         'minAge' => $_POST['minAge'],
         'maxAge' => $_POST['maxAge']
     ];
-
     createUser($newUserData);
 }
 ?>
@@ -112,6 +111,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="register.js"></script>
+    <script src="notifications.js"></script>
     <title>Register</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css">
@@ -339,14 +339,12 @@ function createUser($newUserData){
     if ($query->execute()) {
         logServer("Usuario creado correctamente.");
         $userId = $pdo -> lastInsertId();
-
         // Enviar el correo de verificación
         logServer("Enviando correo de verificación a :".$newUserData['email']);
         sendVerificationEmail($userId, $newUserData['email']);
         insertUserPhoto($userId);
-        
+        $_SESSION['showRegisterNotification'] = true;
     } else {
-        echo "Error al actualizar los datos.";
         logServer("Error al crear el usuario.",'ERROR');
 
     }

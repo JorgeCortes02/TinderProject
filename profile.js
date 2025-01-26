@@ -20,9 +20,16 @@ $(document).ready(function(){
     const preferencesDiv = $(".divPreferencesProfile");
     const logOutButton = $("#logOut");
     const deleteAccountButtom = $("#deleteAcount");
+
+    profileButtom.addClass("selectedTab"); //Siempre empezamos en preview de perfil
+
     profileButtom.on("click", function(){
 
+       profileButtom.addClass('selectedTab');
+       confButton.removeClass('selectedTab');//boramos estlos del otro
+
        profileButtom.prop("disabled", true);
+       profileButtom.addClass("selectedTab");
        
         const contenedorConf =  $(".fieldsContainer");
         contenedorConf.css("display", "none")
@@ -31,6 +38,9 @@ $(document).ready(function(){
       
     })
     confButton.on("click", function(){
+        profileButtom.removeClass('selectedTab');
+        confButton.addClass('selectedTab');
+
         profileButtom.prop("disabled", false);
         const contenedorConf =  $(".fieldsContainer");
         contenedorConf.css("display", "flex")
@@ -41,26 +51,30 @@ $(document).ready(function(){
     preferencesButton.on("click", function(){
         if(preferencesDiv.css("display") == "flex"){
             preferencesDiv.css("display", "none");
+            preferencesButton.css("background-color", "transparent");
 
         }else{
             preferencesDiv.css("display", "flex");
+            preferencesButton.css("background-color", "var(--middleblue)");
         }
         
     });
 
     logOutButton.on("click", function(){
-       
+        showNotification("Sesión cerrada", "info");
         deleteSession();
-        
+        setTimeout(() => {
+            window.location.href = 'login.php';
+        }, 4000);
     });
 
     deleteAccountButtom.on("click", function(){
-        showNotification("Cuenta Eliminada", "succes");
+        showNotification("Cuenta Eliminada", "warning");
         deleteAccount();
         $(".divPreferencesProfile").css("display", "none")
         setTimeout(() => {
             window.location.href = 'login.php';
-        }, 3000);
+        }, 4000);
     })
 
 })
@@ -102,6 +116,8 @@ function saveProfileChanges() {
         success: function(response) {
             console.log('datos actualizados correctamente');
             logToServer('saveProfileChanges - Solicitud AJAX correcta');
+
+            showNotification("Perfil actualizado","success");
         },
         error: function(error) {
             console.error("Error al actualizar los datos: ", error);
@@ -284,7 +300,7 @@ function deleteAccount(){
             if (!response.ok) {  // Verificar si la respuesta fue exitosa
                 showNotification("Error al eliminar cuenta", "error");
                 throw new Error("Error al guardar los datos en el servidor");
-            } 
+            }
         })
         .catch(error => {
             console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos

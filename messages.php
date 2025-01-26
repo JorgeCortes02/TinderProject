@@ -20,7 +20,7 @@ include 'config.php';
     <div class="containerMessage">
         <!-- Encabezado -->
         <div class="header">
-            <h1>IETINDER</h1>
+            <h1>IETINDER - Chats</h1>
             
         </div>
 
@@ -117,11 +117,7 @@ include 'config.php';
     
 </div>
         <!-- Menú de navegación inferior -->
-        <nav class="bottom-nav">
-            <a href="discover.php">Descubrir</a>
-            <a href="messages.php" class="active">Mensajes</a>
-            <a href="profile.php">Perfil</a>
-        </nav>
+        <?php include ('footer.php');?>
     </div>
 </body>
 </html>
