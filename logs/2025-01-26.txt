@@ -241,3 +241,202 @@
 [20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
 [20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
 [20:03:31] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:22:37] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Preview de foto correcta
+[20:22:42] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Validando form...
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Campos del form correctos.
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: creando datos...
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('will@ieti.site', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'will', 'mol', 'gal', 'Terr', '2020-12-30', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'ererer', '18', '99')
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Usuario creado correctamente.
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Enviando correo de verificación a :will@ieti.site
+[20:22:43] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Error al enviar el correo de verificación: Extension missing: openssl
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Tipo de archivo dado en campo imagen: image/jpeg
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: INSERT INTO photo (UserId, URL) VALUES (69, images/user_69_67968b831e615.jpg)
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Foto de perfil añadida correctamente para el usuario ID: 69.
+[20:22:43] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor...
+[20:23:02] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[20:23:02] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[20:23:02] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña incorrecta 9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto javier.ruiz@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    DeleteAccount,Bio,Role FROM User WHERE IdUser = 3
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=3]: Session iniciada
+[20:23:13] [INFO] [http://localhost:8080/login.php] [UserId=3]: Redireccion a discover.php
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:23:14] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:23:25] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:23:25] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:23:31] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Validando form...
+[20:23:32] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Campos del form correctos.
+[20:23:32] [INFO] [http://localhost:8080/profile.php] [UserId=3]: saveProfileChanges - Guardando datos...
+[20:23:32] [INFO] [http://localhost:8080/profile.php] [UserId=3]: UPDATE User SET FirstName = Javier, LastName1 = Hernández, LastName2 =Ruiz, Username =javih, BirthDate =1988-10-10, Orientation =Bisexual, Gender =Hombre, Longitude =-1.9784, Latitude =37.3771, Bio =Amo los deportes extremos.
+     WHERE IdUser =3
+[20:23:32] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Datos actualizados correctamente para el usuario.
+[20:23:32] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:23:32] [INFO] [http://localhost:8080/profile.php] [UserId=3]: saveProfileChanges - Solicitud AJAX correcta
+[20:23:44] [INFO] [http://localhost:8080/apis.php?api=downloadImages] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:23:49] [INFO] [http://localhost:8080/apis.php?api=uploadPhoto] [UserId=3]: INSERT INTO Photo (UserId, URL) VALUES (3,images/ee.jpg);
+[20:23:52] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=3]: DELETE FROM Photo where URL=3 and UserId=images/ee.jpg;
+[20:23:52] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=3]: Archivo eliminado localmente: C:\Users\drags\Desktop\TinderProject/images/ee.jpg
+[20:24:06] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:24:07] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:24:14] [INFO] [http://localhost:8080/apis.php?api=destroySession] [UserId=3]: Eliminando sesión...
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =javier.ruiz@ieti.site
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado javier.ruiz@ieti.site
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto javier.ruiz@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    DeleteAccount,Bio,Role FROM User WHERE IdUser = 3
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=3]: Session iniciada
+[20:27:50] [INFO] [http://localhost:8080/login.php] [UserId=3]: Redireccion a discover.php
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:27:51] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:27:58] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando matches...
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando fotos de matches...
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Se han descargado Matches
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando chats...
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando fotos de los chats...
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 1 LIMIT 1;
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Foto cargada
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 5 LIMIT 1;
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Foto cargada
+[20:28:05] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Se han descargado mensajes
+[20:28:06] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:28:07] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Validando form...
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Campos del form correctos.
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: saveProfileChanges - Guardando datos...
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: UPDATE User SET FirstName = Javier, LastName1 = Hernández, LastName2 =Ruiz, Username =javih, BirthDate =1988-10-10, Orientation =Bisexual, Gender =Hombre, Longitude =-1.9784, Latitude =37.3771, Bio =Amo los deportes extremos.
+     WHERE IdUser =3
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Datos actualizados correctamente para el usuario.
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:28:11] [INFO] [http://localhost:8080/profile.php] [UserId=3]: saveProfileChanges - Solicitud AJAX correcta
+[20:28:23] [INFO] [http://localhost:8080/apis.php?api=downloadImages] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:28:29] [INFO] [http://localhost:8080/apis.php?api=uploadPhoto] [UserId=3]: INSERT INTO Photo (UserId, URL) VALUES (3,images/Imatge_de_WhatsApp_2024-11-28_a_les_23_37_59_4b22f4b0.jpg);
+[20:28:32] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=3]: DELETE FROM Photo where URL=3 and UserId=images/Imatge_de_WhatsApp_2024-11-28_a_les_23_37_59_4b22f4b0.jpg;
+[20:28:32] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=3]: Archivo eliminado localmente: C:\Users\drags\Desktop\TinderProject/images/Imatge_de_WhatsApp_2024-11-28_a_les_23_37_59_4b22f4b0.jpg
+[20:39:17] [INFO] [http://localhost:8080/apis.php?api=downloadImages] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:39:24] [INFO] [http://localhost:8080/apis.php?api=uploadPhoto] [UserId=3]: INSERT INTO Photo (UserId, URL) VALUES (3,images/e0a5543f18afbfdb979daf5b959c40fd.jpg);
+[20:39:29] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=3]: DELETE FROM Photo where URL=3 and UserId=images/e0a5543f18afbfdb979daf5b959c40fd.jpg;
+[20:39:29] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=3]: Archivo eliminado localmente: C:\Users\drags\Desktop\TinderProject/images/e0a5543f18afbfdb979daf5b959c40fd.jpg
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando matches...
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando fotos de matches...
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Se han descargado Matches
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando chats...
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Cargando fotos de los chats...
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 1 LIMIT 1;
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Foto cargada
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 5 LIMIT 1;
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Foto cargada
+[20:39:34] [INFO] [http://localhost:8080/messages.php] [UserId=3]: Se han descargado mensajes
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:39:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=3]: Usuario qactualizado con exito, se han añadido pintos
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 17;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 20;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 22;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 23;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 25;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 28;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: SELECT URL FROM Photo where UserId = 29;
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Calculando distancia de los usuarios respecto a la tuya...
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Ordenando usuarios por Puntuación...
+[20:40:10] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=3]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[20:40:17] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:40:17] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=3]: SELECT URL FROM Photo where UserId = 3;
+[20:40:23] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Validando form...
+[20:40:24] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Campos del form correctos.
+[20:40:24] [INFO] [http://localhost:8080/profile.php] [UserId=3]: saveProfileChanges - Guardando datos...
+[20:40:24] [INFO] [http://localhost:8080/profile.php] [UserId=3]: UPDATE User SET FirstName = Javier, LastName1 = Hernández, LastName2 =Ruiz, Username =javih, BirthDate =1988-10-10, Orientation =Bisexual, Gender =Hombre, Longitude =-1.9784, Latitude =37.3771, Bio =Amo los deportes extremos.
+     WHERE IdUser =3
+[20:40:24] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Datos actualizados correctamente para el usuario.
+[20:40:24] [INFO] [http://localhost:8080/profile.php] [UserId=3]: Cargando perfil del usuario...
+[20:40:24] [INFO] [http://localhost:8080/profile.php] [UserId=3]: saveProfileChanges - Solicitud AJAX correcta
+[20:40:47] [INFO] [http://localhost:8080/apis.php?api=destroySession] [UserId=3]: Eliminando sesión...
+[20:41:12] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Validando form...
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Campo del form vacio
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Género invalido
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Orientación invalido
+[20:41:12] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: No se ha seleccionado una imagen
+[20:42:03] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Validando form...
+[20:42:03] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: No se ha seleccionado una imagen
+[20:42:12] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Preview de foto correcta
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Validando form...
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Campos del form correctos.
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: creando datos...
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('pol@ieti.site', '9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c', 'Pol', 'gom', 'aaaa', 'lmar', '2015-10-21', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'pppppppp', '18', '99')
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Usuario creado correctamente.
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Enviando correo de verificación a :pol@ieti.site
+[20:42:14] [ERROR] [http://localhost:8080/register.php] [UserId=Null]: Error al enviar el correo de verificación: Extension missing: openssl
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Tipo de archivo dado en campo imagen: image/jpeg
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: INSERT INTO photo (UserId, URL) VALUES (70, images/user_70_679690169c317.jpg)
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Foto de perfil añadida correctamente para el usuario ID: 70.
+[20:42:14] [INFO] [http://localhost:8080/register.php] [UserId=Null]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor...

@@ -114,6 +114,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
     <script src="notifications.js"></script>
     <title>Register</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
 </head>
