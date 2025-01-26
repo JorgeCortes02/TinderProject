@@ -151,7 +151,7 @@ include_once 'config.php';
                 <?php
 
             //si todo es correcto
-            }if ($row["DeleteAccount"] !=0 ) {
+            }else if ($row["DeleteAccount"] !=0 ) {
                 
                 ?>
                 <script>
@@ -213,7 +213,7 @@ include_once 'config.php';
         <h3>App de ligoteo</h3>
         <h4 id="errorEmail">Error: El correo no está registrado</h4>
         <h4 id="errorPassword">Error: Contraseña incorrecta</h4>
-        <h4 id="errorLogin">Error: Cuenta no verificada o eliminada</h4>
+        <h4 id="errorLogin">Error: Cuenta no verificada o eliminadau</h4>
         
 
 
