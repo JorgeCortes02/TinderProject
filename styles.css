@@ -12,6 +12,7 @@
     --darkred: #8B1A1A;
 
 
+
     /*Title font*/
     --title-font: 'Monaco', monospace;
     --title-size: 30px;
@@ -2396,14 +2397,26 @@ body {
   
   /* color icono */
   .like-btn i {
-    font-size: 20px;
+    font-size: 30px;
     color: gray; /* Color para cuando no está marcado */
-    transition: color 0.3s ease, transform 0.2s ease;
+    transition: color 1s ease, transform 0.5s ease;
   }
   
   /* Corazón rojo cuando está "likeado" */
   .like-btn[data-liked="true"] i {
-    color: var(--brightred);
+    color: #b300ff;
     transform: scale(1.2); /* Efecto de pop */
   }
-  
+  .message-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.message-wrapper.received {
+    justify-content: space-between;
+}
+
+.message-wrapper.sent {
+    justify-content: space-between; 
+}

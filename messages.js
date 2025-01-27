@@ -30,22 +30,28 @@ $(document).ready(function() {
     $(".chat").on("click", ".like-btn", function() {
         const likeButton = $(this);
         const liked = likeButton.attr("data-liked") === "true";
-        
+        const messageId = likeButton.attr("data-msid"); // Ahora obtenemos el messageId directamente desde el botón
+        const currentUserId = $(".containerChat").attr("data-currentuser");
+        const senderUserId = likeButton.closest(".message-wrapper").hasClass("sent") ? currentUserId : $(".containerChat").attr("data-otherlikeid"); // ID del remitente
+    
+        if (senderUserId === currentUserId) {
+            console.log("No puedes dar like a tus propios mensajes.");
+            return;
+        }
+    
         if (!liked) {
-            // Si no está marcado como "like", lo marcamos
+            // Si no esta "like", se marca
             likeButton.html('<i class="fas fa-heart"></i>');
             likeButton.attr("data-liked", "true");
         } else {
-            // Si ya esta marcado como "like", lo desmarcamos
-            likeButton.html('<i class="far fa-heart"></i>'); // Cambiar al icono vacío
+            // Si ya esta "like", lo desmarcamos
+            likeButton.html('<i class="far fa-heart"></i>');
             likeButton.attr("data-liked", "false");
         }
-        /*
-        // Aquí podrías agregar lógica para enviar la acción al servidor si es necesario
-        const messageId = likeButton.closest(".chatMessage").attr("data-MsiD");
-        updateLikeStatus(messageId, !liked); // Llamada a la función para actualizar el estado*/
-    });
     
+        // Cambiar estado en la BD
+        updateLikeStatus(messageId, !liked);
+    });    
 });
 
 
@@ -117,7 +123,10 @@ function openChat(event, type){
     }
 
     setInterval(() => {
+ 
         downloadLastMessage();
+        updateLikesInRealTime();
+
     }, 5000);
 
     
@@ -169,65 +178,79 @@ function getMessages(data,type){
     .then(response => response.json())  // Suponemos que la respuesta es JSON
     .then(data => {
         lastdata = "";
-        if(type ==="chat"){
-               
-                data.forEach(element => {
+        if(type ==="chat"){  
+            data.forEach(element => {
 
+                if (lastdata != ""){
+                    if(moreFiveMinuts(lastdata,  element["SentAt"])>=5){
 
-                        if (lastdata != ""){
-                            if(moreFiveMinuts(lastdata,  element["SentAt"])>=5){
+                    let divMessage =  $("<div>")
+                    divMessage.attr("class", "data")
+                    divMessage.text(element["SentAt"]);
+                    contenedorMensages.append(divMessage)
+                    } 
+                }
+                
+                if(parseInt(contenedorChat.attr("data-currentuser")) == parseInt(element["ReceiverUserId"])){
 
-                            let divMessage =  $("<div>")
-                            divMessage.attr("class", "data")
-                            divMessage.text(element["SentAt"]);
-                            contenedorMensages.append(divMessage)
-                            }
-                            
+                    let messageWrapper = $("<div>").addClass("message-wrapper received"); //esto contiene mensaje + corazón
+                    let divMessage =  $("<div>");
 
-                        }
-                     
-                        if(parseInt(contenedorChat.attr("data-currentuser")) == parseInt(element["ReceiverUserId"])){
-                            
-                           let divMessage =  $("<div>")
-                           divMessage.attr("class", "chatMessage received")
-                           divMessage.text(element["Text"]);
-                           divMessage.attr("data-datatime",element["SentAt"] )
-                           divMessage.attr("data-MsiD",element["MessageId"] )
+                    let likeButton = $('<button class="like-btn" data-liked="false"></button>');
+                    likeButton.attr("data-msid", element["MessageId"]);
 
-                           let likeButton = $('<button class="like-btn" data-liked="false"></button>');
-                           likeButton.html('<i class="far fa-heart"></i>');
-                           divMessage.append(likeButton);
+                    divMessage.attr("class", "chatMessage received");
+                    divMessage.text(element["Text"]);
+                    divMessage.attr("data-datatime",element["SentAt"] );
+                    divMessage.attr("data-MsiD",element["MessageId"] );
 
-                           contenedorMensages.append(divMessage)
-                           contenedorChat.attr("data-otherlikeid", element["SenderUserId"])
-                        } else{
-                           let divMessage =  $("<div>")
-                           divMessage.attr("class", "chatMessage sent")
-                           divMessage.text(element["Text"]);
-                           divMessage.attr("data-datatime",element["SentAt"] )
-                           divMessage.attr("data-MsiD",element["MessageId"] )
+                    // Verificamos el estado del like
+                    if (element["hasLike"] == 1) {
+                        likeButton.html('<i class="fas fa-heart"></i>'); 
+                        likeButton.attr("data-liked", "true");
+                    } else {
+                        likeButton.html('<i class="far fa-heart"></i>');
+                        likeButton.attr("data-liked", "false");
+                    }
 
-                           let likeButton = $('<button class="like-btn" data-liked="false"></button>');
-                           likeButton.html('<i class="far fa-heart"></i>');
-                           divMessage.append(likeButton);
+                    messageWrapper.append(divMessage);
+                    messageWrapper.append(likeButton);
+                    contenedorMensages.append(messageWrapper);
+                    contenedorChat.attr("data-otherlikeid", element["SenderUserId"]);
 
-                           contenedorMensages.append(divMessage)
-                           contenedorChat.attr("data-otherlikeid", element["ReceiverUserId"])
-                        }
-                        lastdata = element["SentAt"];
+                } else{
+                    let messageWrapper = $("<div>").addClass("message-wrapper sent");
+                    let divMessage =  $("<div>");
 
+                    let likeButton = $('<button class="like-btn" data-liked="false"></button>');
+                    likeButton.attr("data-msid", element["MessageId"]);
 
-                })
+                    divMessage.attr("class", "chatMessage sent");
+                    divMessage.text(element["Text"]);
+                    divMessage.attr("data-datatime",element["SentAt"] );
+                    divMessage.attr("data-MsiD",element["MessageId"] );
 
+                    // Verificamos el estado del like
+                    if (element["hasLike"] == 1) {
+                        likeButton.html('<i class="fas fa-heart"></i>');  
+                        likeButton.attr("data-liked", "true");
+                    } else {
+                        likeButton.html('<i class="far fa-heart"></i>');
+                        likeButton.attr("data-liked", "false");
+                    }
+
+                    messageWrapper.append(likeButton);
+                    messageWrapper.append(divMessage);
+                    contenedorMensages.append(messageWrapper);
+                    contenedorChat.attr("data-otherlikeid", element["ReceiverUserId"]);
+                }
+                lastdata = element["SentAt"];
+            })
         }
-         
-       data-otherlikeiddata-otherlikeid
     })
     .catch(error => {
         console.error("Error en la petición:", error);  // Si ocurre un error, lo mostramos
     });
-
-
 }
 
 
@@ -252,23 +275,35 @@ function sentNewMissage(){
     const contenedorMensages =  $(".chat");
     const inputText = $("#inputMessage")
 
+    const mensaje = inputText.val().trim();
+    if (mensaje === "") {
+        console.log("No se peuden enviar mensajes vacios");
+        return;
+    }
+
+    let messageWrapper = $("<div>").addClass("message-wrapper sent");
     let divMessage =  $("<div>")
+    let likeButton = $('<button class="like-btn" data-liked="false"></button>');
+    likeButton.attr("data-msid", "");
+
     divMessage.attr("class", "chatMessage sent")
     divMessage.text(inputText.val());
     divMessage.attr("data-datatime",new Date())
 
-    lastsent = contenedorMensages.children().last().attr("data-datatime");
     if(moreFiveMinuts(lastdata,  new Date()) >=5){
 
         let divMessage =  $("<div>")
         divMessage.attr("class", "data")
         divMessage.text(formatoFecha());
         contenedorMensages.append(divMessage)
-        }
+    }
 
-    contenedorMensages.append(divMessage)
+    messageWrapper.append(likeButton);
+    messageWrapper.append(divMessage);
+    contenedorMensages.append(messageWrapper);
 
-    
+    lastsent = contenedorMensages.children().last().attr("data-datatime");
+
     const formData = new FormData();
     formData.append("likedUserId",$(".containerChat").attr("data-otherlikeid"));  // Añadir el id del usuario al que se le dio like
     console.log("POLLOOO" + $(".containerChat").attr("data-id"))
@@ -281,15 +316,28 @@ function sentNewMissage(){
         method: "POST",  // Usamos el método POST
         body: formData  // Enviamos el FormData
     })
-        .then(response => {
-            if (!response.ok) {  // Verificar si la respuesta fue exitosa
-                throw new Error("Error al guardar los datos en el servidor");
+    .then(response => response.json())  // Esperamos una respuesta en JSON con el MessageId
+    .then(data => {
+        if (data.success) {
+            // Asignar el MessageId y el estado del like
+            messageWrapper.find(".chatMessage").attr("data-MsiD", data.MessageId);
+            likeButton.attr("data-msid", data.MessageId);
+            
+            // Si el mensaje tiene like, actualizar el botón de like
+            if (data.hasLike) {
+                likeButton.html('<i class="fas fa-heart"></i>');  
+                likeButton.attr("data-liked", "true");
+            } else {
+                likeButton.html('<i class="far fa-heart"></i>');
+                likeButton.attr("data-liked", "false");
             }
-            console.log("Datos guardados exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
-        })
-        .catch(error => {
-            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
-        });
+        } else {
+            console.error("Error al guardar el mensaje.");
+        }
+    })
+    .catch(error => {
+        console.error("Error en la solicitud:", error);
+    });
 
 }
 
@@ -312,10 +360,14 @@ function downloadLastMessage() {
     const contenedorChat = $(".containerChat");
     const contenedorMensages = $(".chat");
 
+    const lastMessageId = contenedorMensages.children().last().attr("data-msid");
+
     const formData = new FormData();
     formData.append("matchId", parseInt(contenedorChat.attr("data-id")));
     formData.append("sentUser", parseInt(contenedorChat.attr("data-otherlikeid")));
-    formData.append("lastMessageId", parseInt(contenedorMensages.children().filter('[class="chatMessage received"]').last().attr("data-msid")));
+    //formData.append("lastMessageId", parseInt(contenedorMensages.children().filter('[class="chatMessage received"]').last().attr("data-msid")));
+    //formData.append("lastMessageId", parseInt(contenedorMensages.find('.message-wrapper .chatMessage.received').last().attr("data-msid")));
+    formData.append("lastMessageId", parseInt(contenedorMensages.find('.chatMessage.received').last().attr("data-msid")));
 
     // Hacemos la petición para verificar el match
     fetch("apis.php?api=downloadLastMessage", {
@@ -344,13 +396,34 @@ function downloadLastMessage() {
                     }
                 }
 
-                // Agregar el mensaje recibido
+                let messageWrapper = $("<div>").addClass("message-wrapper received");
+
+                // Crear el div para el mensaje
                 const divMessage = $("<div>")
                     .attr("class", "chatMessage received")
                     .text(element["Text"])
                     .attr("data-datetime", element["SentAt"])
                     .attr("data-msid", element["MessageId"]);
-                contenedorMensages.append(divMessage);
+
+                // Crear el botón de like
+                let likeButton = $('<button class="like-btn" data-liked="false"></button>');
+                likeButton.attr("data-msid", element["MessageId"]);
+
+                // Verificar el estado del like
+                if (element["hasLike"] == 1) {
+                    likeButton.html('<i class="fas fa-heart"></i>');
+                    likeButton.attr("data-liked", "true");
+                } else {
+                    likeButton.html('<i class="far fa-heart"></i>');
+                    likeButton.attr("data-liked", "false");
+                }
+
+                // Agregar el mensaje y el botón de like al wrapper
+                messageWrapper.append(divMessage);
+                messageWrapper.append(likeButton);
+                
+                // Agregar el mensaje al contenedor de mensajes
+                contenedorMensages.append(messageWrapper);
 
                 // Actualizar el usuario
                 contenedorChat.attr("data-otherlikeid", element["SenderUserId"]);
@@ -474,10 +547,13 @@ async function downloadData(id) {
 }
 
 // Función para actualizar el like en la base de datos
-function updateLikeStatus(messageId, liked) {
+function updateLikeStatus(messageId, isLiked) {
+    console.log("Mensaje: " + messageId);
+    console.log("Like: " + isLiked);
+
     const formData = new FormData();
     formData.append("MessageId", messageId);  // ID del mensaje
-    formData.append("Liked", liked ? 1 : 0);  // Estado del like (1 para activado, 0 para desactivado)
+    formData.append("isLiked", isLiked ? 1 : 0);  // Estado del like (1 para activado, 0 para desactivado)
 
     fetch("apis.php?api=updateLikeStatus", {
         method: "POST",
@@ -495,3 +571,48 @@ function updateLikeStatus(messageId, liked) {
         console.error("Error en la solicitud:", error);
     });
 }
+
+// Función en JavaScript para actualizar los likes en tiempo real
+function updateLikesInRealTime() {
+    fetch("apis.php?api=downloadLikes", {
+        method: "POST",
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error en la respuesta de la API");
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                console.error("Error: " + data.error);
+                return;
+            }
+    
+            data.forEach(like => {
+                // Buscar el mensaje en el DOM por MessageId
+                let messageElement = $(".chatMessage[data-msid='" + like.MessageId + "']");
+    
+                // Asegurarse de que existe el mensaje antes de modificarlo
+                if (messageElement.length > 0) {
+                    // Buscar el botón de like dentro del mismo contenedor del mensaje
+                    let likeButton = messageElement.closest(".message-wrapper").find(".like-btn");
+                    let currentLikeStatus = likeButton.attr("data-liked") === "true";
+    
+                    // Actualizar solo si el estado del like ha cambiado
+                    if (like.hasLike && !currentLikeStatus) {
+                        likeButton.html('<i class="fas fa-heart"></i>');
+                        likeButton.attr("data-liked", "true");
+                    } else if (!like.hasLike && currentLikeStatus) {
+                        likeButton.html('<i class="far fa-heart"></i>');
+                        likeButton.attr("data-liked", "false");
+                    }
+                }
+            });
+        })
+        .catch(error => {
+            console.error("Error obteniendo los likes:", error);
+        });
+}
+
+

@@ -92,6 +92,14 @@ if (isset($_GET["api"])) {
         case "softDeleteAccount":
             softDeleteAccount();
             break;
+        case "updateLikeStatus";
+            updateLikeStatus();
+            break;
+        case "downloadLikes";
+            downloadLikes();
+            logServer("entrando en down likes");
+            break;
+        
     }
 }
 
@@ -762,152 +770,153 @@ echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
        
     
     
+}
+
+
+
+function downloadMissages(){
+
+    logServer("Cargando chat...");
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
+        exit;
     }
 
+    // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
+    $userId = $_SESSION['user_data']["IdUser"];
+    
+    // Preparar la consulta de manera segura usando un marcador de posición para :userId
 
 
-    function downloadMissages(){
+    $query = $pdo->prepare(
+        "SELECT 
+        MessageId,
+        ReceiverUserId,
+        SenderUserId,
+        Text,
+        SentAt,
+        hasLike
+        FROM Message
+        WHERE MatchId = :MatchId ORDER BY MessageId asc;"
+    );
 
 
-        logServer("Cargando chats...");
+    // Ejecutar la consulta con los parámetros correspondientes
+    $query->execute([
+        
+        ':MatchId' => $_POST["matchId"]
+    ]);
+    $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+    // Asegúrate de enviar un JSON válido como respuesta
+    header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
+
+    // Si tienes un array como respuesta
+    echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
+    
+
+
+}
+
+function saveNewMessage()
+{
+    
+    if (isset($_POST["likedUserId"])) {
+
+        $likedUserID = $_POST["likedUserId"];
+        $matchId = $_POST["matchId"];
+        $text = $_POST["Text"];
         try {
             global $username, $pw;
             $hostname = "localhost";
             $dbname = "DatingApp";
-            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+            $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
         } catch (PDOException $e) {
             echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
+            logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+
             exit;
         }
+
+        try {
+            //cadascun d'aquests interrogants serà substituit per un paràmetre.
+            $stmt = $dbh->prepare("INSERT INTO Message (MatchId, SenderUserId, ReceiverUserId,Text) VALUES(?,?,?,?)");
+            //a l'execució de la sentència li passem els paràmetres amb un array 
+            $stmt->execute(array((int)$matchId, $_SESSION['user_data']['IdUser'], $likedUserID,$text));
+
+            $MessageId = $dbh->lastInsertId();
+            $hasLike = 0;
+            echo json_encode([
+                "success" => true,
+                "MessageId" => $MessageId,
+                "hasLike" => $hasLike
+            ]);
+        } catch (PDOException $e) {
+            print "Error!: " . $e->getMessage() . " Desfem</br>";
+
+            logServer("Error al insertar like: " . $e->getMessage(),'ERROR');
+        }
+    }
+}
+
+
+function downloadLastMessage(){
+    logServer("Cargando chats...");
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
+        exit;
+    }
+
+    // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
+    $userId = $_SESSION['user_data']["IdUser"];
     
-        // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
-        $userId = $_SESSION['user_data']["IdUser"];
-        
-        // Preparar la consulta de manera segura usando un marcador de posición para :userId
-    
-    
-        $query = $pdo->prepare(
-            "SELECT 
+    // Preparar la consulta de manera segura usando un marcador de posición para :userId
+
+    $query = $pdo->prepare(
+        "SELECT 
             MessageId,
             ReceiverUserId,
             SenderUserId,
             Text,
-            SentAt
-            FROM Message
-            WHERE MatchId = :MatchId ORDER BY MessageId asc;"
-);
-
+            SentAt,
+            hasLike
+        FROM Message
+        WHERE MatchId = :MatchId
+        AND SenderUserId = :sentUser
+        AND MessageId > :lastMessageId
+        ORDER BY MessageId ASC;"
+    );
     
-        // Ejecutar la consulta con los parámetros correspondientes
-        $query->execute([
-           
-            ':MatchId' => $_POST["matchId"]
-        ]);
-        $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
-      // Asegúrate de enviar un JSON válido como respuesta
-header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
+    // Ejecutar la consulta con los parámetros correspondientes
+    $query->execute([
+        ':MatchId' => $_POST["matchId"],
+        ':sentUser' => $_POST["sentUser"],
+        ':lastMessageId' => (int)$_POST["lastMessageId"] // Asegurando que sea un número
+    ]);
+    
+    $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
+    // Asegúrate de enviar un JSON válido como respuesta
+    header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
 
-// Si tienes un array como respuesta
-echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
+    // Si tienes un array como respuesta
+    echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
        
-
-
-    }
-
-    function saveNewMessage()
-    {
-    
-        if (isset($_POST["likedUserId"])) {
-    
-            $likedUserID = $_POST["likedUserId"];
-            $matchId = $_POST["matchId"];
-            $text = $_POST["Text"];
-            try {
-                global $username, $pw;
-                $hostname = "localhost";
-                $dbname = "DatingApp";
-                $dbh = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
-            } catch (PDOException $e) {
-                echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-                logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
-    
-                exit;
-            }
-    
-            try {
-                echo "Comença la inserció<br>";
-                //cadascun d'aquests interrogants serà substituit per un paràmetre.
-                $stmt = $dbh->prepare("INSERT INTO Message (MatchId, SenderUserId, ReceiverUserId,Text) VALUES(?,?,?,?)");
-                //a l'execució de la sentència li passem els paràmetres amb un array 
-                $stmt->execute(array((int)$matchId, $_SESSION['user_data']['IdUser'], $likedUserID,$text));
-                echo "Insertat!";
-                logServer("Like insertado correctamente.");
-            } catch (PDOException $e) {
-                print "Error!: " . $e->getMessage() . " Desfem</br>";
-    
-                logServer("Error al insertar like: " . $e->getMessage(),'ERROR');
-            }
-        }
-    }
-
-
-    function downloadLastMessage(){
+}
 
 
 
-        logServer("Cargando chats...");
-        try {
-            global $username, $pw;
-            $hostname = "localhost";
-            $dbname = "DatingApp";
-            $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
-        } catch (PDOException $e) {
-            echo "Failed to get DB handle: " . $e->getMessage() . "\n";
-            logServer(" Failed to get DB handle:". $e->getMessage(), "ERROR");
-            exit;
-        }
-    
-        // Suponiendo que $_SESSION['user_data']["IdUser"] contiene el valor del usuario
-        $userId = $_SESSION['user_data']["IdUser"];
-        
-        // Preparar la consulta de manera segura usando un marcador de posición para :userId
-    
-        $query = $pdo->prepare(
-            "SELECT 
-                MessageId,
-                ReceiverUserId,
-                SenderUserId,
-                Text,
-                SentAt
-            FROM Message
-            WHERE MatchId = :MatchId
-            AND SenderUserId = :sentUser
-            AND MessageId > :lastMessageId
-            ORDER BY MessageId ASC;"
-        );
-        
-        // Ejecutar la consulta con los parámetros correspondientes
-        $query->execute([
-            ':MatchId' => $_POST["matchId"],
-            ':sentUser' => $_POST["sentUser"],
-            ':lastMessageId' => (int)$_POST["lastMessageId"] // Asegurando que sea un número
-        ]);
-        
-        $messageDiccionari = $query->fetchAll(PDO::FETCH_ASSOC);
-      // Asegúrate de enviar un JSON válido como respuesta
-header('Content-Type: application/json');  // Establece el tipo de contenido como JSON
-
-// Si tienes un array como respuesta
-echo json_encode($messageDiccionari);  // Convierte el array a JSON y lo imprime
-       
-
-
-    }
-
-
-
-    function downloadProfile(): array
+function downloadProfile(): array
 {
 
     try {
@@ -957,9 +966,6 @@ function downloadProfileWithFoto(){
         echo json_encode($users); // Devuelve el array de usuarios como JSON
         exit;
 }
-
-
-
 
 // Función para obtener el id del usuario
 function getUserID(){
@@ -1472,15 +1478,97 @@ function softDeleteAccount(){
         echo "Error al actualizar el usuario.";
         logServer("Error al actualizar el usuario",'ERROR');
     }
-   }
+}
 
-// function likeMessage{
 
-// }
+function updateLikeStatus(){
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo "Failed to get DB handle: " . $e->getMessage() . "\n";
+        logServer("Failed to get DB handle: " . $e->getMessage(),'ERROR');
+        exit;
+    }
 
-// function likeMessage{
-    
-// }
+    if (!isset($_POST['MessageId']) || !isset($_POST['isLiked'])) {
+        logServer("No ha llegado parametros");
+        echo json_encode(["error" => "Faltan parámetros obligatorios"]);
+        return;
+    }
+
+    // Obtener los datos del post
+    $messageId = intval($_POST['MessageId']);
+    $liked = filter_var($_POST['isLiked']);
+
+    logServer("Insertando like : IdMensaje = ".$messageId." estado = ".$liked);
+    try {
+        $stmt = $pdo->prepare("UPDATE Message SET hasLike = :liked WHERE MessageId = :messageId");
+        $stmt->execute([
+            ':liked' => $liked ? 1 : 0, 
+            ':messageId' => $messageId,
+        ]);
+
+        if ($stmt->rowCount() > 0) {
+            echo json_encode(["success" => true, "message" => "Estado de like actualizado correctamente"]);
+            logServer("Estado de like actualizado correctamente");
+        } else {
+            echo json_encode(["success" => false, "message" => "No se encontró el mensaje con ese ID"]);
+            logServer("No se encontró el mensaje con ese ID: ".$messageId,"ERROR");
+        }
+    } catch (PDOException $e) {
+        http_response_code(500); 
+        echo json_encode(["error" => "Error en la base de datos: " . $e->getMessage()]);
+        logServer("Error en la base de datos: " . $e->getMessage(),"ERROR");
+    }
+}
+
+function downloadLikes() {
+    try {
+        global $username, $pw;
+        $hostname = "localhost";
+        $dbname = "DatingApp";
+        $pdo = new PDO("mysql:host=$hostname;dbname=$dbname", "$username", "$pw");
+    } catch (PDOException $e) {
+        echo json_encode(['error' => 'Failed to connect to database', 'message' => $e->getMessage()]);
+        exit;
+    }
+    logServer("Dentro de down likes");
+    if (!isset($_SESSION['user_data']["IdUser"])) {
+        logServer("No user id down likes");
+        echo json_encode(['error' => 'User not logged in']);
+        exit;
+    }
+
+    $userId = $_SESSION['user_data']["IdUser"];
+
+    // Consulta optimizada: devolvemos solo los mensajes enviados por el usuario que han recibido un like
+    $query = $pdo->prepare(
+        "SELECT m.MessageId, m.hasLike 
+        FROM Message m
+        WHERE m.SenderUserId = :userId AND m.hasLike = 1
+        ORDER BY m.SentAt DESC"
+    );
+
+    $query->execute([':userId' => $userId]);
+    $likeData = $query->fetchAll(PDO::FETCH_ASSOC);
+    logServer("SELECT m.MessageId, m.hasLike 
+        FROM Message m
+        WHERE m.SenderUserId = :userId AND m.hasLike = 1
+        ORDER BY m.SentAt DESC");
+
+    // Verificar que no haya errores al obtener datos
+    if (!$likeData) {
+        logServer("Error al obtener likes","ERROR");
+        echo json_encode([]);
+        exit;
+    }
+
+    echo json_encode($likeData);
+}
+
 
 
 
