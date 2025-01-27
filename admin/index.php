@@ -34,7 +34,7 @@
 <body id="adminIndex">
 
     <?php include('header.php'); ?>
-    <h1>Bienvenido al Panel de Administración</h1>
+    <h1 class='title'>Bienvenido al Panel de Administración</h1>
 
     <main>
     

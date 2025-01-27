@@ -1,14 +1,115 @@
+/* Reseteo de márgenes y padding en body y html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #534FF6;
+    font-family: 'Monaco', monospace;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p {
+    color: #292929;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+}
+
 /* MARK: HEADER*/
-header,
 header{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100px;
+    
+
+    background-color: #534FF6;
 }
-header img,
+
+header .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-left: 20px;
+
+    background-color: #8B8EF9;
+    color: #FFFFFF;
+
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header .btn:hover {
+    background-color: #b6bffc;
+}
+
+header h1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #FFFFFF;
+}
+
 header img{
     width: 10%;
     margin: 20px 10px;
+}
+
+
+/* MARK: PANEL INDEX*/
+#adminIndex {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#adminIndex .title {
+    margin-top: 50px;
+    text-align: center
+}
+
+#adminIndex main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+#adminIndex main a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+
+    background-color: #8B8EF9;
+    color: #FFFFFF;
+
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#adminIndex main a:hover {
+    background-color: #b6bffc;
 }
 
 
