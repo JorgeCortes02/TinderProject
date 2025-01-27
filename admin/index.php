@@ -18,15 +18,17 @@
     // si no estás identificado -> error403
     if (!isset($_SESSION['user_data'])) {
         logServer("Acceso no autorizado: usuario no identificado ha intentado entrar en el panel de administración");
-        http_response_code(403);
-        exit();
+        header("HTTP/1.1 403 Forbidden");
+        include '../errors/error403.php';
+        die();
     }
 
     // si estás identificado pero no tienes los permisos -> error401
     if ($_SESSION['user_data']['Role'] !== 'Admin') {
         logServer("Acceso denegado: usuario con ID {$_SESSION['user_data']['ID']} intentó acceder sin permisos de administrador.");
-        http_response_code(401);
-        exit();
+        header("HTTP/1.1 401 Unauthorized");
+        include '../errors/error401.php';
+        die();
     }
 
 ?>
