@@ -29,9 +29,10 @@ try {
 if (isset($_GET['id'])) {
     $userId = $_GET['id'];
 
-    echo "<body id='userData'>
-    
-    <main>";
+    echo "<body id='userData'>";
+    include('header.php');
+    echo "<main>
+    <div id='data'>";
 
     // mostrar los datos
     $query = $pdo->prepare("SELECT * FROM User WHERE IdUser = :id");
@@ -58,9 +59,8 @@ if (isset($_GET['id'])) {
         echo "<p>Usuario no encontrado.</p>";
     }
 
-    echo "</main>
-    
-    <aside>";
+    echo "</div>
+        <aside>";
 
     // mostrar las fotos
     $query = $pdo->prepare("SELECT PhotoId, URL FROM Photo where UserId= :id");
@@ -84,6 +84,7 @@ if (isset($_GET['id'])) {
     }
 
     echo "</aside>
+    </main>
     
     </body>";
 }
