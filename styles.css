@@ -2385,3 +2385,25 @@ body {
     max-width: fit-content;
     text-decoration: none;
 }
+
+/* ESTILOS BOTON LIKE */
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* color icono */
+  .like-btn i {
+    font-size: 20px;
+    color: gray; /* Color para cuando no está marcado */
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Corazón rojo cuando está "likeado" */
+  .like-btn[data-liked="true"] i {
+    color: var(--brightred);
+    transform: scale(1.2); /* Efecto de pop */
+  }
+  

@@ -1474,5 +1474,14 @@ function softDeleteAccount(){
     }
    }
 
+// function likeMessage{
+
+// }
+
+// function likeMessage{
+    
+// }
+
+
 
 ?>
