@@ -1,4 +1,4 @@
-/* MARK: PANEL ADMINISTRADOR*/
+/* MARK: HEADER*/
 #usersAdmin header{
     display: flex;
     flex-direction: row;
@@ -65,4 +65,18 @@
 #paginator button:hover {
     background-color: #007bff;
     color: white;
+}
+
+
+/* estilos para la vista de cada usuario*/
+
+#userData{
+    display: flex;
+    flex-direction: row;
+}
+
+
+#userData img{
+    width: 30px;
+    height: 30px;
 }
