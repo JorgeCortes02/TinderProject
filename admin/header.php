@@ -4,7 +4,7 @@
         $rutaActual = basename($_SERVER['REQUEST_URI']);
 
         if($rutaActual === 'index.php'){
-            echo '<a class="btn">Salir</a>';
+            echo '<a class="btn" onclick="deleteSession()">Salir</a>';
         }
         else if ($rutaActual === 'users.php' || $rutaActual === 'logs.php') {
             echo '<a href="index.php"><img src="/images/flecha-izquierda.png" alt="flecha para volver al panel de administrador"></a>';
@@ -19,3 +19,4 @@
     
     <h1>IETINDER</h1>
 </header>
+

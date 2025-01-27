@@ -64,7 +64,7 @@ header h1{
 
 header img{
     width: 10%;
-    margin: 20px 10px;
+    margin: 20px;
 }
 
 
@@ -113,88 +113,95 @@ header img{
 }
 
 
-/* MARK: PANEL LISTADO USUARIOS*/
+/* MARK: PANEL LISTADO USUARIOS Y LOGS*/
 
-/* Estilo del contenedor principal para #usersAdmin */
-#usersAdmin main {
+#usersAdmin main,
+#logsAdmin main{
     display: flex;
-    justify-content: center; /* Centra la tabla horizontalmente */
-    align-items: center; /* Opcional: centra verticalmente si quieres */
+    justify-content: center;
+    align-items: center;
     width: 80%;
-    margin: 20px auto; /* Margen automático horizontal y margen superior/inferior */
+    margin: 20px auto;
 }
 
-/* Estilo de la tabla */
-#usersAdmin main table {
+#usersAdmin main table,
+#logsAdmin main table {
     width: 100%;
-    border-collapse: collapse; /* Combina bordes para un diseño limpio */
-    background-color: #fff; /* Fondo blanco para contraste */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para destacar la tabla */
-    border-radius: 8px; /* Esquinas redondeadas */
-    overflow: hidden; /* Asegura que los bordes redondeados funcionen */
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
-/* Celdas y encabezados de la tabla */
 #usersAdmin main table td, 
-#usersAdmin main table th {
+#usersAdmin main table th,
+#logsAdmin main table td, 
+#logsAdmin main table th{
     text-align: center;
     vertical-align: middle;
     padding: 10px;
-    border: 1px solid #ddd; /* Bordes de las celdas */
+    border: 1px solid #ddd;
 }
 
-#usersAdmin main table td a{
+#usersAdmin main table td a,
+#logsAdmin main table td a{
     text-decoration: none;
     color: inherit;
 }
 
-#usersAdmin main table tr:nth-child(odd) {
+#usersAdmin main table tr:nth-child(odd),
+#logsAdmin main table tr:nth-child(odd) {
     background-color: #f0f0f0;
 }
 
-#usersAdmin main table tr:nth-child(even) {
+#usersAdmin main table tr:nth-child(even),
+#logsAdmin main table tr:nth-child(even) {
     background-color: #ffffff;
 }
 
-#usersAdmin main table tr.headerTable {
+#usersAdmin main table tr.headerTable,
+#logsAdmin main table tr.headerTable{
     background-color: #8B8EF9;
 }
 
 
-#usersAdmin main table tr:not(.headerTable) {
+#usersAdmin main table tr:not(.headerTable),
+#logsAdmin main table tr:not(.headerTable) {
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-#usersAdmin main table tr:not(.headerTable):hover {
+#usersAdmin main table tr:not(.headerTable):hover,
+#logsAdmin main table tr:not(.headerTable):hover {
     background-color: #bec7f8; 
 }
 
 /* Estilo del paginador */
-#paginator {
+.paginator {
     display: flex;
-    justify-content: center; /* Centra el paginador horizontalmente */
+    justify-content: center;
     align-items: center;
-    margin-top: 20px; /* Espaciado con respecto a la tabla */
-    gap: 5px; /* Espaciado entre los botones */
+    margin-top: 20px;
+    gap: 5px;
 }
 
 /* Botones del paginador */
-#paginator .paginate-btn {
+.paginator .paginate-btn {
     display: inline-block;
-    padding: 8px 12px; /* Tamaño del botón */
-    margin: 0 2px; /* Espaciado lateral entre botones */
+    padding: 8px 12px;
+    margin: 0 2px;
     background-color: #f9f9f9;
-    color: #007bff; /* Azul para el texto */
-    text-decoration: none; /* Sin subrayado */
-    border: 1px solid #ddd; /* Borde gris claro */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 14px; /* Tamaño del texto */
-    transition: all 0.3s ease; /* Suaviza las transiciones */
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
 }
 
 /* Botón activo (página actual) */
-#paginator .paginate-btn.active {
+.paginator .paginate-btn.active {
     background-color: #007bff;
     color: white;
     font-weight: bold;
@@ -202,17 +209,15 @@ header img{
 }
 
 /* Efecto hover */
-#paginator .paginate-btn:hover {
+.paginator .paginate-btn:hover {
     background-color: #007bff;
     color: white;
 }
 
-/* Elipsis (si quieres darles un diseño) */
-#paginator .paginate-btn span {
+.paginator .paginate-btn span {
     color: #666;
     font-size: 14px;
 }
-
 
 
 /* MARK: PANEL DATOS USUARIO*/

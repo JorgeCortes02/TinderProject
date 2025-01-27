@@ -12,6 +12,26 @@
 
 <?php
 
+session_start();
+
+include_once '../apis.php'; 
+
+// si no estás identificado -> error403
+if (!isset($_SESSION['user_data'])) {
+    logServer("Acceso no autorizado: usuario no identificado ha intentado entrar en el panel de administración");
+    header("HTTP/1.1 403 Forbidden");
+    include '../errors/error403.php';
+    die();
+}
+
+// si estás identificado pero no tienes los permisos -> error401
+if ($_SESSION['user_data']['Role'] !== 'Admin') {
+    logServer("Acceso denegado: usuario con ID {$_SESSION['user_data']['ID']} intentó acceder sin permisos de administrador.");
+    header("HTTP/1.1 401 Unauthorized");
+    include '../errors/error401.php';
+    die();
+}
+
 // conexión a la bd
 include $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 try {
@@ -132,7 +152,7 @@ else{
     $maxVisiblePages = 5; // Número máximo de páginas a mostrar en el paginador
     $halfRange = floor($maxVisiblePages / 2); // Rango de páginas a mostrar hacia adelante y hacia atrás
 
-    echo "<div id='paginator'>";
+    echo "<div class='paginator'>";
 
     // Mostrar el botón para ir a la primera página
     if ($page > 1) {
