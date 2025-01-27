@@ -115,74 +115,164 @@ header img{
 
 /* MARK: PANEL LISTADO USUARIOS*/
 
-#usersAdmin main{
-    background-color: rgb(174, 174, 239);
+/* Estilo del contenedor principal para #usersAdmin */
+#usersAdmin main {
+    display: flex;
+    justify-content: center; /* Centra la tabla horizontalmente */
+    align-items: center; /* Opcional: centra verticalmente si quieres */
+    width: 80%;
+    margin: 20px auto; /* Margen automático horizontal y margen superior/inferior */
 }
 
-
-#usersAdmin main table{
+/* Estilo de la tabla */
+#usersAdmin main table {
     width: 100%;
-    height: 100%;
+    border-collapse: collapse; /* Combina bordes para un diseño limpio */
+    background-color: #fff; /* Fondo blanco para contraste */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera para destacar la tabla */
+    border-radius: 8px; /* Esquinas redondeadas */
+    overflow: hidden; /* Asegura que los bordes redondeados funcionen */
 }
 
+/* Celdas y encabezados de la tabla */
 #usersAdmin main table td, 
 #usersAdmin main table th {
     text-align: center;
     vertical-align: middle;
     padding: 10px;
+    border: 1px solid #ddd; /* Bordes de las celdas */
 }
 
-#usersAdmin main table tr {
+#usersAdmin main table td a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#usersAdmin main table tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+#usersAdmin main table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#usersAdmin main table tr.headerTable {
+    background-color: #8B8EF9;
+}
+
+
+#usersAdmin main table tr:not(.headerTable) {
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-#usersAdmin main table tr:hover {
-    background-color: #f0f0f0; 
+#usersAdmin main table tr:not(.headerTable):hover {
+    background-color: #bec7f8; 
 }
 
-
-
-/* Estilos para el paginador */
+/* Estilo del paginador */
 #paginator {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
+    justify-content: center; /* Centra el paginador horizontalmente */
+    align-items: center;
+    margin-top: 20px; /* Espaciado con respecto a la tabla */
+    gap: 5px; /* Espaciado entre los botones */
 }
 
-#paginator button {
-    margin: 0 5px;
-    padding: 5px 10px;
-    border: 1px solid #ddd;
+/* Botones del paginador */
+#paginator .paginate-btn {
+    display: inline-block;
+    padding: 8px 12px; /* Tamaño del botón */
+    margin: 0 2px; /* Espaciado lateral entre botones */
     background-color: #f9f9f9;
-    cursor: pointer;
+    color: #007bff; /* Azul para el texto */
+    text-decoration: none; /* Sin subrayado */
+    border: 1px solid #ddd; /* Borde gris claro */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño del texto */
+    transition: all 0.3s ease; /* Suaviza las transiciones */
 }
 
-#paginator button.active {
+/* Botón activo (página actual) */
+#paginator .paginate-btn.active {
     background-color: #007bff;
     color: white;
     font-weight: bold;
-    border: 1px solid #007bff;
+    border-color: #007bff;
 }
 
-#paginator button:hover {
+/* Efecto hover */
+#paginator .paginate-btn:hover {
     background-color: #007bff;
     color: white;
 }
 
+/* Elipsis (si quieres darles un diseño) */
+#paginator .paginate-btn span {
+    color: #666;
+    font-size: 14px;
+}
 
-/* estilos para la vista de cada usuario*/
 
-#userData main{
+
+/* MARK: PANEL DATOS USUARIO*/
+
+#userData main {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
 }
 
-#userData main #data{
-    flex-direction: column;
+/* Sección de datos */
+#userData main #data {
+    flex: 1;
+    max-width: 50%;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
-#userData main  aside img{
-    width: 30px;
-    height: 30px;
+/* Texto dentro de #data */
+#userData main #data p {
+    margin: 10px 0;
+    font-size: 17px;
+    color: #292929;
+}
+
+/* Sección de fotos */
+#userData main aside {
+    flex: 1;
+    max-width: 50%;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Fotos individuales */
+#userData main aside .photo {
+    flex: 1 1 calc(50% - 15px);
+    text-align: center;
+}
+
+#userData main aside .photo img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+#userData main aside .photo p {
+    font-size: 12px;
+    color: #292929;
+    margin: 5px 0;
 }

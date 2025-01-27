@@ -50,7 +50,7 @@ if (isset($_GET['id'])) {
             // Ejemplo: 'CreateAt' a 'Created At'
             $label = preg_replace('/([a-z])([A-Z])/', '$1 $2', $label); 
     
-            echo "<p>{$label}: {$value}</p>";
+            echo "<p><strong>{$label}:</strong> {$value}</p>";
         }
     
         
@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
         foreach( $photos as $photo){
 
             echo "<div class = 'photo'>
-                    <p>ID imagen: {$photo['PhotoId']}</p><p>URL: {$photo['URL']}</p>
+                    <p><strong>ID imagen:</strong> {$photo['PhotoId']}</p><p>URL: {$photo['URL']}</p>
                     <img src='{$photo['URL']}' alt='imagen con url {$photo['URL']}'>
                   </div>";
         }
@@ -114,7 +114,7 @@ else{
 
     echo "<main>";
     echo "<table border='1'>";
-    echo "<tr><th>Id</th><th>Username</th><th>LastName</th><th>Email</th><th>CreateAt</th></tr>";
+    echo "<tr class='headerTable'><th>Id</th><th>Username</th><th>LastName</th><th>Email</th><th>CreateAt</th></tr>";
 
     foreach ($users as $user) {
         echo "<tr>
