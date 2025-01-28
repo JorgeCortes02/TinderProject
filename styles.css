@@ -12,6 +12,7 @@
     --darkred: #8B1A1A;
 
 
+
     /*Title font*/
     --title-font: 'Monaco', monospace;
     --title-size: 30px;
@@ -2435,6 +2436,7 @@ body {
     max-width: fit-content;
     text-decoration: none;
 }
+
 .fieldsContainerPass {
     width: 100%;
     display: flex;
@@ -2527,4 +2529,39 @@ body {
 #error-messagePass{
     display: none;
     color: red;
+=======
+
+/* ESTILOS BOTON LIKE */
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* color icono */
+  .like-btn i {
+    font-size: 30px;
+    color: gray; /* Color para cuando no está marcado */
+    transition: color 1s ease, transform 0.5s ease;
+  }
+  
+  /* Corazón rojo cuando está "likeado" */
+  .like-btn[data-liked="true"] i {
+    color: #b300ff;
+    transform: scale(1.2); /* Efecto de pop */
+  }
+  .message-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.message-wrapper.received {
+    justify-content: space-between;
+}
+
+.message-wrapper.sent {
+    justify-content: space-between; 
+
 }
