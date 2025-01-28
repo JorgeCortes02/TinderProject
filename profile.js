@@ -20,6 +20,8 @@ $(document).ready(function(){
     const preferencesDiv = $(".divPreferencesProfile");
     const logOutButton = $("#logOut");
     const deleteAccountButtom = $("#deleteAcount");
+    const deleteAccountButtomText = $("#delete")
+
     profileButtom.on("click", function(){
 
        profileButtom.prop("disabled", true);
@@ -55,12 +57,34 @@ $(document).ready(function(){
     });
 
     deleteAccountButtom.on("click", function(){
-        showNotification("Cuenta Eliminada", "succes");
-        deleteAccount();
-        $(".divPreferencesProfile").css("display", "none")
-        setTimeout(() => {
-            window.location.href = 'login.php';
-        }, 3000);
+
+
+        $(".divInserTextForDeleteAccount").css("display", "flex");
+
+
+    
+    })
+
+    deleteAccountButtomText.on("click", function(){
+
+
+        let deleteText = $("#deleteText").val();
+
+        if(deleteText.toUpperCase() === "BORRAR"){
+
+
+            showNotification("Cuenta Eliminada", "succes");
+            deleteAccount();
+            $(".divPreferencesProfile").css("display", "none")
+            setTimeout(() => {
+                window.location.href = 'login.php';
+            }, 3000);
+        }else{
+
+            showNotification("La palabra introducida es incorrecta", "error");
+        }
+
+
     })
 
 })

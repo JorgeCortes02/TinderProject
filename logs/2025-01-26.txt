@@ -35,3 +35,44 @@
 [14:30:13] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Email registrado david.lopez@ieti.site
 [14:30:13] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Contraseña incorrecta bdd97f585127c5ee108f000b1f0c8f20797048dfb7dbce6584f76420581074e1
 [14:30:13] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =david.lopez@ieti.site
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Email registrado david.lopez@ieti.site
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Inicio de sesión correcto david.lopez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = 6
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=6]: Session iniciada
+[14:31:37] [INFO] [http://localhost:8000/login.php] [UserId=6]: Redireccion a discover.php
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 2;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 5;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 8;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 11;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 14;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 17;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 19;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 20;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 22;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 23;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 25;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 26;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 28;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 31;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: SELECT URL FROM Photo where UserId = 32;
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: Calculando distancia de los usuarios respecto a la tuya...
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: Puntos finales del usuario = 1500
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: - User:11 Distancia:93.101047361458 Puntos:1500
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: Ordenando usuarios por Puntuación...
+[14:31:37] [INFO] [http://localhost:8000/apis.php?api=downdloadProfiles] [UserId=6]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[14:31:37] [INFO] [http://localhost:8000/favicon.ico] [UserId=6]: Sesión activa, redirigiendo a discover.php
+[14:32:06] [INFO] [http://localhost:8000/profile.php] [UserId=6]: Cargando perfil del usuario...
+[14:32:06] [INFO] [http://localhost:8000/apis.php?api=downloadProfileWithFoto] [UserId=6]: SELECT URL FROM Photo where UserId = 6;
+[14:32:06] [INFO] [http://localhost:8000/favicon.ico] [UserId=6]: Sesión activa, redirigiendo a discover.php
+[14:32:09] [INFO] [http://localhost:8000/apis.php?api=destroySession] [UserId=6]: Eliminando sesión...
+[14:32:09] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:32:42] [INFO] [http://localhost:8000/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[14:32:42] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[14:32:42] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Contraseña incorrecta 9e6b3e851598928976b012a3cfcde3771f33c82340053808b6327275e348ec78
+[14:32:42] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:32:51] [INFO] [http://localhost:8000/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[14:32:51] [INFO] [http://localhost:8000/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[14:32:51] [INFO] [http://localhost:8000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
