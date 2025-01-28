@@ -1074,6 +1074,56 @@ body {
     gap: 10px;
     margin-top: 20px;
 }
+.divInserTextForDeleteAccount {
+    display: none;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 16px;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    gap: 12px; /* Espaciado entre los elementos */
+    position: absolute;
+    z-index: 1000;
+    transform: translateX(25%);
+    top: 300px;
+}
+
+#deleteText {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#deleteText:focus {
+    outline: none;
+    border-color: #6a5acd;
+    box-shadow: 0 0 4px rgba(106, 90, 205, 0.5);
+}
+
+#delete {
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#delete:hover {
+    background-color: #5941a9;
+}
 
 
 /* MARK: PROFILE mobile */
