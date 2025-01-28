@@ -58,12 +58,10 @@ logServer("Cargando perfil del usuario...");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="profile.js"></script>
-    <script src="notifications.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Profile</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="styles.css">
-    
+    <script src="notifications.js"></script>
 </head>
 <body>
     <div class="containerMessage">
@@ -179,7 +177,12 @@ logServer("Cargando perfil del usuario...");
             
             </div>
 
-            <?php include ('footer.php');?>
+        <!-- Menú de navegación inferior -->
+        <nav class="bottom-nav">
+            <a href="discover.php">Descubrir</a>
+            <a href="messages.php" class="active">Mensajes</a>
+            <a href="profile.php">Perfil</a>
+        </nav>
     </div>
     <script>
         let map;

@@ -125,7 +125,6 @@ $(document).ready(function () {
 
             const data = await response.json();
             if (data.success) {
-                showNotification("Foto eliminada","warning");
                 console.log(`Foto eliminada correctamente: ${photoURL}`);
                 photoState.photos.splice(index, 1); // Actualizar el estado global
                 renderPhotoContainers(); // Re-renderizar los paneles
@@ -178,7 +177,6 @@ $(document).ready(function () {
 
                 const result = await response.json();
                 if (result.success) {
-                    showNotification("Foto añadida","info");
                     photoState.photos.push(result.fileURL); // Actualizar el estado global
                     renderPhotoContainers(); // Re-renderizar los paneles
                 } else {
