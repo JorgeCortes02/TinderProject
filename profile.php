@@ -78,6 +78,13 @@ logServer("Cargando perfil del usuario...");
             <button id="changePass" name="changePass">Cambiar Contraseña</button>
             <button id="deleteAcount" name="deleteAcount">Eliminar Cuenta</button>
         </div>
+        <div class="divInserTextForDeleteAccount">
+        <button id="close" name="close"></button>
+            <h4>Escribe "Borrar" para confirmar</h4>
+            <input type="text" id="deleteText">
+            <button id="delete">Eliminar</button>
+            
+        </div>
         
         <div class="SelectorsProfile">
             <button id="Profile" class="selector">Perfil</button>
