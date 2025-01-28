@@ -95,7 +95,10 @@ function savePass(newPassword){
                
             }else{
                 showNotification("Contraseña guardada correctamente", "succes");
-            }
+setTimeout(() => {
+        window.location.href = 'login.php';
+    }, 4000);           
+ }
            
         })
         .catch(error => {
