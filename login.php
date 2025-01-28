@@ -20,8 +20,6 @@ include_once 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="notifications.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Login</title>
 </head>
 
@@ -81,7 +79,7 @@ include_once 'config.php';
         $query->execute();
 
         logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
-                    DeleteAccount,Bio,Role FROM User WHERE IdUser = ".$storedUserId);
+                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
 
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -151,6 +149,7 @@ include_once 'config.php';
                 </script>
                 <?php
 
+
             //si todo es correcto
             }else if ($row["DeleteAccount"] !=0 ) {
                 
@@ -208,7 +207,7 @@ include_once 'config.php';
     }
     ?>
 
-    <div class="container">
+
     <div id="loginContainer">
         <h1>IETINDER</h1>
         <h3>App de ligoteo</h3>
@@ -239,9 +238,9 @@ include_once 'config.php';
         </br>
         <a href="register.php">Crear una cuenta nueva</a>
     </div>
-    </div>
+
     <!-- Css message cuando se ha verificado el email -->
-    
+
     <script>
     document.addEventListener("DOMContentLoaded", (event) => {
         const verificationNotification = <?php echo json_encode($_SESSION['showVerificationNotification'] ?? false); ?>;
