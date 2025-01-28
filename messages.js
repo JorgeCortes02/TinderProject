@@ -40,13 +40,16 @@ function openChat(event, type){
 
     const profileButtom = $("#Profile");
     const chatButton = $("#Chat");
-  
+    chatButton.addClass("selectedTab");
     
 
     profileButtom.on("click", function(){
 
        profileButtom.prop("disabled", true);
-       
+
+       profileButtom.addClass('selectedTab');
+       chatButton.removeClass('selectedTab');
+
         const contenedorMensages =  $(".chat");
         contenedorMensages.css("display", "none")
         const contenedorProfile = $(".card-profile");
@@ -59,6 +62,10 @@ function openChat(event, type){
     })
     chatButton.on("click", function(){
         profileButtom.prop("disabled", false);
+
+        chatButton.addClass('selectedTab');
+        profileButtom.removeClass('selectedTab');
+
         const contenedorMensages =  $(".chat");
         contenedorMensages.css("display", "flex")
         const contenedorProfile = $(".card-profile");
