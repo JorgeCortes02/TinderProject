@@ -58,10 +58,12 @@ logServer("Cargando perfil del usuario...");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="profile.js"></script>
-    <title>Profile</title>
+    <script src="notifications.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css?t=<?php echo time();?>" type="text/css">
+    
 </head>
 <body>
     <div class="containerMessage">
@@ -75,6 +77,13 @@ logServer("Cargando perfil del usuario...");
             <button id="logOut" name="logOut">Cerrar Sesión</button>
             <button id="changePass" name="changePass">Cambiar Contraseña</button>
             <button id="deleteAcount" name="deleteAcount">Eliminar Cuenta</button>
+        </div>
+        <div class="divInserTextForDeleteAccount">
+        <button id="close" name="close"></button>
+            <h4>Escribe "Borrar" para confirmar</h4>
+            <input type="text" id="deleteText">
+            <button id="delete">Eliminar</button>
+            
         </div>
         
         <div class="SelectorsProfile">
@@ -170,12 +179,7 @@ logServer("Cargando perfil del usuario...");
             
             </div>
 
-        <!-- Menú de navegación inferior -->
-        <nav class="bottom-nav">
-            <a href="discover.php">Descubrir</a>
-            <a href="messages.php" class="active">Mensajes</a>
-            <a href="profile.php">Perfil</a>
-        </nav>
+            <?php include ('footer.php');?>
     </div>
     <script>
         let map;

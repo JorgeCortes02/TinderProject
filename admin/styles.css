@@ -1,0 +1,284 @@
+/* Reseteo de márgenes y padding en body y html */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+h1 {
+    color: #534FF6;
+    font-family: 'Monaco', monospace;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+p {
+    color: #292929;
+    font-family: Verdana, sans-serif;
+    font-size: 12px;
+}
+
+/* MARK: HEADER*/
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100px;
+    
+
+    background-color: #534FF6;
+}
+
+header .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-left: 20px;
+
+    background-color: #8B8EF9;
+    color: #FFFFFF;
+
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+header .btn:hover {
+    background-color: #b6bffc;
+}
+
+header h1{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #FFFFFF;
+}
+
+header img{
+    width: 10%;
+    margin: 20px;
+}
+
+
+/* MARK: PANEL INDEX*/
+#adminIndex {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#adminIndex .title {
+    margin-top: 50px;
+    text-align: center
+}
+
+#adminIndex main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+#adminIndex main a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px;
+
+    background-color: #8B8EF9;
+    color: #FFFFFF;
+
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#adminIndex main a:hover {
+    background-color: #b6bffc;
+}
+
+
+/* MARK: PANEL LISTADO USUARIOS Y LOGS*/
+
+#usersAdmin main,
+#logsAdmin main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: 20px auto;
+}
+
+#usersAdmin main table,
+#logsAdmin main table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#usersAdmin main table td, 
+#usersAdmin main table th,
+#logsAdmin main table td, 
+#logsAdmin main table th{
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+#usersAdmin main table td a,
+#logsAdmin main table td a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#usersAdmin main table tr:nth-child(odd),
+#logsAdmin main table tr:nth-child(odd) {
+    background-color: #f0f0f0;
+}
+
+#usersAdmin main table tr:nth-child(even),
+#logsAdmin main table tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+#usersAdmin main table tr.headerTable,
+#logsAdmin main table tr.headerTable{
+    background-color: #8B8EF9;
+}
+
+
+#usersAdmin main table tr:not(.headerTable),
+#logsAdmin main table tr:not(.headerTable) {
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#usersAdmin main table tr:not(.headerTable):hover,
+#logsAdmin main table tr:not(.headerTable):hover {
+    background-color: #bec7f8; 
+}
+
+/* Estilo del paginador */
+.paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 5px;
+}
+
+/* Botones del paginador */
+.paginator .paginate-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 2px;
+    background-color: #f9f9f9;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Botón activo (página actual) */
+.paginator .paginate-btn.active {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border-color: #007bff;
+}
+
+/* Efecto hover */
+.paginator .paginate-btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.paginator .paginate-btn span {
+    color: #666;
+    font-size: 14px;
+}
+
+
+/* MARK: PANEL DATOS USUARIO*/
+
+#userData main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Sección de datos */
+#userData main #data {
+    flex: 1;
+    max-width: 50%;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Texto dentro de #data */
+#userData main #data p {
+    margin: 10px 0;
+    font-size: 17px;
+    color: #292929;
+}
+
+/* Sección de fotos */
+#userData main aside {
+    flex: 1;
+    max-width: 50%;
+    padding: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Fotos individuales */
+#userData main aside .photo {
+    flex: 1 1 calc(50% - 15px);
+    text-align: center;
+}
+
+#userData main aside .photo img {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+#userData main aside .photo p {
+    font-size: 12px;
+    color: #292929;
+    margin: 5px 0;
+}

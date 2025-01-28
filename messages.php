@@ -12,6 +12,7 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missatges</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="messages.js"></script>
     
@@ -20,7 +21,7 @@ include 'config.php';
     <div class="containerMessage">
         <!-- Encabezado -->
         <div class="header">
-            <h1>IETINDER</h1>
+            <h1>IETINDER - Chats</h1>
             
         </div>
 
@@ -117,11 +118,7 @@ include 'config.php';
     
 </div>
         <!-- Menú de navegación inferior -->
-        <nav class="bottom-nav">
-            <a href="discover.php">Descubrir</a>
-            <a href="messages.php" class="active">Mensajes</a>
-            <a href="profile.php">Perfil</a>
-        </nav>
+        <?php include ('footer.php');?>
     </div>
 </body>
 </html>

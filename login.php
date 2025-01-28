@@ -1,6 +1,10 @@
 <?php
 //necesario para la notificación de verificacion correcta
+//Llegan los datos del usuario desde el LOGIN
 if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}else{
+    session_destroy();
     session_start();
 }
 
@@ -16,6 +20,8 @@ include_once 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css" type="text/css">
     <script src="notifications.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>Login</title>
 </head>
 
@@ -65,6 +71,7 @@ include_once 'config.php';
                                     MaxAge,
                                     MinAge,
                                     MaxDis,
+                                    DeleteAccount,
                                     Bio,
                                     Role
                                 FROM User 
@@ -74,7 +81,7 @@ include_once 'config.php';
         $query->execute();
 
         logServer("SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
-                    Bio,Role FROM User WHERE IdUser = ".$storedUserId);
+                    DeleteAccount,Bio,Role FROM User WHERE IdUser = ".$storedUserId);
 
         // Obtener el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -106,7 +113,7 @@ include_once 'config.php';
         }
 
         // Paso 1: Verificar si el email existe, si existe nos quedamos con su password y su ID
-        $query = $pdo->prepare("SELECT Password, IdUser, LoginAllowed FROM User WHERE Email = :mail");
+        $query = $pdo->prepare("SELECT Password, IdUser, LoginAllowed, DeleteAccount FROM User WHERE Email = :mail");
         $query->bindParam(":mail", $email);
         $query->execute();
         $row = $query->fetch();
@@ -140,6 +147,17 @@ include_once 'config.php';
                     document.addEventListener("DOMContentLoaded", (event) => {
                         Array.from(document.getElementsByTagName("input"))[1].style.borderColor = "red"; //borde rojo en input
                         document.getElementById("errorPassword").style.display = "block"; //mensaje en display
+                    })
+                </script>
+                <?php
+
+            //si todo es correcto
+            }else if ($row["DeleteAccount"] !=0 ) {
+                
+                ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", (event) => {
+                        document.getElementById("errorLogin").style.display = "block"; //mensaje en display
                     })
                 </script>
                 <?php
@@ -190,13 +208,13 @@ include_once 'config.php';
     }
     ?>
 
-
+    <div class="container">
     <div id="loginContainer">
         <h1>IETINDER</h1>
         <h3>App de ligoteo</h3>
         <h4 id="errorEmail">Error: El correo no está registrado</h4>
         <h4 id="errorPassword">Error: Contraseña incorrecta</h4>
-        <h4 id="errorLogin">Error: Cuenta no verificada</h4>
+        <h4 id="errorLogin">Error: Cuenta no verificada o eliminadau</h4>
         
 
 
@@ -217,13 +235,13 @@ include_once 'config.php';
         </form>
 
 
-        <a href="">¿Has olvidado la contraseña?</a>
+        <a href="forgot_password.php">¿Has olvidado la contraseña?</a>
         </br>
         <a href="register.php">Crear una cuenta nueva</a>
     </div>
-
+    </div>
     <!-- Css message cuando se ha verificado el email -->
-
+    
     <script>
     document.addEventListener("DOMContentLoaded", (event) => {
         const verificationNotification = <?php echo json_encode($_SESSION['showVerificationNotification'] ?? false); ?>;

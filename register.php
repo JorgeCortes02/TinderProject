@@ -1,4 +1,9 @@
 <?php
+// Incluir el autoload de Composer
+require 'vendor/autoload.php'; 
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -70,7 +75,7 @@ if (isset($_GET['validate'])) {
             header("Location: login.php");
         } else {
             logServer("Error al verificar la cuenta.", "ERROR");
-            header("Location: register.php");
+            header("Location: login.php");
         }
     } else {
         logServer("Token de verificación inválido.", "ERROR");
@@ -95,7 +100,6 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
         'minAge' => $_POST['minAge'],
         'maxAge' => $_POST['maxAge']
     ];
-
     createUser($newUserData);
 }
 ?>
@@ -107,8 +111,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'create_user') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="module" src="register.js"></script>
+    <script src="notifications.js"></script>
     <title>Register</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
 </head>
@@ -334,14 +340,12 @@ function createUser($newUserData){
     if ($query->execute()) {
         logServer("Usuario creado correctamente.");
         $userId = $pdo -> lastInsertId();
-
         // Enviar el correo de verificación
         logServer("Enviando correo de verificación a :".$newUserData['email']);
         sendVerificationEmail($userId, $newUserData['email']);
         insertUserPhoto($userId);
-        
+        $_SESSION['showRegisterNotification'] = true;
     } else {
-        echo "Error al actualizar los datos.";
         logServer("Error al crear el usuario.",'ERROR');
 
     }
@@ -402,6 +406,8 @@ function insertUserPhoto($userId){
     }
 }
 
+
+
 function sendVerificationEmail($userId, $userEmail) {
     // Generar un token único para la verificación
     $token = "IETI" . $userId . "TINDER";
@@ -409,8 +415,6 @@ function sendVerificationEmail($userId, $userEmail) {
     $tokenWithUserId = $tokenMd5 . ':' . $userId; // Concatenar el userId
     
     // Crear el enlace de verificación
-    //$verificationLink = "http://localhost:8080/register.php?validate=" . $tokenMd5;
-    //$verificationLink = "http://localhost:3000/register.php?validate=" . $tokenMd5;
     $verificationLink = "https://tinder2.ieti.site/register.php?validate=" . $tokenWithUserId;
 
     // Cuerpo del correo con estilo
@@ -434,20 +438,35 @@ function sendVerificationEmail($userId, $userEmail) {
     </body>
     </html>
     ';
-    // Headers del correo
-    $headers = "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    $headers .= "From: no-reply@tinder2.ieti.site\r\n";
-    //$headers .= "Reply-To: no-reply@tinder2.ieti.site\r\n";
+
+    // Configuración de PHPMailer
+    $mail = new PHPMailer(true);
+
+    try {
+        // Configuración del servidor SMTP
+        $mail->isSMTP();  
+        $mail->Host = 'smtp.gmail.com';  // Cambia a tu servidor SMTP
+        $mail->SMTPAuth = true;
+        $mail->Username = 'jcortesblanquez.cf@iesesteveterradas.cat'; // Tu correo
+        $mail->Password = 'wrhgoklxamuzrkrt';     // Tu contraseña (o contraseña de aplicación)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port = 587;
     
-    logServer(" email: ".$userEmail."\nSubject:".$subject."\nmessage: ".$message. "\nheaders: ".$headers);
-    // Enviar el correo
-    if (mail($userEmail, $subject, $message, $headers)) {
+
+        // Datos del correo
+        $mail->setFrom('no-reply@tinder2.ieti.site', 'no-reply@tinder2.ieti.site'); // Dirección "De"
+        $mail->addAddress($userEmail, 'Usuario');  // Dirección del destinatario
+        $mail->Subject = $subject;
+        $mail->Body    = $message;
+        $mail->isHTML(true);  // Establecer el cuerpo del mensaje en formato HTML
+
+        // Enviar el correo
+        $mail->send();
         echo "Correo de verificación enviado con éxito.";
         logServer("Correo enviado de forma correcta.");
-    } else {
-        echo "Error al enviar el correo de verificación.";
-        logServer("Error al enviar el correo de verificación.","ERROR");
+    } catch (Exception $e) {
+        echo "Error al enviar el correo de verificación: {$mail->ErrorInfo}";
+        logServer("Error al enviar el correo de verificación: {$mail->ErrorInfo}", "ERROR");
     }
 }
 

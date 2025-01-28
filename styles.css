@@ -12,6 +12,7 @@
     --darkred: #8B1A1A;
 
 
+
     /*Title font*/
     --title-font: 'Monaco', monospace;
     --title-size: 30px;
@@ -500,9 +501,10 @@ body {
     margin-left: 0;
     width: 100%;
     margin-top: 10px;
-    border-top: 1px solid var(--lightblue);
     position: absolute;
     bottom: 0;
+    border-top: 1px solid var(--darkblue);
+    border-bottom: 1px solid var(--darkblue);
 }
 
 .bottom-nav a {
@@ -512,10 +514,15 @@ body {
     font-size: 18px;
 }
 
-
+.bottom-nav h3.active a {
+    color: var(--darkblue);
+    font-weight: bold; 
+    background-color: var(--lightblue);
+    padding: 20px 15px 21px 15px;
+}
 
   /* Range slider styles */
-  .range-slider {
+.range-slider {
     width: 100%;
     position: relative;
     height: 10px;
@@ -524,18 +531,21 @@ body {
     overflow: hidden;
     margin-top: 10px;
   }
- .range-slider input {
+.range-slider input {
     position: absolute;
     width: 100%;
     pointer-events: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
     height: 10px;
     background: transparent;
     padding: 0;
     margin-bottom: 0;
+    z-index: 3;
   }
-  .range-slider input::-webkit-slider-thumb {
+
+.range-slider input::-webkit-slider-thumb {
     pointer-events: all;
     position: relative;
     z-index: 2;
@@ -547,38 +557,39 @@ body {
     -webkit-appearance: none;
     border: 2px solid var(--lightblue);
   }
-   .range-slider input::-moz-range-thumb {
+.range-slider input::-moz-range-thumb {
     pointer-events: all;
     position: relative;
     z-index: 2;
     height: 20px;
-    width: 200px;
+    width: 20px;
     border-radius: 50%;
     background: var(--jetblack);
     cursor: pointer;
+    border: 2px solid var(--lightblue);
   }
-  .range-slider .progress {
+
+.range-slider .progress {
     position: absolute;
     height: 10px;
     background: var(--darkblue);
     z-index: 1;
     border-radius: 5px;
     top: 0;
-  }
-  .range-slider .progress2 {
+}
+.range-slider .progress2 {
     position: absolute;
     height: 10px;
     background: var(--darkblue);
     z-index: 1;
     border-radius: 5px;
     top: 0;
-  }
+}
   /* Aseguramos que la barra de progreso tenga un rango adecuado */
- .range-slider input#minAge:focus + .progress,
- .range-slider input#maxAge:focus + .progress {
+.range-slider input#minAge:focus + .progress,
+.range-slider input#maxAge:focus + .progress {
     outline: none;
 }
-
 
 
 /* MARK: DISCOVER mobile*/
@@ -859,6 +870,10 @@ body {
     background-color: var(--middleblue); /* Azul intermedio */
     transform: translateY(-3px);
 }
+.selectedTab{
+    background-color: var(--middleblue) !important;
+}
+
 #profileBody h1 {
     color: var(--white);
 }
@@ -951,62 +966,6 @@ body {
 
 }
 
-/* Range slider styles */
- .range-slider {
-    width: 100%;
-    position: relative;
-    height: 10px;
-    background: #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 20px;
-  }
- .range-slider input {
-    position: absolute;
-    width: 100%;
-    pointer-events: none;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 10px;
-    background: transparent;
-    padding: 0;
-    margin-bottom: 0;
-  }
-  .range-slider input::-webkit-slider-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 2;
-    height: 20px;
-    width: 20px;
-    border-radius: 50%;
-    background: var(--jetblack);
-    cursor: pointer;
-    -webkit-appearance: none;
-    border: 2px solid var(--lightblue);
-  }
-   .range-slider input::-moz-range-thumb {
-    pointer-events: all;
-    position: relative;
-    z-index: 2;
-    height: 20px;
-    width: 200px;
-    border-radius: 50%;
-    background: var(--jetblack);
-    cursor: pointer;
-  }
-  .range-slider .progress {
-    position: absolute;
-    height: 10px;
-    background: var(--darkblue);
-    z-index: 1;
-    border-radius: 5px;
-    top: 0;
-  }
-  /* Aseguramos que la barra de progreso tenga un rango adecuado */
- .range-slider input#minAge:focus + .progress,
- .range-slider input#maxAge:focus + .progress {
-    outline: none;
-}
 
 
  .bottom {
@@ -1115,6 +1074,56 @@ body {
     gap: 10px;
     margin-top: 20px;
 }
+.divInserTextForDeleteAccount {
+    display: none;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 16px;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    gap: 12px; /* Espaciado entre los elementos */
+    position: absolute;
+    z-index: 1000;
+    transform: translateX(25%);
+    top: 300px;
+}
+
+#deleteText {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#deleteText:focus {
+    outline: none;
+    border-color: #6a5acd;
+    box-shadow: 0 0 4px rgba(106, 90, 205, 0.5);
+}
+
+#delete {
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#delete:hover {
+    background-color: #5941a9;
+}
 
 
 /* MARK: PROFILE mobile */
@@ -1213,66 +1222,6 @@ body {
         border-color: var(--brightred);
     }
     
-    
-
-    /* Range slider styles */
-     .range-slider {
-        width: 100%;
-        position: relative;
-        height: 10px;
-        background: #ddd;
-        border-radius: 5px;
-        overflow: hidden;
-        margin-top: 20px;
-      }
-     .range-slider input {
-        position: absolute;
-        width: 100%;
-        pointer-events: none;
-        -webkit-appearance: none;
-        appearance: none;
-        height: 10px;
-        background: transparent;
-        padding: 0;
-        margin-bottom: 0;
-      }
-      .range-slider input::-webkit-slider-thumb {
-        pointer-events: all;
-        position: relative;
-        z-index: 2;
-        height: 20px;
-        width: 20px;
-        border-radius: 50%;
-        background: var(--jetblack);
-        cursor: pointer;
-        -webkit-appearance: none;
-        border: 2px solid var(--lightblue);
-      }
-       .range-slider input::-moz-range-thumb {
-        pointer-events: all;
-        position: relative;
-        z-index: 2;
-        height: 20px;
-        width: 200px;
-        border-radius: 50%;
-        background: var(--jetblack);
-        cursor: pointer;
-      }
-      .range-slider .progress {
-        position: absolute;
-        height: 10px;
-        background: var(--darkblue);
-        z-index: 1;
-        border-radius: 5px;
-        top: 0;
-      }
-      /* Aseguramos que la barra de progreso tenga un rango adecuado */
-     .range-slider input#minAge:focus + .progress,
-     .range-slider input#maxAge:focus + .progress {
-        outline: none;
-    }
-    
-
     
      .bottom {
         width: 100%;
@@ -2132,7 +2081,7 @@ body {
 }
 
 .notification {
-    background-color: #8B8EF9;
+    background-color: #c562ff;
     width: 460px;
     height: 100px;
     padding: 10px;
@@ -2486,4 +2435,183 @@ body {
     align-self: center;
     max-width: fit-content;
     text-decoration: none;
+}
+
+.fieldsContainerPass {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    background-color: var(--lightblue);
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    border-radius: 12px;
+    margin: 0 auto;
+    height: 100%;
+    transition: box-shadow 0.3s ease; /* Transición suave */
+}
+
+.fieldsContainerPass:hover {
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2); /* Sombra más intensa cuando el contenedor se activa */
+}
+.fieldsContainerPass h1{
+
+    margin-bottom: 30px;
+}
+/* Títulos dentro de .pass-div y .email-div */
+.pass-div h3, .email-div h3 {
+    font-size: 18px;
+    color: #1f4d75;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estilo de los títulos de los campos */
+.field-p h3, .field h3 {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Inputs dentro de .pass-div y .email-div */
+.pass-div input[type="password"],
+.email-div input[type="email"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pass-div input[type="password"]:focus,
+.email-div input[type="email"]:focus {
+    border-color: #1f4d75; /* Bordes de color azul cuando está en foco */
+    box-shadow: 0 0 5px rgba(31, 77, 117, 0.3); /* Sombra sutil cuando se enfoca */
+    outline: none;
+}
+
+/* Botones dentro de .pass-div y .email-div */
+.pass-div button,
+.email-div button {
+    padding: 15px 25px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #1f4d75; /* Azul */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.pass-div button:hover,
+.email-div button:hover {
+    background-color: #163d59; /* Azul más oscuro */
+    transform: translateY(-3px); /* Ligero movimiento hacia arriba */
+}
+
+.pass-div button:active,
+.email-div button:active {
+    transform: translateY(1px); /* Efecto de "presionar" el botón */
+}
+
+/* Estilo de los divs */
+.pass-div, .email-div {
+    margin-bottom: 30px;
+}
+#error-messagePass{
+    display: none;
+    color: red;
+=======
+
+/* ESTILOS BOTON LIKE */
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  /* color icono */
+  .like-btn i {
+    font-size: 30px;
+    color: gray; /* Color para cuando no está marcado */
+    transition: color 1s ease, transform 0.5s ease;
+  }
+  
+  /* Corazón rojo cuando está "likeado" */
+  .like-btn[data-liked="true"] i {
+    color: #b300ff;
+    transform: scale(1.2); /* Efecto de pop */
+  }
+  .message-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.message-wrapper.received {
+    justify-content: space-between;
+}
+
+.message-wrapper.sent {
+    justify-content: space-between; 
+
+}
+.divInserTextForDeleteAccount {
+    display: none;
+    flex-direction: column; /* Coloca los elementos en columna */
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 12px;
+    padding: 16px;
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    gap: 12px; /* Espaciado entre los elementos */
+    position: absolute;
+    z-index: 1000;
+    transform: translateX(25%);
+    top: 300px;
+}
+
+#deleteText {
+    width: 80%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#deleteText:focus {
+    outline: none;
+    border-color: #6a5acd;
+    box-shadow: 0 0 4px rgba(106, 90, 205, 0.5);
+}
+
+#delete {
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#delete:hover {
+    background-color: #5941a9;
 }

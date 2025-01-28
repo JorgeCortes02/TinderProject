@@ -1,0 +1,1033 @@
+[15:56:40] [INFO] [http://localhost:8080/index.php] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[15:56:49] [ERROR] [http://localhost:8080/login.php] [UserId=Null]: Login - Failed to connect to the database in login: SQLSTATE[HY000] [1698] Access denied for user 'root'@'localhost'
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =carlos.gomez@ieti.site
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Email registrado carlos.gomez@ieti.site
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Contraseña  correcta bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=Null]: Inicio de sesión correcto carlos.gomez@ieti.site : bd94dcda26fccb4e68d6a31f9b5aac0b571ae266d822620e901ef7ebe3a11d4f
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=Null]: SELECT IdUser,FirstName,LastName1,LastName2,Username,BirthDate,Orientation,Gender,Longitude,Latitude,Points,UserAge,MaxAge,MinAge,MaxDis,
+                    Bio,Role FROM User WHERE IdUser = 1
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=1]: Session iniciada
+[15:57:11] [INFO] [http://localhost:8080/login.php] [UserId=1]: Redireccion a discover.php
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:23 Distancia:189.72024997284 Puntos:600
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:26 Distancia:137.57526749315 Puntos:600
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 600
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:29 Distancia:181.48464690834 Puntos:600
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:57:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=1]: Usuario qactualizado con exito, se han añadido pintos
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:57:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:57:32] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=1]: Usuario qactualizado con exito, se han añadido pintos
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:57:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[15:57:40] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:57:40] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[15:57:41] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:57:41] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[15:57:42] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[15:57:42] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[15:57:42] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[15:57:42] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: UPDATE User SET Points = :newPoints WHERE IdUser = :id
+[15:57:42] [INFO] [http://localhost:8080/apis.php?api=sumPoints] [UserId=1]: Usuario actualizado con éxito.
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 2 LIMIT 1;
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:09:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 2 LIMIT 1;
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:10:26] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:10:31] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:10:31] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:11:39] [INFO] [http://localhost:8080/apis.php?api=downloadImages] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:12:42] [INFO] [http://localhost:8080/apis.php?api=uploadPhoto] [UserId=1]: INSERT INTO Photo (UserId, URL) VALUES (1,images/Gracioso.jpeg);
+[16:12:45] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=1]: DELETE FROM Photo where URL=1 and UserId=images/Gracioso.jpeg;
+[16:12:45] [INFO] [http://localhost:8080/apis.php?api=deletePhoto] [UserId=1]: Archivo eliminado localmente: /home/super/Escriptori/TinderProject/images/Gracioso.jpeg
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 2 LIMIT 1;
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:13:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:13:19] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:13:24] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:29] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:34] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:39] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:44] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:49] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:54] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:13:59] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:14:04] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:14:08] [INFO] [http://localhost:8080/apis.php?api=saveNewMessage] [UserId=1]: Like insertado correctamente.
+[16:14:09] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:13] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:14:14] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:14:19] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:21] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:14:22] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=1]: Usuario qactualizado con exito, se han añadido pintos
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:14:34] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:14:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:17:45] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:17:45] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:17:46] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:17:46] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:17:50] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:17:50] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:20:32] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:20:32] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:27:12] [INFO] [http://localhost:8080/index.php] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:27:12] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:27:19] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:28:24] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:28:33] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:28:50] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=uploadNewDisMaxAndMinorAge] [UserId=1]: Usuario qactualizado con exito, se han añadido pintos
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:33:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:33:36] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:34:05] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:34:12] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:34:13] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:34:13] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:34:32] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:34:32] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:34:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:34:39] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:35:03] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:35:03] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:15] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:35:17] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:35:17] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:35:50] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:35:51] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:35:52] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:36:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:36:37] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:36:41] [INFO] [http://localhost:8080/apis.php?api=downloadImages] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:37:26] [INFO] [http://localhost:8080/apis.php?api=downloadImages] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:37:29] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:33] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:37:35] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:37:35] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:35] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:37:44] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:37:49] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:38:06] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:38:09] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:38:14] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:02] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:40:47] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:48] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:40:50] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User2Id'] . LIMIT 1;
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:40:51] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:40:55] [INFO] [http://localhost:8080/apis.php?api=informationProfile] [UserId=1]: Cargando chats...
+[16:40:55] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:41:00] [INFO] [http://localhost:8080/apis.php?api=saveNewMessage] [UserId=1]: Like insertado correctamente.
+[16:41:00] [INFO] [http://localhost:8080/apis.php?api=downloadLastMessage] [UserId=1]: Cargando chats...
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 5 LIMIT 1;
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:01] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:41:09] [INFO] [http://localhost:8080/apis.php?api=getMessages] [UserId=1]: Cargando chats...
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 5 LIMIT 1;
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:10] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 5 LIMIT 1;
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:34] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:41:35] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 5 LIMIT 1;
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:36] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:41:37] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:41:37] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando matches...
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT MatchId, User1Id, User2Id FROM Matches m 
+                    WHERE m.MatchId NOT IN ( SELECT DISTINCT MatchId FROM Message) AND (User1Id  = :userId OR User2Id  = :userId) ; 
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de matches...
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT URL FROM Photo where UserId = match['User1Id'] . LIMIT 1;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado Matches
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando chats...
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT m.MatchId, m.ReceiverUserId, m.SenderUserId, m.Text, m.SentAt FROM Message m
+JOIN ( SELECT MatchId, MAX(MessageId) AS LastMessageId FROM Message WHERE ReceiverUserId = :userId OR SenderUserId = :userId GROUP BY MatchId ) 
+AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Cargando fotos de los chats...
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 5 LIMIT 1;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 2 LIMIT 1;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+                        LEFT JOIN Photo p ON u.IdUser = p.UserId 
+                        WHERE u.IdUser = 3 LIMIT 1;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: SELECT u.Username, p.URL FROM User u 
+            LEFT JOIN Photo p ON u.IdUser = p.UserId 
+            WHERE u.IdUser = 9 LIMIT 1;
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Foto cargada
+[16:41:38] [INFO] [http://localhost:8080/messages.php] [UserId=1]: Se han descargado mensajes
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 17;
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 20;
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 23;
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 26;
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 29;
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: SELECT URL FROM Photo where UserId = 32;
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Calculando distancia de los usuarios respecto a la tuya...
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 6000
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:17 Distancia:0 Puntos:6000
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:20 Distancia:70.167445929521 Puntos:1500
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Puntos finales del usuario = 1500
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: - User:32 Distancia:90.758957995656 Puntos:1500
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Ordenando usuarios por Puntuación...
+[16:41:38] [INFO] [http://localhost:8080/apis.php?api=downdloadProfiles] [UserId=1]: Se ha recuperado y ordenado a los usuarios que se mostrarán.
+[16:41:47] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:41:47] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:50:42] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:50:42] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:54:59] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:54:59] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:57:12] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:57:12] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[16:59:23] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[16:59:23] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:03:40] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:03:40] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:04:22] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:04:22] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:06:05] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:06:05] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:07:19] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:07:19] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:07:42] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:07:42] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:08:06] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:08:06] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:09:10] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:09:10] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:09:14] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:09:14] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[17:09:18] [INFO] [http://localhost:8080/profile.php] [UserId=1]: Cargando perfil del usuario...
+[17:09:18] [INFO] [http://localhost:8080/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
