@@ -432,3 +432,47 @@ AS sub ON m.MessageId = sub.LastMessageId ORDER BY m.SentAt DESC;
 [14:55:01] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
 [14:55:13] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
 [14:56:15] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[14:57:59] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[14:58:04] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[14:58:06] [INFO] [http://localhost:3000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[14:58:06] [INFO] [http://localhost:3000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[14:58:06] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[14:58:34] [INFO] [http://localhost:3000/profile.php] [UserId=1]: Cargando perfil del usuario...
+[14:58:34] [INFO] [http://localhost:3000/apis.php?api=downloadProfileWithFoto] [UserId=1]: SELECT URL FROM Photo where UserId = 1;
+[14:58:34] [INFO] [http://localhost:3000/favicon.ico] [UserId=1]: Sesión activa, redirigiendo a discover.php
+[14:58:39] [INFO] [http://localhost:3000/apis.php?api=destroySession] [UserId=1]: Eliminando sesión...
+[14:58:39] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:58:42] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:58:54] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:58:57] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[14:59:44] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Preview de foto correcta
+[14:59:46] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Validando form...
+[14:59:46] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Campos del form correctos.
+[14:59:46] [INFO] [http://localhost:3000/register.php] [UserId=Null]: creando datos...
+[14:59:46] [INFO] [http://localhost:3000/register.php] [UserId=Null]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('jorge.cortes.blanquez@gmail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'fgfh', 'gfhgf', 'gfhgf', 'fghgf', '1998-02-26', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'hghgf', '18', '99')
+[14:59:46] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Usuario creado correctamente.
+[14:59:46] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Enviando correo de verificación a :jorge.cortes.blanquez@gmail.com
+[14:59:47] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Correo enviado de forma correcta.
+[14:59:47] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Tipo de archivo dado en campo imagen: image/png
+[14:59:47] [INFO] [http://localhost:3000/register.php] [UserId=Null]: INSERT INTO photo (UserId, URL) VALUES (41, images/user_41_6798e2d358c5f.png)
+[14:59:47] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Foto de perfil añadida correctamente para el usuario ID: 41.
+[14:59:47] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor...
+[14:59:51] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[15:00:24] [INFO] [http://localhost:3000/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =jorge.cortes.blanquez@gmail.com
+[15:00:24] [INFO] [http://localhost:3000/login.php] [UserId=Null]: Email registrado jorge.cortes.blanquez@gmail.com
+[15:00:24] [INFO] [http://localhost:3000/login.php] [UserId=Null]: Login no verificado, Código: 0
+[15:00:24] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[15:00:43] [INFO] [http://localhost:3000/login.php] [UserId=Null]: SELECT Password, IdUser FROM User WHERE Email =jorge.cortes.blanquez@gmail.com
+[15:00:43] [INFO] [http://localhost:3000/login.php] [UserId=Null]: Email registrado jorge.cortes.blanquez@gmail.com
+[15:00:43] [INFO] [http://localhost:3000/login.php] [UserId=Null]: Login no verificado, Código: 0
+[15:00:43] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[15:04:52] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php
+[15:05:44] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Preview de foto correcta
+[15:05:45] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Validando form...
+[15:05:45] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Campos del form correctos.
+[15:05:45] [INFO] [http://localhost:3000/register.php] [UserId=Null]: creando datos...
+[15:05:45] [INFO] [http://localhost:3000/register.php] [UserId=Null]: INSERT INTO User (Email, Pass, FirstName, LastName1, LastName2, Username, BirthDate, Orientation, Gender, Longitude, Latitude, Bio)
+    VALUES ('jorge.cortes.blanquez@gmail.com', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', 'JorgeCortes', 'Cortes', 'Cortes', 'gfgfd', '1998-05-02', 'Heterosexual', 'Hombre', '2.077589', '41.355866', 'dgsdg', '18', '99')
+[15:05:45] [INFO] [http://localhost:3000/register.php] [UserId=Null]: Solicitud AJAX correcta, enviando petición de crear usuario al servidor...
+[15:05:49] [INFO] [http://localhost:3000/favicon.ico] [UserId=Null]: No se ha encontrado una sesón, redirigiendo a login.php

@@ -1241,7 +1241,7 @@ function getIDByMail($email){
 
             $encrypt= $encryptID . ";" . $encryptMail;
             // Creamos el enlace de verificación
-            $verificationLink = "http://localhost:8000/forgot_password.php?token=" . $encrypt;
+            $verificationLink = "https://tinder2.ieti.site/forgot_password.php?token=" . $encrypt;
     
             // Configuramos el mensaje de correo
             $subject = "Cambia tu contraseña en IETINDER";
