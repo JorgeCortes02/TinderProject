@@ -75,7 +75,8 @@ include 'config.php';
 <?php 
 
 if(isset($_GET["token"])){
-    list($idUser, $mail) = explode(';', trim($_GET['token']));
+    $token = str_replace(' ', '+', $_GET['token']);
+    list($idUser, $mail) = explode(';', trim($token));
    
     $idUser = decrypt($idUser, "grupo2Ietinder");
     $mail = decrypt($mail, "grupo2Ietinder");

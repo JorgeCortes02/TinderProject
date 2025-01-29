@@ -1300,22 +1300,35 @@ function getIDByMail($email){
     }
 
     // Función para encriptar datos
-function encrypt($data, $key) {
-    // Generamos un IV (vector de inicialización) aleatorio
-    $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-
-    // Encriptamos el dato usando AES-256-CBC
-    $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
-
-    // Retornamos los datos encriptados junto con el IV para poder desencriptarlos luego
-    return base64_encode($encryptedData . '::' . $iv);
-}
+    function encrypt($data, $key) {
+        // Generamos un IV aleatorio
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+    
+        // Encriptamos el dato usando AES-256-CBC
+        $encryptedData = openssl_encrypt($data, 'aes-256-cbc', $key, 0, $iv);
+    
+        // Concatenamos el IV y el texto cifrado
+        $encryptedPayload = $encryptedData . '::' . $iv;
+    
+        // Codificamos en Base64 y lo hacemos URL-safe
+        return str_replace(['+', '/', '='], ['-', '_', ''], base64_encode($encryptedPayload));
+    }
+    
 
 // Función para desencriptar datos
 function decrypt($data, $key) {
-    // Decodificamos los datos encriptados (el IV y los datos encriptados están concatenados)
+    // Revertimos el reemplazo de caracteres para volver a Base64 estándar
+    $data = str_replace(['-', '_'], ['+', '/'], $data);
+
+    // Agregamos padding si es necesario (Base64 requiere que la longitud sea múltiplo de 4)
+    $mod4 = strlen($data) % 4;
+    if ($mod4) {
+        $data .= str_repeat('=', 4 - $mod4);
+    }
+
+    // Decodificamos Base64
     $decodedData = base64_decode($data);
-    
+
     // Verificamos si la decodificación fue exitosa
     if ($decodedData === false) {
         return false;
@@ -1326,31 +1339,22 @@ function decrypt($data, $key) {
 
     // Si no conseguimos dos partes, significa que el formato no es correcto
     if (count($parts) !== 2) {
-        return false; // O puedes devolver un mensaje de error específico: "Error: Datos mal formateados."
+        return false;
     }
 
     // Extraemos el encryptedData y el IV
     list($encryptedData, $iv) = $parts;
 
-    // Longitud correcta del IV para AES-256-CBC
-    $ivLength = openssl_cipher_iv_length('aes-256-cbc');
-
-    // Verificar si el IV es null o tiene la longitud incorrecta
-    if ($iv === null || strlen($iv) !== $ivLength) {
-        return false; // O puedes devolver un mensaje de error: "Error: IV tiene longitud incorrecta";
+    // Verificamos la longitud del IV para AES-256-CBC
+    if (strlen($iv) !== openssl_cipher_iv_length('aes-256-cbc')) {
+        return false;
     }
 
     // Desencriptamos los datos usando AES-256-CBC y el IV
     $decrypted = openssl_decrypt($encryptedData, 'aes-256-cbc', $key, 0, $iv);
 
-    // Si no se pudo desencriptar, devolvemos false
-    if ($decrypted === false) {
-        return false; // También puedes devolver otro tipo de mensaje si lo prefieres
-    }
-
-    return $decrypted;
+    return $decrypted !== false ? $decrypted : false;
 }
-
 function isAVlidToken($userId, $email){
 
 
