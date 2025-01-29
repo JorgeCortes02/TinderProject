@@ -63,10 +63,10 @@ $(document).ready(function(){
 
     logOutButton.on("click", function(){
         showNotification("Sesión cerrada", "info");
-        deleteSession();
+        
         setTimeout(() => {
-            window.location.href = 'login.php';
-        }, 4000);
+            window.location.href = 'logout.php';
+        }, 3000);
     });
 
     deleteAccountButtom.on("click", function(){
@@ -294,24 +294,7 @@ async function downloadData(id) {
     }
 }
 
-function deleteSession() {
-    // Hacemos la petición al servidor sin enviar datos
-    fetch("apis.php?api=destroySession", {
-        method: "POST"  // Usamos el método POST
-    })
-        .then(response => {
-            if (!response.ok) {  // Verificar si la respuesta fue exitosa
-                throw new Error("Error al guardar los datos en el servidor");
-            }
-            console.log("Solicitud procesada exitosamente");  // Si la respuesta es correcta, mostramos un mensaje
-        })
-        .catch(error => {
-            console.error("Error en la solicitud:", error);  // Si ocurre un error, lo mostramos
-        });
 
-
-        window.location.href = "login.php";   
-}
 function deleteAccount(){
 
     fetch("apis.php?api=softDeleteAccount", {

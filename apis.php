@@ -1187,14 +1187,7 @@ function uploadPhoto() {
     }
 }
 
-function destroySession(){
-    logServer("Eliminando sesión...");
-    session_destroy();
-    // Redirigir al usuario, por ejemplo, a la página de inicio de sesión
-    $_SESSION['showCloseSessionNotification'] = true;
-    header("Location: login.php");
-    exit;
-}
+
 
 function getIDByMail($email){
 
